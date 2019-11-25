@@ -3,4 +3,26 @@ Captains Log, Stardate 25.11.2019
 Verkefni dagsins:
 	Hópa okkur saman og fara yfir verkefnið
 	Reyna skipuleggja greiningar vikuna
+	
+	
+	Vikuskipulag:
+	
+	Mánudagur:
+		Yfirferð á verkefni - Allir
+		Notendahópagreining - Loki - Rikki - Emil
+		Kröfulisti - Margrét - Svanhvít
+		Use Case - Allir
+
+	Þriðjudagur:
+		Stöðurit
+		Klasarit
+
+	Miðvikudagur:
+		Útlitshönnun
+
+	Fimtudagur:
+		Krísudagur
+
+	Föstudagur:
+		Fínpússun
 
