@@ -26,3 +26,27 @@ Verkefni dagsins:
 	Föstudagur:
 		Fínpússun
 
+
+
+Captains Log, Stardate 26.11.2019
+
+Yfirferð gærdags.
+	Kláruð verkefni:
+		Notendahópar
+
+	Verkefni kominn langt:
+		Kröfulistinn
+		Notkunartilvik
+	
+	Verkefni sem eru byrjuð:
+		Wireframes
+		Klasarit
+	
+	Verkefni sem eru ekki byrjuð:
+		State diagram
+
+	Verkefni dagsins:
+		Fínpússa kröfulista
+		Notkunartilvik
+		Klasarit
+		
