@@ -1,0 +1,124 @@
+# PlantUML Editor
+
+1. select template
+2. write uml diagram
+
+@startuml
+
+
+package Data_layer #70e697 {
+class Employee {
+  Name
+  id_number
+  address
+  home_phone
+  mobile_phone
+  email
+
+}
+class Flight_attendant{
+}
+class Pilot{
+  flight_liscences
+}
+class Data_controller{
+  stuff
+  
+  }
+class Destination{
+  name
+  airport
+  flight_time
+  distance
+  contact_name
+  contact_number
+}
+class Voyage{
+  pilot
+  co-pilot
+  purser
+  cabin_crew_list
+
+}
+class Flight{
+  destination
+  departure_date
+  departure_time
+  flight_num
+  flight_id
+}
+class Company{
+  employee_list
+  airplane_list
+  destination_list
+  Create_employee()
+  Modify_employee()
+  Remove_employee()
+  Create_voyage()
+}
+class Airplane{
+  model
+  number_of_seats
+}
+Employee --* Company
+Employee -- Pilot 
+Flight -- Voyage
+Flight -- Airplane
+Destination -- Voyage
+Voyage --* Company
+  
+Data_controller -- Destination
+(Data_controller,Voyage) -right- (Employee,Flight_attendant)
+(Data_controller,Employee) -- Pilot
+Data_controller -- Company
+(Data_controller,Flight) -- Airplane
+}
+
+
+package UI_layer #4FDEDD {
+class Menu{
+  options_list
+}
+  class Employees{
+  options_list
+}
+class Voyages{
+  options_list
+}
+class Airplanes{
+  options_list
+}
+class Destinations{
+  options_list
+}
+Menu -- Employees
+Menu -- Voyages
+Menu -- Destinations
+Menu -- Airplanes
+}
+package Logic_layer #666C69 {
+class Validate_crew{
+  crew_list
+  voyage_list
+  Pilot_check()
+  Crew_check()
+}
+class Validate_voyage{
+  
+  
+  }
+class Validate_plane{
+  plane_list
+  Plane_check()
+  }
+}
+
+Data_layer -up- Logic_layer
+Logic_layer -up- UI_layer
+
+
+
+
+
+
+@enduml
