@@ -1,30 +1,64 @@
 # PlantUML Editor
 
-1. select template
-2. write uml diagram
 
 @startuml
 
 
 package Data_layer #70e697 {
+class Data_controller{
+  create_pilot()
+  modify_pilot()
+  remove_pilot()
+  create_flight_attendant()
+  modify_flight_attendant()
+  remove_flight_attendant()
+  create_voyage()
+  modify_voyage()
+  remove_voyage()
+  create_destination()
+  modify_destination()
+  remove_destination()
+  create_airplane()
+  modify_airplane()
+  remove_airplane()
+  }
+
+
 class Employee {
-  Name
+  name
   id_number
   address
   home_phone
   mobile_phone
   email
+  title
+  availability
 
+  get_name()
+  set_name()
+  get_id_number()
+  set_id_number()
+  get_home_phone()
+  set_home_hone()
+  get_mobile_phone()
+  set_mobile_phone()
+  get_email()
+  set_email()
+  get_title()
+  set_title()
+  get_availability()
+  set_availability()
 }
+
 class Flight_attendant{
 }
 class Pilot{
-  flight_liscences
+  flight_licenses
+
+  get_flight_licenses()
+  set_flight_licenses()
 }
-class Data_controller{
-  stuff
-  
-  }
+
 class Destination{
   name
   airport
@@ -32,12 +66,34 @@ class Destination{
   distance
   contact_name
   contact_number
+
+  get_name()
+  set_name()
+  get_airport()
+  set_airport()
+  get_flight_time()
+  set_flight_time()
+  get_distance()
+  set_distance()
+  get_contact_name()
+  set_contact_name()
+  get_contact_number()
+  set_contact_number()
 }
 class Voyage{
   pilot
-  co-pilot
+  co_pilot
   purser
   cabin_crew_list
+
+  get_pilot()
+  set_pilot()
+  get_co_pilot()
+  set_co_pilot()
+  get_purser()
+  set_purser()
+  get_cabin_crew_list()
+  set_cabin_crew_list()
 
 }
 class Flight{
@@ -46,37 +102,50 @@ class Flight{
   departure_time
   flight_num
   flight_id
+
+  get_destination()
+  set_destination()
+  get_departure_date()
+  set_departure_date()
+  get_departure_time()
+  set_departure_time()
+  get_flight_num()
+  set_flight_num()
+  get_flight_id()
+  set_flight_id()
 }
-class Company{
-  employee_list
-  airplane_list
-  destination_list
-  Create_employee()
-  Modify_employee()
-  Remove_employee()
-  Create_voyage()
-}
+
 class Airplane{
   model
   number_of_seats
+
+  get_model()
+  set_model()
+  get_number_of_seats()
+  set_number_of_seats()
 }
-Employee --* Company
-Employee -- Pilot 
-Flight -- Voyage
-Flight -- Airplane
-Destination -- Voyage
-Voyage --* Company
-  
+
+
+Data_controller -- Flight_attendant
+Data_controller -- Pilot
+Employee -up-|> Flight_attendant
+Employee -up-|> Pilot
+Data_controller -- Voyage
 Data_controller -- Destination
-(Data_controller,Voyage) -right- (Employee,Flight_attendant)
-(Data_controller,Employee) -- Pilot
-Data_controller -- Company
-(Data_controller,Flight) -- Airplane
+Destination -- Voyage
+Data_controller -- Airplane
+Airplane *-- Flight
+Data_controller -- Flight
+Flight *-- Voyage
+
+
+
+
 }
 
 
 package UI_layer #4FDEDD {
-class Menu{
+class UI_controller{
   options_list
 }
   class Employees{
@@ -96,7 +165,15 @@ Menu -- Voyages
 Menu -- Destinations
 Menu -- Airplanes
 }
+
+
+
 package Logic_layer #666C69 {
+class logic_controller{
+  employees_list
+  voyages_list
+  destinations_list
+}
 class Validate_crew{
   crew_list
   voyage_list
@@ -113,8 +190,8 @@ class Validate_plane{
   }
 }
 
-Data_layer -up- Logic_layer
-Logic_layer -up- UI_layer
+UI_layer -down- Logic_layer
+Logic_layer -down- Data_layer
 
 
 
