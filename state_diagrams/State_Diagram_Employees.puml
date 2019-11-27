@@ -1,4 +1,4 @@
-@startuml
+@startuml employees
 hide empty description
 
 [*] --> Not_Working
@@ -10,5 +10,5 @@ In_the_air -> Working
 In_the_air -> On_the_ground
 On_the_ground -> In_the_air
 On_the_ground : Destination
-
 @enduml
+

@@ -1,0 +1,9 @@
+@startuml pilot to voyage plz k thx
+hide empty description
+
+
+[*] --> Create_employee
+Create_employee --> wat
+
+
+@enduml

@@ -1,4 +1,4 @@
-@startuml
+@startuml create employee
 hide empty description
 
 
@@ -15,6 +15,5 @@ liscence --> co_pilot
 liscence --> pilot
 cabin_crew --> flight_attendant
 cabin_crew --> cabin_worker
-
 
 @enduml

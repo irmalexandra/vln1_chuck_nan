@@ -1,4 +1,4 @@
-@startuml
+@startuml flight
 hide empty description
 
 [*] --> Fully_booked
@@ -10,5 +10,4 @@ Not_fully_booked -> Cancelled
 Departed -> Landed
 Landed --> [*]
 Cancelled --> [*]
-
 @enduml
