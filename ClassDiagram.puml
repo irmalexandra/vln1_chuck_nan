@@ -1,6 +1,12 @@
 @startuml NaNAirlines
 
-package UI_layer #4FDEDD {
+class chuckNaN{
+
+}
+
+package UI_layer #fcb603 {
+ 
+  chuckNaN -down- MainUI
   class MainUI{
     main_menu()
     menu_handler()
@@ -36,7 +42,11 @@ package UI_layer #4FDEDD {
   MainUI -- AirplanesUI
 }
 
-package Logic_layer #666C69 {
+package Logic_layer #03a1fc {
+
+  class MainLL{
+
+  }
 
   class EmployeeLL{
     validate_input()
@@ -55,9 +65,22 @@ package Logic_layer #666C69 {
     
   }
 
+  MainLL -- EmployeeLL
+  MainLL -- VoyagesLL
+  MainLL -- DestinationsLL
+  MainLL -- AirplanesLL
+
 }
 
-package Data_layer{
+package Data_layer #03fc80{
+
+  class MainDL{
+    all_employees_list[]
+    all_voyages_list[]
+    all_destionations_list[]
+    all_airplanes_list[]
+
+  }
 
   class EmployeeDL{
     save_data()
@@ -82,12 +105,30 @@ package Data_layer{
     create_instance()
     
   }
+
+  MainDL -- EmployeeDL
+  MainDL -- VoyagesDL
+  MainDL -- DestinationsDL
+  MainDL -- AirplanesDL
   
 }
 
+EmployeeUI -down- MainLL
+VoyagesUI -down- MainLL
+AirplanesUI -down- MainLL
+DestinationsUI -down- MainLL
+
+EmployeeLL -down- MainDL
+VoyagesLL -down- MainDL
+DestinationsLL -down- MainDL
+AirplanesLL -down- MainDL
 
 
-package Models{
+
+
+
+
+package Models #cefc03{
 
 
 class Employee {
@@ -206,10 +247,6 @@ Flight *-- Voyage
 
 }
 
-
-
-UI_layer -down- Logic_layer
-Logic_layer -down- Data_layer
 
 UI_layer -- Models
 Logic_layer -- Models

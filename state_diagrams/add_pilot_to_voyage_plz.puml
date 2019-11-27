@@ -1,0 +1,16 @@
+@startuml pilot to voyage plz k thx
+hide empty description
+
+
+[*] --> show_pilotless_voyages
+show_pilotless_voyages --> pick_voyage
+pick_voyage --> show_available_pilots:valid
+pick_voyage --> pick_voyage:invalid
+show_available_pilots: liscence must be correct
+show_available_pilots: must be available
+show_available_pilots --> pick_pilot:valid
+pick_pilot --> pick_pilot:invalid
+pick_pilot --> save
+
+
+@enduml

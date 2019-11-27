@@ -1,0 +1,103 @@
+@startuml all of it 
+hide empty description
+[*] --> start_menu
+start_menu:employees
+start_menu:voyages
+start_menu:destinations
+start_menu:airplanes
+start_menu:return
+start_menu:home
+' -------------------------------------------------------------------------
+' -------------------------------------------------------------------------
+state employees #fcb603{
+    start_menu --> employees_menu:1
+
+    employees_menu --> create_employee
+
+    employees_menu --> list_employees
+    list_employees --> employee_filter
+    employee_filter --> employee_sort
+    employee_sort --> display_employees
+    display_employees --> select_employee
+
+    employees_menu --> lookup_employees
+    lookup_employees --> select_employee
+    select_employee --> modify_employee
+    select_employee --> employee_work_schedule
+
+}
+employees:What? 
+
+
+
+' -------------------------------------------------------------------------
+' -------------------------------------------------------------------------
+state voyages #f58ef0 {
+    start_menu --> voyages_menu:2
+    voyages_menu --> create_voyage
+
+    voyages_menu --> list_voyage
+    list_voyage --> voyage_filter
+    voyage_filter --> voyage_sort
+    voyage_sort --> display_voyage
+    display_voyage --> select_voyage
+
+    select_voyage --> modify_voyage
+
+    voyages_menu --> lookup_voyage
+    lookup_voyage --> select_voyage
+}
+
+
+
+' -------------------------------------------------------------------------
+' -------------------------------------------------------------------------
+
+state destinations #70e697 {
+    start_menu --> destinations_menu:3
+
+    destinations_menu --> create_destination
+
+    destinations_menu --> list_destination
+    list_destination --> destination_filter
+    destination_filter --> destination_sort
+    destination_sort --> display_destination
+
+    display_destination --> select_destination
+
+    destinations_menu --> lookup_destination
+    lookup_destination --> select_destination
+}
+
+
+
+' -------------------------------------------------------------------------
+' -------------------------------------------------------------------------
+
+state airplanes #99c0ff {
+    start_menu --> airplanes_menu:4
+
+    airplanes_menu --> lookup_airplane
+    lookup_airplane --> airplane_filter
+
+
+    airplane_filter --> airplane_sort
+    airplane_sort --> display_airplane
+    display_airplane --> select_airplane
+    select_airplane --> modify_airplane
+
+    airplanes_menu --> create_airplane
+
+    airplanes_menu --> list_airplane
+    list_airplane --> select_airplane
+}
+
+
+' -------------------------------------------------------------------------
+' -------------------------------------------------------------------------
+
+
+
+
+
+@enduml
