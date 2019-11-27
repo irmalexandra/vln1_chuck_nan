@@ -1,4 +1,4 @@
-@startuml
+
 hide empty description
 [*] --> Created
 Created : Airplane
@@ -10,4 +10,4 @@ Started --> Ended
 Cancelled --> [*]
 Ended --> [*]
 
-@enduml
+
