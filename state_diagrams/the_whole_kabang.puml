@@ -9,7 +9,7 @@ start_menu:return
 start_menu:home
 ' -------------------------------------------------------------------------
 ' -------------------------------------------------------------------------
-state employees #fa6e79 {
+state employees #fcb603{
     start_menu --> employees_menu:1
 
     employees_menu --> create_employee
@@ -26,6 +26,7 @@ state employees #fa6e79 {
     select_employee --> employee_work_schedule
 
 }
+employees:What? 
 
 
 
