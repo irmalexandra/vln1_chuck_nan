@@ -1,27 +1,93 @@
-# PlantUML Editor
+@startuml NaNAirlines
 
-
-@startuml
-
-
-package Data_layer #70e697 {
-class Data_controller{
-  create_pilot()
-  modify_pilot()
-  remove_pilot()
-  create_flight_attendant()
-  modify_flight_attendant()
-  remove_flight_attendant()
-  create_voyage()
-  modify_voyage()
-  remove_voyage()
-  create_destination()
-  modify_destination()
-  remove_destination()
-  create_airplane()
-  modify_airplane()
-  remove_airplane()
+package UI_layer #4FDEDD {
+  class MainUI{
+    main_menu()
+    menu_handler()
   }
+
+  class EmployeeUI{
+    show()
+    list()
+    create()
+    edit()
+  }
+  class VoyagesUI{
+    show()
+    list()
+    create()
+    edit()
+  }
+  class DestinationsUI{
+    show()
+    list()
+    create()
+    edit()
+  }
+  class AirplanesUI{
+    show()
+    list()
+    create()
+    edit()
+  }
+  MainUI -- EmployeeUI
+  MainUI -- VoyagesUI
+  MainUI -- DestinationsUI
+  MainUI -- AirplanesUI
+}
+
+package Logic_layer #666C69 {
+
+  class EmployeeLL{
+    validate_input()
+    
+  }
+  class VoyagesLL{
+    validate_input()
+    
+  }
+  class DestinationsLL{
+    validate_input()
+    
+  }
+  class AirplanesLL{
+    validate_input()
+    
+  }
+
+}
+
+package Data_layer{
+
+  class EmployeeDL{
+    save_data()
+    read_data()
+    create_instance()
+  }
+  class VoyagesDL{
+    save_data()
+    read_data()
+    create_instance()
+    
+  }
+  class DestinationsDL{
+    save_data()
+    read_data()
+    create_instance()
+    
+  }
+  class AirplanesDL{
+    save_data()
+    read_data()
+    create_instance()
+    
+  }
+  
+}
+
+
+
+package Models{
 
 
 class Employee {
@@ -52,6 +118,7 @@ class Employee {
 
 class Flight_attendant{
 }
+
 class Pilot{
   flight_licenses
 
@@ -80,6 +147,7 @@ class Destination{
   get_contact_number()
   set_contact_number()
 }
+
 class Voyage{
   pilot
   co_pilot
@@ -96,10 +164,14 @@ class Voyage{
   set_cabin_crew_list()
 
 }
+
 class Flight{
-  destination
+  departure_airport
+  arrival_airport
   departure_date
   departure_time
+  arrival_date
+  arrival_time
   flight_num
   flight_id
 
@@ -117,85 +189,31 @@ class Flight{
 
 class Airplane{
   model
-  number_of_seats
+  max_seats
 
   get_model()
   set_model()
-  get_number_of_seats()
-  set_number_of_seats()
+  get_max_seats()
+  set_max_seats()
 }
 
-
-Data_controller -- Flight_attendant
-Data_controller -- Pilot
 Employee -up-|> Flight_attendant
 Employee -up-|> Pilot
-Data_controller -- Voyage
-Data_controller -- Destination
-Destination -- Voyage
-Data_controller -- Airplane
+Destination *-- Voyage
 Airplane *-- Flight
-Data_controller -- Flight
+Airplane *-- Voyage
 Flight *-- Voyage
 
-
-
-
 }
 
 
-package UI_layer #4FDEDD {
-class UI_controller{
-  options_list
-}
-  class Employees{
-  options_list
-}
-class Voyages{
-  options_list
-}
-class Airplanes{
-  options_list
-}
-class Destinations{
-  options_list
-}
-Menu -- Employees
-Menu -- Voyages
-Menu -- Destinations
-Menu -- Airplanes
-}
-
-
-
-package Logic_layer #666C69 {
-class logic_controller{
-  employees_list
-  voyages_list
-  destinations_list
-}
-class Validate_crew{
-  crew_list
-  voyage_list
-  Pilot_check()
-  Crew_check()
-}
-class Validate_voyage{
-  
-  
-  }
-class Validate_plane{
-  plane_list
-  Plane_check()
-  }
-}
 
 UI_layer -down- Logic_layer
 Logic_layer -down- Data_layer
 
-
-
-
+UI_layer -- Models
+Logic_layer -- Models
+Data_layer -- Models
 
 
 @enduml
