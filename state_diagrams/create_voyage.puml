@@ -1,0 +1,7 @@
+@startuml
+
+[*] --> Create_Voyage
+Create_Voyage -> Destination : get_destination_list 
+Destination -> Create_Voyage
+Destination -> Departure_Date : get_calendar
+
