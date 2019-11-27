@@ -1,5 +1,5 @@
 @startuml
-
+hide empty description
 [*] --> Created
 Created : Airplane
 Created -> Staffed

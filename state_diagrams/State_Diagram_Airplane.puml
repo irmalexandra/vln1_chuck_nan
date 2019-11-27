@@ -1,4 +1,5 @@
 @startuml
+hide empty description
 
 [*] --> Not_in_use
 Not_in_use -> In_use

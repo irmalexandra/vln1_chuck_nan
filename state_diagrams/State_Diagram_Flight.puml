@@ -1,4 +1,5 @@
 @startuml
+hide empty description
 
 [*] --> Fully_booked
 [*] --> Not_fully_booked
