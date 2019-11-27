@@ -1,6 +1,7 @@
 @startuml
 
 [*] --> Created
+Created : Airplane
 Created -> Staffed
 Created -> Cancelled
 Staffed -> Cancelled
