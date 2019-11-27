@@ -1,4 +1,4 @@
-
+@startuml airplane
 hide empty description
 
 [*] --> Not_in_use
@@ -11,3 +11,4 @@ In_the_air -> In_use
 In_the_air -> On_the_ground
 On_the_ground -> In_the_air
 
+@enduml
