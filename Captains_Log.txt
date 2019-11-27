@@ -50,3 +50,21 @@ Yfirferð gærdags.
 		Notkunartilvik
 		Klasarit
 		
+Captains Log, Stardate 27.11.2019
+
+Yfirferð gærdags. 
+	Kláruð verkefni:
+		Kröfulistinn
+
+	Verkefni komin langt:
+		Wireframes/Happy Path
+		Use Cases
+
+	Verkefni sem eru byrjuð:
+		Class Diagram
+		State Diagram
+
+	Verkefni dagsins:
+		Tengja Use Cases við Wireframe/Happy Path
+		Class Diagram
+		State Diagram
