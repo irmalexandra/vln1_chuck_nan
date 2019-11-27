@@ -1,6 +1,5 @@
 @startuml
 
-
 [*] --> Fully_booked
 [*] --> Not_fully_booked
 Fully_booked --> Departed
