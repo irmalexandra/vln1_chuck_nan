@@ -1,0 +1,20 @@
+@startuml
+hide empty description
+
+
+[*] --> Create_employee
+Create_employee --> Name
+Name --> Name :wrong input
+Name --> additional_information : success
+additional_information --> additional_information :wrong input
+additional_information --> role :success
+role --> pilot_crew
+role --> cabin_crew
+pilot_crew --> liscence
+liscence --> co_pilot
+liscence --> pilot
+cabin_crew --> flight_attendant
+cabin_crew --> cabin_worker
+
+
+@enduml
