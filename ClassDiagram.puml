@@ -28,8 +28,8 @@ class Employee {
   name
   id_number
   address
-  home_phone
-  mobile_phone
+  home_number
+  mobile_number
   email
   title
   availability
@@ -38,10 +38,10 @@ class Employee {
   set_name()
   get_id_number()
   set_id_number()
-  get_home_phone()
-  set_home_hone()
-  get_mobile_phone()
-  set_mobile_phone()
+  get_home_number()
+  set_home_number()
+  get_mobile_number()
+  set_mobile_number()
   get_email()
   set_email()
   get_title()
