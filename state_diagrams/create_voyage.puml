@@ -1,7 +1,12 @@
-@startuml
+@startuml create voyage
 
 [*] --> Create_Voyage
 Create_Voyage -> Destination : get_destination_list 
-Destination -> Create_Voyage
+Destination -> Destination
 Destination -> Departure_Date : get_calendar
+Departure_Date -> Departure_Time
+Departure_Time -> Departure_Time
+Departure_Time -> Airplane : get_airplane_list
 
+
+@enduml
