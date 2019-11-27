@@ -1,0 +1,12 @@
+@startuml
+
+[*] --> Created
+Created -> Staffed
+Created -> Cancelled
+Staffed -> Cancelled
+Staffed --> Started
+Started --> Ended
+Cancelled --> [*]
+Ended --> [*]
+
+@enduml

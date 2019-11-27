@@ -1,0 +1,11 @@
+@startuml
+
+[*] --> Working
+[*] --> Not_Working
+Working -> On_the_ground
+On_the_ground --> In_the_air
+In_the_air -> On_the_ground
+Not_Working --> [*]
+On_the_ground --> [*]
+
+@enduml
