@@ -10,11 +10,11 @@ Select: 1
 ---------------------------------------------------
 Select: 3
 ---------------------------------------------------
-1. SSN 2. Title 3. Date 4. Airplane         0. Home
+1. By SSN 2. By Title 3. By Date 4. By Airplane         0. Home
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
-Insert SSN: 1212121212
+Enter SSN: 1212121212
 ---------------------------------------------------
 Name: Ríkharður Friðgeirsson
 SSN: 2402922469
@@ -24,20 +24,19 @@ Email: rikki@nanair.is
 Title: Pilot
 License: Boeing747
 ---------------------------------------------------
-1. Edit 2. Work Schedule 3. Change AirPlaneType     0. Home
+1. Edit 2. Work Schedule 3. Change Airplane Type     0. Home
 ---------------------------------------------------
 Select: 3
 ---------------------------------------------------
-Insert new AirPlaneType: Boeing 777
+Insert new airplane type: Boeing 777
 ---------------------------------------------------
-New AirPlaneType added successfully
+New airplane type added successfully
 ---------------------------------------------------
 1. Home number: 5555555
 2. Mobile number: 6666666
 3. Email: rikki@nanair.is
 4. Title: Pilot
-5. Air plane type: Boeing747
-
+5. Airplane type: Boeing747
 6. Done
 ---------------------------------------------------
 Select: 6

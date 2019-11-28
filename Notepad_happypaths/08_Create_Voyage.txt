@@ -28,7 +28,7 @@ Enter departure time: 23:55
 ---------------------------------------------------
 Voyage created successfully
 ---------------------------------------------------
-Destination: KUL
+Airport: KUL
 
 Airplane: Foxy Fire
 Departure date: 11-12-2019
