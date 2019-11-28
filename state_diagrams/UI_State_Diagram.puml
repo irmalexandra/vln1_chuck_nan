@@ -20,6 +20,7 @@ state Employee_state #fcb603{
     ShowEmployee --> EditEmployee: Krafa 5
     EditEmployee: 1. Home Number \n2. Mobile Number \n3. Email \n4. Title
     ShowEmployee --> WorkSchedule: Krafa 15
+    WorkSchedule:input period
     EmployeeSearch --> ByDate
     ByDate --> ShowEmployees
     EmployeeSearch --> ByAirplane
