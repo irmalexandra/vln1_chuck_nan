@@ -11,8 +11,8 @@ Select: 1
 Select: 2
 ---------------------------------------------------
 All Employees
-#  Name    SSN    Title            License    Availability
-1. Rikki   224    Flight Attendant -          Working
+#  Name    SSN    Title             Airplane type    Availability
+1. Rikki   224    Flight Attendant  -                Working
 
 1. Select Employee 2. Show Working 3. Show Free 0. Home
 ---------------------------------------------------

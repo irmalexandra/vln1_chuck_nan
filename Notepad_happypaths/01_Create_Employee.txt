@@ -36,7 +36,7 @@ Enter title: Pilot
 ---------------------------------------------------
 Create Employee (7/7)
 ---------------------------------------------------
-Enter licenses seperated by space: Boeing747
+Enter airplane type: Boeing747
 ---------------------------------------------------
 Employee created successfully
 ---------------------------------------------------
@@ -46,7 +46,7 @@ Home number: 5555555
 Mobile number: 6666666
 Email: rikki@nanair.is
 Title: Pilot
-License: Boeing747
+Airplane type: Boeing747
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
