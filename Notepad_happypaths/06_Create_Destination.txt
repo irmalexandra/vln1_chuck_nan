@@ -32,7 +32,7 @@ Enter contact name: Son of Norris
 ---------------------------------------------------
 Create Destination (6/6)
 ---------------------------------------------------
-Enter contact number: 424-24242
+Enter contact number: 424-2424
 ---------------------------------------------------
 Destination created successfully created successfully
 ---------------------------------------------------
@@ -41,7 +41,7 @@ Airport: Kulu Suk
 FlightTime: 2
 Distance: 400
 ContactName: Son of Norris
-ContactNumber: 424-24242
+ContactNumber: 424-2424
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
