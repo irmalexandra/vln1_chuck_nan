@@ -27,6 +27,7 @@ Country     Airport     FlightTime      ContactName     ContactNumber
 Voyage
 Destination:
 
+Airplane:
 DepartureDate:
 DepartureTime:
 ReturnDate:
