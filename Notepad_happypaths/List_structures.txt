@@ -23,7 +23,7 @@ ContactNumber:
 Destinations
 Country     Airport     FlightTime      ContactName     ContactNumber
 Ísland      KEF         20              Rikki           11123123
-
+--------------------------------------------------------------------------------------------
 Voyage
 Destination:
 
@@ -48,22 +48,23 @@ CabinCrew:
         Person1
         Person2
         Person3
-
+----------------------------------------------------------------------------------
 Voyages
 Date           Country      Airport    Staffed
 25.11.2019    Greenland     Kulusuk     Yes
 
-
+---------------------------------------------------------------------------------
 Airplane
 Name:
 Make:
 Model:
 TotalSeats:
-
+---------------------------------------------------------------------------
 Airplanes
 Name    Make    Model   TotalSeats
 TF100   Boeing  747      300
 
-
+----------------------------------------------------------
 Pilots
 Name    Title   License
+---------------------------------------------------------------
