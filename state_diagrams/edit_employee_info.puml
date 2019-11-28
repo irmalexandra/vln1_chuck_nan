@@ -1,0 +1,27 @@
+@startuml edit employee info
+hide empty description
+
+[*] -down-> employees
+employees -down-> search
+search -down-> by_ssn
+by_ssn -down-> by_ssn:invalid input
+by_ssn -down-> edit_employee
+edit_employee -down-> UI_input_home_number
+UI_input_home_number -down-> UI_input_home_number:invalid input
+edit_employee -down-> UI_input_mobile_number
+UI_input_mobile_number -down-> UI_input_mobile_number:invalid input
+edit_employee -down-> UI_input_email
+UI_input_email -down-> UI_input_email:invalid input
+edit_employee -down-> UI_input_title
+UI_input_title -down-> UI_input_title:invalid input
+UI_input_home_number --> edit_employee
+UI_input_mobile_number --> edit_employee
+UI_input_email --> edit_employee
+UI_input_title --> edit_employee
+edit_employee -down-> LL_employee_checker
+LL_employee_checker --> edit_employee:employee creation unsuccessful
+LL_employee_checker -down-> DL_employee_handler
+DL_employee_handler -down-> DB
+DB --> [*]
+
+@enduml
