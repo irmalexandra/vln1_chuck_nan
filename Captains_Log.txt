@@ -68,3 +68,18 @@ Yfirferð gærdags.
 		Tengja Use Cases við Wireframe/Happy Path
 		Class Diagram
 		State Diagram
+
+Captains Log, Stardate 28.11.2019
+
+Yfirferð gærdags. 
+
+	Verkefni komin langt:
+		Wireframes/Happy Path
+		Use Cases
+		Class Diagram
+		State Diagram
+
+	Verkefni dagsins:
+		Tengja Use Cases við Wireframe/Happy Path
+		Class Diagram
+		State Diagram

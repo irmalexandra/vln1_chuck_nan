@@ -27,6 +27,7 @@ Country     Airport     FlightTime      ContactName     ContactNumber
 Voyage
 Destination:
 
+Airplane:
 DepartureDate:
 DepartureTime:
 ReturnDate:
@@ -62,3 +63,7 @@ TotalSeats:
 Airplanes
 Name    Make    Model   TotalSeats
 TF100   Boeing  747      300
+
+
+Pilots
+Name    Title   License
