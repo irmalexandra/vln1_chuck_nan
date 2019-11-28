@@ -20,12 +20,12 @@ state Employee_state #fcb603{
     ShowEmployee --> EditEmployee: Krafa 5
     EditEmployee: 1. Home Number \n2. Mobile Number \n3. Email \n4. Title
     ShowEmployee --> WorkSchedule: Krafa 15
-    WorkSchedule:input period
+    WorkSchedule --> ShowWorkSchedule: Input:Period
     EmployeeSearch --> ByDate
     ByDate --> ShowEmployees
     EmployeeSearch --> ByAirplane
-    ByAirplane --> SortByAirplane: Krafa 19
-    ByAirplane --> FilterByAirplane: Krafa 18
+    ByAirplane --> SortByAirplane: Krafa 20
+    ByAirplane --> FilterByAirplane: Krafa 19
     SortByAirplane --> ShowEmployees
     FilterByAirplane --> ShowEmployees: Input: Airplane Type
     EmployeeSearch: 1. BySSN\n2. ByTitle\n3. ByDate\n4. ByAirplane
@@ -34,7 +34,7 @@ state Employee_state #fcb603{
     ShowEmployees --> ShowFree: Krafa 13
     ShowEmployees --> ShowWorking: Krafa 14
     ShowEmployees --> ShowEmployee: Select Employee
-    ShowEmployee --> AddLicense: Krafa 17
+    ShowEmployee --> AddLicense: Krafa 18
     AddLicense: If Employee == Pilot or Co-Pilot
 
 }
@@ -57,9 +57,14 @@ state Voyages_state #f58ef0{
     EmptyVoyages --> ShowVoyages
     ByPeriod --> ShowVoyages: Krafa 12
     ShowVoyages --> ShowVoyage: Select
-    ShowVoyage: 1. AddCrew
+    ShowVoyage: 1. AddCrew\n 2. Duplicate\n 3. Repeat
     ShowVoyage --> AddCrew: Krafa 10
     VoyageSearch --> StaffedVoyages
+    ShowVoyage --> DuplicateVoyage: Krafa 16
+    DuplicateVoyage: input: Date \nCheck if time and airplane are available
+    ShowVoyage --> RepeatVoyage: Krafa 16
+    RepeatVoyage: 1. input: Period \n2. input: Interval
+
 
 }
 
@@ -74,16 +79,16 @@ state Destination_state #70e697{
     DestinationSearch: input("Name of Destination")
     DestinationSearch --> ShowDestination: User input for name
     ShowDestination: 1. ChangeContact \n2. ChangeEmergencyNumber
-    ShowDestination --> ChangeContact: Krafa 20
-    ShowDestination --> ChangeEmergencyNumber: Krafa 21
+    ShowDestination --> ChangeContact: Krafa 21
+    ShowDestination --> ChangeEmergencyNumber: Krafa 22
 
 }
 
 state Airplanes_state #99c0ff{
     MainMenu -up-> Airplanes:4 
     Airplanes: 1. CreateAirplane \n2. AllPlanes
-    Airplanes -left-> CreateAirplane: Krafa 16
-    Airplanes -right-> AllPlanes: Krafa 22
+    Airplanes -left-> CreateAirplane: Krafa 17
+    Airplanes -right-> AllPlanes: Krafa 23
     AllPlanes -up-> ShowPlanes
     
     
