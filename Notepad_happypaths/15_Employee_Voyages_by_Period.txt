@@ -22,9 +22,9 @@ Home number: 5555555
 Mobile number: 6666666
 Email: rikki@nanair.is
 Title: Pilot
-License: Boeing747
+Airplane type: Boeing747
 ---------------------------------------------------
-1. Edit 2. Work Schedule 3. Add License     0. Home
+1. Edit 2. Work Schedule 3. Change Airplane Type     0. Home
 ---------------------------------------------------
 Select: 2
 ---------------------------------------------------
