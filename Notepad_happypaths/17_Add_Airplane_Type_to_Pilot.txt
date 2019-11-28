@@ -30,16 +30,17 @@ Select: 3
 ---------------------------------------------------
 Insert new airplane type: Boeing 777
 ---------------------------------------------------
-New airplane type added successfully
+Name: Ríkharður Friðgeirsson
+SSN: 2402922469
+Home number: 5555555
+Mobile number: 6666666
+Email: rikki@nanair.is
+Title: Pilot
+License: Boeing777
 ---------------------------------------------------
-1. Home number: 5555555
-2. Mobile number: 6666666
-3. Email: rikki@nanair.is
-4. Title: Pilot
-5. Airplane type: Boeing747
-6. Done
+1. Edit 2. Work Schedule 3. Change Airplane Type     0. Home
 ---------------------------------------------------
-Select: 6
+Select: 0
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
