@@ -11,17 +11,26 @@ state Employee_state #fcb603{
     Employees -up-> AllEmployees: Krafa 2
     AllEmployees -up-> ShowEmployees
     Employees -down-> EmployeeSearch
-    EmployeeSearch: 1. ByEmployeeName\n2. ByTitle \n3. ByDate
-    EmployeeSearch --> ByTitle: Krafa 3
+    EmployeeSearch --> SearchPilots
+    SearchPilots: 1. ByAirplane\n 2. ByLicense
+    EmployeeSearch --> SearchAllEmployees
+    SearchAllEmployees: 1. ByDate\n2. ByTitle
+    EmployeeSearch: 1. SearchAllEmployees\n2. SearchPilots
+    SearchAllEmployees --> ByTitle: Krafa 3
     ByTitle --> ShowEmployees
     ShowEmployees: 1. Select Employee \n2. ShowWorking \n3. ShowFree
-    EmployeeSearch --> ByEmployeeName: Krafa 4
+    SearchAllEmployees --> ByEmployeeName: Krafa 4
     ByEmployeeName --> ShowEmployee
     ShowEmployee: 1. EditEmployee \n2. WorkSchedule\n3. AddLicense
     ShowEmployee --> EditEmployee: Krafa 5
+    EditEmployee: 1. Home Number \n2. Mobile Number \n3. Email \n4. Title \n5. License \n6. Availability
     ShowEmployee --> WorkSchedule: Krafa 15
-    EmployeeSearch --> ByDate
+    SearchAllEmployees --> ByDate
     ByDate --> ShowEmployees
+    SearchPilots --> ByAirplane: Krafa 18
+    SearchPilots --> ByLicense: Krafa 19
+    ByAirplane --> ShowEmployees
+    ByLicense --> ShowEmployees
     ShowEmployees --> ShowFree: Krafa 13
     ShowEmployees --> ShowWorking: Krafa 14
     ShowEmployees --> ShowEmployee: Select Employee
@@ -55,13 +64,14 @@ state Voyages_state #f58ef0{
 
 state Destination_state #70e697{
     MainMenu -Right-> Destinations: 3
-    Destinations:1. Create Destination \n2. AllVoyages \n3. VoyageSearch
+    Destinations:1. Create Destination \n2. AllDestinations \n3. VoyageSearch
     Destinations -up-> CreateDestination: Krafa 6
     Destinations -down-> AllDestionations: Krafa 7
     AllDestionations --> ShowDestination: Select
     Destinations -right-> DestinationSearch
     DestinationSearch: input("Name of Destination")
     DestinationSearch --> ShowDestination: User input for name
+    ShowDestination: 1. ChangeContact \n2. ChangeEmergencyNumber
     ShowDestination --> ChangeContact: Krafa 20
     ShowDestination --> ChangeEmergencyNumber: Krafa 21
 
@@ -69,16 +79,10 @@ state Destination_state #70e697{
 
 state Airplanes_state #99c0ff{
     MainMenu -up-> Airplanes:4 
-    Airplanes: 1. CreateAirplane \n2. AllPlanes \n3. SearchPilots
+    Airplanes: 1. CreateAirplane \n2. AllPlanes
     Airplanes -left-> CreateAirplane: Krafa 16
     Airplanes -right-> AllPlanes: Krafa 22
-    Airplanes -up-> SearchPilots
-    SearchPilots: 1. ByPlane \n2. ByLicense
-    SearchPilots -up-> ByLicense: Krafa 19
-    SearchPilots -up-> ByPlane: Krafa 18
-    ByPlane -up-> ShowPilots
-    ByLicense -up-> ShowPilots
-    AllPlanes -up-> ShowPlanes
+    
     
 
 }
