@@ -38,23 +38,23 @@ ReturnFlightNumber: xxxxx1
 Available seats: 300
 Sold seats: 200 
 ---------------------------------------------------
-1. Add crew 2. Show workers                 0. Home
+1. Add Crew 2. Show Workers                 0. Home
 ---------------------------------------------------
 Select 1.
 ---------------------------------------------------
-Add Crew (1/x)
+Add Crew (1/4)
 ---------------------------------------------------
 Select Pilot: Jessica Jones
 ---------------------------------------------------
-Add Crew (2/x)
+Add Crew (2/4)
 ---------------------------------------------------
 Select Co-Pilot: Scarlett Witch
 ---------------------------------------------------
-Add Crew (3/x)
+Add Crew (3/4)
 ---------------------------------------------------
 Select Purser: Bobby
 ---------------------------------------------------
-Add Crew (4/x)
+Add Crew (4/4)
 ---------------------------------------------------
 Select flight attendant (input 1 when done): Sally
 Select flight attendant (input 1 when done): Joe Longshanks

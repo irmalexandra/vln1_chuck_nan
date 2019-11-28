@@ -7,14 +7,18 @@
 Select: 1
 
 ---------------------------------------------------
-1. Create 2. List 3. Search
+1. Create 2. List 3. Search                 0. Home
 ---------------------------------------------------
 Select: 3
 ---------------------------------------------------
-1. By Name 2. By Title 3. By Date
+1. By SSN 2. By Title 3. By Date 4. By Airplanetype 0. Home
 ---------------------------------------------------
 Select: 2
 ---------------------------------------------------
-1. Select Employee 2. Show Working 3. Show Free
+All Employees
+#  Name    SSN    Title            License    Availability
+1. Rikki   224    Flight Attendant -          Working
+---------------------------------------------------
+1. Select Employee 2. Show Working 3. Show Free 0. Home
 ---------------------------------------------------
 Select: 
