@@ -1,69 +1,82 @@
 @startuml UI_states
 hide empty description
 MainMenu: 1. Employees \n2. Voyages \n3. Destinations \n4. Airplanes
-MainMenu -Left-> Employees
-Employees: 1. CreateEmployee \n2. AllEmployees \n3. EmployeeSearch
-Employees -up-> CreateEmployee: Krafa 1
-CreateEmployee: 1. Prompt for relevant data \n2. ValidateDataUI \n3. ValidateDataLL\n4. StoreInDB
-Employees -up-> AllEmployees: Krafa 2
-AllEmployees -up-> ShowEmployees
-Employees -down-> EmployeeSearch
-EmployeeSearch: 1. ByEmployeeName\n2. ByTitle \n3. ByDate
-EmployeeSearch --> ByTitle: Krafa 3
-ByTitle --> ShowEmployees
-ShowEmployees: 1. Select Employee \n2. ShowWorking \n3. ShowFree
-EmployeeSearch --> ByEmployeeName: Krafa 4
-ByEmployeeName --> ShowEmployee
-ShowEmployee: 1. EditEmployee \n2. WorkSchedule\n3. AddLicense
-ShowEmployee --> EditEmployee: Krafa 5
-ShowEmployee --> WorkSchedule: Krafa 15
-EmployeeSearch --> ByDate
-ByDate --> ShowEmployees
-ShowEmployees --> ShowFree: Krafa 13
-ShowEmployees --> ShowWorking: Krafa 14
-ShowEmployees --> ShowEmployee: Select Employee
-ShowEmployee --> AddLicense: Krafa 17
-AddLicense: If Employee == Pilot or Co-Pilot
 
-MainMenu -Down-> Voyages
-Voyages: 1. Create Voyage \n2. AllVoyages \n3. VoyageSearch
-Voyages --> CreateVoyage: Krafa 8
-Voyages --> AllVoyages: Krafa 9
-AllVoyages --> ShowVoyages
-Voyages --> VoyageSearch
-VoyageSearch: 1. ByDestination \n2. ByPeriod \n3. EmptyVoyages
-VoyageSearch --> ByDestination
-VoyageSearch --> EmptyVoyages
-VoyageSearch --> ByPeriod
-ByDestination --> ShowVoyages
+state Employee_state #fcb603{
 
-EmptyVoyages --> ShowVoyages
-ByPeriod --> ShowVoyages: Krafa 12
-ShowVoyages --> ShowVoyage: Select
-ShowVoyage: 1. AddCrew \n2. ShowWorkers
-ShowVoyage --> AddCrew: Krafa 10
-ShowVoyage --> ShowWorkers: Krafa 11
+    MainMenu #fa939a -Left-> Employees: 1
+    Employees: 1. CreateEmployee \n2. AllEmployees \n3. EmployeeSearch
+    Employees -up-> CreateEmployee: Krafa 1
+    CreateEmployee: 1. Prompt for relevant data \n2. ValidateDataUI \n3. ValidateDataLL\n4. StoreInDB
+    Employees -up-> AllEmployees: Krafa 2
+    AllEmployees -up-> ShowEmployees
+    Employees -down-> EmployeeSearch
+    EmployeeSearch: 1. ByEmployeeName\n2. ByTitle \n3. ByDate
+    EmployeeSearch --> ByTitle: Krafa 3
+    ByTitle --> ShowEmployees
+    ShowEmployees: 1. Select Employee \n2. ShowWorking \n3. ShowFree
+    EmployeeSearch --> ByEmployeeName: Krafa 4
+    ByEmployeeName --> ShowEmployee
+    ShowEmployee: 1. EditEmployee \n2. WorkSchedule\n3. AddLicense
+    ShowEmployee --> EditEmployee: Krafa 5
+    ShowEmployee --> WorkSchedule: Krafa 15
+    EmployeeSearch --> ByDate
+    ByDate --> ShowEmployees
+    ShowEmployees --> ShowFree: Krafa 13
+    ShowEmployees --> ShowWorking: Krafa 14
+    ShowEmployees --> ShowEmployee: Select Employee
+    ShowEmployee --> AddLicense: Krafa 17
+    AddLicense: If Employee == Pilot or Co-Pilot
+
+}
 
 
-MainMenu -Right-> Destinations
-Destinations:1. Create Destination \n2. AllVoyages \n3. VoyageSearch
-Destinations -up-> CreateDestination: Krafa 6
-Destinations -down-> AllDestionations: Krafa 7
-AllDestionations --> ShowDestination: Select
-Destinations -right-> DestinationSearch
-DestinationSearch: input("Name of Destination")
-DestinationSearch --> ShowDestination: User input for name
-ShowDestination --> ChangeContact: Krafa 20
-ShowDestination --> ChangeEmergencyNumber: Krafa 21
+state Voyages_state #f58ef0{
+    MainMenu -Down-> Voyages: 2
+    Voyages: 1. Create Voyage \n2. AllVoyages \n3. VoyageSearch
+    Voyages --> CreateVoyage: Krafa 8
+    Voyages --> AllVoyages: Krafa 9
+    AllVoyages --> ShowVoyages
+    Voyages --> VoyageSearch
+    VoyageSearch: 1. ByDestination \n2. ByPeriod \n3. EmptyVoyages
+    VoyageSearch --> ByDestination
+    VoyageSearch --> EmptyVoyages
+    VoyageSearch --> ByPeriod
+    ByDestination --> ShowVoyages
 
+    EmptyVoyages --> ShowVoyages
+    ByPeriod --> ShowVoyages: Krafa 12
+    ShowVoyages --> ShowVoyage: Select
+    ShowVoyage: 1. AddCrew \n2. ShowWorkers
+    ShowVoyage --> AddCrew: Krafa 10
+    ShowVoyage --> ShowWorkers: Krafa 11
 
-MainMenu -up-> Airplanes
-Airplanes: 1. CreateAirplane \n2. AllPlanes \n3. SearchPilots
-Airplanes -left-> CreateAirplane: Krafa 16
-Airplanes -right-> AllPlanes: Krafa 22
-Airplanes -up-> SearchPilots
-SearchPilots: 1. ByPlane \n2. ByLicense
-SearchPilots -up-> ByLicense: Krafa 19
-SearchPilots -up-> ByPlane: Krafa 18
+}
+
+state Destination_state #70e697{
+    MainMenu -Right-> Destinations: 3
+    Destinations:1. Create Destination \n2. AllVoyages \n3. VoyageSearch
+    Destinations -up-> CreateDestination: Krafa 6
+    Destinations -down-> AllDestionations: Krafa 7
+    AllDestionations --> ShowDestination: Select
+    Destinations -right-> DestinationSearch
+    DestinationSearch: input("Name of Destination")
+    DestinationSearch --> ShowDestination: User input for name
+    ShowDestination --> ChangeContact: Krafa 20
+    ShowDestination --> ChangeEmergencyNumber: Krafa 21
+
+}
+
+state Airplanes_state #99c0ff{
+    MainMenu -up-> Airplanes:4 
+    Airplanes: 1. CreateAirplane \n2. AllPlanes \n3. SearchPilots
+    Airplanes -left-> CreateAirplane: Krafa 16
+    Airplanes -right-> AllPlanes: Krafa 22
+    Airplanes -up-> SearchPilots
+    SearchPilots: 1. ByPlane \n2. ByLicense
+    SearchPilots -up-> ByLicense: Krafa 19
+    SearchPilots -up-> ByPlane: Krafa 18
+
+}
 
 @enduml
