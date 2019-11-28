@@ -2,41 +2,39 @@
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
----------------------------------------------------
-Select: 4
----------------------------------------------------
-1. Create 2. All 3. Search                  0. Home
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
-Create Airplane (1/4)
+1. Create 2. List 3. Search                 0. Home
 ---------------------------------------------------
-Enter name: TF100
+Select: 3
 ---------------------------------------------------
-Create Airplane (2/4)
+1. By SSN 2. By Title 3. By Date 4. By Airplanetype                0. Home
 ---------------------------------------------------
-Enter make: Boeing
+Select: 3
 ---------------------------------------------------
-Create Airplane (3/4)
+Enter time period(dd-mm-yyyy:dd-mm-yyyy): 11-12-2019:20-12-2019
 ---------------------------------------------------
-Enter model: 747
+Name    SSN    Title   Airplane Type    Availability
+Rikki   224    FlightAttendant  -   Working
+Emil    323    Pilot    BestType   NotWorking
 ---------------------------------------------------
-Create Airplane (4/4)
+1. Select 2. Show Working 3. Show Free     0. Home
 ---------------------------------------------------
-Enter seat count: 300
+Select: 3
 ---------------------------------------------------
-Airplane created successfully
+Name    SSN    Title   Airplane Type    Availability
+Emil    323    Pilot   BestType   NotWorking
 ---------------------------------------------------
-Name: TF100
-Make: Boeing
-Model: 747
-Total seats: 300
+1. Select                                   0. Home
+---------------------------------------------------
+Select: 0
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 

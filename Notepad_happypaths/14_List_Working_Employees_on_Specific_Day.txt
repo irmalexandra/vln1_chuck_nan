@@ -2,7 +2,7 @@
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
@@ -16,21 +16,25 @@ Select: 3
 ---------------------------------------------------
 Enter time period(dd-mm-yyyy:dd-mm-yyyy): 11-12-2019:20-12-2019
 ---------------------------------------------------
-Name    SSN    Title   License    Availability
-Rikki   224    FlightAttendant  -   Working
+Name    SSN    Title            Airplane Type    Availability
+Rikki   224    FlightAttendant  -                Working
+Emil    323    Pilot            BestType         NotWorking
 ---------------------------------------------------
 1. Select 2. Show Working 3. Show Free     0. Home
 ---------------------------------------------------
-Select: 3
+Select: 2
 ---------------------------------------------------
-All Employees Not Working on a Specific Day Listed
+Name    SSN    Title            Airplane Type    Availability   Destionation
+Rikki   224    FlightAttendant  -                Working        Kulu Suk
 ---------------------------------------------------
 1. Select                                   0. Home
+---------------------------------------------------
+Select: 0
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 

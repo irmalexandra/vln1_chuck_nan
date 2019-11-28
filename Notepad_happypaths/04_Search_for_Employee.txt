@@ -2,34 +2,36 @@
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
 1. Create 2. List 3. Search                 0. Home
 ---------------------------------------------------
-Select: 3
+Select: 3.
 ---------------------------------------------------
-1. SSN 2. Title 3. Date 4. Airplane         0. Home
+1. By SSN 2. By Title 3. By Date 4. By Airplanetype 0. Home
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
-Insert SSN: 1212121212
+Enter SSN: 2402922469
 ---------------------------------------------------
-Employee Listed Successfully
+Name: Ríkharður Friðgeirsson
+SSN: 2402922469
+Home number: 5555555
+Mobile number: 6666666
+Email: rikki@nanair.is
+Title: Pilot
+License: Boeing747
 ---------------------------------------------------
-1. Edit 2. Work Schedule 3. Add License     0. Home
+1. Edit Employee 2. Work Schedule 3. Change Airplane Type 0. Home
 ---------------------------------------------------
-Select: 3
----------------------------------------------------
-Insert new license: Boeing 777
----------------------------------------------------
-New license added successfully
+Select: 0
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 

@@ -2,7 +2,7 @@
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
@@ -10,30 +10,46 @@ Select: 1
 ---------------------------------------------------
 Select: 3
 ---------------------------------------------------
-1. By SSN 2. By Title 3. By Date 4. By Airplanetype                0. Home
+1. By SSN 2. By Title 3. By Date 4. By Airplanetype     0. Home
 ---------------------------------------------------
-Select: 3
+Select: 1
 ---------------------------------------------------
-Enter time period(dd-mm-yyyy:dd-mm-yyyy): 11-12-2019:20-12-2019
+Enter SSN: 2402922469
 ---------------------------------------------------
-Name    SSN    Title   License    Availability
-Rikki   224    FlightAttendant  -   Working
+Name: Ríkharður Friðgeirsson
+SSN: 2402922469
+Home number: 5555555
+Mobile number: 6666666
+Email: rikki@nanair.is
+Title: Pilot
+Air plane type: Boeing747
 ---------------------------------------------------
-1. Select 2. Show Working 3. Show Free     0. Home
+1. Edit Employee 2. Work Schedule 3. Change Airplane Type 0. Home
 ---------------------------------------------------
-Select: 2
+Select: 1
 ---------------------------------------------------
-Name    SSN    Title   License    Availability   Destionation
-Rikki   224    FlightAttendant  -   Working      Kulu Suk
+1. Home number: 5555555
+2. Mobile number: 6666666
+3. Email: rikki@nanair.is
+4. Title: Pilot
+5. Done
 ---------------------------------------------------
-1. Select                                   0. Home
+Select: 1
 ---------------------------------------------------
-Select: 0
+Enter home number: 9999999
+---------------------------------------------------
+1. Home number: 9999999
+2. Mobile number: 6666666
+3. Email: rikki@nanair.is
+4. Title: Pilot
+5. Done
+---------------------------------------------------
+Select: 5 
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 

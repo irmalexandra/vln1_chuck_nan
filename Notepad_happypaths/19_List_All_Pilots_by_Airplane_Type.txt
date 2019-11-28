@@ -10,19 +10,19 @@ Select: 1
 ---------------------------------------------------
 Select: 3
 ---------------------------------------------------
-1. By SSN 2. By Title 3. By Date 4. By Airplanetype 0. Home
+1. SSN 2. Title 3. Date 4. Airplane        0. Home
 ---------------------------------------------------
-Select: 2
+Select: 4
 ---------------------------------------------------
-Enter title: Flight Attendant
+1. Sort 2. Filter                           0. Home
 ---------------------------------------------------
-All Employees
-#  Name    SSN    Title            License    Availability
-1. Rikki   224    Flight Attendant -          Working
+Select: 1
 ---------------------------------------------------
-1. Select Employee 2. Show Working 3. Show Free 0. Home
----------------------------------------------------
-Select: 0
+Name    Title   Make    Type 
+Gylfi   Pilot   Boeing  737
+Rikki   Pilot   Boeing  737
+Magga   Pilot   Boeing  747
+Emil    Pilot   Boeing  747
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
@@ -30,4 +30,6 @@ Select: 0
 ---------------------------------------------------
 1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
-Select:  
+Select: 
+
+

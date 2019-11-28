@@ -2,35 +2,28 @@
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
-Select: 1
+Select: 3
 ---------------------------------------------------
 1. Create 2. List 3. Search                 0. Home
 ---------------------------------------------------
-Select: 3.
+Select: 3
 ---------------------------------------------------
-1. By SSN 2. By Title 3. By Date 4. By Airplanetype 0. Home
+Input airport: KEF
 ---------------------------------------------------
-Select: 1
+1. Change Name 2. Change Phone Number       0. Home
 ---------------------------------------------------
-Enter SSN: 2402922469
+Select: 2
 ---------------------------------------------------
-Name: Ríkharður Friðgeirsson
-SSN: 2402922469
-Home number: 5555555
-Mobile number: 6666666
-Email: rikki@nanair.is
-Title: Pilot
-License: Boeing747
+Input new phone number: 1234567
 ---------------------------------------------------
-1. Edit Employee 2. Work Schedule 3. Add License 0. Home
+Contact number edited successfully
 ---------------------------------------------------
-Select: 0
 ***************************************************
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 
