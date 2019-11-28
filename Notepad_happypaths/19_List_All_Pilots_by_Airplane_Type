@@ -19,7 +19,10 @@ Select: 4
 Select: 1
 ---------------------------------------------------
 Name    Title   Make    Type 
-Gylfi   Pilot   Boeing  777
+Gylfi   Pilot   Boeing  737
+Rikki   Pilot   Boeing  737
+Magga   Pilot   Boeing  747
+Emil    Pilot   Boeing  747
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************

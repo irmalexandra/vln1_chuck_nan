@@ -14,15 +14,25 @@ Select: 3
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
-Insert SSN: 1212121212
+Enter SSN: 2402922469
 ---------------------------------------------------
-Employee listed successfully
+Name: Ríkharður Friðgeirsson
+SSN: 2402922469
+Home number: 5555555
+Mobile number: 6666666
+Email: rikki@nanair.is
+Title: Pilot
+License: Boeing747
 ---------------------------------------------------
 1. Edit 2. Work Schedule 3. Add License     0. Home
 ---------------------------------------------------
 Select: 2
 ---------------------------------------------------
-Work schedule shown successfully
+Enter time period(dd-mm-yyyy:dd-mm-yyyy): 11-11-2019:31-12-2019
+---------------------------------------------------
+Date           Country      Airport    Staffed
+25/11/2019    Greenland     Kulusuk     Yes
+26/12/2019      Norway        Oslo      Yes
 ---------------------------------------------------
 0. Home
 ---------------------------------------------------
