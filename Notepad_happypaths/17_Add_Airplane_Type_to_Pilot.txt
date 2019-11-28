@@ -30,6 +30,8 @@ Select: 3
 ---------------------------------------------------
 Insert new airplane type: Boeing 777
 ---------------------------------------------------
+Air plane type changed successfully
+---------------------------------------------------
 Name: Ríkharður Friðgeirsson
 SSN: 2402922469
 Home number: 5555555
