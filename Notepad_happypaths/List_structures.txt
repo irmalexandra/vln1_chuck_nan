@@ -63,3 +63,7 @@ TotalSeats:
 Airplanes
 Name    Make    Model   TotalSeats
 TF100   Boeing  747      300
+
+
+Pilots
+Name    Title   License
