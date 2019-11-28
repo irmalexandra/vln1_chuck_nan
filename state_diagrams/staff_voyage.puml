@@ -1,4 +1,4 @@
-@startuml
+@startuml som bs
 
 [*] --> Find_Voyages
 Find_Voyages -> Find_Voyages

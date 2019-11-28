@@ -51,7 +51,7 @@ CabinCrew:
 ----------------------------------------------------------------------------------
 Voyages
 Date           Country      Airport    Staffed
-25.11.2019    Greenland     Kulusuk     Yes
+25/11/2019    Greenland     Kulusuk     Yes
 
 ---------------------------------------------------------------------------------
 Airplane
@@ -61,8 +61,8 @@ Model:
 TotalSeats:
 ---------------------------------------------------------------------------
 Airplanes
-Name    Make    Model   TotalSeats
-TF100   Boeing  747      300
+Name    Make    Model   TotalSeats  Status  Destination  Flight number  Date available  Time available
+TF100   Boeing  747      300        In air  KUL          FI354          12/02/2019      17:30
 
 ----------------------------------------------------------
 Pilots
