@@ -12,7 +12,7 @@ Select: 1
 ---------------------------------------------------
 Create Voyage (1/4)
 ---------------------------------------------------
-Enter destination: Kulusuk
+Enter airport: KUL
 ---------------------------------------------------
 Create Voyage (2/4)
 ---------------------------------------------------
@@ -28,7 +28,7 @@ Enter departure time: 23:55
 ---------------------------------------------------
 Voyage created successfully
 ---------------------------------------------------
-Destination: Kulusuk
+Destination: KUL
 
 Airplane: Foxy Fire
 Departure date: 11-12-2019
