@@ -76,6 +76,10 @@ state Airplanes_state #99c0ff{
     SearchPilots: 1. ByPlane \n2. ByLicense
     SearchPilots -up-> ByLicense: Krafa 19
     SearchPilots -up-> ByPlane: Krafa 18
+    ByPlane -up-> ShowPilots
+    ByLicense -up-> ShowPilots
+    AllPlanes -up-> ShowPlanes
+    
 
 }
 
