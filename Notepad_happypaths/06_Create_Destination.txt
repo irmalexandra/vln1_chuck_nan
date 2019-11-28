@@ -37,11 +37,11 @@ Enter contact number: 424-2424
 Destination created successfully created successfully
 ---------------------------------------------------
 Country: Greenland
-Airport: Kulu Suk
-FlightTime: 2
+Airport: Kulusuk
+Flight time: 2
 Distance: 400
-ContactName: Son of Norris
-ContactNumber: 424-2424
+Contact name: Son of Norris
+Contact number: 424-2424
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
