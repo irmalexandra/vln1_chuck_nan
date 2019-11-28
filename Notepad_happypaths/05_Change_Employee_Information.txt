@@ -2,7 +2,7 @@
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
@@ -24,7 +24,7 @@ Email: rikki@nanair.is
 Title: Pilot
 License: Boeing747
 ---------------------------------------------------
-1. Edit Employee 2. Work Schedule 3. Add License 0. Home
+1. Edit Employee 2. Work Schedule 3. Change Airplane Type 0. Home
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
@@ -51,6 +51,6 @@ Select: 5
 **********************HEADER***********************
 ***************************************************
 ---------------------------------------------------
-1. Employee 2. Voyages 3. Destinations 4. Airplanes
+1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
 Select: 
