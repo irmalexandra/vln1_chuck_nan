@@ -16,15 +16,31 @@ Select: 1
 ---------------------------------------------------
 Insert SSN: 1212121212
 ---------------------------------------------------
-Employee Listed Successfully
+Name: Ríkharður Friðgeirsson
+SSN: 2402922469
+Home number: 5555555
+Mobile number: 6666666
+Email: rikki@nanair.is
+Title: Pilot
+License: Boeing747
 ---------------------------------------------------
-1. Edit 2. Work Schedule 3. Add License     0. Home
+1. Edit 2. Work Schedule 3. Change AirPlaneType     0. Home
 ---------------------------------------------------
 Select: 3
 ---------------------------------------------------
-Insert new license: Boeing 777
+Insert new AirPlaneType: Boeing 777
 ---------------------------------------------------
-New license added successfully
+New AirPlaneType added successfully
+---------------------------------------------------
+1. Home number: 5555555
+2. Mobile number: 6666666
+3. Email: rikki@nanair.is
+4. Title: Pilot
+5. Air plane type: Boeing747
+
+6. Done
+---------------------------------------------------
+Select: 6
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
