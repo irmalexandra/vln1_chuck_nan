@@ -2,18 +2,21 @@
 hide empty description
 
 
-[*] --> Create_employee
-Create_employee --> Name
-Name --> Name :wrong input
-Name --> additional_information : success
-additional_information --> additional_information :wrong input
-additional_information --> role :success
-role --> pilot_crew
-role --> cabin_crew
-pilot_crew --> liscence
-liscence --> co_pilot
-liscence --> pilot
-cabin_crew --> flight_attendant
-cabin_crew --> cabin_worker
-
+[*] --> create_employee
+create_employee --> UI_input_name
+UI_input_name --> UI_input_name:invalid input
+UI_input_name --> UI_input_ssn
+UI_input_ssn --> UI_input_ssn::invalid input
+UI_input_ssn --> UI_input_home_number
+UI_input_home_number --> UI_input_home_number:invalid input
+UI_input_home_number --> UI_input_mobile_number
+UI_input_mobile_number --> UI_input_mobile_number:invalid input
+UI_input_mobile_number --> UI_input_email
+UI_input_email --> UI_input_email:invalid input
+UI_input_email --> UI_input_title
+UI_input_title --> UI_input_title:invalid input
+UI_input_title --> [*]
+UI_input_title --> UI_input_licenses: if title == pilot or if title == co-pilot
+UI_input_licenses --> UI_input_licenses: invalid input
+UI_input_licenses --> [*]
 @enduml
