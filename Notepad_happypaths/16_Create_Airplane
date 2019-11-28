@@ -4,44 +4,34 @@
 ---------------------------------------------------
 1. Employee 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
-Select: 3
+Select: 4
 ---------------------------------------------------
-1. Create 2. Search 3. All                  0. Home
+1. Create 2. All 3. Search                  0. Home
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
-Create Destination (1/6)
+Create Airplane (1/x)
 ---------------------------------------------------
-Enter country: Greenland
+Enter name: TF100
 ---------------------------------------------------
-Create Destination (2/6)
+Create Airplane (2/x)
 ---------------------------------------------------
-Enter airport: Kulu Suk
+Enter make: Boeing
 ---------------------------------------------------
-Create Destination (3/6)
+Create Airplane (3/x)
 ---------------------------------------------------
-Enter flight time in hours: 2
+Enter model: 747
 ---------------------------------------------------
-Create Destination (4/6)
+Create Airplane (4/x)
 ---------------------------------------------------
-Enter distance: 400
+Enter seat count: 300
 ---------------------------------------------------
-Create Destination (5/6)
+Airplane created successfully
 ---------------------------------------------------
-Enter contact name: Son of Norris
----------------------------------------------------
-Create Destination (6/6)
----------------------------------------------------
-Enter contact number: 424-24242
----------------------------------------------------
-Destination created successfully created successfully
----------------------------------------------------
-Country: Greenland
-Airport: Kulu Suk
-FlightTime: 2
-Distance: 400
-ContactName: Son of Norris
-ContactNumber: 424-24242
+Name: TF100
+Make: Boeing
+Model: 747
+Total Seats: 300
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************

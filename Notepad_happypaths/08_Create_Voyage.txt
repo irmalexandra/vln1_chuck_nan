@@ -4,44 +4,43 @@
 ---------------------------------------------------
 1. Employee 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
-Select: 3
+Select: 2
 ---------------------------------------------------
-1. Create 2. Search 3. All                  0. Home
+1. Create 2. List 3. Search                 0. Home
 ---------------------------------------------------
-Select: 1
+Select:1
 ---------------------------------------------------
-Create Destination (1/6)
+Create Voyage (1/4)
 ---------------------------------------------------
-Enter country: Greenland
+Enter destination: Kulu Suk
 ---------------------------------------------------
-Create Destination (2/6)
+Create Voyage (2/4)
 ---------------------------------------------------
-Enter airport: Kulu Suk
+Enter airplane name: Foxy Fire
 ---------------------------------------------------
-Create Destination (3/6)
+Create Voyage (3/4)
 ---------------------------------------------------
-Enter flight time in hours: 2
+Enter departure date: 11-12-2019
 ---------------------------------------------------
-Create Destination (4/6)
+Create Voyage (4/4)
 ---------------------------------------------------
-Enter distance: 400
+Enter departure time: 23:55
 ---------------------------------------------------
-Create Destination (5/6)
+Voyage created successfully
 ---------------------------------------------------
-Enter contact name: Son of Norris
----------------------------------------------------
-Create Destination (6/6)
----------------------------------------------------
-Enter contact number: 424-24242
----------------------------------------------------
-Destination created successfully created successfully
----------------------------------------------------
-Country: Greenland
-Airport: Kulu Suk
-FlightTime: 2
-Distance: 400
-ContactName: Son of Norris
-ContactNumber: 424-24242
+Destination: Kulu Suk
+
+Airplane: Foxy Fire
+Departure date: 11-12-2019
+Departure time: 23:55
+Return date: 12-12-2019
+Return time: 08:44
+
+Depature flight number: xxxxx0
+ReturnFlightNumber: xxxxx1
+
+Available seats: 300
+Sold seats: 200 
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************

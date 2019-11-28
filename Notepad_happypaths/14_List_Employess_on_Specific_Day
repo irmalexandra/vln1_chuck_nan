@@ -4,44 +4,29 @@
 ---------------------------------------------------
 1. Employee 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
+Select: 1
+---------------------------------------------------
+1. Create 2. List 3. Search                 0. Home
+---------------------------------------------------
 Select: 3
 ---------------------------------------------------
-1. Create 2. Search 3. All                  0. Home
+1. Name 2. Title 3. Date                    0. Home
 ---------------------------------------------------
 Select: 1
 ---------------------------------------------------
-Create Destination (1/6)
+Employee Listed Successfully
 ---------------------------------------------------
-Enter country: Greenland
+1. Edit 2. Work Schedule 3. Add License     0. Home
 ---------------------------------------------------
-Create Destination (2/6)
+Select: 1
 ---------------------------------------------------
-Enter airport: Kulu Suk
----------------------------------------------------
-Create Destination (3/6)
----------------------------------------------------
-Enter flight time in hours: 2
----------------------------------------------------
-Create Destination (4/6)
----------------------------------------------------
-Enter distance: 400
----------------------------------------------------
-Create Destination (5/6)
----------------------------------------------------
-Enter contact name: Son of Norris
----------------------------------------------------
-Create Destination (6/6)
----------------------------------------------------
-Enter contact number: 424-24242
----------------------------------------------------
-Destination created successfully created successfully
----------------------------------------------------
-Country: Greenland
-Airport: Kulu Suk
-FlightTime: 2
-Distance: 400
-ContactName: Son of Norris
-ContactNumber: 424-24242
+1. Home Number
+2. Mobile Number
+3. Email
+4. Title
+5. License
+6. Availability    
+                                            0. Home
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
