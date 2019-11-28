@@ -46,18 +46,19 @@ state Voyages_state #f58ef0{
     Voyages --> AllVoyages: Krafa 9
     AllVoyages --> ShowVoyages
     Voyages --> VoyageSearch
-    VoyageSearch: 1. ByDestination \n2. ByPeriod \n3. EmptyVoyages
+    VoyageSearch: 1. ByDestination \n2. ByPeriod \n3. EmptyVoyages \n4. StaffedVoyages
     VoyageSearch --> ByDestination
     VoyageSearch --> EmptyVoyages
     VoyageSearch --> ByPeriod
     ByDestination --> ShowVoyages
+    StaffedVoyages --> ShowVoyages: Krafa 11
 
     EmptyVoyages --> ShowVoyages
     ByPeriod --> ShowVoyages: Krafa 12
     ShowVoyages --> ShowVoyage: Select
-    ShowVoyage: 1. AddCrew \n2. ShowWorkers
+    ShowVoyage: 1. AddCrew
     ShowVoyage --> AddCrew: Krafa 10
-    ShowVoyage --> ShowWorkers: Krafa 11
+    VoyageSearch --> StaffedVoyages
 
 }
 
