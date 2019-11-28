@@ -1,12 +1,27 @@
 @startuml create voyage
+hide empty description
 
 [*] --> Create_Voyage
-Create_Voyage -> Destination : get_destination_list 
-Destination -> Destination
-Destination -> Departure_Date : get_calendar
-Departure_Date -> Departure_Time
-Departure_Time -> Departure_Time
-Departure_Time -> Airplane : get_airplane_list
+Create_Voyage --> UI_pick_destination1 : get_destination_list 
+UI_pick_destination1 --> UI_pick_destination1 :invalid input
+
+UI_pick_destination1 --> UI_pick_destination2
+UI_pick_destination2 --> UI_pick_destination2:invalid input
+
+UI_pick_destination2 -->UI_pick_airplane
+UI_pick_airplane --> UI_pick_airplane:invalid input
+
+UI_pick_airplane --> UI_pick_departure_time
+UI_pick_departure_time --> UI_pick_departure_time:invalid input
+
+UI_pick_departure_time --> UI_pick_departure_date
+UI_pick_departure_date --> UI_pick_departure_date:invalid input
+
+UI_pick_departure_date --> LL_generate_return_date
+LL_generate_return_date --> LL_generate_return_time
+LL_generate_return_time --> DL_voyage_handler
+DL_voyage_handler --> DB 
+DB --> [*]
 
 
 @enduml
