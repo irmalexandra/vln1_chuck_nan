@@ -1,2 +1,4 @@
 Lista alla mögulega flugmenn sem mega fljúa þessari flugvél, ef kemur í ljós að valinn flugmaður megi það ekki
 Valmöguleiki um að hafa íslenskt interface
+
+search employee by employee number

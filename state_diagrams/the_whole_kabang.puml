@@ -16,7 +16,14 @@ state employees #fcb603{
 
     employees_menu --> list_employees
     list_employees --> employee_filter
+    employee_filter: License
+    employee_filter: Title 
+    employee_filter: available 
+    employee_filter:not available 
+    employee_filter:none
     employee_filter --> employee_sort
+    employee_sort:name
+    employee_sort:license
     employee_sort --> display_employees
     display_employees --> select_employee
 
@@ -39,6 +46,7 @@ state voyages #f58ef0 {
     voyages_menu --> list_voyage
     list_voyage --> voyage_filter
     voyage_filter --> voyage_sort
+    voyage_sort:
     voyage_sort --> display_voyage
     display_voyage --> select_voyage
 
