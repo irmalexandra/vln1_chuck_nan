@@ -12,15 +12,8 @@ Select: 2
 ---------------------------------------------------
 Insert date and time (DD/MM/YYYY HH:MM): 12/02/2019 00:30
 ---------------------------------------------------
-Name: TF100
-Make: Boeing
-Model: 747
-Total seats: 300
-Status: In Air
-    Destination: KUL
-    Flight number: FI354
-    Date available: 12/02/2019
-    Time available: 17:30
+Name    Make    Model   TotalSeats  Status  Destination  Flight number  Date available  Time available
+TF100   Boeing  747      300        In air  KUL          FI354          12/02/2019      17:30
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
