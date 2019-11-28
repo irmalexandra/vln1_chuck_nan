@@ -12,7 +12,7 @@ Select:1
 ---------------------------------------------------
 Create Voyage (1/4)
 ---------------------------------------------------
-Enter destination: Kulu Suk
+Enter destination: Kulusuk
 ---------------------------------------------------
 Create Voyage (2/4)
 ---------------------------------------------------
@@ -28,7 +28,7 @@ Enter departure time: 23:55
 ---------------------------------------------------
 Voyage created successfully
 ---------------------------------------------------
-Destination: Kulu Suk
+Destination: Kulusuk
 
 Departure date: 11-12-2019
 Departure time: 23:55
