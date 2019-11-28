@@ -6,7 +6,7 @@
 ---------------------------------------------------
 Select: 2
 ---------------------------------------------------
-1. Create 2. List 3. Search
+1. Create 2. List 3. Search                 0. Home
 ---------------------------------------------------
 Select:1
 ---------------------------------------------------
@@ -30,6 +30,7 @@ Voyage created successfully
 ---------------------------------------------------
 Destination: Kulusuk
 
+Airplane: Foxy Fire
 Departure date: 11-12-2019
 Departure time: 23:55
 Return date: 12-12-2019
@@ -40,12 +41,6 @@ ReturnFlightNumber: xxxxx1
 
 Available seats: 300
 Sold seats: 200 
-
-Pilot: empty
-Co-Pilot: empty
-Purser: empty
-CabinCrew:
-        empty
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************

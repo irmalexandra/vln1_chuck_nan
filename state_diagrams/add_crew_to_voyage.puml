@@ -1,0 +1,9 @@
+@startuml add_Crew
+hide empty description
+[*] --> UI_voyage_menu
+UI_voyage_menu --> UI_all_voyages:get voyage list
+
+
+
+
+@enduml
