@@ -23,7 +23,7 @@ UI_pick_return_time --> UI_pick_return_time:invalid input
 UI_pick_return_date --> UI_pick_return_date:invalid input
 UI_pick_return_time --> created_voyage
 created_voyage --> LL_voyage_checker
-LL_voyage_checker --> UI_pick_destination1: failed to create
+LL_voyage_checker --> UI_pick_destination1: voyage creation unsuccessful
 LL_voyage_checker --> DL_voyage_handler
 
 
