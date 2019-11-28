@@ -36,9 +36,17 @@ Enter title: Pilot
 ---------------------------------------------------
 Create Employee (7/7)
 ---------------------------------------------------
-Enter Licenses: Boeing747
+Enter licenses: Boeing747
 ---------------------------------------------------
-Employee created Successfully
+Employee created successfully
+---------------------------------------------------
+Name: Ríkharður Friðgeirsson
+SSN: 2402922469
+HomeNumber: 5555555
+MobileNumber: 6666666
+Email: rikki@nanair.is
+Title: Pilot
+License: Boeing747
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************

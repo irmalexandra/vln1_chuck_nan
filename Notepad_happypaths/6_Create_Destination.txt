@@ -33,3 +33,20 @@ Enter contact name: Son of Norris
 Create Destination (6/6)
 ---------------------------------------------------
 Enter contact number: 424-24242
+---------------------------------------------------
+Destination created successfully created successfully
+---------------------------------------------------
+Country: Greenland
+Airport: Kulu Suk
+FlightTime: 2
+Distance: 400
+ContactName: Son of Norris
+ContactNumber: 424-24242
+---------------------------------------------------
+***************************************************
+**********************HEADER***********************
+***************************************************
+---------------------------------------------------
+1. Employee 2. Voyages 3. Destinations 4. Airplanes
+---------------------------------------------------
+Select: 
