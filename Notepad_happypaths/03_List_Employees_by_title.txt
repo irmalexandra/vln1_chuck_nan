@@ -4,15 +4,15 @@
 ---------------------------------------------------
 1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
-Select: 1
+Input: 1
 ---------------------------------------------------
-1. Create 2. List 3. Search                 0. Home
+1. Create 2. Display All 3. Find By         0. Home
 ---------------------------------------------------
-Select: 3
+Input: 3
 ---------------------------------------------------
-1. By SSN 2. By Title 3. By Date 4. By Airplanetype 0. Home
+1. By SSN 2. By Title 3. By Date 4. By Planetype 0. Home
 ---------------------------------------------------
-Select: 2
+Input: 2
 ---------------------------------------------------
 Enter title: Flight Attendant
 ---------------------------------------------------
@@ -20,9 +20,9 @@ All Employees
 #  Name    SSN    Title            Airplane type    Availability
 1. Rikki   224    Flight Attendant -                Working
 ---------------------------------------------------
-1. Select Employee 2. Show Working 3. Show Free 0. Home
+1. To Select Employee 2. Show Working 3. Show Free 0. Home
 ---------------------------------------------------
-Select: 0
+Input: 0
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
@@ -30,4 +30,4 @@ Select: 0
 ---------------------------------------------------
 1. Employees 2. Voyages 3. Destinations 4. Airplanes
 ---------------------------------------------------
-Select:  
+Input:  
