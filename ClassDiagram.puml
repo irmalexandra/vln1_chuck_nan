@@ -8,33 +8,41 @@ package UI_layer #fcb603 {
  
   chuckNaN -down- MainUI
   class MainUI{
-    main_menu()
+    print_main_menu()
     menu_handler()
   }
 
   class EmployeeUI{
-    show()
-    list()
-    create()
-    edit()
+    print_sub_menu()
+    print_seach_menu()
+    print_formatted_list()
+    print_create_employee()
+    print_selected_employee()
+    print_edit_menu()
   }
   class VoyagesUI{
-    show()
-    list()
-    create()
-    edit()
+    print_sub_menu()
+    print_seach_menu()
+    print_formatted_list()
+    print_create_voyage()
+    print_selected_voyage()
+    print_edit_menu()
   }
   class DestinationsUI{
-    show()
-    list()
-    create()
-    edit()
+    print_sub_menu()
+    print_seach_menu()
+    print_formatted_list()
+    print_create_destination()
+    print_selected_destination()
+    print_edit_menu()
   }
   class AirplanesUI{
-    show()
-    list()
-    create()
-    edit()
+    print_sub_menu()
+    print_seach_menu()
+    print_formatted_list()
+    print_create_airplane()
+    print_selected_airplane()
+    print_edit_menu()
   }
   MainUI -- EmployeeUI
   MainUI -- VoyagesUI
@@ -75,7 +83,7 @@ package Logic_layer #70e697 {
 package Data_layer #99c0ff{
 
   class MainDL{
-    all_employees_list[]
+    all_employees_print_list[]
     all_voyages_list[]
     all_destionations_list[]
     all_airplanes_list[]
@@ -193,7 +201,7 @@ class Voyage{
   pilot
   co_pilot
   purser
-  cabin_crew_list
+  cabin_crew_print_formatted_list
 
   get_pilot()
   set_pilot()
@@ -201,8 +209,8 @@ class Voyage{
   set_co_pilot()
   get_purser()
   set_purser()
-  get_cabin_crew_list()
-  set_cabin_crew_list()
+  get_cabin_crew_print_formatted_list()
+  set_cabin_crew_print_formatted_list()
 
 }
 
