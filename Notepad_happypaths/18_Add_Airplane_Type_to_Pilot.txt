@@ -18,6 +18,7 @@ Enter SSN: 1212121212
 ---------------------------------------------------
 Name: Ríkharður Friðgeirsson
 SSN: 2402922469
+Home address: Haskolavegur 5
 Home number: 5555555
 Mobile number: 6666666
 Email: rikki@nanair.is
@@ -34,6 +35,7 @@ Airplane Type changed successfully
 ---------------------------------------------------
 Name: Ríkharður Friðgeirsson
 SSN: 2402922469
+Home address: Haskolavegur 5
 Home number: 5555555
 Mobile number: 6666666
 Email: rikki@nanair.is
