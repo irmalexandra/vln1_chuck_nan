@@ -5,13 +5,16 @@ hide empty description
 UI_input_employees -down-> UI_input_search
 UI_input_search -down-> UI_input_by_ssn
 UI_input_by_ssn -down-> UI_input_by_ssn:invalid input
-UI_input_by_ssn -down->  LL_employee_checker
-LL_employee_checker -down-> DL_employee_handler
-DL_employee_handler -down-> DB 
-DB -down-> DL_get_employee
-DL_get_employee -down-> LL_get_employee
-LL_get_employee -down-> UI_output_employee
-UI_output_employee -down-> UI_input_edit_employee
+UI_input_by_ssn -down-> LL_main
+LL_main -down-> LL_employee
+LL_employee -down-> DL_main
+DL_main -down-> DL_employee
+DL_employee -down-> DB 
+DB -down-> DL_employee
+DL_employee -down-> DL_main
+DL_main -down-> LL_employee
+LL_employee -down-> UI_employee
+UI_employee -down-> UI_input_edit_employee
 UI_input_edit_employee -down-> UI_input_home_number
 UI_input_home_number -down-> UI_input_home_number:invalid input
 UI_input_edit_employee -down-> UI_input_mobile_number
@@ -24,8 +27,7 @@ UI_input_home_number --> UI_input_edit_employee
 UI_input_mobile_number --> UI_input_edit_employee
 UI_input_email --> UI_input_edit_employee
 UI_input_title --> UI_input_edit_employee
-UI_input_edit_employee -down-> LL_employee_checker
-LL_employee_checker --> UI_input_edit_employee:employee creation unsuccessful
+UI_input_edit_employee -down-> LL_employee:employee creation unsuccessful
 DB --> [*]
 
 @enduml
