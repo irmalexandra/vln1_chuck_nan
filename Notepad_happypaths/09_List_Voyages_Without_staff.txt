@@ -15,8 +15,8 @@ Input: 3
 Input: 3
 ---------------------------------------------------
 Voyages
-Date           Country      Airport    Staffed
-25.11.2019     Greenland    Kulusuk    No
+Index   Date           Country      Airport    Staffed
+1       25.11.2019     Greenland    Kulusuk    No
 ---------------------------------------------------
 1. To Select                                   0. Home
 ---------------------------------------------------
