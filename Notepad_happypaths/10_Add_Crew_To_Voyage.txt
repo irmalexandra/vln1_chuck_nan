@@ -36,7 +36,7 @@ Departure time: 23:55
 Return date: 26-11-2019
 Return time: 08:44
 
-Depature flight number: xxxxx0
+Departure flight number: xxxxx0
 ReturnFlightNumber: xxxxx1
 
 Available seats: 300

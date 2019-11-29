@@ -6,7 +6,7 @@
 ---------------------------------------------------
 Input: 2
 ---------------------------------------------------
-1. Create 2. Display All 3. Find By                 0. Home
+1. Create 2. Display All 3. Find By         0. Home
 ---------------------------------------------------
 Input: 1
 ---------------------------------------------------
@@ -36,7 +36,7 @@ Departure time: 23:55
 Return date: 12-12-2019
 Return time: 08:44
 
-Depature flight number: xxxxx0
+Departure flight number: xxxxx0
 ReturnFlightNumber: xxxxx1
 
 Available seats: 300

@@ -6,11 +6,11 @@
 ---------------------------------------------------
 Input: 1
 ---------------------------------------------------
-1. Create 2. Display All 3. Find By                 0. Home
+1. Create 2. Display All 3. Find By         0. Home
 ---------------------------------------------------
 Input: 3
 ---------------------------------------------------
-1. By SSN 2. By Title 3. By Date 4. By Airplane         0. Home
+1. By SSN 2. By Title 3. By Date 4. By Airplane 0. Home
 ---------------------------------------------------
 Input: 1
 ---------------------------------------------------
@@ -24,7 +24,7 @@ Email: rikki@nanair.is
 Title: Pilot
 Airplane Type: Boeing747
 ---------------------------------------------------
-1. Edit 2. Work Schedule 3. Change Airplane Type     0. Home
+1. Edit 2. Work Schedule 3. Change Airplane Type 0. Home
 ---------------------------------------------------
 Input: 3
 ---------------------------------------------------

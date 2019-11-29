@@ -33,7 +33,7 @@ DepartureTime:
 ReturnDate:
 ReturnTime:
 
-DepatureFlightNumber:
+DepartureFlightNumber:
 ReturnFlightNumber:
 
 AvailableSeats:

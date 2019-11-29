@@ -18,7 +18,7 @@ Voyages
 Index   Date           Country      Airport    Staffed
 1       25.11.2019     Greenland    Kulusuk    No
 ---------------------------------------------------
-1. To Select                                   0. Home
+1. To Select                                0. Home
 ---------------------------------------------------
 Input: 0
 ---------------------------------------------------
