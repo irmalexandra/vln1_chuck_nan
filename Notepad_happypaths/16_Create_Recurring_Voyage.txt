@@ -24,7 +24,7 @@ Input: 1
 ---------------------------------------------------
 Enter airport: Kulusuk
 ---------------------------------------------------
-Destination: Kulu Suk
+Destination: Kulusuk
 
 Airplane: Foxy Fire 
 Departure date: 25-11-2019
@@ -48,7 +48,7 @@ Enter repeat interval in days: 7
 ---------------------------------------------------
 Recurrence successfully created
 ---------------------------------------------------
-Destination: Kulu Suk
+Destination: Kulusuk
 
 Airplane: Foxy Fire 
 Departure date: 25-11-2019
