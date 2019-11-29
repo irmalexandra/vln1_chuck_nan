@@ -38,9 +38,6 @@ Return time: 08:44
 
 Departure flight number: xxxxx0
 ReturnFlightNumber: xxxxx1
-
-Available seats: 300
-Sold seats: 200 
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
