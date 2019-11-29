@@ -14,7 +14,7 @@ All Destinations
 Country     Airport     FlightTime      ContactName     ContactNumber
 Ísland      KEF         20              Rikki           11123123
 ---------------------------------------------------
-1. Select                                   0. Home
+1. To Select                                0. Home
 ---------------------------------------------------
 Input: 0
 ---------------------------------------------------

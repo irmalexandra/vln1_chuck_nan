@@ -11,10 +11,10 @@ Input: 1
 Input: 2
 ---------------------------------------------------
 All Employees
-#  Name    SSN    Title             Airplane type    Availability
-1. Rikki   224    Flight Attendant  -                Working
+Name    SSN    Title             Airplane type    Availability
+Rikki   224    Flight Attendant  -                Working
 
-1. To Select Employee 2. Show Working 3. Show Free 0. Home
+1. To Select 2. Show Working 3. Show Free 0. Home
 ---------------------------------------------------
 Input: 0
 ---------------------------------------------------
