@@ -20,7 +20,7 @@ Rikki   Pilot   Boeing  737
 Magga   Pilot   Boeing  747
 Emil    Pilot   Boeing  747
 ---------------------------------------------------
-1. To Select 2. Filter byAirplane Type        0. Home
+1. To Select 2. Filter by Airplane Type        0. Home
 ---------------------------------------------------
 Input: 2
 ---------------------------------------------------
@@ -30,7 +30,7 @@ Name    Title   Make    Type
 Gylfi   Pilot   Boeing  737
 Rikki   Pilot   Boeing  737
 ---------------------------------------------------
-1. To Select 2. Filter byAirplane Type        0. Home
+1. To Select 2. Filter by Airplane Type        0. Home
 ---------------------------------------------------
 Input: 0
 ---------------------------------------------------
