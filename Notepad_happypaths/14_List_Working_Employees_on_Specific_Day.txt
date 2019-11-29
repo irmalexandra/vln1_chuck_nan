@@ -6,11 +6,11 @@
 ---------------------------------------------------
 Input: 1
 ---------------------------------------------------
-1. Create 2. Display All 3. Find By                 0. Home
+1. Create 2. Display All 3. Find By         0. Home
 ---------------------------------------------------
 Input: 3
 ---------------------------------------------------
-1. By SSN 2. By Title 3. By Date 4. By Airplanetype                0. Home
+1. By SSN 2. By Title 3. By Date 4. By Airplanetype 0. Home
 ---------------------------------------------------
 Input: 3
 ---------------------------------------------------
@@ -20,14 +20,14 @@ Name    SSN    Title            Airplane Type    Availability
 Rikki   224    FlightAttendant  -                Working
 Emil    323    Pilot            BestType         NotWorking
 ---------------------------------------------------
-1. To Select 2. Show Working 3. Show Free     0. Home
+1. To Select 2. Show Working 3. Show Free   0. Home
 ---------------------------------------------------
 Input: 2
 ---------------------------------------------------
 Name    SSN    Title            Airplane Type    Availability   Destionation
 Rikki   224    FlightAttendant  -                Working        Kulu Suk
 ---------------------------------------------------
-1. To Select                                   0. Home
+1. To Select                                0. Home
 ---------------------------------------------------
 Input: 0
 ---------------------------------------------------
