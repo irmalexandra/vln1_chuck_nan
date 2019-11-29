@@ -6,13 +6,19 @@ class chuckNaN{
 
 package UI_layer #fcb603 {
  
-  chuckNaN -down- MainUI
-  class MainUI{
+  chuckNaN -down- UIMain
+  class UIMain{
+    chuckNaN
+    UIEmployees
+    UIVoyages
+    UIDestinations
+    UIAirplanes
     print_main_menu()
     menu_handler()
   }
 
-  class EmployeeUI{
+  class UIEmployees{
+    LLMain
     print_sub_menu()
     print_seach_menu()
     print_formatted_list()
@@ -20,7 +26,8 @@ package UI_layer #fcb603 {
     print_selected_employee()
     print_edit_menu()
   }
-  class VoyagesUI{
+  class UIVoyages{
+    LLMain
     print_sub_menu()
     print_seach_menu()
     print_formatted_list()
@@ -28,7 +35,8 @@ package UI_layer #fcb603 {
     print_selected_voyage()
     print_edit_menu()
   }
-  class DestinationsUI{
+  class UIDestinations{
+    LLMain
     print_sub_menu()
     print_seach_menu()
     print_formatted_list()
@@ -36,7 +44,8 @@ package UI_layer #fcb603 {
     print_selected_destination()
     print_edit_menu()
   }
-  class AirplanesUI{
+  class UIAirplanes{
+    LLMain
     print_sub_menu()
     print_seach_menu()
     print_formatted_list()
@@ -44,92 +53,101 @@ package UI_layer #fcb603 {
     print_selected_airplane()
     print_edit_menu()
   }
-  MainUI -- EmployeeUI
-  MainUI -- VoyagesUI
-  MainUI -- DestinationsUI
-  MainUI -- AirplanesUI
+  UIMain -- UIEmployees
+  UIMain -- UIVoyages
+  UIMain -- UIDestinations
+  UIMain -- UIAirplanes
 }
 
 package Logic_layer #70e697 {
 
-  class MainLL{
+  class LLMain{
+    LLEmployees
+    LLVoyages
+    LLDestinations
+    LLAirplanes
+
 
   }
 
-  class EmployeeLL{
+  class LLEmployees{
+    DLMain
     validate_input()
     
   }
-  class VoyagesLL{
+  class LLVoyages{
+    DLMain
     validate_input()
     
   }
-  class DestinationsLL{
+  class LLDestinations{
+    DLMain
     validate_input()
     
   }
-  class AirplanesLL{
+  class LLAirplanes{
+    DLMain
     validate_input()
     
   }
 
-  MainLL -- EmployeeLL
-  MainLL -- VoyagesLL
-  MainLL -- DestinationsLL
-  MainLL -- AirplanesLL
+  LLMain -- LLEmployees
+  LLMain -- LLVoyages
+  LLMain -- LLDestinations
+  LLMain -- LLAirplanes
 
 }
 
 package Data_layer #99c0ff{
 
-  class MainDL{
-    all_employees_print_list[]
-    all_voyages_list[]
-    all_destionations_list[]
-    all_airplanes_list[]
+  class DLMain{
+    DLEmployees
+    DLVoyages
+    DLDestinations
+    DLAirplanes
 
   }
 
-  class EmployeeDL{
+  class DLEmployees{
     save_data()
     read_data()
     create_instance()
   }
-  class VoyagesDL{
+  class DLVoyages{
     save_data()
     read_data()
     create_instance()
     
   }
-  class DestinationsDL{
+  class DLDestinations{
     save_data()
     read_data()
     create_instance()
     
   }
-  class AirplanesDL{
+  class DLAirplanes{
     save_data()
     read_data()
     create_instance()
     
   }
 
-  MainDL -- EmployeeDL
-  MainDL -- VoyagesDL
-  MainDL -- DestinationsDL
-  MainDL -- AirplanesDL
+  DLMain -- DLEmployees
+  DLMain -- DLVoyages
+  DLMain -- DLDestinations
+  DLMain -- DLAirplanes
   
 }
 
-EmployeeUI -down- MainLL
-VoyagesUI -down- MainLL
-AirplanesUI -down- MainLL
-DestinationsUI -down- MainLL
+UIEmployees -down- LLMain
+UIVoyages -down- LLMain
+UIAirplanes -down- LLMain
+UIDestinations -down- LLMain
 
-EmployeeLL -down- MainDL
-VoyagesLL -down- MainDL
-DestinationsLL -down- MainDL
-AirplanesLL -down- MainDL
+LLEmployees -down- DLMain
+LLVoyages -down- DLMain
+LLDestinations -down- DLMain
+LLAirplanes -down- DLMain
 
 
 
