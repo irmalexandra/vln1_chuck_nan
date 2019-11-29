@@ -6,7 +6,7 @@
 ---------------------------------------------------
 Input: 2
 ---------------------------------------------------
-1. Create 2. Display All 3. Find By                 0. Home
+1. Create 2. Display All 3. Find By         0. Home
 ---------------------------------------------------
 Input: 3
 ---------------------------------------------------
@@ -28,7 +28,7 @@ Index   Date           Country      Airport    Staffed
 ---------------------------------------------------
 Enter index: 1
 ---------------------------------------------------
-Destination: Kulu Suk
+Destination: Kulusuk
 
 Airplane: Foxy Fire 
 Departure date: 25-11-2019

@@ -14,7 +14,7 @@ Input: 3
 ---------------------------------------------------
 Input: 4
 ---------------------------------------------------
-Name    Title   Make    Type 
+Name    Title   Make    Model 
 Gylfi   Pilot   Boeing  737
 Rikki   Pilot   Boeing  737
 Magga   Pilot   Boeing  747
@@ -24,9 +24,9 @@ Emil    Pilot   Boeing  747
 ---------------------------------------------------
 Input: 2
 ---------------------------------------------------
-Enter airplane type: 737
+Enter airplane type: Boeing 737
 ---------------------------------------------------
-Name    Title   Make    Type 
+Name    Title   Make    Model 
 Gylfi   Pilot   Boeing  737
 Rikki   Pilot   Boeing  737
 ---------------------------------------------------
