@@ -1,6 +1,7 @@
 @startuml NaNAirlines
 
 class chuckNaN{
+  UIMain
 
 }
 
@@ -8,7 +9,6 @@ package UI_layer #fcb603 {
  
   chuckNaN -down- UIMain
   class UIMain{
-    chuckNaN
     UIEmployees
     UIVoyages
     UIDestinations
