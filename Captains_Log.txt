@@ -45,10 +45,10 @@ Yfirferð gærdags.
 	Verkefni sem eru ekki byrjuð:
 		State diagram
 
-	Verkefni dagsins:
-		Fínpússa kröfulista
-		Notkunartilvik
-		Klasarit
+Verkefni dagsins:
+	Fínpússa kröfulista
+	Notkunartilvik
+	Klasarit
 		
 Captains Log, Stardate 27.11.2019
 
@@ -64,10 +64,10 @@ Yfirferð gærdags.
 		Class Diagram
 		State Diagram
 
-	Verkefni dagsins:
-		Tengja Use Cases við Wireframe/Happy Path
-		Class Diagram
-		State Diagram
+Verkefni dagsins:
+	Tengja Use Cases við Wireframe/Happy Path
+	Class Diagram
+	State Diagram
 
 Captains Log, Stardate 28.11.2019
 
@@ -83,3 +83,17 @@ Yfirferð gærdags.
 		Tengja Use Cases við Wireframe/Happy Path
 		Class Diagram
 		State Diagram
+
+Captains Log, Stardate 29.11.2019
+
+Yfirferð gærdags.
+
+	Verkefni komin langt:
+		Wireframes/Happy Path
+		Use Cases
+		Class Diagram
+		State Diagram
+
+Verkefni dagsins:
+	Fínpússun á öllu
+	Klára skilaskýrslu
