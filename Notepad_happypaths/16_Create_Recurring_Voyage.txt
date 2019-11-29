@@ -32,7 +32,7 @@ Departure time: 23:55
 Return date: 26-11-2019
 Return time: 08:44
 
-Depature flight number: xxxxx0
+Departure flight number: xxxxx0
 ReturnFlightNumber: xxxxx1
 
 Available seats: 300
@@ -46,7 +46,7 @@ Enter period (dd-mm-yyyy:dd-mm-yyyy): 30-11-2019:02-12-2019
 ---------------------------------------------------
 Enter repeat interval in days: 7
 ---------------------------------------------------
-Reccurrence successfully created
+Recurrence successfully created
 ---------------------------------------------------
 Destination: Kulu Suk
 
@@ -56,7 +56,7 @@ Departure time: 23:55
 Return date: 26-11-2019
 Return time: 08:44
 
-Depature flight number: xxxxx0
+Departure flight number: xxxxx0
 ReturnFlightNumber: xxxxx1
 
 Available seats: 300
