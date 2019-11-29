@@ -29,7 +29,7 @@ Airplane Type: Boeing747
 ---------------------------------------------------
 Input: 3
 ---------------------------------------------------
-Insert new airplane type: Boeing 777
+Insert new airplane type: Boeing777
 ---------------------------------------------------
 Airplane Type changed successfully
 ---------------------------------------------------

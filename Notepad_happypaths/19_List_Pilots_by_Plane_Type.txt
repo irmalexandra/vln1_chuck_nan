@@ -24,7 +24,7 @@ Emil    Pilot   Boeing  747
 ---------------------------------------------------
 Input: 2
 ---------------------------------------------------
-Enter airplane type: Boeing 737
+Enter airplane type: Boeing737
 ---------------------------------------------------
 Name    Title   Make    Model 
 Gylfi   Pilot   Boeing  737
