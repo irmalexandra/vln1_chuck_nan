@@ -20,7 +20,7 @@ package UI_layer #fcb603 {
   class UIEmployees{
     LLMain
     print_sub_menu()
-    print_seach_menu()
+    print_search_menu()
     print_formatted_list()
     print_create_employee()
     print_selected_employee()
@@ -29,7 +29,7 @@ package UI_layer #fcb603 {
   class UIVoyages{
     LLMain
     print_sub_menu()
-    print_seach_menu()
+    print_search_menu()
     print_formatted_list()
     print_create_voyage()
     print_selected_voyage()
@@ -38,7 +38,7 @@ package UI_layer #fcb603 {
   class UIDestinations{
     LLMain
     print_sub_menu()
-    print_seach_menu()
+    print_search_menu()
     print_formatted_list()
     print_create_destination()
     print_selected_destination()
@@ -47,7 +47,7 @@ package UI_layer #fcb603 {
   class UIAirplanes{
     LLMain
     print_sub_menu()
-    print_seach_menu()
+    print_search_menu()
     print_formatted_list()
     print_create_airplane()
     print_selected_airplane()
