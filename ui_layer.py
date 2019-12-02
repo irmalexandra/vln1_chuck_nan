@@ -105,7 +105,7 @@ class UIAirplanes():
         ll_api = LLAPI()
 
     def display_airplanes_sub_menu(self):
-        pass
+        print("{}{}".format("1. Create 2. Display all", "0. Home"))
 
     def display_airplanes(self):
         pass
@@ -122,4 +122,13 @@ class UIMain():
         ui_airplanes = UIAirplanes()
 
     def display_main_menu(self):
-        pass
+        main_menu_string = "1. Employees 2. Voyages 3. Destinations 4. Airplanes"
+        print("-" * len(main_menu_string))
+        print("1. Employees 2. Voyages 3. Destinations 4. Airplanes")
+        print("-" * len(main_menu_string))
+
+def main():
+    test = UIMain()
+    test.display_main_menu()
+
+main()
