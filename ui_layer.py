@@ -1,25 +1,26 @@
 from logic_layer import LLAPI
 from models import *
 
-LENGHT = 52
+LENGTH = 52
+
 
 class UIEmployees():
     def __init__(self):
         ll_api = LLAPI()
 
     def display_employee_sub_menu(self):
-        print("-" * LENGHT)
+        print("-" * LENGTH)
         print("1. Create 2. All 3. Search by")
-        print("-" * LENGHT)
+        print("-" * LENGTH)
 
     def display_employee_search_menu(self):
-        print("-" * LENGHT)
+        print("-" * LENGTH)
         print("1. SSN 2. Title 3. Date 4. Airplane 0.Home")
-        print("-" * LENGHT)
+        print("-" * LENGTH)
 
     def display_employee_by_ssn(self, ssn):
         pass
-    
+
     def display_all_employees(self):
         pass
 
@@ -46,16 +47,15 @@ class UIVoyages():
     def __init__(self):
         ll_api = LLAPI()
 
-
     def display_voyage_sub_menu(self):
-        print("-" * LENGHT)
+        print("-" * LENGTH)
         print("1. Create 2. All 3. Search by 0. Home")
-        print("-" * LENGHT)
-    
+        print("-" * LENGTH)
+
     def display_voyage_search_menu(self):
-        print("-" * LENGHT)
+        print("-" * LENGTH)
         print("1. Destination 2. Period 3. Empty Voyages 0. Home")
-        print("-" * LENGHT)
+        print("-" * LENGTH)
 
     def display_voyage(self, voyage_id):
         pass
@@ -85,20 +85,19 @@ class UIVoyages():
         pass
 
 
-
 class UIDestinations():
     def __init__(self):
         ll_api = LLAPI()
 
     def display_destination_sub_menu(self):
-        print("-" * LENGHT)
+        print("-" * LENGTH)
         print("1. Create 2. All 3. Search 0. Home")
-        print("-" * LENGHT)
+        print("-" * LENGTH)
 
     def display_destination_search_menu(self):
-        print("-" * LENGHT)
+        print("-" * LENGTH)
         print("1. Change contact 2. Change emergency number 0. Home")
-        print("-" * LENGHT)
+        print("-" * LENGTH)
 
     def display_destination(self, destination_id):
         pass
@@ -115,14 +114,15 @@ class UIDestinations():
     def change_emergency_number(self, destination_id):
         pass
 
+
 class UIAirplanes():
     def __init__(self):
         ll_api = LLAPI()
 
     def display_airplanes_sub_menu(self):
-        print("-" * LENGHT)
+        print("-" * LENGTH)
         print("{}{}".format("1. Create 2. Display all", "0. Home"))
-        print("-" * LENGHT)
+        print("-" * LENGTH)
 
     def display_airplanes(self):
         pass
@@ -139,12 +139,14 @@ class UIMain():
         ui_airplanes = UIAirplanes()
 
     def display_main_menu(self):
-        print("-" * LENGHT)
+        print("-" * LENGTH)
         print("1. Employees 2. Voyages 3. Destinations 4. Airplanes")
-        print("-" * LENGHT)
+        print("-" * LENGTH)
+
 
 def main():
     test = UIMain()
     test.display_main_menu()
+
 
 main()

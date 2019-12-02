@@ -6,11 +6,13 @@ class Validator():
     def __validate_string(self, string):
         if string.isalpha():
             return True
+
         return False
 
     def __validate_int(self, integer):
         if integer.isdigit():
             return True
+
         return False
 
     def validate_name(self, name):
@@ -28,6 +30,7 @@ class Validator():
     def validate_employee_ssn(self, ssn):
         if (self.__validate_int(ssn)) and (len(ssn) == 10):
             return True
+
         return False
 
     def validate_employee_address(self, address):
@@ -42,6 +45,7 @@ class Validator():
     def validate_phone_number(self, number):
         if (self.__validate_int) and (len(number) == 7):
             return True
+
         return False
 
     def validate_mobile_number(self, number):
@@ -50,43 +54,60 @@ class Validator():
     def validate_home_number(self, number):
         return self.validate_phone_number(number)
 
+    def validate_email(self, email):
+        pass
+
     def validate_title(self, title):
         if title in self.TITLE_LIST:
             return True
+
         return False
 
     def validate_pilot_rank(self, rank):
         if rank in self.PILOT_RANK_LIST:
             return True
+
         return False
 
     def validate_cabincrew_rank(self, rank):
         if rank in self.CABINCREW_RANK_LIST:
             return True
+
         return False
 
     def validate_date(self, date):
         if (date[4] == "-") and (date[7] == "-"):
-            return self.__validate_int(date.replace("-", ""))
+            if len(date) == 10:
+                return self.__validate_int(date.replace("-", ""))
 
         return False
 
     def validate_time(self, time):
         if (time[2] == ":") and (time[5] == ":"):
-            return self.__validate_int(time.strip(":"))
+            if len(time) == 8:
+                return self.__validate_int(time.replace("-", ""))
+
         return False
 
     def validate_airplane_typeid(self, typeid):
         if (self.__validate_string(typeid)) and (typeid.isupper()):
-            pass
+            if typeid[:2] == "NA":
+                return True
+
+        return False
 
     def validate_airplane_name(self, name):
-        pass
+        if name[2] == "-":
+            if len(name) == 6:
+                return self.__validate_string(name.replace("-", ""))
+
+        return False
 
     def validate_destinationid(self, id_int):
         if self.__validate_string(id_int):
             if (id_int.isupper()) and (len(id_int) == 3):
                 return True
+
         return False
 
     def validate_country(self, country):
@@ -110,8 +131,8 @@ class Validator():
 
 def main():
     validation_instance = Validator()
-    is_date = validation_instance.validate_date("2020-02-03")
-    print(is_date)
+    is_name = validation_instance.validate_airplane_name("TF-EPG")
+    print(is_name)
 
 
 main()
