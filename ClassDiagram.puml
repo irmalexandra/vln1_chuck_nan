@@ -17,7 +17,6 @@ package UI_layer #fcb603 {
   }
 
   class UIEmployees{
-<<<<<<< HEAD
     LLAPI
     display_employee_sub_menu()
     display_employee_search_menu()
@@ -111,9 +110,7 @@ package UI_layer #fcb603 {
     print_formatted_list()
     print_create_airplane()
     print_selected_airplane()
-    print_edit_menu()
->>>>>>> 93c5ce1917d589d006f0ce5e25312f35c2dec21f
-  }
+    print_edit_menu()}
   UIMain -- UIEmployees
   UIMain -- UIVoyages
   UIMain -- UIDestinations
