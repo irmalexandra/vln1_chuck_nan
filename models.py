@@ -1,7 +1,7 @@
 class Employee():
     def __init__(self, name = '', ssn = '', address = '', \
         home_num = 0, mobile_num = 0, email = '', title = ''):
-        self.__id = get_id()
+        self.__id = self.get_id()
         self.__name = name
         self.__ssn = ssn
         self.__address = address
@@ -23,49 +23,49 @@ class FlightAttendant(Employee):
         pass
 class Voyage():
     def __init__(self):
-        self.__id = get_id()
-        self.__destination = get_destination()
-        self.__airplane = get_airplane()
-        self.__departure = get_flight()
-        self.__return = get_flight()
-        self.__pilot = get_pilot()
-        self.__co_pilot = get_pilot()
-        self.__purser = get_flight_attendant()
-        self.__cabin_crew_list = get_flight_attendant_list()
+        self.__id = self.get_id()
+        self.__destination = self.get_destination()
+        self.__airplane = self.get_airplane()
+        self.__departure = self.get_flight()
+        self.__return = self.get_flight()
+        self.__pilot = self.get_pilot()
+        self.__co_pilot = self.get_pilot()
+        self.__purser = self.get_flight_attendant()
+        self.__cabin_crew_list = self.get_flight_attendant_list()
         self.__status = ''
 
     def get_id(self):
-        pass
+        return
     def get_destination(self):
-        pass
+        return
     def get_airplane(self):
-        pass
+        return
     def get_flight(self):
-        pass
+        return
     def get_pilot(self):
-        pass
+        return
     def get_flight_attendant(self):
-        pass
+        return
     def get_flight_attendant_list(self):
-        pass
+        return
     def generate_flight_number(self):
-        pass
+        return
 
 
 class Airplane():
     def __init__(self, name = '', make = '', model = '', max_seats = 0):
-        self.__id = get_id()
+        self.__id = self.get_id()
         self.__name = name
         self.__make = make
         self.__model = model
         self.__max_seats = max_seats
 
     def get_id(self):
-        pass
+        return
 
 class Destination():
     def __init__(self, country = '', airport = '', flight_time = '', distance = '', contact_name = '', contact_num = 0):
-        self.__id = get_id()
+        self.__id = self.get_id()
         self.__country = country
         self.__airport = airport
         self.__flight_time = flight_time
@@ -74,15 +74,23 @@ class Destination():
         self.__contact_num = contact_num
 
     def get_id(self):
-        pass
+        return
 
 class Flight():
     def __init__(self, departure_airport = '', arrival_airport = '', \
         departure_date = '', departure_time = '', arrival_date = '', arrival_time = ''):
         self.__departure_airport = departure_airport
         self.__arrival_airport = arrival_airport
-        self.__departure_date = departure_date
-        self.__departure_time = departure_time
-        self.__arrival_date = arrival_date
-        self.__arrival_time = arrival_time
+        self.__departure_date = self.get_departure_date()
+        self.__departure_time = self.get_departure_time()
+        self.__arrival_date = self.get_arrival_date()
+        self.__arrival_time = self.get_arrival_time()
 
+        def get_departure_date(self):
+            return
+        def get_departure_time(self):
+            return
+        def get_arrival_date(self):
+            return
+        def get_arrival_time(self):
+            return
