@@ -72,7 +72,7 @@ class Validator():
         return False
 
     def validate_time(self, time):
-        if time[2, 5] == ":":
+        if (time[2] == ":") and (time[5] == ":"):
             return self.__validate_int(time.strip(":"))
         return False
 
