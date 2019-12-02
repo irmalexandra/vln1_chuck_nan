@@ -1,16 +1,9 @@
 class Validator():
 
-<<<<<<< HEAD
     def __validate_string(self, string):
         if string.isalpha():
             return True
         return False
-=======
-    def validate_string(name):
-        if name.isalpha():
-            
-            return False
->>>>>>> 8034836696ca619cb70f4274aa93d11353394615
 
     def __validate_int(self, integer):
         if integer.isdigit():
