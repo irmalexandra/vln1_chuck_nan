@@ -4,8 +4,8 @@ models_validation = Validator()
 
 
 class Employee():
-    def __init__(self, name='', ssn='', address='', home_num=0, mobile_num=0, email='', title=''):
-        self.__id = self.get_id()
+    def __init__(self, a_id = "", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank ='', licence =''):
+        self.__id = a_id
         self.__name = name
         self.__ssn = ssn
         self.__address = address
@@ -13,7 +13,12 @@ class Employee():
         self.__mobile_num = mobile_num
         self.__email = email
         self.__title = title
+        self.__rank = rank
+        self.__licence = licence 
 
+    def __str__(self):
+        return self.__id + self.__name + self.__ssn + self.__address + self.__home_num + self.__email + self.__title + self.__rank + self.__licence
+    
     def get_id(self):
         return self.__id
 
@@ -51,35 +56,50 @@ class Employee():
         return self.__home_num
 
     def set_home_num(self, new_home_num):
-        if models_validation.validate_employee_home_num:
-            self.__home_num = new_home_num
-
+        # if models_validation.validate_employee_home_num:
+        #     self.__home_num = new_home_num
+        self.__home_num = new_home_num
     def get_mobile_num(self):
         return self.__mobile_num
 
     def set_mobile_num(self, new_mobile_num):
-        if models_validation.validate_employee_mobile_num:
-            self.__mobile_num = new_mobile_num
-        else:
-            pass
+        # if models_validation.validate_employee_mobile_num:
+        #     self.__mobile_num = new_mobile_num
+        # else:
+        #     pass
+        self.__mobile_num = new_mobile_num
 
     def get_email(self):
         return self.__email
 
     def set_email(self, new_email):
-        if models_validation.validate_employee_email:
-            self.__email = new_email
-        else:
-            pass
+        #if models_validation.validate_employee_email:
+            #self.__email = new_email
+        self.__email = new_email
+        # else:
+        #     pass
 
     def get_title(self):
         return self.__title
 
     def set_title(self, new_title):
-        if models_validation.validate_employee_title:
-            self.__title = new_title
-        else:
-            pass
+        # if models_validation.validate_employee_title:
+        #     self.__title = new_title
+        # else:
+        #     pass
+        self.__title = new_title
+
+    def get_rank(self):
+        return self.__rank
+
+    def set_rank(self, new_rank):
+        self.__rank = new_rank
+    
+    def get_licence(self):
+        return self.__licence
+
+    def set_licence(self, new_licence):
+        self.__licence = new_licence
 
 
 class Pilot(Employee):
