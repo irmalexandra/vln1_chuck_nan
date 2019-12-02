@@ -22,7 +22,7 @@ class Employee():
         return self.__name
 
     def set_name(self, new_name):
-        if validator.validate_employee_name:
+        if Validator.validate_employee_name:
             self.__name = new_name
         else:
             pass
@@ -85,6 +85,15 @@ class Pilot(Employee):
         self.__airplane_type = airplane_type
         pass
 
+    def get_airplane_type(self):
+        return self.__airplane_type
+
+    def set_airplane_type(self, new_airplane_type):
+        if validator.validate_pilot_airplane_type:
+            self.__airplane_type = new_airplane_type
+        else:
+            pass
+
 
 class FlightAttendant(Employee):
     def __init__(self):
@@ -107,26 +116,74 @@ class Voyage():
     def get_id(self):
         return self.__id
 
+    def set_id(self, new_id):
+        if validator.validate_voyage_id:
+            self.__id = new_id
+        else:
+            pass
+
     def get_destination(self):
         return self.__destination
+
+    def set_destination(self, new_destination):
+        if validator.validate_voyage_destination:
+            self.__destination = new_destination
+        else:
+            pass
 
     def get_airplane(self):
         return self.__airplane
 
+    def set_airplane(self, new_airplane):
+        if validator.validate_voyage_airplane:
+            self.__airplane = new_airplane
+        else:
+            pass
+
     def get_flight_departure(self):
         return self.__departure
+
+    def set_flight_departure(self, new_flight_departure):
+        if validator.validate_voyage_flight_departure:
+            self.__flight_departure = new_flight_departure
+        else:
+            pass
 
     def get_flight_return(self):
         return self.__return
 
+    def set_flight_return(self, new_flight_return):
+        if validator.validate_voyage_flight_return:
+            self.__flight_return = new_flight_return
+        else:
+            pass
+
     def get_pilot(self):
         return self.__pilot
+
+    def set_pilot(self, new_pilot):
+        if validator.validate_voyage_pilot:
+            self.__pilot = new_pilot
+        else:
+            pass
 
     def get_flight_attendant(self):
         return self.__purser
 
+    def set_flight_attendant(self, new_flight_attendant):
+        if validator.validate_voyage_flight_attendant:
+            self.__flight_attendant = new_flight_attendant
+        else:
+            pass
+
     def get_flight_attendant_list(self):
         return self.__cabin_crew_list
+
+    def set_flight_attendant_list(self, new_flight_attendant_list):
+        if validator.validate_voyage_flight_attendant_list:
+            self.__flight_attendant_list = new_flight_attendant_list
+        else:
+            pass
 
     def generate_flight_number(self):
         return
