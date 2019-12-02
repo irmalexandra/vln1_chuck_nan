@@ -11,25 +11,56 @@ class Employee():
         self.__title = title
 
     def get_id(self):
-        pass
+        return self.__id
+
+    def set_id(self, new_id):
+        self.__id = new_id
 
     def get_name(self):
         return self.__name
 
     def set_name(self):
-        pass
+        if self.__name.isalpha:
+            return self.__name
+        else:
+            pass
 
     def get_ssn(self):
         return self.__ssn
 
     def set_ssn(self):
-        pass
+        if self.__ssn.isdigit and len(self.__ssn) == 7:
+            return self.__ssn
 
     def get_address(self):
-        return self.__ssn
+        return self.__address
 
     def set_address(self, new_address):
         self.__address = new_address
+
+    def get_home_num(self):
+        return self.__home_num
+
+    def get_home_num(self, new_home_num):
+        self.__home_num = new_home_num
+
+    def get_mobile_num(self):
+        return self.__mobile_num
+
+    def get_mobile_num(self, new_mobile_num):
+        self.__mobile_num = new_mobile_num
+
+    def get_email(self):
+        return self.__email
+
+    def get_email(self, new_email):
+        self.__email = new_email
+
+    def get_title(self):
+        return self.__title
+
+    def get_title(self, new_title):
+        self.__title = new_title
 
 
 class Pilot(Employee):
