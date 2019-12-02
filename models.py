@@ -94,22 +94,14 @@ class Destination():
 
 class Flight():
     def __init__(self, departure_airport='', arrival_airport='',
-                 departure_date='', departure_time='', arrival_date='', arrival_time=''):
+                 departure_date_time='', arrival_date_time=''):
         self.__departure_airport = departure_airport
         self.__arrival_airport = arrival_airport
-        self.__departure_date = self.get_departure_date()
-        self.__departure_time = self.get_departure_time()
-        self.__arrival_date = self.get_arrival_date()
-        self.__arrival_time = self.get_arrival_time()
+        self.__departure_date_time = self.get_departure_date_time()
+        self.__arrival_date_time = self.get_arrival_date_time()
 
-        def get_departure_date(self):
+        def get_departure_date_time(self):
             return
 
-        def get_departure_time(self):
-            return
-
-        def get_arrival_date(self):
-            return
-
-        def get_arrival_time(self):
+        def get_arrival_date_time(self):
             return
