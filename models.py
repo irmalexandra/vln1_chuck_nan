@@ -218,7 +218,49 @@ class Airplane():
         self.__max_seats = max_seats
 
     def get_id(self):
-        return
+        return self.__id
+
+    def set_id(self, new_id):
+        if models_validation.validate_airplane_id:
+            self.__id = new_id
+        else:
+            pass
+
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, new_name):
+        if models_validation.validate_airplane_name:
+            self.__name = new_name
+        else:
+            pass
+
+    def get_make(self):
+        return self.__make
+
+    def set_make(self, new_make):
+        if models_validation.validate_airplane_make:
+            self.__make = new_make
+        else:
+            pass
+
+    def get_make(self):
+        return self.__make
+
+    def set_model(self, new_model):
+        if models_validation.validate_airplane_model:
+            self.__model = new_model
+        else:
+            pass
+
+    def get_make(self):
+        return self.__make
+
+    def set_max_seats(self, new_max_seats):
+        if models_validation.validate_airplane_max_seats:
+            self.__max_seats = new_max_seats
+        else:
+            pass
 
 
 class Destination():
@@ -232,20 +274,119 @@ class Destination():
         self.__contact_num = contact_num
 
     def get_id(self):
-        return
+        return self.__id
+
+    def set_id(self, new_id):
+        if models_validation.validate_destination_id:
+            self.__id = new_id
+        else:
+            pass
+
+    def get_country(self):
+        return self.__country
+
+    def set_country(self, new_country):
+        if models_validation.validate_destination_country:
+            self.__country = new_country
+        else:
+            pass
+
+    def get_airport(self):
+        return self.__airport
+
+    def set_airport(self, new_airport):
+        if models_validation.validate_destination_airport:
+            self.__airport = new_airport
+        else:
+            pass
+
+    def get_flight_time(self):
+        return self.__flight_time
+
+    def set_flight_time(self, new_flight_time):
+        if models_validation.validate_destination_flight_time:
+            self.__flight_time = new_flight_time
+        else:
+            pass
+
+    def get_distance(self):
+        return self.__distance
+
+    def set_distance(self, new_distance):
+        if models_validation.validate_destination_distance:
+            self.__distance = new_distance
+        else:
+            pass
+
+    def get_contact_name(self):
+        return self.__contact_name
+
+    def set_contact_name(self, new_contact_name):
+        if models_validation.validate_destination_contact_name:
+            self.__contact_name = new_contact_name
+        else:
+            pass
+
+    def get_contact_num(self):
+        return self.__contact_num
+
+    def set_contact_num(self, new_contact_num):
+        if models_validation.validate_destination_contact_num:
+            self.__contact_num = new_contact_num
+        else:
+            pass
 
 
 class Flight():
     def __init__(self, departure_airport='', arrival_airport='',
                  departure_date_time='', arrival_date_time=''):
+        self.__id = self.get_id()
         self.__departure_airport = departure_airport
         self.__arrival_airport = arrival_airport
-        self.__departure_date_time = self.get_departure_date_time()
-        self.__arrival_date_time = self.get_arrival_date_time()
+        self.__departure_date_time = departure_date_time
+        self.__arrival_date_time = arrival_date_time
 
-        def get_departure_date_time(self):
-            return
+    def get_id(self):
+        return self.__id
 
-        def get_arrival_date_time(self):
-            return
+    def set_id(self, new_id):
+        if models_validation.validate_flight_id:
+            self.__id = new_id
+        else:
+            pass
 
+    def get_departure_airport(self):
+        return self.__departure_airport
+
+    def set_departure_airport(self, new_departure_airport):
+        if models_validation.validate_flight_departure_airport:
+            self.__departure_airport = new_departure_airport
+        else:
+            pass
+
+    def get_arrival_airport(self):
+        return self.__arrival_airport
+
+    def set_arrival_airport(self, new_arrival_airport):
+        if models_validation.validate_flight_arrival_airport:
+            self.__arrival_airport = new_arrival_airport
+        else:
+            pass
+
+    def get_departure_date_time(self):
+        return self.__departure_date_time
+
+    def set_departure_date_time(self, new_departure_date_time):
+        if models_validation.validate_flight_departure_date_time:
+            self.__departure_date_time = new_departure_date_time
+        else:
+            pass
+
+    def get_arrival_date_time(self):
+        return self.__arrival_airport
+
+    def set_arrival_date_time(self, new_arrival_date_time):
+        if models_validation.validate_flight_arrival_date_time:
+            self.__arrival_date_time = new_arrival_date_time
+        else:
+            pass

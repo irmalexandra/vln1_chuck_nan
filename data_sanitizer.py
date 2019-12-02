@@ -1,5 +1,6 @@
 import random
 import string
+import os
 
 SSN = 0
 NAME = 1
@@ -57,6 +58,6 @@ for index,line in enumerate(crew_stream):
         new_employee.append(str(employee[LICENCE]))
         new_emp_str = ','.join(new_employee)
         employee_file.write(new_emp_str)
-            
+æ            
 
     
