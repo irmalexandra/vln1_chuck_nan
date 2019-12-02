@@ -1,5 +1,6 @@
 from models import *
 
+
 class DLAPI():
     def __init__(self):
         self.dl_employees = DLEmployees()
@@ -28,12 +29,12 @@ class DLEmployees():
     def __init__(self):
         pass
 
-    def pull_all_employees(self):
+    def pull_all_employees():
         all_crew_list = []
-        filestream = open("Crew.csv","r")
+        filestream = open("Crew.csv", "r")
         for line in filestream:
             all_crew_list.append(line.strip("\n").split(","))
-        return all_crew_list
+        return all_crew_list[1:]
 
     def push_all_employees(self):
         pass
@@ -44,7 +45,11 @@ class DLVoyages():
         pass
 
     def pull_all_voyages(self):
-        pass
+        all_voyages_list = []
+        filestream = open("Flights.csv", "r")
+        for line in filestream:
+            all_voyages_list.append(line.strip("\n").split(","))
+        return all_voyages_list[1:]
 
     def push_all_voyages(self):
         pass
@@ -56,7 +61,7 @@ class DLDestinations():
 
     def pull_all_destinations(self):
         pass
- 
+
     def push_all_destinations(self):
         pass
 
@@ -66,7 +71,11 @@ class DLAirplanes():
         pass
 
     def pull_all_airplanes(self):
-        pass
+        all_airplanes_list = []
+        filestream = open("Aircraft.csv", "r")
+        for line in filestream:
+            all_airplanes_list.append(line.strip("\n").split(","))
+        return all_airplanes_list[1:]
 
     def push_all_airplanes(self):
         pass
