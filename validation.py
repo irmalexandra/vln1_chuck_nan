@@ -88,7 +88,7 @@ class Validator():
 
     def validate_airplane_typeid(self, typeid):
         if (self.__validate_string(typeid)) and (typeid.isupper()):
-            if typeid[:2] = "NA":
+            if typeid[:2] == "NA":
                 return True
 
         return False
