@@ -1,3 +1,6 @@
+from validation import *
+
+
 class Employee():
     def __init__(self, name='', ssn='', address='',
                  home_num=0, mobile_num=0, email='', title=''):
@@ -19,48 +22,63 @@ class Employee():
     def get_name(self):
         return self.__name
 
-    def set_name(self):
-        if self.__name.isalpha:
-            return self.__name
+    def set_name(self, new_name):
+        if validator.validate_employee_name:
+            self.__name = new_name
         else:
             pass
 
     def get_ssn(self):
         return self.__ssn
 
-    def set_ssn(self):
-        if self.__ssn.isdigit and len(self.__ssn) == 7:
-            return self.__ssn
+    def set_ssn(self, new_ssn):
+        if validator.validate_employee_ssn:
+            self.__ssn = new_ssn
+        else:
+            pass
 
     def get_address(self):
         return self.__address
 
     def set_address(self, new_address):
-        self.__address = new_address
+        if validator.validate_employee_address:
+            self.__address = new_address
+        else:
+            pass
 
     def get_home_num(self):
         return self.__home_num
 
-    def get_home_num(self, new_home_num):
-        self.__home_num = new_home_num
+    def set_home_num(self, new_home_num):
+        if validator.validate_employee_home_num:
+            self.__home_num = new_home_num
 
     def get_mobile_num(self):
         return self.__mobile_num
 
-    def get_mobile_num(self, new_mobile_num):
-        self.__mobile_num = new_mobile_num
+    def set_mobile_num(self, new_mobile_num):
+        if validator.validate_employee_mobile_num:
+            self.__mobile_num = new_mobile_num
+        else:
+            pass
 
     def get_email(self):
         return self.__email
 
-    def get_email(self, new_email):
-        self.__email = new_email
+    def set_email(self, new_email):
+        if validator.validate_employee_email:
+            self.__email = new_email
+        else:
+            pass
 
     def get_title(self):
         return self.__title
 
-    def get_title(self, new_title):
-        self.__title = new_title
+    def set_title(self, new_title):
+        if validator.validate_employee_title:
+            self.__title = new_title
+        else:
+            pass
 
 
 class Pilot(Employee):
