@@ -4,6 +4,7 @@ class DLAPI():
     def __init__(self):
         self.dl_employees = DLEmployees()
         self.dl_voyages = DLVoyages()
+        self.dl_destinations = DLDestinations()
         self.dl_airplanes = DLAirplanes()
 
     def populate_all_employees(self):
