@@ -5,7 +5,7 @@ LENGHT = 52
 
 class UIEmployees():
     def __init__(self):
-        dl_api = LLAPI()
+        ll_api = LLAPI()
 
     def display_employee_sub_menu(self):
         print("-" * LENGHT)
@@ -44,7 +44,7 @@ class UIEmployees():
 
 class UIVoyages():
     def __init__(self):
-        dl_api = LLAPI()
+        ll_api = LLAPI()
 
 
     def display_voyage_sub_menu(self):
@@ -88,7 +88,7 @@ class UIVoyages():
 
 class UIDestinations():
     def __init__(self):
-        dl_api = LLAPI()
+        ll_api = LLAPI()
 
     def display_destination_sub_menu(self):
         print("-" * LENGHT)
@@ -117,7 +117,7 @@ class UIDestinations():
 
 class UIAirplanes():
     def __init__(self):
-        dl_api = LLAPI()
+        ll_api = LLAPI()
 
     def display_airplanes_sub_menu(self):
         print("-" * LENGHT)

@@ -7,6 +7,7 @@ class LLAPI:
         ll_voyages = LLVoyages()
         ll_destinations = LLDestinations()
         ll_airplanes = LLAirplanes()
+        
 
 class LLEmployees:
     def __init__(self):
