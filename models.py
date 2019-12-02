@@ -1,6 +1,6 @@
 from validation import *
 
-models_validation = models_validation()
+models_validation = Validator()
 
 
 class Employee():
@@ -231,8 +231,3 @@ class Flight():
         def get_arrival_date_time(self):
             return
 
-
-def main():
-
-
-main()
