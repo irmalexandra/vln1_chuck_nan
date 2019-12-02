@@ -13,45 +13,69 @@ package UI_layer #fcb603 {
     UIVoyages
     UIDestinations
     UIAirplanes
-    print_main_menu()
-    menu_handler()
+    display_main_menu()
   }
 
   class UIEmployees{
-    LLMain
-    print_sub_menu()
-    print_seach_menu()
-    print_formatted_list()
-    print_create_employee()
-    print_selected_employee()
-    print_edit_menu()
+    LLAPI
+    display_employee_sub_menu()
+    display_employee_search_menu()
+    
+    display_employee_by_ssn(SSN)
+    
+    display_all_employees()
+    display_all_employees_by_date()
+    display_all_employees_by_title()
+    
+    display_pilots_by_airplane_type_sorted()
+    display_pilots_by_airplane_type_filtered()
+    
+    display_work_schedule(employee_ID)
+
+    display_edit_employee(employee_ID)
+    
+    create_employee()
+    change_airplane_type()  
   }
   class UIVoyages{
-    LLMain
-    print_sub_menu()
-    print_seach_menu()
-    print_formatted_list()
-    print_create_voyage()
-    print_selected_voyage()
-    print_edit_menu()
+    LLAPI
+    display_voyage_sub_menu()
+    display_voyage_search_menu()
+
+    display_voyage(voyage_ID)
+
+    display_all_voyages()
+    display_all_empty_voyages()
+    display_all_voyages_by_period()
+    display_all_voyages_by_destination()
+    
+    create_voyage()
+    add_crew()
+    duplicate_voyage()
+    repeat_voyage()
+    
   }
   class UIDestinations{
-    LLMain
-    print_sub_menu()
-    print_seach_menu()
-    print_formatted_list()
-    print_create_destination()
-    print_selected_destination()
-    print_edit_menu()
+    LLAPI
+    display_destination_sub_menu()
+    display_destination_search_menu()
+
+    display_destination(destination_ID)
+    
+    display_destinations(destinations_list)
+    
+    create_destination()
+    change_contact(destination_ID)
+    change_emergency_number(destination_ID)
+    
   }
   class UIAirplanes{
-    LLMain
-    print_sub_menu()
-    print_seach_menu()
-    print_formatted_list()
-    print_create_airplane()
-    print_selected_airplane()
-    print_edit_menu()
+    LLAPI
+    display_airplanes_sub_menu()
+
+    display_airplanes(airplanes_list)
+    
+    create_airplane()
   }
   UIMain -- UIEmployees
   UIMain -- UIVoyages
@@ -61,7 +85,7 @@ package UI_layer #fcb603 {
 
 package Logic_layer #70e697 {
 
-  class LLMain{
+  class LLAPI{
     LLEmployees
     LLVoyages
     LLDestinations
@@ -71,83 +95,111 @@ package Logic_layer #70e697 {
   }
 
   class LLEmployees{
-    DLMain
-    validate_input()
+    DLAPI
+    validate_employee()
     
+    get_employee(employee_ID)
+    
+    get_all_employees()
+    
+    filter_all_employees_by_date()
+    filter_all_employees_by_title()
+    
+    filter_pilots_by_airplane_type()
+    sort_pilots_by_airplane_type()
+
+    create_work_schedule()
   }
   class LLVoyages{
-    DLMain
-    validate_input()
+    DLAPI
+    validate_voyage()
+
+    get_voyage(voyage_ID)
+
+    get_all_voyages()
     
+    filter_all_empty_voyages()
+    filter_all_voyages_by_period()
+    filter_all_voyages_by_destination()
+
+    duplicate_voyage()
+    repeat_voyage()
+    add_crew()
+
   }
   class LLDestinations{
-    DLMain
-    validate_input()
+    DLAPI
+    validate_destination()
+
+    get_destination(destination_ID)
     
+    get_all_destinations()
+
   }
   class LLAirplanes{
-    DLMain
-    validate_input()
-    
+    DLAPI
+    validate_airplane()
+
+    get_all_airplanes()
   }
 
-  LLMain -- LLEmployees
-  LLMain -- LLVoyages
-  LLMain -- LLDestinations
-  LLMain -- LLAirplanes
+  LLAPI -- LLEmployees
+  LLAPI -- LLVoyages
+  LLAPI -- LLDestinations
+  LLAPI -- LLAirplanes
+  
 
 }
 
 package Data_layer #99c0ff{
 
-  class DLMain{
+  class DLAPI{
     DLEmployees
     DLVoyages
     DLDestinations
     DLAirplanes
 
+    all_employees_list = DLEmployeees.pull_all_employees[]
+    all_voyages_list = DLVoyages.pull_all_voyages[]
+    all_destinations_list = DLDestinations.pull_all_destinations[]
+    all_airplanes_list = DLAirplanes.pull_all_airplanes[]
   }
 
   class DLEmployees{
-    save_data()
-    read_data()
-    create_instance()
+    pull_all_employees()
+    push_all_employees()
   }
   class DLVoyages{
-    save_data()
-    read_data()
-    create_instance()
+    pull_all_voyages()
+    push_all_voyages()
     
   }
   class DLDestinations{
-    save_data()
-    read_data()
-    create_instance()
+    pull_all_destinations()
+    push_all_destinations()
     
   }
   class DLAirplanes{
-    save_data()
-    read_data()
-    create_instance()
-    
+    pull_all_airplanes()
+    push_all_airplanes()
   }
 
-  DLMain -- DLEmployees
-  DLMain -- DLVoyages
-  DLMain -- DLDestinations
-  DLMain -- DLAirplanes
+  DLAPI -- DLEmployees
+  DLAPI -- DLVoyages
+  DLAPI -- DLDestinations
+  DLAPI -- DLAirplanes
   
 }
 
-UIEmployees -down- LLMain
-UIVoyages -down- LLMain
-UIAirplanes -down- LLMain
-UIDestinations -down- LLMain
+UIEmployees -down- LLAPI
+UIVoyages -down- LLAPI
+UIAirplanes -down- LLAPI
+UIDestinations -down- LLAPI
 
-LLEmployees -down- DLMain
-LLVoyages -down- DLMain
-LLDestinations -down- DLMain
-LLAirplanes -down- DLMain
+LLEmployees -down- DLAPI
+LLVoyages -down- DLAPI
+LLDestinations -down- DLAPI
+LLAirplanes -down- DLAPI
 
 
 
@@ -158,118 +210,81 @@ package Models #f58ef0{
 
 
 class Employee {
-  name
-  id_number
-  address
-  home_number
-  mobile_number
-  email
-  title
-  availability
+  -ID
+  -name
+  -SSN
+  -address
+  -home_number
+  -mobile_number
+  -email
+  -title
+  -availability
 
-  get_name()
-  set_name()
-  get_id_number()
-  set_id_number()
-  get_home_number()
-  set_home_number()
-  get_mobile_number()
-  set_mobile_number()
-  get_email()
-  set_email()
-  get_title()
-  set_title()
-  get_availability()
-  set_availability()
 }
 
-class Flight_attendant{
+class FlightAttendant{
 }
 
 class Pilot{
-  flight_licenses
-
-  get_flight_licenses()
-  set_flight_licenses()
+  -airplane_type
 }
 
 class Destination{
-  name
-  airport
-  flight_time
-  distance
-  contact_name
-  contact_number
+  -ID
+  -country
+  -airport
+  -flight_time
+  -distance
+  -contact_name
+  -contact_number
 
-  get_name()
-  set_name()
-  get_airport()
-  set_airport()
-  get_flight_time()
-  set_flight_time()
-  get_distance()
-  set_distance()
-  get_contact_name()
-  set_contact_name()
-  get_contact_number()
-  set_contact_number()
 }
 
 class Voyage{
-  pilot
-  co_pilot
-  purser
-  cabin_crew_print_formatted_list
+  -ID
 
-  get_pilot()
-  set_pilot()
-  get_co_pilot()
-  set_co_pilot()
-  get_purser()
-  set_purser()
-  get_cabin_crew_print_formatted_list()
-  set_cabin_crew_print_formatted_list()
+  -destination = Destination
+  -airplane = Airplane
+  
+  -departure = Flight
+  -return = Flight
 
+  -status
+
+  -pilot = Pilot
+  -co_pilot = Pilot
+  -purser = FlightAttendant
+  -cabin_crew_list = FlightAttendant
+  generate_flight_number()
 }
 
 class Flight{
-  departure_airport
-  arrival_airport
-  departure_date
-  departure_time
-  arrival_date
-  arrival_time
-  flight_num
-  flight_id
-
-  get_destination()
-  set_destination()
-  get_departure_date()
-  set_departure_date()
-  get_departure_time()
-  set_departure_time()
-  get_flight_num()
-  set_flight_num()
-  get_flight_id()
-  set_flight_id()
+  -ID
+  -flight_num
+  -departure_airport
+  -arrival_airport
+  -departure_date
+  -departure_time
+  -arrival_date
+  -arrival_time
 }
 
 class Airplane{
-  model
-  max_seats
-
-  get_model()
-  set_model()
-  get_max_seats()
-  set_max_seats()
+  -ID
+  -name
+  -make
+  -model
+  -max_seats
+  
 }
 
-Employee -up-|> Flight_attendant
+Employee -up-|> FlightAttendant
 Employee -up-|> Pilot
-Destination *-- Voyage
-Airplane *-- Flight
-Airplane *-- Voyage
-Flight *-- Voyage
+FlightAttendant -up- Voyage
+Pilot -up- Voyage
+Destination *-left- Voyage
+Voyage *-down- Flight
+Airplane *-right- Voyage
 
 }
 
