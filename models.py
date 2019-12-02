@@ -2,8 +2,7 @@ from validation import *
 
 
 class Employee():
-    def __init__(self, name='', ssn='', address='',
-                 home_num=0, mobile_num=0, email='', title=''):
+    def __init__(self, name='', ssn='', address='', home_num=0, mobile_num=0, email='', title=''):
         self.__id = self.get_id()
         self.__name = name
         self.__ssn = ssn
