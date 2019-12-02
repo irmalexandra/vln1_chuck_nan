@@ -1,8 +1,8 @@
-from data_layer import DLAPI
-
+from logic_layer import LLAPI
+from models import *
 class UIEmployees():
     def __init__(self):
-        dl_api = DLAPI()
+        dl_api = LLAPI()
 
     def display_employee_sub_menu(self):
         pass
@@ -37,7 +37,7 @@ class UIEmployees():
 
 class UIVoyages():
     def __init__(self):
-        dl_api = DLAPI()
+        dl_api = LLAPI()
 
 
     def display_voyage_sub_menu(self):
@@ -77,7 +77,7 @@ class UIVoyages():
 
 class UIDestinations():
     def __init__(self):
-        dl_api = DLAPI()
+        dl_api = LLAPI()
 
     def display_destination_sub_menu(self):
         pass
@@ -102,7 +102,7 @@ class UIDestinations():
 
 class UIAirplanes():
     def __init__(self):
-        dl_api = DLAPI()
+        dl_api = LLAPI()
 
     def display_airplanes_sub_menu(self):
         pass

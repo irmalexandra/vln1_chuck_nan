@@ -1,76 +1,91 @@
+from data_layer import DLAPI
+from models import *
+
 class LLAPI:
     def __init__(self):
-        ll_employees = LLEmployees()
-        ll_voyages = LLVoyages()
-        ll_destinations = LLDestinations()
-        ll_airplanes = LLAirplanes()
+        ll_employees = LLEmployees(self)
+        ll_voyages = LLVoyages(self)
+        ll_destinations = LLDestinations(self)
+        ll_airplanes = LLAirplanes(self)
 
 class LLEmployees:
-    def validate_employee():
+    def __init__(self):
+        dl_api = DLAPI()
+
+    def validate_employee(self):
         pass
 
-    def get_employee(employee_ID):
+    def get_employee(self, employee_ID):
         pass
 
-    def get_all_employees():
+    def get_all_employees(self):
         pass
 
-    def filter_all_employees_by_date():
+    def filter_all_employees_by_date(self):
         pass
 
-    def filter_all_employees_by_title():
+    def filter_all_employees_by_title(self):
         pass
 
-    def filter_pilots_by_airplane_type():
+    def filter_pilots_by_airplane_type(self):
         pass
 
-    def sort_pilots_bu_airplane_type():
+    def sort_pilots_bu_airplane_type(self):
         pass
 
-    def create_work_scedule():
+    def create_work_scedule(self):
         pass
 
 class LLVoyages:
-    def validate_voyage():
+    def __init__(self):
+        dl_api = DLAPI()
+
+    def validate_voyage(self):
         pass
 
-    def get_voyage(voyage_ID):
+    def get_voyage(self, voyage_ID):
         pass
 
-    def get_all_voyages():
+    def get_all_voyages(self):
         pass
 
-    def filter_all_empty_voyages():
+    def filter_all_empty_voyages(self):
         pass
 
-    def filter_all_voyages_by_period():
+    def filter_all_voyages_by_period(self):
         pass
 
-    def filter_all_voyages_by_destination():
+    def filter_all_voyages_by_destination(self):
         pass
 
-    def duplicate_voyages():
+    def duplicate_voyages(self):
         pass
 
-    def repeat_voyage():
+    def repeat_voyage(self):
         pass
 
-    def add_crew():
+    def add_crew(self):
         pass
     
 class LLDestinations:
-    def validate_destination():
+    def __init__(self):
+        dl_api = DLAPI()
+
+    def validate_destination(self):
         pass
 
-    def get_destination(destination_ID):
+    def get_destination(self, estination_ID):
         pass
 
-    def get_all_destinations():
+    def get_all_destinations(self):
         pass
     
 class LLAirplanes:
-    def validate_airplane():
+    def __init__(self):
+        dl_api = DLAPI()
+
+    def validate_airplane(self):
         pass
 
-    def get_all_airplanes():
+    def get_all_airplanes(self):
         pass
