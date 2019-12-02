@@ -1,5 +1,7 @@
 from validation import *
 
+models_validation = models_validation()
+
 
 class Employee():
     def __init__(self, name='', ssn='', address='',
@@ -23,7 +25,7 @@ class Employee():
         return self.__name
 
     def set_name(self, new_name):
-        if Validator.validate_employee_name:
+        if models_validation.validate_employee_name:
             self.__name = new_name
         else:
             pass
@@ -32,7 +34,7 @@ class Employee():
         return self.__ssn
 
     def set_ssn(self, new_ssn):
-        if validator.validate_employee_ssn:
+        if models_validation.validate_employee_ssn:
             self.__ssn = new_ssn
         else:
             pass
@@ -41,7 +43,7 @@ class Employee():
         return self.__address
 
     def set_address(self, new_address):
-        if validator.validate_employee_address:
+        if models_validation.validate_employee_address:
             self.__address = new_address
         else:
             pass
@@ -50,14 +52,14 @@ class Employee():
         return self.__home_num
 
     def set_home_num(self, new_home_num):
-        if validator.validate_employee_home_num:
+        if models_validation.validate_employee_home_num:
             self.__home_num = new_home_num
 
     def get_mobile_num(self):
         return self.__mobile_num
 
     def set_mobile_num(self, new_mobile_num):
-        if validator.validate_employee_mobile_num:
+        if models_validation.validate_employee_mobile_num:
             self.__mobile_num = new_mobile_num
         else:
             pass
@@ -66,7 +68,7 @@ class Employee():
         return self.__email
 
     def set_email(self, new_email):
-        if validator.validate_employee_email:
+        if models_validation.validate_employee_email:
             self.__email = new_email
         else:
             pass
@@ -75,7 +77,7 @@ class Employee():
         return self.__title
 
     def set_title(self, new_title):
-        if validator.validate_employee_title:
+        if models_validation.validate_employee_title:
             self.__title = new_title
         else:
             pass
@@ -90,7 +92,7 @@ class Pilot(Employee):
         return self.__airplane_type
 
     def set_airplane_type(self, new_airplane_type):
-        if validator.validate_pilot_airplane_type:
+        if models_validation.validate_pilot_airplane_type:
             self.__airplane_type = new_airplane_type
         else:
             pass
@@ -118,7 +120,7 @@ class Voyage():
         return self.__id
 
     def set_id(self, new_id):
-        if validator.validate_voyage_id:
+        if models_validation.validate_voyage_id:
             self.__id = new_id
         else:
             pass
@@ -127,7 +129,7 @@ class Voyage():
         return self.__destination
 
     def set_destination(self, new_destination):
-        if validator.validate_voyage_destination:
+        if models_validation.validate_voyage_destination:
             self.__destination = new_destination
         else:
             pass
@@ -136,7 +138,7 @@ class Voyage():
         return self.__airplane
 
     def set_airplane(self, new_airplane):
-        if validator.validate_voyage_airplane:
+        if models_validation.validate_voyage_airplane:
             self.__airplane = new_airplane
         else:
             pass
@@ -145,7 +147,7 @@ class Voyage():
         return self.__departure
 
     def set_flight_departure(self, new_flight_departure):
-        if validator.validate_voyage_flight_departure:
+        if models_validation.validate_voyage_flight_departure:
             self.__flight_departure = new_flight_departure
         else:
             pass
@@ -154,7 +156,7 @@ class Voyage():
         return self.__return
 
     def set_flight_return(self, new_flight_return):
-        if validator.validate_voyage_flight_return:
+        if models_validation.validate_voyage_flight_return:
             self.__flight_return = new_flight_return
         else:
             pass
@@ -163,7 +165,7 @@ class Voyage():
         return self.__pilot
 
     def set_pilot(self, new_pilot):
-        if validator.validate_voyage_pilot:
+        if models_validation.validate_voyage_pilot:
             self.__pilot = new_pilot
         else:
             pass
@@ -172,7 +174,7 @@ class Voyage():
         return self.__purser
 
     def set_flight_attendant(self, new_flight_attendant):
-        if validator.validate_voyage_flight_attendant:
+        if models_validation.validate_voyage_flight_attendant:
             self.__flight_attendant = new_flight_attendant
         else:
             pass
@@ -181,7 +183,7 @@ class Voyage():
         return self.__cabin_crew_list
 
     def set_flight_attendant_list(self, new_flight_attendant_list):
-        if validator.validate_voyage_flight_attendant_list:
+        if models_validation.validate_voyage_flight_attendant_list:
             self.__flight_attendant_list = new_flight_attendant_list
         else:
             pass
