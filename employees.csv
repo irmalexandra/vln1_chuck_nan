@@ -1,36 +1,36 @@
 id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
-1,3009907461,William Carillo,sFgpbqmXacnJovCNMMhst,2705457,8396212,william.carillo@nanair.is,Pilot,Captain,NAFokkerF100
-2,2910858778,Virginia Ho,xujnoRRDZTJyzaBhbPLStjGv,9351400,8580172,virginia.ho@nanair.is,Pilot,Captain,NABAE146
-3,2706838569,Gerard Nelson,fEXbqxJLBdkMhYskWfFZPG,3125875,8590665,gerard.nelson@nanair.is,Pilot,Captain,NAFokkerF100
-4,2209955782,Allen Ley,LjNkFASYmk,9465890,0727329,allen.ley@nanair.is,Pilot,Captain,NABAE146
-5,2907675667,Felecia Moye,PWCXSGzIjLBwPAeGufjdRfph,4459317,0681306,felecia.moye@nanair.is,Pilot,Captain,NABAE146
-6,1309797899,Tyler Anderson,LJJDyyfFAMRYkagrTOmgFLYa,1948593,3217643,tyler.anderson@nanair.is,Pilot,Captain,NAFokkerF28
-7,2410876598,Nan Gage,kdYvGlzcozfnfLOAxtdXQWx,8387157,3851963,nan.gage@nanair.is,Pilot,Copilot,NAFokkerF100
-8,2211658134,Charla Johnson,GcEixkBNQBLAoJpJtIMrDu,2567187,1240569,charla.johnson@nanair.is,Pilot,Copilot,NABAE146
-9,2504939263,Sam Preciado,PpkgMlvPgHfewITpJbMZjP,7343477,9270239,sam.preciado@nanair.is,Pilot,Copilot,NABAE146
-10,1900769521,Jasmine Hagadone,MczAIHWpJUamXL,0929995,1543218,jasmine.hagadone@nanair.is,Pilot,Copilot,NABAE146
-11,2500812671,Anna Phillips,kVKiWvOYbQfNWmiAOOVbgFEmAU,9292232,5259082,anna.phillips@nanair.is,Pilot,Copilot,NAFokkerF28
-12,1309927223,Patricia Bates,jHHgjJyVm,9638116,8933027,patricia.bates@nanair.is,Pilot,Copilot,NAFokkerF28
-13,1600904199,Sherry Walker,NkgECMKffxMVStll,5306171,1642004,sherry.walker@nanair.is,Cabincrew,Flight Service Manager,N/A
-14,0303758167,Margarita Fischer,VtaPvUnZvbpiaVEb,8736796,5705633,margarita.fischer@nanair.is,Cabincrew,Flight Service Manager,N/A
-15,2200763823,Judith Aleshire,vmZUQeoEdT,6052081,3610206,judith.aleshire@nanair.is,Cabincrew,Flight Service Manager,N/A
-16,1308941169,Jacob Blecha,HhkXnvwJgnQqIveqRGdhNa,9933877,8939251,jacob.blecha@nanair.is,Cabincrew,Flight Service Manager,N/A
-17,1405853585,Lula Stefani,GqJMKwchGywMcjKKAHZcak,4033053,8907831,lula.stefani@nanair.is,Cabincrew,Flight Service Manager,N/A
-18,0909862878,Richard Sanders,CAnjAJNYxAmchYulxiV,6292100,7105036,richard.sanders@nanair.is,Cabincrew,Flight Service Manager,N/A
-19,1811931544,John Kline,IMEeTtaXoapSkpbKruoxrlvqdojc,4730847,4804367,john.kline@nanair.is,Cabincrew,Flight Service Manager,N/A
-20,0409858797,Evelyn Pickhardt,BjfTRUMxvQHga,8507826,5034596,evelyn.pickhardt@nanair.is,Cabincrew,Flight Service Manager,N/A
-21,3002688722,Stacey Henrickson,tooAWSVubyIWQhWfQwmhgnp,8096099,3222027,stacey.henrickson@nanair.is,Cabincrew,Flight Attendant,N/A
-22,3003962187,Delores Whitfield,KvkGFaERFEvaJ,1918913,9787967,delores.whitfield@nanair.is,Cabincrew,Flight Attendant,N/A
-23,1311772221,Maribel Lucero,JAsnAVYjPoES,1907488,5364718,maribel.lucero@nanair.is,Cabincrew,Flight Attendant,N/A
-24,2509913418,Katherine Wernimont,MtlOeLNGLvQXUe,7476095,9025788,katherine.wernimont@nanair.is,Cabincrew,Flight Attendant,N/A
-25,1103647756,Wilma Horne,YrltkZLUngsLgHILbjkMh,8899686,1363771,wilma.horne@nanair.is,Cabincrew,Flight Attendant,N/A
-26,2807755841,Bernard Carr,xPZwfzCCbIxMoSGxGKCN,1137448,4371289,bernard.carr@nanair.is,Cabincrew,Flight Attendant,N/A
-27,0409907212,Sara Davis,QOfGZuQROegGvnAVLIEQFDq,9376636,9452686,sara.davis@nanair.is,Cabincrew,Flight Attendant,N/A
-28,1103912131,Robert Swope,eyTzvwoshypsMOpreT,7320562,3423547,robert.swope@nanair.is,Cabincrew,Flight Attendant,N/A
-29,2801645554,John Iversen,qdTScsruRDzaqoxvnyyryWaykIw,3096451,6232248,john.iversen@nanair.is,Cabincrew,Flight Attendant,N/A
-30,1501681497,Rhonda Forman,LSFBYumLTtqQ,4310547,9670844,rhonda.forman@nanair.is,Cabincrew,Flight Attendant,N/A
-31,1811813379,Melissa Paquette,zXZARCZBAPOWdmkxXZxfbNK,0478544,9056441,melissa.paquette@nanair.is,Cabincrew,Flight Attendant,N/A
-32,0505942924,Carlton Chan,FWkyuMstGEhTjqUouDxY,6581992,2289135,carlton.chan@nanair.is,Cabincrew,Flight Attendant,N/A
-33,1110732819,Arthur Karr,FOXcGlPxQJCblOtqyVDwnvm,9619805,0468803,arthur.karr@nanair.is,Cabincrew,Flight Attendant,N/A
-34,2602806942,Teresa Thruman,eNnLqcGmdWKq,1013668,9281810,teresa.thruman@nanair.is,Cabincrew,Flight Attendant,N/A
-35,1107951952,Elizabeth Mcfadden,GdZfUhZSUtgaBzFhhzNGDI,9479336,5632247,elizabeth.mcfadden@nanair.is,Cabincrew,Flight Attendant,N/A
+1,3009907461,William Carillo,Perlan,8272201,3363092,william.carillo@nanair.is,Pilot,Captain,NAFokkerF100
+2,2910858778,Virginia Ho,Kringlan,6495490,0297069,virginia.ho@nanair.is,Pilot,Captain,NABAE146
+3,2706838569,Gerard Nelson,Smáralind,7494911,7102387,gerard.nelson@nanair.is,Pilot,Captain,NAFokkerF100
+4,2209955782,Allen Ley,Kringlan,4779103,3915814,allen.ley@nanair.is,Pilot,Captain,NABAE146
+5,2907675667,Felecia Moye,Menntavegur 1,1322522,5217596,felecia.moye@nanair.is,Pilot,Captain,NABAE146
+6,1309797899,Tyler Anderson,Hverfisgata 23,9528685,1077734,tyler.anderson@nanair.is,Pilot,Captain,NAFokkerF28
+7,2410876598,Nan Gage,Menntavegur 1,4870413,8093070,nan.gage@nanair.is,Pilot,Copilot,NAFokkerF100
+8,2211658134,Charla Johnson,Hagamelur 12,5144870,3124889,charla.johnson@nanair.is,Pilot,Copilot,NABAE146
+9,2504939263,Sam Preciado,Hagamelur 12,6888061,7324028,sam.preciado@nanair.is,Pilot,Copilot,NABAE146
+10,1900769521,Jasmine Hagadone,Kringlan,9528361,6014448,jasmine.hagadone@nanair.is,Pilot,Copilot,NABAE146
+11,2500812671,Anna Phillips,Hagamelur 12,7783338,2130704,anna.phillips@nanair.is,Pilot,Copilot,NAFokkerF28
+12,1309927223,Patricia Bates,Kringlan,1365439,4541316,patricia.bates@nanair.is,Pilot,Copilot,NAFokkerF28
+13,1600904199,Sherry Walker,Kringlan,4001591,6660791,sherry.walker@nanair.is,Cabincrew,Flight Service Manager,N/A
+14,0303758167,Margarita Fischer,Kringlan,3039856,6051108,margarita.fischer@nanair.is,Cabincrew,Flight Service Manager,N/A
+15,2200763823,Judith Aleshire,Laugarvegur 16,9922283,7886830,judith.aleshire@nanair.is,Cabincrew,Flight Service Manager,N/A
+16,1308941169,Jacob Blecha,Hagamelur 12,6924782,5470514,jacob.blecha@nanair.is,Cabincrew,Flight Service Manager,N/A
+17,1405853585,Lula Stefani,Kringlan,1963243,6393246,lula.stefani@nanair.is,Cabincrew,Flight Service Manager,N/A
+18,0909862878,Richard Sanders,Perlan,6811600,6923237,richard.sanders@nanair.is,Cabincrew,Flight Service Manager,N/A
+19,1811931544,John Kline,Laugarvegur 16,7703597,7438582,john.kline@nanair.is,Cabincrew,Flight Service Manager,N/A
+20,0409858797,Evelyn Pickhardt,Hagamelur 12,9891591,1119451,evelyn.pickhardt@nanair.is,Cabincrew,Flight Service Manager,N/A
+21,3002688722,Stacey Henrickson,Kringlan,1644425,1289745,stacey.henrickson@nanair.is,Cabincrew,Flight Attendant,N/A
+22,3003962187,Delores Whitfield,Smáralind,0866206,4204068,delores.whitfield@nanair.is,Cabincrew,Flight Attendant,N/A
+23,1311772221,Maribel Lucero,Menntavegur 1,3947412,0026509,maribel.lucero@nanair.is,Cabincrew,Flight Attendant,N/A
+24,2509913418,Katherine Wernimont,Perlan,6212267,0176405,katherine.wernimont@nanair.is,Cabincrew,Flight Attendant,N/A
+25,1103647756,Wilma Horne,Hverfisgata 23,5966451,1383465,wilma.horne@nanair.is,Cabincrew,Flight Attendant,N/A
+26,2807755841,Bernard Carr,Hverfisgata 23,3168198,3431733,bernard.carr@nanair.is,Cabincrew,Flight Attendant,N/A
+27,0409907212,Sara Davis,Hverfisgata 23,4922485,3630885,sara.davis@nanair.is,Cabincrew,Flight Attendant,N/A
+28,1103912131,Robert Swope,Hagamelur 12,7948578,2295642,robert.swope@nanair.is,Cabincrew,Flight Attendant,N/A
+29,2801645554,John Iversen,Kringlan,3500848,7790550,john.iversen@nanair.is,Cabincrew,Flight Attendant,N/A
+30,1501681497,Rhonda Forman,Hverfisgata 23,6827486,7948620,rhonda.forman@nanair.is,Cabincrew,Flight Attendant,N/A
+31,1811813379,Melissa Paquette,Smáralind,7482297,0903929,melissa.paquette@nanair.is,Cabincrew,Flight Attendant,N/A
+32,0505942924,Carlton Chan,Hagamelur 12,3744003,5066332,carlton.chan@nanair.is,Cabincrew,Flight Attendant,N/A
+33,1110732819,Arthur Karr,Menntavegur 1,6980443,0341378,arthur.karr@nanair.is,Cabincrew,Flight Attendant,N/A
+34,2602806942,Teresa Thruman,Smáralind,9447180,9878193,teresa.thruman@nanair.is,Cabincrew,Flight Attendant,N/A
+35,1107951952,Elizabeth Mcfadden,Menntavegur 1,5042158,0012466,elizabeth.mcfadden@nanair.is,Cabincrew,Flight Attendant,N/A
