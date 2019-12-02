@@ -29,7 +29,11 @@ class DLEmployees():
         pass
 
     def pull_all_employees(self):
-        pass
+        all_crew_list = []
+        filestream = open("Crew.csv","r")
+        for line in filestream:
+            all_crew_list.append(line.strip("\n").split(","))
+        return all_crew_list
 
     def push_all_employees(self):
         pass
