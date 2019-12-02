@@ -3,10 +3,10 @@ from models import *
 
 class LLAPI:
     def __init__(self):
-        ll_employees = LLEmployees(self)
-        ll_voyages = LLVoyages(self)
-        ll_destinations = LLDestinations(self)
-        ll_airplanes = LLAirplanes(self)
+        ll_employees = LLEmployees()
+        ll_voyages = LLVoyages()
+        ll_destinations = LLDestinations()
+        ll_airplanes = LLAirplanes()
 
 class LLEmployees:
     def __init__(self):

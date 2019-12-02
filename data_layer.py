@@ -52,7 +52,7 @@ class DLDestinations():
 
     def pull_all_destinations(self):
         pass
-
+ 
     def push_all_destinations(self):
         pass
 
