@@ -60,7 +60,11 @@ class DLDestinations():
         pass
 
     def pull_all_destinations(self):
-        pass
+        all_destinations_list = []
+        filestream = open("Destinations.csv", "r")
+        for line in filestream:
+            all_destinations_list.append(line.strip("\n").split(","))
+        return all_destinations_list[1:]
 
     def push_all_destinations(self):
         pass
