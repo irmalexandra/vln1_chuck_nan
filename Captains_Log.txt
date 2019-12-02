@@ -97,3 +97,17 @@ Yfirferð gærdags.
 Verkefni dagsins:
 	Fínpússun á öllu
 	Klára skilaskýrslu
+
+
+Captains Log, Stardate 02.12.2019
+
+Yfiferð föstudag.
+	Verkefni kláruð:
+		Wireframes/Happy Path
+		Use Cases
+		Class Diagram
+		State Diagram
+
+Verkefni dagsins:
+	Gera beinagrind forritsins
+	Byrja að vinna í gagnagrunni
