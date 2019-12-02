@@ -52,6 +52,7 @@ class DLEmployees():
             new_emp.set_mobile_num(line_list[DLEmployees.MOBILE_NUBER])
             new_emp.set_email(line_list[DLEmployees.EMAIL])
             new_emp.set_rank(line_list[DLEmployees.RANK])
+            new_emp.set_title(line_list[DLEmployees.TITLE])
 
 
 

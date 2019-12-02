@@ -17,7 +17,7 @@ class Employee():
 
 
     def __str__(self):
-        return "{:<2}{:<5}{:<5}{:<5}{:<5}{:<5}{:<5}{:<5}{:<5}".format(self.__id,self.__name,self.__ssn,self.__address,self.__home_num,self.__mobile_num,self.__email,self.__title,self.__rank)
+        return "{:<2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2}".format(self.__id,self.__name,self.__ssn,self.__address,self.__home_num,self.__mobile_num,self.__email,self.__title,self.__rank)
 
     def get_id(self):
         return self.__id
@@ -114,7 +114,7 @@ class Pilot(Employee):
         self.__licence = new_licence
 
     def __str__(self):
-        return super().__str__(self) + "\n" + self.__licence
+        return ( super().__str__(self) + "\n" + self.__licence +"Bitches \n\n")
 
 class FlightAttendant(Employee):
     def __init__(self):
