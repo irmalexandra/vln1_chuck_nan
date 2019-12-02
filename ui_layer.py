@@ -118,7 +118,7 @@ class UIMain():
     def __init__(self):
         ui_employees = UIEmployees()
         ui_voyages = UIVoyages()
-        ui_destinations = UIDestinations
+        ui_destinations = UIDestinations()
         ui_airplanes = UIAirplanes()
 
     def display_main_menu(self):
