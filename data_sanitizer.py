@@ -34,10 +34,8 @@ def generate_email(name):
     name = '.'.join(name)
     return name+"@"+'nanair.is'
 
-sanitized_employees = []
 for index,line in enumerate(crew_stream):
     
-    new_line = []
     employee = line.split(",")
     if index != 0:
         new_address = generate_address()
