@@ -74,7 +74,7 @@ class LLDestinations:
     def validate_destination(self):
         pass
 
-    def get_destination(self, estination_ID):
+    def get_destination(self, destination_ID):
         pass
 
     def get_all_destinations(self):
