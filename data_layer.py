@@ -11,6 +11,7 @@ class DLAPI():
 
     def populate_all_employees(self):
         return DLEmployees.pull_all_employees()
+ 
         
 
     def populate_all_voyages(self):
@@ -25,10 +26,10 @@ class DLAPI():
         self.all_airplanes_list = DLAirplanes.pull_all_airplanes()
         pass
 
-
+print(DLAPI.populate_all_employees())
 class DLEmployees():
 
-    def pull_all_employees():
+    def pull_all_employees(self):
         all_crew_list = []
         filestream = open("Crew.csv","r")
         for line in filestream:
