@@ -54,6 +54,9 @@ class Validator():
     def validate_home_number(self, number):
         return self.validate_phone_number(number)
 
+    def validate_email(self, email):
+        pass
+
     def validate_title(self, title):
         if title in self.TITLE_LIST:
             return True
