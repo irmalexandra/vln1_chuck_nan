@@ -10,6 +10,7 @@ class DLAPI():
     def populate_all_employees(self):
         return self.dl_employees.pull_all_employees()
 
+
     def populate_all_voyages(self):
         return self.dl_voyages.pull_all_voyages()
 
@@ -20,18 +21,55 @@ class DLAPI():
         return self.dl_airplanes.pull_all_airplanes()
 
 class DLEmployees():
-    def __init__(self):
-        pass
-    def pull_all_employees(self):
-        all_crew_list = []
-        filestream = open("Crew.csv","r")
-        for line in filestream:
-            all_crew_list.append(line.strip("\n").split(","))
-        filestream.closed
-        return all_crew_list[1:]
+    ID = 0
+    SSN = 1
+    NAME = 2
+    ADDRESS = 3
+    HOME_NUMBER = 4
+    MOBILE_NUBER = 5
+    EMAIL = 6
+    TITLE = 7
+    RANK = 8
+    LICENSE = 9
 
-    def push_all_employees(self):
-        pass
+    def __init__(self):
+        self.all_crew_list = []
+        self.filestream = open("employees.csv","r")
+    def pull_all_employees(self):
+        for line in self.filestream:
+
+            new_emp = Employee()
+            line_list = line.strip().split(",")
+            new_emp.set_id(line_list[DLEmployees.ID])
+            new_emp.set_ssn(line_list[DLEmployees.SSN])
+            new_emp.set_name(line_list[DLEmployees.NAME])
+            new_emp.set_address(line_list[DLEmployees.ADDRESS])
+            new_emp.set_home_num(line_list[DLEmployees.HOME_NUMBER])
+            new_emp.set_mobile_num(line_list[DLEmployees.MOBILE_NUBER])
+            new_emp.set_email(line_list[DLEmployees.EMAIL])
+            new_emp.set_rank(line_list[DLEmployees.RANK])
+            new_emp.set_rank(line_list[DLEmployees.LICENSE])
+            if line_list[DLEmployees.TITLE] == 'Pilot':
+                new_emp.set_title("Pilot")
+            else:
+                new_emp.set_title(line_list[DLEmployees.TITLE])
+
+
+            self.all_crew_list.append(new_emp)
+        
+        return self.all_crew_list[1:]
+
+    def push_all_employees(self, emp_list):
+        #employee_file.write(new_emp_str)
+        header = self.all_crew_list[0]
+        raw_output = ""
+        for line in emp_list:
+            for thing in line:
+                raw_output += str(thing) +","
+        print(raw_output)
+        filestream2 = open("Crew2.csv","w")
+        filestream2.write("lol")
+        
 
 class DLVoyages():
     def __init__(self):
@@ -82,7 +120,10 @@ class DLAirplanes():
 
 
 stuff = DLAPI()
-print("What", stuff.populate_all_employees())
-print("\n", stuff.populate_all_airplanes())
-print("\n", stuff.populate_all_destinations())
-print("\n", stuff.populate_all_voyages())
+# print("What", stuff.populate_all_employees())
+# print("\n", stuff.populate_all_airplanes())
+# print("\n", stuff.populate_all_destinations())
+# print("\n", stuff.populate_all_voyages())
+emp_list = stuff.populate_all_employees()
+print(emp_list[5])
+
