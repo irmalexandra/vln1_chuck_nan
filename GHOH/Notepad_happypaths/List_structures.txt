@@ -21,8 +21,8 @@ ContactName:
 ContactNumber:
 
 Destinations
-Country     Airport     FlightTime      ContactName     ContactNumber
-Ísland      KEF         20              Rikki           11123123
+Country     Airport     Distance    FlightTime      ContactName     ContactNumber 
+Ísland      KEF         1000         20              Rikki           11123123
 --------------------------------------------------------------------------------------------
 Voyage
 Destination:
