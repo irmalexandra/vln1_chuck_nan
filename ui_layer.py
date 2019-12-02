@@ -1,18 +1,25 @@
 from logic_layer import LLAPI
 from models import *
+
+LENGHT = 52
+
 class UIEmployees():
     def __init__(self):
         ll_api = LLAPI()
 
     def display_employee_sub_menu(self):
-        pass
+        print("-" * LENGHT)
+        print("1. Create 2. All 3. Search by")
+        print("-" * LENGHT)
 
     def display_employee_search_menu(self):
-        pass
+        print("-" * LENGHT)
+        print("1. SSN 2. Title 3. Date 4. Airplane 0.Home")
+        print("-" * LENGHT)
 
     def display_employee_by_ssn(self, ssn):
         pass
-
+    
     def display_all_employees(self):
         pass
 
@@ -41,10 +48,14 @@ class UIVoyages():
 
 
     def display_voyage_sub_menu(self):
-        pass
+        print("-" * LENGHT)
+        print("1. Create 2. All 3. Search by 0. Home")
+        print("-" * LENGHT)
     
     def display_voyage_search_menu(self):
-        pass
+        print("-" * LENGHT)
+        print("1. Destination 2. Period 3. Empty Voyages 0. Home")
+        print("-" * LENGHT)
 
     def display_voyage(self, voyage_id):
         pass
@@ -80,10 +91,14 @@ class UIDestinations():
         ll_api = LLAPI()
 
     def display_destination_sub_menu(self):
-        pass
+        print("-" * LENGHT)
+        print("1. Create 2. All 3. Search 0. Home")
+        print("-" * LENGHT)
 
     def display_destination_search_menu(self):
-        pass
+        print("-" * LENGHT)
+        print("1. Change contact 2. Change emergency number 0. Home")
+        print("-" * LENGHT)
 
     def display_destination(self, destination_id):
         pass
@@ -105,7 +120,9 @@ class UIAirplanes():
         ll_api = LLAPI()
 
     def display_airplanes_sub_menu(self):
+        print("-" * LENGHT)
         print("{}{}".format("1. Create 2. Display all", "0. Home"))
+        print("-" * LENGHT)
 
     def display_airplanes(self):
         pass
@@ -122,10 +139,9 @@ class UIMain():
         ui_airplanes = UIAirplanes()
 
     def display_main_menu(self):
-        main_menu_string = "1. Employees 2. Voyages 3. Destinations 4. Airplanes"
-        print("-" * len(main_menu_string))
+        print("-" * LENGHT)
         print("1. Employees 2. Voyages 3. Destinations 4. Airplanes")
-        print("-" * len(main_menu_string))
+        print("-" * LENGHT)
 
 def main():
     test = UIMain()
