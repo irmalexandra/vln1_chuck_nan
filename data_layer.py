@@ -8,26 +8,20 @@ class DLAPI():
         self.dl_airplanes = DLAirplanes()
 
     def populate_all_employees(self):
-        self.all_employees_list = DLEmployees.pull_all_employees()
-        pass
+        return self.dl_employees.pull_all_employees()
 
     def populate_all_voyages(self):
-        self.all_voyages_list = DLVoyages.pull_all_voyages()
-        pass
+        return self.dl_voyages.pull_all_voyages()
 
     def populate_all_destinations(self):
-        self.all_destinations_list = DLDestinations.pull_all_destinations()
-        pass
+        return self.dl_destinations.pull_all_destinations()
 
     def populate_all_airplanes(self):
-        self.all_airplanes_list = DLAirplanes.pull_all_airplanes()
-        pass
-
+        return self.dl_airplanes.pull_all_airplanes()
 
 class DLEmployees():
     def __init__(self):
         pass
-
     def pull_all_employees(self):
         all_crew_list = []
         filestream = open("Crew.csv","r")
@@ -39,14 +33,13 @@ class DLEmployees():
     def push_all_employees(self):
         pass
 
-
 class DLVoyages():
     def __init__(self):
         pass
 
     def pull_all_voyages(self):
         all_voyages_list = []
-        filestream = open("Flights.csv", "r")
+        filestream = open("Flight.csv", "r")
         for line in filestream:
             all_voyages_list.append(line.strip("\n").split(","))
         filestream.closed
@@ -62,7 +55,7 @@ class DLDestinations():
 
     def pull_all_destinations(self):
         all_destinations_list = []
-        filestream = open("Destinations.csv", "r")
+        filestream = open("Destination.csv", "r")
         for line in filestream:
             all_destinations_list.append(line.strip("\n").split(","))
         filestream.closed
@@ -86,3 +79,10 @@ class DLAirplanes():
 
     def push_all_airplanes(self):
         pass
+
+
+stuff = DLAPI()
+print("What", stuff.populate_all_employees())
+print("What", stuff.populate_all_airplanes())
+print("What", stuff.populate_all_destinations())
+print("What", stuff.populate_all_voyages())
