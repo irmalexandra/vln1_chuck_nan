@@ -45,7 +45,11 @@ class DLVoyages():
         pass
 
     def pull_all_voyages(self):
-        pass
+        all_voyages_list = []
+        filestream = open("Flights.csv", "r")
+        for line in filestream:
+            all_voyages_list.append(line.strip("\n").split(","))
+        return all_voyages_list
 
     def push_all_voyages(self):
         pass
@@ -70,8 +74,8 @@ class DLAirplanes():
         all_airplanes_list = []
         filestream = open("Aircraft.csv", "r")
         for line in filestream:
-            all_crew_list.append(line.strip("\n").split(","))
-        return all_crew_list
+            all_airplanes_list.append(line.strip("\n").split(","))
+        return all_airplanes_list
 
     def push_all_airplanes(self):
         pass
