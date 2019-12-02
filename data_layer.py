@@ -33,7 +33,8 @@ class DLEmployees():
         filestream = open("Crew.csv","r")
         for line in filestream:
             all_crew_list.append(line.strip("\n").split(","))
-        return all_crew_list
+        filestream.closed
+        return all_crew_list[1:]
 
     def push_all_employees(self):
         pass
@@ -44,7 +45,12 @@ class DLVoyages():
         pass
 
     def pull_all_voyages(self):
-        pass
+        all_voyages_list = []
+        filestream = open("Flights.csv", "r")
+        for line in filestream:
+            all_voyages_list.append(line.strip("\n").split(","))
+        filestream.closed
+        return all_voyages_list[1:]
 
     def push_all_voyages(self):
         pass
@@ -55,8 +61,13 @@ class DLDestinations():
         pass
 
     def pull_all_destinations(self):
-        pass
- 
+        all_destinations_list = []
+        filestream = open("Destinations.csv", "r")
+        for line in filestream:
+            all_destinations_list.append(line.strip("\n").split(","))
+        filestream.closed
+        return all_destinations_list[1:]
+
     def push_all_destinations(self):
         pass
 
@@ -66,7 +77,12 @@ class DLAirplanes():
         pass
 
     def pull_all_airplanes(self):
-        pass
+        all_airplanes_list = []
+        filestream = open("Aircraft.csv", "r")
+        for line in filestream:
+            all_airplanes_list.append(line.strip("\n").split(","))
+        filestream.closed
+        return all_airplanes_list[1:]
 
     def push_all_airplanes(self):
         pass
