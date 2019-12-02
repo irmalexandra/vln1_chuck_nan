@@ -1,5 +1,21 @@
 from models import *
 
+def open_file(file_name):
+    """ Opens a file, returns Error if wrong, else returns file as object file"""
+    try:
+        file_object = open(file_name, "r")
+    except FileNotFoundError:
+        print("File " + str(file_name) + " not found!")
+        return None
+    return file_object
+
+def read_file(a_file):
+    returned_list = []
+    for line in a_file:
+        line_list = line.strip().split()
+        returned_list.append(line_list)
+
+    return returned_list
 class DLAPI():
     def __init__(self):
         self.dl_employees = DLEmployees()
@@ -29,7 +45,8 @@ class DLEmployees():
         pass
 
     def pull_all_employees(self):
-        pass
+        file_name = "Crew.csv"
+        file_object = open_file(file_name)
 
     def push_all_employees(self):
         pass
