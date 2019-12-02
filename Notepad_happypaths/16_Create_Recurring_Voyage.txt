@@ -15,7 +15,7 @@ Input: 3
 Input: 3
 ---------------------------------------------------
 Voyages
-Date           Country      Airport    Staffed
+Date          Country       Airport     Staffed
 25.11.2019    Greenland     Kulusuk     No
 ---------------------------------------------------
 1. To Select                                0. Home
@@ -27,22 +27,19 @@ Enter airport: Kulusuk
 Destination: Kulusuk
 
 Airplane: Foxy Fire 
-Departure date: 25-11-2019
+Departure date: 25/11/2019
 Departure time: 23:55
-Return date: 26-11-2019
+Return date: 26/11/2019
 Return time: 08:44
 
 Departure flight number: xxxxx0
 ReturnFlightNumber: xxxxx1
-
-Available seats: 300
-Sold seats: 200 
 ---------------------------------------------------
 1. Add Crew 2. Duplicate 3. Repeat          0. Home
 ---------------------------------------------------
 Input: 3
 ---------------------------------------------------
-Enter period (dd-mm-yyyy:dd-mm-yyyy): 30-11-2019:02-12-2019
+Enter period (dd/mm/yyyy-dd/mm/yyyy): 30/11/2019-02/12/2019
 ---------------------------------------------------
 Enter repeat interval in days: 7
 ---------------------------------------------------
@@ -51,9 +48,9 @@ Recurrence successfully created
 Destination: Kulusuk
 
 Airplane: Foxy Fire 
-Departure date: 25-11-2019
+Departure date: 25/11/2019
 Departure time: 23:55
-Return date: 26-11-2019
+Return date: 26/11/2019
 Return time: 08:44
 
 Departure flight number: xxxxx0

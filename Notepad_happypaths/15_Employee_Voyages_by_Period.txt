@@ -18,6 +18,7 @@ Enter SSN: 2402922469
 ---------------------------------------------------
 Name: Ríkharður Friðgeirsson
 SSN: 2402922469
+Home address: Haskolavegur 5
 Home number: 5555555
 Mobile number: 6666666
 Email: rikki@nanair.is
@@ -28,7 +29,7 @@ Airplane type: Boeing747
 ---------------------------------------------------
 Input: 2
 ---------------------------------------------------
-Enter period (dd-mm-yyyy:dd-mm-yyyy): 11/12/2019-20/12/2019
+Enter period (dd/mm/yyyy-dd/mm/yyyy): 22/12/2019-28/12/2019
 ---------------------------------------------------
 Date           Country      Airport
 25/11/2019    Greenland     Kulusuk

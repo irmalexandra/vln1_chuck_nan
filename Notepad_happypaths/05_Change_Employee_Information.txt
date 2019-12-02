@@ -18,6 +18,7 @@ Enter SSN: 2402922469
 ---------------------------------------------------
 Name: Ríkharður Friðgeirsson
 SSN: 2402922469
+Home address: Haskolavegur 5
 Home number: 5555555
 Mobile number: 6666666
 Email: rikki@nanair.is
@@ -28,23 +29,25 @@ Airplane Type: Boeing747
 ---------------------------------------------------
 Input: 1
 ---------------------------------------------------
-1. Home number: 5555555
-2. Mobile number: 6666666
-3. Email: rikki@nanair.is
-4. Title: Pilot
-5. Done
+1. Home address: Haskolavegur 5
+2. Home number: 5555555
+3. Mobile number: 6666666
+4. Email: rikki@nanair.is
+5. Title: Pilot
+6. Done
 ---------------------------------------------------
-Input: 1
+Input: 2
 ---------------------------------------------------
 Enter home number: 9999999
 ---------------------------------------------------
-1. Home number: 9999999
-2. Mobile number: 6666666
-3. Email: rikki@nanair.is
-4. Title: Pilot
-5. Done
+1. Home address: Haskolavegur 5
+2. Home number: 9999999
+3. Mobile number: 6666666
+4. Email: rikki@nanair.is
+5. Title: Pilot
+6. Done
 ---------------------------------------------------
-Input: 5 
+Input: 6 
 ---------------------------------------------------
 ***************************************************
 **********************HEADER***********************
