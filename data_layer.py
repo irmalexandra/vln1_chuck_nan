@@ -1,6 +1,5 @@
 from models import *
 
-
 class DLAPI():
     def __init__(self):
         self.dl_employees = DLEmployees()
@@ -29,9 +28,9 @@ class DLEmployees():
     def __init__(self):
         pass
 
-    def pull_all_employees():
+    def pull_all_employees(self):
         all_crew_list = []
-        filestream = open("Crew.csv", "r")
+        filestream = open("Crew.csv","r")
         for line in filestream:
             all_crew_list.append(line.strip("\n").split(","))
         filestream.closed
