@@ -25,10 +25,8 @@ class DLAPI():
 
 
 class DLEmployees():
-    def __init__(self):
-        pass
 
-    def pull_all_employees(self):
+    def pull_all_employees():
         all_crew_list = []
         filestream = open("Crew.csv","r")
         for line in filestream:

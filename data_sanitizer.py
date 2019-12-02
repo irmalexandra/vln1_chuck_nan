@@ -7,6 +7,8 @@ ROLE = 2
 RANK = 3
 LICENCE = 4
 
+ADDRESSES = ['Kringlan 1', 'Laugarvegur 12', 'Holtavegur 14', 'Menntavegur 1']
+
 
 NUMBERS = string.digits
 LETTERS = string.ascii_letters
@@ -17,9 +19,7 @@ crew_stream = open("crew.csv", "r", encoding="UTF-8")
 employee_file = open ("employees.csv", "a", encoding="UTF-8")
 
 def generate_address():
-    address = ''
-    for i in range(1, random.randint(10,30)):
-        address += random.choice(LETTERS)
+    address = random.choice(ADDRESSES)
     return address
 
 def generate_phone_number():
