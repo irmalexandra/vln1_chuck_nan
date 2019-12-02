@@ -83,6 +83,6 @@ class DLAirplanes():
 
 stuff = DLAPI()
 print("What", stuff.populate_all_employees())
-print("What", stuff.populate_all_airplanes())
-print("What", stuff.populate_all_destinations())
-print("What", stuff.populate_all_voyages())
+print("\n", stuff.populate_all_airplanes())
+print("\n", stuff.populate_all_destinations())
+print("\n", stuff.populate_all_voyages())
