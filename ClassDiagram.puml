@@ -17,7 +17,6 @@ package UI_layer #fcb603 {
   }
 
   class UIEmployees{
-<<<<<<< HEAD
     LLAPI
     display_employee_sub_menu()
     display_employee_search_menu()
@@ -28,8 +27,8 @@ package UI_layer #fcb603 {
     display_all_employees_by_date()
     display_all_employees_by_title()
     
-    display_pilots_by_airplane_type_sorted()
-    display_pilots_by_airplane_type_filtered()
+    display_pilots_by_airplane_type_so()
+    display_pilots_by_airplane_type()
     
     display_work_schedule(employee_ID)
 
@@ -77,42 +76,6 @@ package UI_layer #fcb603 {
     display_airplanes(airplanes_list)
     
     create_airplane()
-=======
-    LLMain
-    print_sub_menu()
-    print_search_menu()
-    print_formatted_list()
-    print_create_employee()
-    print_selected_employee()
-    print_edit_menu()
-  }
-  class UIVoyages{
-    LLMain
-    print_sub_menu()
-    print_search_menu()
-    print_formatted_list()
-    print_create_voyage()
-    print_selected_voyage()
-    print_edit_menu()
-  }
-  class UIDestinations{
-    LLMain
-    print_sub_menu()
-    print_search_menu()
-    print_formatted_list()
-    print_create_destination()
-    print_selected_destination()
-    print_edit_menu()
-  }
-  class UIAirplanes{
-    LLMain
-    print_sub_menu()
-    print_search_menu()
-    print_formatted_list()
-    print_create_airplane()
-    print_selected_airplane()
-    print_edit_menu()
->>>>>>> 93c5ce1917d589d006f0ce5e25312f35c2dec21f
   }
   UIMain -- UIEmployees
   UIMain -- UIVoyages
