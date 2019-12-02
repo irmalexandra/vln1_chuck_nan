@@ -13,6 +13,24 @@ class Employee():
     def get_id(self):
         pass
 
+    def get_name(self):
+        return self.__name
+
+    def set_name(self):
+        pass
+
+    def get_ssn(self):
+        return self.__ssn
+
+    def set_ssn(self):
+        pass
+
+    def get_address(self):
+        return self.__ssn
+
+    def set_address(self, new_address):
+        self.__address = new_address
+
 
 class Pilot(Employee):
     def __init__(self, airplane_type=''):
