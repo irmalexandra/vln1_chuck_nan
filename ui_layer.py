@@ -91,10 +91,14 @@ class UIDestinations():
         dl_api = LLAPI()
 
     def display_destination_sub_menu(self):
-        pass
+        print("-" * LENGHT)
+        print("1. Create 2. All 3. Search 0. Home")
+        print("-" * LENGHT)
 
     def display_destination_search_menu(self):
-        pass
+        print("-" * LENGHT)
+        print("1. Change contact 2. Change emergency number 0. Home")
+        print("-" * LENGHT)
 
     def display_destination(self, destination_id):
         pass
@@ -116,7 +120,9 @@ class UIAirplanes():
         dl_api = LLAPI()
 
     def display_airplanes_sub_menu(self):
+        print("-" * LENGHT)
         print("{}{}".format("1. Create 2. Display all", "0. Home"))
+        print("-" * LENGHT)
 
     def display_airplanes(self):
         pass
