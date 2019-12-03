@@ -42,7 +42,7 @@ class DLAirplanes():
             self.all_airplanes_list.append(new_aircraft)
         aircraft_stream.close()
         type_stream.close()
-        return self.all_airplanes_list
+        return self.all_airplanes_list[1:]
 
     def push_all_airplanes(self):
         pass
