@@ -15,15 +15,6 @@ class Destination():
     def __str__(self):
         return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
 
-    def get_id(self):
-        return self.__id
-
-    def set_id(self, new_id):
-        if models_validation.validate_destination_id:
-            self.__id = new_id
-        else:
-            pass
-
     def get_country(self):
         return self.__country
 

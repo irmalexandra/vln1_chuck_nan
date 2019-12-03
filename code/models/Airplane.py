@@ -13,8 +13,7 @@ class Airplane():
         self.__max_seats = max_seats
 
     def __str__(self):
-        return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
-
+        return "Name: {:>2}\nMake: {:>2}\nModel: {:>2}\nMaximum seats: {:>2}".format(self.__name, self.__make, self.__model, self.__max_seats)
 
     def get_name(self):
         return self.__name
@@ -44,6 +43,7 @@ class Airplane():
         # else:
         #     pass
         pass
+
     def get_max_seats(self):
         return self.__max_seats
 
