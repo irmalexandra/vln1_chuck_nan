@@ -4,8 +4,8 @@ models_validation = Validator()
 
 
 class Destination():
-    def __init__(self, country='', airport='', flight_time='', distance='', contact_name='', contact_num=0):
-        self.__id = 0
+    def __init__(self, an_id='', country='', airport='', flight_time='', distance='', contact_name='', contact_num=0):
+        self.__id = an_id
         self.__country = country
         self.__airport = airport
         self.__flight_time = flight_time
@@ -14,7 +14,7 @@ class Destination():
         self.__contact_num = contact_num
 
     def __str__(self):
-        return "Id: {:<2}\nCountry: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__id, self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
+        return "ID: {:<2}\nCountry: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__id, self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
 
     def get_id(self):
         return self.__id
