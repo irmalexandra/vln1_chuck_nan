@@ -21,8 +21,11 @@ class Employee():
         return returned_string
 
     def set_id(self, new_id):
-        self.__id = new_id
-    
+        if models_validation.validate_employee_id:
+            self.__id = new_id
+        else:
+            pass
+        
     def get_id(self):
         return self.__id
     
@@ -58,39 +61,38 @@ class Employee():
         return self.__home_num
 
     def set_home_num(self, new_home_num):
-        # if models_validation.validate_employee_home_num:
-        #     self.__home_num = new_home_num
-        self.__home_num = new_home_num
+        if models_validation.validate_home_number:
+            self.__home_num = new_home_num
+
 
     def get_mobile_num(self):
         return self.__mobile_num
 
     def set_mobile_num(self, new_mobile_num):
-        # if models_validation.validate_employee_mobile_num:
-        #     self.__mobile_num = new_mobile_num
-        # else:
-        #     pass
-        self.__mobile_num = new_mobile_num
+        if models_validation.validate_mobile_number:
+            self.__mobile_num = new_mobile_num
+        else:
+            pass
+
 
     def get_email(self):
         return self.__email
 
     def set_email(self, new_email):
-        # if models_validation.validate_employee_email:
-        # self.__email = new_email
-        self.__email = new_email
-        # else:
-        #     pass
+        if models_validation.validate_email:
+            self.__email = new_email
+        else:
+            pass
 
     def get_title(self):
         return self.__title
 
     def set_title(self, new_title):
-        # if models_validation.validate_employee_title:
-        #     self.__title = new_title
-        # else:
-        #     pass
-        self.__title = new_title
+        if models_validation.validate_title:
+            self.__title = new_title
+        else:
+            pass
+
 
     def get_rank(self):
         return self.__rank

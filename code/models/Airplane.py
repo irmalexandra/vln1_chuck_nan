@@ -19,7 +19,7 @@ class Airplane():
         return self.__name
 
     def set_name(self, new_name):
-        if models_validation.validate_airplane_name:
+        if models_validation.validate_airplane_id:
             self.__name = new_name
         else:
             pass
