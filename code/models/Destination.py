@@ -16,7 +16,6 @@ class Destination():
     def __str__(self):
         return "Id: {:<2}\nCountry: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__id, self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
 
-
     def get_id(self):
         return self.__id
 
