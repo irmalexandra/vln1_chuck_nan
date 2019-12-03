@@ -1,8 +1,8 @@
 #ignore pycache folders
-code/data_layer/__pycache__
-code/logic_layer/__pycache__
-code/models/__pycache__
-code/ui_la/__pycache__
-code/validation/__pycache__
-/__pycache__
-*.pyc
+./code/data_layer/__pycache__
+./code/logic_layer/__pycache__
+./code/models/__pycache__
+./code/ui_la/__pycache__
+./code/validation/__pycache__
+./__pycache__
+*/*.pyc
