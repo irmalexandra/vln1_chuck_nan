@@ -25,6 +25,7 @@ class UIEmployees():
         print("Name    SSN    Title   License    Availability")
 
     def display_all_employees_by_date(self):
+        print()
         pass
 
     def display_all_employees_by_title(self):
