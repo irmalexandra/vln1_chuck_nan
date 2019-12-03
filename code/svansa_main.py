@@ -1,10 +1,9 @@
-from models.Destination import Destination
+from models.Voyage import Voyage
 
 
 def main():
-    destination_test = Destination()
-#    destination_test.set_ssn("22325444444")
-    print(destination_test)
+    voyage_test = Voyage()
+    print(voyage_test)
 
 
 main()
