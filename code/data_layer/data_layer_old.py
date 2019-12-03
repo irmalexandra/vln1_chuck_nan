@@ -43,7 +43,7 @@ class DLEmployees():
                 new_emp.set_licence(line_list[DLEmployees.LICENSE])
             else:
                 new_emp = FlightAttendant()
-            new_emp = Employee()
+            
             new_emp.set_id(line_list[DLEmployees.ID])
             new_emp.set_ssn(line_list[DLEmployees.SSN])
             new_emp.set_name(line_list[DLEmployees.NAME])
