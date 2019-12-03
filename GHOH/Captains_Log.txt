@@ -111,3 +111,16 @@ Yfiferð föstudag.
 Verkefni dagsins:
 	Gera beinagrind forritsins
 	Byrja að vinna í gagnagrunni
+
+
+Captains Log, Stardate 03.12.2019
+
+Yfiferð mánudags.
+	Skipulagning á næstu dögum
+	Gera beinagrind forritsins
+	Byrja að vinna í gagnagrunni
+
+Verkefni dagsins:
+	Halda áfram að gera beinagrind forritsins
+	Halda áfram að vinna í gagnagrunni
+	Mastera git
