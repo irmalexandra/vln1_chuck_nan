@@ -18,7 +18,8 @@ class DLAirplanes():
         type_dict = dict()
         for aircraft_info in type_stream_list[1:]:
             type_dict[aircraft_info[DLAirplanes.PLANE_TYPE_ID]] = aircraft_info[1:]
-
+        for item in type_dict.items():
+            print(item)
         for line in aircraft_stream:
             line_list = line.strip().split(",")
             new_aircraft = Airplane()
