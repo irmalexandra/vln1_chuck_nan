@@ -19,3 +19,6 @@ class Pilot(Employee):
         self.__licence = new_licence
     def __str__(self):
         return super().__str__() + " licence: " + self.__licence
+
+    def raw_info(self):
+        return super().raw_info() + "," + self.__licence + "\n"

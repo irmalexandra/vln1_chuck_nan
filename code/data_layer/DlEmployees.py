@@ -47,11 +47,16 @@ class DLEmployees():
 
     def overwrite_all_employees(self, emp_list):
         # employee_file.write(new_emp_str)
+        HEADER = "id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"
+        filestream2 = open("./repo/employees_temp.csv", "a")
+        filestream2.write(HEADER)
+        for emp_info in emp_list:
+            filestream2.write(emp_info.raw_info())
         
         
-        # print(raw_output)
-        filestream2 = open("./Crew2.csv", "w")
-        filestream2.write("lol")
+
+        
+        
     def append_employee(self,employee):
         pass
         

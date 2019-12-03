@@ -15,6 +15,11 @@ class Employee():
         self.__title = title
         self.__rank = rank
 
+    def raw_info(self):
+        returned_string = ""
+        returned_string = self.__id + "," + self.__ssn  + "," + self.__name+ "," + self.__address + "," + self.__home_num + "," + self.__mobile_num + "," + self.__email + "," + self.__title + "," + self.__rank 
+        return returned_string
+
     def set_id(self, new_id):
         self.__id = new_id
     
