@@ -4,8 +4,9 @@ models_validation = Validator()
 
 
 class Destination():
-    def __init__(self, country='', airport='', flight_time='', distance='', contact_name='', contact_num=0):
+    def __init__(self, country='', city='', airport='', flight_time='', distance='', contact_name='', contact_num=0):
         self.__country = country
+        self.__city = city
         self.__airport = airport
         self.__flight_time = flight_time
         self.__distance = distance
@@ -13,7 +14,7 @@ class Destination():
         self.__contact_num = contact_num
 
     def __str__(self):
-        return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
+        return "Country: {:>2}\nCity: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
 
     def get_country(self):
         return self.__country
@@ -21,6 +22,15 @@ class Destination():
     def set_country(self, new_country):
         if models_validation.validate_destination_country:
             self.__country = new_country
+        else:
+            pass
+
+    def get_city(self):
+        return self.__city
+
+    def set_city(self, new_city):
+        if models_validation.validate_destination_city:
+            self.__city = new_city
         else:
             pass
 
