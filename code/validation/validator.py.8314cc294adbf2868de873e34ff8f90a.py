@@ -135,7 +135,6 @@ class Validator():
                 return True
 
         return False
-
     def validate_country(self, country):
         return self.__validate_string(country)
 
