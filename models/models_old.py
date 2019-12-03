@@ -4,7 +4,7 @@ models_validation = Validator()
 
 
 class Employee():
-    def __init__(self, a_id = "", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank =''):
+    def __init__(self, a_id="", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
         self.__id = a_id
         self.__name = name
         self.__ssn = ssn
@@ -15,9 +15,8 @@ class Employee():
         self.__title = title
         self.__rank = rank
 
-
     def __str__(self):
-        return "{:<2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2}".format(self.__id,self.__name,self.__ssn,self.__address,self.__home_num,self.__mobile_num,self.__email,self.__title,self.__rank)
+        return "{:<2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2}".format(self.__id, self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)
 
     def get_id(self):
         return self.__id
@@ -59,6 +58,7 @@ class Employee():
         # if models_validation.validate_employee_home_num:
         #     self.__home_num = new_home_num
         self.__home_num = new_home_num
+
     def get_mobile_num(self):
         return self.__mobile_num
 
@@ -73,7 +73,7 @@ class Employee():
         return self.__email
 
     def set_email(self, new_email):
-        #if models_validation.validate_employee_email:
+        # if models_validation.validate_employee_email:
             #self.__email = new_email
         self.__email = new_email
         # else:
@@ -96,8 +96,6 @@ class Employee():
         self.__rank = new_rank
 
 
-
-
 class Pilot(Employee):
     def __init__(self, licence=''):
         super().__init__(self)
@@ -114,11 +112,13 @@ class Pilot(Employee):
         self.__licence = new_licence
 
     def __str__(self):
-        return ( super().__str__(self) + "\n" + self.__licence +"Bitches \n\n")
+        return (super().__str__(self) + "\n" + self.__licence + "Bitches \n\n")
+
 
 class FlightAttendant(Employee):
     def __init__(self):
         super().__init__(self)
+
 
 class Voyage():
     def __init__(self):

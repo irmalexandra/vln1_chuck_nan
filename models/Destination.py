@@ -2,9 +2,10 @@ from validation import *
 
 models_validation = Validator()
 
+
 class Destination():
     def __init__(self, country='', airport='', flight_time='', distance='', contact_name='', contact_num=0):
-        self.__id = self.get_id()
+        self.__id = get_id()
         self.__country = country
         self.__airport = airport
         self.__flight_time = flight_time

@@ -2,6 +2,7 @@ from validation import *
 
 models_validation = Validator()
 
+
 class Pilot(Employee):
     def __init__(self, licence=''):
         super().__init__(self)
@@ -18,4 +19,4 @@ class Pilot(Employee):
         self.__licence = new_licence
 
     def __str__(self):
-        return ( super().__str__(self) + "\n" + self.__licence +"Bitches \n\n")
+        return (super().__str__(self) + "\n" + self.__licence + "Bitches \n\n")

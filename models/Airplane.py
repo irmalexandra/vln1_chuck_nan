@@ -2,9 +2,10 @@ from validation import *
 
 models_validation = Validator()
 
+
 class Airplane():
     def __init__(self, name='', make='', model='', max_seats=0):
-        self.__id = self.get_id()
+        self.__id = get_id()
         self.__name = name
         self.__make = make
         self.__model = model
@@ -37,8 +38,8 @@ class Airplane():
         else:
             pass
 
-    def get_make(self):
-        return self.__make
+    def get_model(self):
+        return self.__model
 
     def set_model(self, new_model):
         if models_validation.validate_airplane_model:
@@ -46,13 +47,11 @@ class Airplane():
         else:
             pass
 
-    def get_make(self):
-        return self.__make
+    def get_max_seats(self):
+        return self.__max_seats
 
     def set_max_seats(self, new_max_seats):
         if models_validation.validate_airplane_max_seats:
             self.__max_seats = new_max_seats
         else:
             pass
-
-
