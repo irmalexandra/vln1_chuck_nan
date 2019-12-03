@@ -4,12 +4,7 @@ models_validation = Validator()
 
 
 class Airplane():
-    PLANE_TYPE_ID = 0
-    PLANE_NAME = 1
-    PLANE_MAKE = 1
-    PLANE_MODEL = 2
-    MAX_SEATS = 3
-    
+
 
     def __init__(self, name='', make='', model='', max_seats=0):
         self.__name = name
