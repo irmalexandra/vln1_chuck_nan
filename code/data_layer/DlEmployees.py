@@ -44,7 +44,7 @@ class DLEmployees():
 
             self.all_crew_list.append(new_emp)
 
-        return self.all_crew_list[1:]
+        return self.all_crew_list
 
     def overwrite_all_employees(self, emp_list):
         # employee_file.write(new_emp_str)
