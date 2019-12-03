@@ -1,13 +1,7 @@
-#from models.Employee import Employee
-from ui_layer.UIMain import UIMain
+from ui_layer.UIEmployees import UIEmployees
 from ui_layer import UIEmployees
 
-
-def main():
-    ui_employee = UIEmployees()
-    employee_test = ui_employee.Employee()
-    employee_test.set_ssn("2232544444")
-    print(employee_test.get_ssn())
-
-
-main()
+new_ui_emp = UIEmployees
+new_emp = new_ui_emp.Employee()
+new_emp.set_ssn("1234567890")
+print(new_emp)
