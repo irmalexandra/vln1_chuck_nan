@@ -4,17 +4,17 @@ models_validation = Validator()
 
 
 class Destination():
-    def __init__(self, country='', city='', airport='', flight_time='', distance='', contact_name='', contact_num=0):
+    def __init__(self, country='', city='', airport='', flight_time='', distance='', contact_name='', contact_number=0):
         self.__country = country
         self.__city = city
         self.__airport = airport
         self.__flight_time = flight_time
         self.__distance = distance
         self.__contact_name = contact_name
-        self.__contact_num = contact_num
+        self.__contact_number = contact_number
 
     def __str__(self):
-        return "Country: {:>2}\nCity: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__country, self.__city, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
+        return "Country: {:>2}\nCity: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact numberber: {:>2}".format(self.__country, self.__city, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
 
     def get_country(self):
         return self.__country
@@ -70,11 +70,11 @@ class Destination():
         else:
             pass
 
-    def get_contact_num(self):
-        return self.__contact_num
+    def get_contact_number(self):
+        return self.__contact_number
 
-    def set_contact_num(self, new_contact_num):
-        if models_validation.validate_destination_contact_num:
-            self.__contact_num = new_contact_num
+    def set_contact_number(self, new_contact_number):
+        if models_validation.validate_destination_contact_number:
+            self.__contact_number = new_contact_number
         else:
             pass

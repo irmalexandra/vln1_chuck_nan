@@ -124,6 +124,9 @@ class Validator():
     def validate_country(self, country):
         return self.__validate_string(country)
 
+    def validate_city(self, city):
+        return self.__validate_string(city)
+
     def validate_airport(self, airport):
         return self.__validate_string(airport)
 
