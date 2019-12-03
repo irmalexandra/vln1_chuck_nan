@@ -104,10 +104,10 @@ class Validator():
 
         return False
 
-    def validate_airplane_id(self, name):
-        if name[2] == "-":
-            if len(name) == 6:
-                return self.__validate_string(name.replace("-", ""))
+    def validate_airplane_id(self, id):
+        if id[2] == "-":
+            if len(id) == 6:
+                return self.__validate_string(id.replace("-", ""))
 
         return False
 
