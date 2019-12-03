@@ -3,7 +3,7 @@ from logic_layer.LLEmployees import LLEmployees
 from logic_layer.LLVoyages import LLVoyages
 from logic_layer.LLDestinations import LLDestinations
 from logic_layer.LLAirplanes import LLAirplanes
-from models import *
+
 
 
 class LLAPI:

@@ -1,4 +1,4 @@
-from models import *
+
 
 class DLAirplanes():
     def __init__(self):

@@ -2,7 +2,7 @@ from data_layer.DLAirplanes import DLAirplanes
 from data_layer.DLDestinations import DLDestinations
 from data_layer.DlEmployees import DLEmployees
 from data_layer.DLVoyages import DLVoyages
-from models import *
+
 
 class DLAPI():
     def __init__(self):

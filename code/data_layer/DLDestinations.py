@@ -1,4 +1,4 @@
-from models import *
+
 
 class DLDestinations():
     def __init__(self):
