@@ -24,6 +24,9 @@ class Validator():
         except ValueError:
             return False
 
+    def validate_employee_id(self, id):
+        return self.__validate_int
+
     def validate_employee_name(self, name):
         return self.validate_name(name)
 
@@ -43,7 +46,7 @@ class Validator():
             return False
 
     def validate_phone_number(self, number):
-        if (self.__validate_int) and (len(number) == 7):
+        if (self.__validate_int(number)) and (len(number) == 7):
             return True
 
         return False
@@ -55,7 +58,10 @@ class Validator():
         return self.validate_phone_number(number)
 
     def validate_email(self, email):
-        pass
+        if (email[-10] == "@nanair.is") and ("." in email[:-10]):
+            return True
+
+        return False
 
     def validate_title(self, title):
         if title in self.TITLE_LIST:
