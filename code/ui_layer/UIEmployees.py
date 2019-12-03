@@ -28,9 +28,11 @@ class UIEmployees():
         pass
 
     def display_all_employees(self):
-        print("Name    SSN    Title   License    Availability")
+        print("Name    SSN    Address   Mobile Number    Title")
         employee_list = self.ll_api.get_all_employee_list()
-
+        for employee in employee_list[1:]:
+            pass
+            # print("{}{}{}{}{}{}".format(employee.))
         print(employee_list)
 
     def display_all_employees_by_date(self):

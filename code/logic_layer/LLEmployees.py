@@ -9,7 +9,7 @@ from models.Pilot import Pilot
 
 class LLEmployees:
     def __init__(self):
-        dl_api = DLAPI()
+        self.dl_api = DLAPI()
 
     def validate_employee(self):
         pass
@@ -18,7 +18,7 @@ class LLEmployees:
         pass
 
     def get_all_employees(self):
-        return DLAPI.populate_all_employees()
+        return self.dl_api.populate_all_employees()
 
     def filter_all_employees_by_date(self):
         pass
