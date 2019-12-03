@@ -39,9 +39,10 @@ class UIVoyages():
         print("Co-Pilot: ")
         print("Flight Service Manager: ")
         print("Cabin Crew: ")
-            Person1
-            Person2
-            Person3
+        
+        print("Person 1: ")
+        print("Person 2: ")
+        print("Person 3: ")
 
     def display_all_voyages(self):
         print("Date           Country      Airport    Staffed")
@@ -74,7 +75,7 @@ class UIVoyages():
         pilot = input("Select pilot: ")
         co_pilot = input("Select Co-Pilot: ")
         flight_service_management = ("Select flight service manager: ")
-            add_crew = ("Select flight attendant (input 1 when done): ")
+        add_crew = ("Select flight attendant (input 1 when done): ")
 
     def duplicate_voyage(self):
         pass
