@@ -1,4 +1,3 @@
-from data_layer import DLAPI
 from logic_layer.LLEmployees import LLEmployees
 from logic_layer.LLVoyages import LLVoyages
 from logic_layer.LLDestinations import LLDestinations
@@ -13,7 +12,10 @@ from models.Pilot import Pilot
 
 class LLAPI:
     def __init__(self):
-        ll_employees = LLEmployees()
-        ll_voyages = LLVoyages()
-        ll_destinations = LLDestinations()
-        ll_airplanes = LLAirplanes()
+        self.ll_employees = LLEmployees()
+        self.ll_voyages = LLVoyages()
+        self.ll_destinations = LLDestinations()
+        self.ll_airplanes = LLAirplanes()
+
+    def get_all_employee_list(self):
+        return self.ll_employees.get_all_employees()

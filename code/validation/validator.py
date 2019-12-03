@@ -24,6 +24,9 @@ class Validator():
         except ValueError:
             return False
 
+    def validate_employee_id(self, id):
+        return self.__validate_int
+
     def validate_employee_name(self, name):
         return self.validate_name(name)
 
@@ -43,7 +46,7 @@ class Validator():
             return False
 
     def validate_phone_number(self, number):
-        if (self.__validate_int) and (len(number) == 7):
+        if (self.__validate_int(number)) and (len(number) == 7):
             return True
 
         return False
@@ -55,7 +58,10 @@ class Validator():
         return self.validate_phone_number(number)
 
     def validate_email(self, email):
-        pass
+        if (email[-10] == "@nanair.is") and ("." in email[:-10]):
+            return True
+
+        return False
 
     def validate_title(self, title):
         if title in self.TITLE_LIST:
@@ -89,6 +95,14 @@ class Validator():
 
         return False
 
+    def validate_date_time(self, date_time):
+        if (date_time[4] == "-") and (date_time[7] == "-"):
+            if (date_time[13] == ":") and (date_time[16] == ":"):
+                if len(date_time) == 19:
+                    return True
+
+        return False
+
     def validate_airplane_typeid(self, typeid):
         if (self.__validate_string(typeid)) and (typeid.isupper()):
             if typeid[:2] == "NA":
@@ -96,10 +110,10 @@ class Validator():
 
         return False
 
-    def validate_airplane_name(self, name):
-        if name[2] == "-":
-            if len(name) == 6:
-                return self.__validate_string(name.replace("-", ""))
+    def validate_airplane_id(self, id):
+        if id[2] == "-":
+            if len(id) == 6:
+                return self.__validate_string(id.replace("-", ""))
 
         return False
 
@@ -117,6 +131,13 @@ class Validator():
     def validate_destinationid(self, id_int):
         if self.__validate_string(id_int):
             if (id_int.isupper()) and (len(id_int) == 3):
+                return True
+
+        return False
+
+    def validate_flight_number(self, flight_num):
+        if (self.__validate_string(flight_num[:2])) and (self.__validate_int(flight_num[2:])):
+            if (flight_num[:2] == "NA") and (len(flight_num) == 5):
                 return True
 
         return False
