@@ -5,9 +5,8 @@ models_validation = Validator()
 
 class Airplane():
 
-
-    def __init__(self, name='', make='', model='', max_seats=0):
-
+    def __init__(self, an_id='', name='', make='', model='', max_seats=0):
+        self.__id = an_id
         self.__name = name
         self.__make = make
         self.__model = model

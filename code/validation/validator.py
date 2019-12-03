@@ -103,6 +103,17 @@ class Validator():
 
         return False
 
+    def validate_airplane_make(self, make):
+        return self.__validate_string(make)
+
+    def validate_airplane_model(self, model):
+        if model.strip(" ") == model:
+            return True
+        return False
+
+    def validate_airplane_capacity(self, capacity):
+        return self.__validate_int(capacity)
+
     def validate_destinationid(self, id_int):
         if self.__validate_string(id_int):
             if (id_int.isupper()) and (len(id_int) == 3):
