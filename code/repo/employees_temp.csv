@@ -41,3 +41,4 @@ id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 33,1110732819,,Menntavegur 1,4659623,1488670,arthur.karr@nanair.is,Cabincrew,Flight Attendant,N/A
 34,2602806942,,Kringlan 1,5904216,1100058,teresa.thruman@nanair.is,Cabincrew,Flight Attendant,N/A
 35,1107951952,,Kringlan 1,5707018,0447042,elizabeth.mcfadden@nanair.is,Cabincrew,Flight Attendant,N/A
+id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
