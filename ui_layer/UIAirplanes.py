@@ -14,7 +14,10 @@ class UIAirplanes():
         print("-" * LENGTH)
 
     def display_airplanes(self):
-        pass
+        print("Name    Make    Model   TotalSeats  Status  Destination  Flight number  Date available  Time available")
 
     def create_airplane(self):
-        pass
+        name = input("Name: ")
+        make = input("Make: ")
+        model = input("Model: ")
+        total_seats = input("Total seats: ")

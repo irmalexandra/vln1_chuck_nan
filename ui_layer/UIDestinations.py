@@ -19,13 +19,23 @@ class UIDestinations():
         print("-" * LENGTH)
 
     def display_destination(self, destination_id):
-        pass
+        print("Country: ")
+        print("Airport: ")
+        print("Flight time: ")
+        print("Distance: ")
+        print("Contact name: ")
+        print("Contact number: ")
 
     def display_destinations(self):
-        pass
+        print("Country     Airport     Distance    FlightTime      ContactName     ContactNumber")
 
     def create_destination(self):
-        pass
+        country = input("Country: ")
+        airport = input("Airport: ")
+        flight_time = input("Flight time: ")
+        distance = input("Distance: ")
+        contact_name = input("Contact name: ")
+        contact_number = input("Contact number: ")
 
     def change_contact(self, destination_id):
         pass
