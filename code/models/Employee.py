@@ -5,7 +5,7 @@ models_validation = Validator()
 
 class Employee():
     def __init__(self, a_id="", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
-        self.__id = get_id()
+        self.__id = a_id
         self.__name = name
         self.__ssn = ssn
         self.__address = address

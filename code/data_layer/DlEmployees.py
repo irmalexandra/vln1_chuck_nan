@@ -1,6 +1,6 @@
 from models.Employee import Employee
-from models.Employee import Pilot
-from models.Employee import FlightAttendant
+from models.Pilot import Pilot
+from models.FlightAttendant import FlightAttendant
 
 class DLEmployees():
     ID = 0
@@ -51,5 +51,4 @@ class DLEmployees():
         #print(raw_output)
         filestream2 = open("Crew2.csv","w")
         filestream2.write("lol")
-        
         

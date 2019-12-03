@@ -1,5 +1,5 @@
 from validation.validator import Validator
-
+from models.Employee import Employee
 models_validation = Validator()
 
 
@@ -18,5 +18,3 @@ class Pilot(Employee):
         #     pass
         self.__licence = new_licence
 
-    def __str__(self):
-        return (super().__str__(self) + "\n" + self.__licence + "Bitches \n\n")

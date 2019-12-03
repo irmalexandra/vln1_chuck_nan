@@ -1,4 +1,5 @@
 from validation.validator import Validator
+from models.Employee import Employee
 
 models_validation = Validator()
 
