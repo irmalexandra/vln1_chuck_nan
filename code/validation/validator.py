@@ -104,7 +104,7 @@ class Validator():
 
         return False
 
-    def validate_airplane_name(self, name):
+    def validate_airplane_id(self, name):
         if name[2] == "-":
             if len(name) == 6:
                 return self.__validate_string(name.replace("-", ""))
