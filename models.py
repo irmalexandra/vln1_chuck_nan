@@ -4,7 +4,7 @@ models_validation = Validator()
 
 
 class Employee():
-    def __init__(self, a_id = "", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank ='', licence =''):
+    def __init__(self, a_id = "", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank =''):
         self.__id = a_id
         self.__name = name
         self.__ssn = ssn
@@ -14,11 +14,11 @@ class Employee():
         self.__email = email
         self.__title = title
         self.__rank = rank
-        self.__licence = licence 
+
 
     def __str__(self):
-        return self.__id + self.__name + self.__ssn + self.__address + self.__home_num + self.__email + self.__title + self.__rank + self.__licence
-    
+        return "{:<2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2}".format(self.__id,self.__name,self.__ssn,self.__address,self.__home_num,self.__mobile_num,self.__email,self.__title,self.__rank)
+
     def get_id(self):
         return self.__id
 
@@ -94,33 +94,31 @@ class Employee():
 
     def set_rank(self, new_rank):
         self.__rank = new_rank
-    
+
+
+
+
+class Pilot(Employee):
+    def __init__(self, licence=''):
+        super().__init__(self)
+        self.__licence = licence
+
     def get_licence(self):
         return self.__licence
 
     def set_licence(self, new_licence):
+        # if models_validation.validate_pilot_airplane_type:
+        #     self.__airplane_type = new_airplane_type
+        # else:
+        #     pass
         self.__licence = new_licence
 
-
-class Pilot(Employee):
-    def __init__(self, airplane_type=''):
-        self.__airplane_type = airplane_type
-        pass
-
-    def get_airplane_type(self):
-        return self.__airplane_type
-
-    def set_airplane_type(self, new_airplane_type):
-        if models_validation.validate_pilot_airplane_type:
-            self.__airplane_type = new_airplane_type
-        else:
-            pass
-
+    def __str__(self):
+        return ( super().__str__(self) + "\n" + self.__licence +"Bitches \n\n")
 
 class FlightAttendant(Employee):
     def __init__(self):
-        pass
-
+        super().__init__(self)
 
 class Voyage():
     def __init__(self):
