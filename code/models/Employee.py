@@ -4,8 +4,7 @@ models_validation = Validator()
 
 
 class Employee():
-    def __init__(self, a_id="", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
-        self.__id = a_id
+    def __init__(self, name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
         self.__name = name
         self.__ssn = ssn
         self.__address = address
@@ -16,13 +15,7 @@ class Employee():
         self.__rank = rank
 
     def __str__(self):
-        return "ID: {:<2} \nName: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nHome number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__id, self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)
-
-    def get_id(self):
-        return self.__id
-
-    def set_id(self, new_id):
-        self.__id = new_id
+        return "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nHome number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)
 
     def get_name(self):
         return self.__name
