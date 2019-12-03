@@ -37,10 +37,8 @@ class Employee():
         return self.__ssn
 
     def set_ssn(self, new_ssn):
-        if models_validation.validate_employee_ssn:
+        if models_validation.validate_employee_ssn(new_ssn):
             self.__ssn = new_ssn
-        else:
-            pass
 
     def get_address(self):
         return self.__address

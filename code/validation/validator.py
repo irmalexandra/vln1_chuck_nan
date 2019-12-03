@@ -127,12 +127,3 @@ class Validator():
 
     def validate_contact_number(self, number):
         return self.validate_phone_number(number)
-
-
-def main():
-    validation_instance = Validator()
-    is_name = validation_instance.validate_airplane_name("TF-EPG")
-    print(is_name)
-
-
-main()
