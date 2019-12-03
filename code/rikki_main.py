@@ -1,12 +1,7 @@
-#from ui_layer import UIEmployees
-from ui_layer.UIEmployees import UIEmployees
+from models.ModelController import ModelController
 
-ui_emp = UIEmployees()
-new_emp = ui_emp.Employee()
-ui_emp.
-new_emp.set_ssn("1234567890")
-
-print(new_emp)
-
-
+model_controller = ModelController()
+pilot = model_controller.request_model("Pilot")
+pilot.set_ssn("1234567890")
+print()
 
