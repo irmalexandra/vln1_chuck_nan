@@ -6,16 +6,35 @@ from models.FlightAttendant import FlightAttendant
 from models.Pilot import Pilot
 
 class DLDestinations():
+    AIRPORT = 0
+    COUNTRY = 1
+    CITY = 2
+    FLIGHT_TIME = 3
+    DISTANCE = 4
+    CONTACT_NAME = 5
+    CONTACT_NUMBER = 6
+
     def __init__(self):
-        pass
+        self.all_destinations_list = []
 
     def pull_all_destinations(self):
-        all_destinations_list = []
-        filestream = open("Destination.csv", "r")
+        
+        filestream = open("./repo/Destination.csv", "r")
         for line in filestream:
-            all_destinations_list.append(line.strip("\n").split(","))
+            line_list = line.strip().split(",")
+            new_destination = Destination()
+
+            new_destination.set_id(line_list[DLDestinations.AIRPORT])
+            new_destination.set_country(line_list[DLDestinations.COUNTRY])
+            new_destination.set_airport(line_list[DLDestinations.CITY])
+            new_destination.set_flight_time(line_list[DLDestinations.FLIGHT_TIME])
+            new_destination.set_distance(line_list[DLDestinations.DISTANCE])
+            new_destination.set_contact_name(line_list[DLDestinations.CONTACT_NAME])
+            new_destination.set_contact_num(line_list[DLDestinations.CONTACT_NUMBER])
+
+            self.all_destinations_list.append(new_destination)
         filestream.closed
-        return all_destinations_list[1:]
+        return self.all_destinations_list[1:]
 
     def push_all_destinations(self):
         pass
