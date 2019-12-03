@@ -40,8 +40,7 @@ class Destination():
     def set_airport(self, new_airport):
         if models_validation.validate_airport:
             self.__airport = new_airport
-        else:
-            pass
+
 
     def get_flight_time(self):
         return self.__flight_time

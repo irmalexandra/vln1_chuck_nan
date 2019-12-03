@@ -9,9 +9,9 @@ from models.Pilot import Pilot
 class DLAirplanes():
     PLANE_TYPE_ID = 0
     PLANE_NAME = 1
-    AIRCRAFT_DICT_PLANE_TYPE = 1
-    AIRCRAFT_DICT_MODEL = 2
-    AIRCRAFT_DICT_CAPACITY = 3
+    AIRCRAFT_DICT_PLANE_TYPE = 0
+    AIRCRAFT_DICT_MODEL = 1
+    AIRCRAFT_DICT_CAPACITY = 2
 
     def __init__(self):
         self.all_airplanes_list = []
