@@ -90,8 +90,8 @@ class Validator():
         return False
 
     def validate_date_time(self, date_time):
-        if (date[4] == "-") and (date[7] == "-"):
-            if (time[2] == ":") and (time[5] == ":"):
+        if (date_time[4] == "-") and (date_time[7] == "-"):
+            if (date_time[13] == ":") and (date_time[16] == ":"):
                 if len(date_time) == 19:
                     return True
 
