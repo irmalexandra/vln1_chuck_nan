@@ -4,6 +4,7 @@ from models.Voyage import Voyage
 from models.Employee import Employee
 from models.FlightAttendant import FlightAttendant
 from models.Pilot import Pilot
+import os
 
 
 class DLEmployees():
@@ -52,6 +53,8 @@ class DLEmployees():
         filestream2.write(HEADER)
         for emp_info in emp_list:
             filestream2.write(emp_info.raw_info())
+        filestream2.close()
+        os.rename("./repo/employees_temp.csv", "./repo/employees_temp2.csv")
         
         
 
