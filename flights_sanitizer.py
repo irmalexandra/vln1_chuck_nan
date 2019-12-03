@@ -47,7 +47,6 @@ for index, line in enumerate(flights_stream):
                 fa2_id = emp[0]
         new_flight = []
         flight_line_list = line.split(",")
-        print()
         new_flight.append(flight_line_list[FLIGHTNUMBER])
         new_flight.append(flight_line_list[DEPARTING])
         new_flight.append(flight_line_list[ARRIVING])
@@ -58,7 +57,7 @@ for index, line in enumerate(flights_stream):
         new_flight.append(co_pilot_id)
         new_flight.append(fsm_id)
         try:
-            new_flight.append("{}-{}".format(fa1_id, fa2_id))
+            new_flight.append(fa1_id+'='+fa2_id)
         except NameError:
             new_flight.append("-")
         new_flights.append(new_flight)
