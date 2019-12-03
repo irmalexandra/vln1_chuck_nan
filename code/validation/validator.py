@@ -89,6 +89,14 @@ class Validator():
 
         return False
 
+    def validate_date_time(self, date_time):
+        if (date_time[4] == "-") and (date_time[7] == "-"):
+            if (date_time[13] == ":") and (date_time[16] == ":"):
+                if len(date_time) == 19:
+                    return True
+
+        return False
+
     def validate_airplane_typeid(self, typeid):
         if (self.__validate_string(typeid)) and (typeid.isupper()):
             if typeid[:2] == "NA":
@@ -117,6 +125,13 @@ class Validator():
     def validate_destinationid(self, id_int):
         if self.__validate_string(id_int):
             if (id_int.isupper()) and (len(id_int) == 3):
+                return True
+
+        return False
+
+    def validate_flight_number(self, flight_num):
+        if (self.__validate_string(flight_num[:2])) and (self.__validate_int(flight_num[2:])):
+            if (flight_num[:2] == "NA") and (len(flight_num) == 5):
                 return True
 
         return False

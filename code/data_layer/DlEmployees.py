@@ -43,15 +43,15 @@ class DLEmployees():
 
             self.all_crew_list.append(new_emp)
 
-        return self.all_crew_list[1:]
+        return self.all_crew_list
 
-    def push_all_employees(self, emp_list):
+    def overwrite_all_employees(self, emp_list):
         # employee_file.write(new_emp_str)
-        header = self.all_crew_list[0]
-        raw_output = ""
-        for line in emp_list:
-            for thing in line:
-                raw_output += str(thing) + ","
+        
+        
         # print(raw_output)
-        filestream2 = open("Crew2.csv", "w")
+        filestream2 = open("./Crew2.csv", "w")
         filestream2.write("lol")
+    def append_employee(self,employee):
+        pass
+        

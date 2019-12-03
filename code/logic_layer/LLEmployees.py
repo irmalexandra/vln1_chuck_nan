@@ -18,7 +18,7 @@ class LLEmployees:
         pass
 
     def get_all_employees(self):
-        pass
+        return DLAPI.populate_all_employees()
 
     def filter_all_employees_by_date(self):
         pass

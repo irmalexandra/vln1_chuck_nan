@@ -12,7 +12,7 @@ LENGTH = 52
 
 class UIEmployees():
     def __init__(self):
-        ll_api = LLAPI()
+        self.ll_api = LLAPI()
 
     def display_employee_sub_menu(self):
         print("-" * LENGTH)
@@ -29,6 +29,9 @@ class UIEmployees():
 
     def display_all_employees(self):
         print("Name    SSN    Title   License    Availability")
+        employee_list = self.ll_api.get_all_employee_list()
+
+        print(employee_list)
 
     def display_all_employees_by_date(self):
         print()

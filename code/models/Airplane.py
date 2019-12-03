@@ -28,28 +28,27 @@ class Airplane():
         return self.__make
 
     def set_make(self, new_make):
-        # if models_validation.validate_airplane_make:
-        #     self.__make = new_make
-        # else:
-        #     pass
-        pass
+         if models_validation.validate_airplane_make:
+             self.__make = new_make
+         else:
+             pass
+
 
     def get_model(self):
         return self.__model
 
     def set_model(self, new_model):
-        # if models_validation.validate_airplane_model:
-        #     self.__model = new_model
-        # else:
-        #     pass
-        pass
+         if models_validation.validate_airplane_model:
+             self.__model = new_model
+         else:
+             pass
+
 
     def get_max_seats(self):
         return self.__max_seats
 
     def set_max_seats(self, new_max_seats):
-        # if models_validation.validate_airplane_max_seats:
-        #     self.__max_seats = new_max_seats
-        # else:
-        #     pass
-        pass
+         if models_validation.validate_airplane_capacity:
+             self.__max_seats = new_max_seats
+         else:
+             pass
