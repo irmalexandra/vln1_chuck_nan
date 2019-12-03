@@ -2,15 +2,19 @@ from models import *
 
 class DLAirplanes():
     def __init__(self):
-        pass
+        self.all_airplanes_list = []
 
     def pull_all_airplanes(self):
-        all_airplanes_list = []
-        filestream = open("Aircraft.csv", "r")
+        
+        filestream = open("./repo/Aircraft.csv", "r")
         for line in filestream:
-            all_airplanes_list.append(line.strip("\n").split(","))
+            line_list = line.strip().split(",")
+            
+
+
+            self.all_airplanes_list.append(line.strip("\n").split(","))
         filestream.closed
-        return all_airplanes_list[1:]
+        return self.all_airplanes_list[1:]
 
     def push_all_airplanes(self):
         pass
