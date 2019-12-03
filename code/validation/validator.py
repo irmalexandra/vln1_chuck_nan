@@ -55,11 +55,12 @@ class Validator():
         return self.validate_phone_number(number)
 
     def validate_email(self, email):
-        name, domain = email.split("@")
-        if (domain == self.DOMAIN) and ("." in name):
-            return True
-
-        return False
+        try:
+            name, domain = email.split("@")
+            if (domain == self.DOMAIN) and ("." in name):
+                return True
+        except ValueError:
+            return False
 
     def validate_title(self, title):
         if title in self.TITLE_LIST:
