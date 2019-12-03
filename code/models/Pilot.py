@@ -17,4 +17,3 @@ class Pilot(Employee):
         # else:
         #     pass
         self.__licence = new_licence
-

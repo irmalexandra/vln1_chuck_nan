@@ -1,13 +1,14 @@
 from data_layer import DLAPI
 from models import *
 
+
 class LLAPI:
     def __init__(self):
         ll_employees = LLEmployees()
         ll_voyages = LLVoyages()
         ll_destinations = LLDestinations()
         ll_airplanes = LLAirplanes()
-        
+
 
 class LLEmployees:
     def __init__(self):
@@ -15,7 +16,7 @@ class LLEmployees:
 
     def validate_employee(self):
         pass
-    
+
     def get_employee(self, employee_ID):
         pass
 
@@ -36,6 +37,7 @@ class LLEmployees:
 
     def create_work_scedule(self):
         pass
+
 
 class LLVoyages:
     def __init__(self):
@@ -67,7 +69,8 @@ class LLVoyages:
 
     def add_crew(self):
         pass
-    
+
+
 class LLDestinations:
     def __init__(self):
         dl_api = DLAPI()
@@ -80,7 +83,8 @@ class LLDestinations:
 
     def get_all_destinations(self):
         pass
-    
+
+
 class LLAirplanes:
     def __init__(self):
         dl_api = DLAPI()

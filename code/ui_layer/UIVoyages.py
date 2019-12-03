@@ -39,7 +39,7 @@ class UIVoyages():
         print("Co-Pilot: ")
         print("Flight Service Manager: ")
         print("Cabin Crew: ")
-        
+
         print("Person 1: ")
         print("Person 2: ")
         print("Person 3: ")
@@ -49,7 +49,6 @@ class UIVoyages():
 
     def display_all_empty_voyages(self):
         print("Index   Date           Country      Airport    Staffed")
-
 
     def display_all_voyages_by_period(self):
         period = input("Enter period (dd/mm/yyy-dd/mm/yyy): ")
