@@ -7,10 +7,10 @@ class Validator():
     SSN = 10
 
     def __validate_string(self, string):
-        return string.isalpha():
+        return string.isalpha()
 
     def __validate_int(self, integer):
-        return integer.isdigit():
+        return integer.isdigit()
 
     def validate_name(self, name):
         try:
