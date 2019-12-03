@@ -2,10 +2,11 @@ from validation import *
 
 models_validation = Validator()
 
+
 class Flight():
     def __init__(self, departure_airport='', arrival_airport='',
                  departure_date_time='', arrival_date_time=''):
-        self.__id = self.get_id()
+        self.__id = get_id()
         self.__departure_airport = departure_airport
         self.__arrival_airport = arrival_airport
         self.__departure_date_time = departure_date_time

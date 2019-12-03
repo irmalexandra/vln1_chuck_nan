@@ -22,7 +22,7 @@ class UIEmployees():
         pass
 
     def display_all_employees(self):
-        pass
+        print("Name    SSN    Title   License    Availability")
 
     def display_all_employees_by_date(self):
         pass
@@ -37,7 +37,14 @@ class UIEmployees():
         pass
 
     def create_employee(self):
-        pass
+        name = input("Name: ")
+        SSN = input("SSN: ")
+        home_number = input("Home number: ")
+        mobile_number = input("Mobile number: ")
+        email = input("E-mail: ")
+        title = input("Title: ")
+        licence = input("Licence: ")
+        availability = input("Availability: ")
 
     def change_airplane_type(self):
         pass
