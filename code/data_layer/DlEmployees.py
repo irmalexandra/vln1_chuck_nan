@@ -1,4 +1,6 @@
-from models import *
+from models.Employee import Employee
+from models.Employee import Pilot
+from models.Employee import FlightAttendant
 
 class DLEmployees():
     ID = 0
@@ -23,7 +25,7 @@ class DLEmployees():
                 new_emp.set_licence(line_list[DLEmployees.LICENSE])
             else:
                 new_emp = FlightAttendant()
-            new_emp = Employee()
+
             new_emp.set_id(line_list[DLEmployees.ID])
             new_emp.set_ssn(line_list[DLEmployees.SSN])
             new_emp.set_name(line_list[DLEmployees.NAME])
@@ -49,4 +51,5 @@ class DLEmployees():
         #print(raw_output)
         filestream2 = open("Crew2.csv","w")
         filestream2.write("lol")
+        
         
