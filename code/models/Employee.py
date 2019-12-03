@@ -16,7 +16,7 @@ class Employee():
         self.__rank = rank
 
     def __str__(self):
-        return "{:<2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2} {:>2}".format(self.__id, self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)
+        return "id: {:<2} name: {:>2} ssn: {:>2} address: {:>2} home number: {:>2} mobile number: {:>2} email: {:>2} title: {:>2} rank: {:>2}".format(self.__id, self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)
 
     def get_id(self):
         return self.__id

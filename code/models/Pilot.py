@@ -18,4 +18,4 @@ class Pilot(Employee):
         #     pass
         self.__licence = new_licence
     def __str__(self):
-        return super().__str__() + " " + self.__licence
+        return super().__str__() + " licence: " + self.__licence

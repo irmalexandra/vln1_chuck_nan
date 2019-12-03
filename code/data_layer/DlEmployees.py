@@ -16,8 +16,8 @@ class DLEmployees():
 
     def __init__(self):
         self.all_crew_list = []
-        self.filestream = open("./repo/employees.csv","r")
     def pull_all_employees(self):
+        self.filestream = open("./repo/employees.csv","r")
         for line in self.filestream:
             line_list = line.strip().split(",")
             if line_list[DLEmployees.TITLE] == 'Pilot':
