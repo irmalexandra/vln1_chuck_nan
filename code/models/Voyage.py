@@ -3,7 +3,7 @@ from validation.validator import Validator
 models_validation = Validator()
 
 class Voyage():
-    def __init__(self,departing_flight_num,return_flight_num,departing_flight_departing_from,departing_flight_departure_date,departing_flight_arrival_date,return_flight_departing_from,return_flight_departure_date,return_flight_arrival_date,aircraft_id,captain_id,copilot_id,fsm_id,fa_ids):
+    def __init__(self,departing_flight_num = "",return_flight_num = "",departing_flight_departing_from = "",departing_flight_departure_date = "",departing_flight_arrival_date = "",return_flight_departing_from = "",return_flight_departure_date = "",return_flight_arrival_date = "",aircraft_id = "",captain_id = "",copilot_id = "",fsm_id = "",fa_ids = ""):
         self.departing_flight_num = departing_flight_num
         self.return_flight_num = return_flight_num
         

@@ -9,5 +9,4 @@ class FlightAttendant(Employee):
         super().__init__(self)
     
     def raw_info(self):
-        print("-->",super().raw_info())
         return super().raw_info() + ",N/A\n"
