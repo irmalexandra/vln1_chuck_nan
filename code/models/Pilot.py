@@ -17,9 +17,5 @@ class Pilot(Employee):
         # else:
         #     pass
         self.__licence = new_licence
-<<<<<<< HEAD
     def __str__(self):
         return super().__str__() + " " + self.__licence
-=======
-
->>>>>>> e48b4a7e388b38a5ab8aad88520d5625368362e5
