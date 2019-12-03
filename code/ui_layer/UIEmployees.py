@@ -28,10 +28,11 @@ class UIEmployees():
         pass
 
     def display_all_employees(self):
-        print("Name    SSN    Address   Mobile Number    Title")
+        print("{:20} {:15} {:15} {:15} {:10}".format("Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
         employee_list = self.ll_api.get_all_employee_list()
         for employee in employee_list[1:]:
-            print(employee.get_name())
+            print("{:20} {:15} {:15} {:15} {:10}".format(employee.get_name(), employee.get_ssn(), employee.get_address(),\
+                employee.get_mobile_num(), employee.get_title()))
 
     def display_all_employees_by_date(self):
         print()
