@@ -1,4 +1,8 @@
 from logic_layer import LLAPI
+from ui_layer.UIEmployees import UIEmployees
+from ui_layer.UIVoyages import UIVoyages
+from ui_layer.UIDestinations import UIDestinations
+from ui_layer.UIAirplanes import UIAirplanes
 from models import *
 
 LENGTH = 52

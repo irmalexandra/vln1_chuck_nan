@@ -14,7 +14,7 @@ class DLEmployees():
 
     def __init__(self):
         self.all_crew_list = []
-        self.filestream = open("employees.csv","r")
+        self.filestream = open("./repo/employees.csv","r")
     def pull_all_employees(self):
         for line in self.filestream:
             line_list = line.strip().split(",")

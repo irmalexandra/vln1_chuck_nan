@@ -15,12 +15,3 @@ class DLAirplanes():
     def push_all_airplanes(self):
         pass
 
-
-stuff = DLAPI()
-# print("What", stuff.populate_all_employees())
-# print("\n", stuff.populate_all_airplanes())
-# print("\n", stuff.populate_all_destinations())
-# print("\n", stuff.populate_all_voyages())
-emp_list = stuff.populate_all_employees()
-for emp in emp_list:
-    print(emp)

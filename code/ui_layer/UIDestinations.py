@@ -1,4 +1,4 @@
-from logic_layer import LLAPI
+from logic_layer.LLAPI import LLAPI
 from models import *
 
 LENGTH = 52
