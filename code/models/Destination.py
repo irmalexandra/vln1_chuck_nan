@@ -20,7 +20,7 @@ class Destination():
         return self.__country
 
     def set_country(self, new_country):
-        if models_validation.validate_destination_country:
+        if models_validation.validate_country:
             self.__country = new_country
         else:
             pass
@@ -29,7 +29,7 @@ class Destination():
         return self.__city
 
     def set_city(self, new_city):
-        if models_validation.validate_destination_city:
+        if models_validation.validate_city:
             self.__city = new_city
         else:
             pass
@@ -38,7 +38,7 @@ class Destination():
         return self.__airport
 
     def set_airport(self, new_airport):
-        if models_validation.validate_destination_airport:
+        if models_validation.validate_airport:
             self.__airport = new_airport
         else:
             pass
@@ -47,7 +47,7 @@ class Destination():
         return self.__flight_time
 
     def set_flight_time(self, new_flight_time):
-        if models_validation.validate_destination_flight_time:
+        if models_validation.validate_flight_time:
             self.__flight_time = new_flight_time
         else:
             pass
@@ -56,7 +56,7 @@ class Destination():
         return self.__distance
 
     def set_distance(self, new_distance):
-        if models_validation.validate_destination_distance:
+        if models_validation.validate_distance:
             self.__distance = new_distance
         else:
             pass
@@ -65,7 +65,7 @@ class Destination():
         return self.__contact_name
 
     def set_contact_name(self, new_contact_name):
-        if models_validation.validate_destination_contact_name:
+        if models_validation.validate_contact_name:
             self.__contact_name = new_contact_name
         else:
             pass
@@ -74,7 +74,7 @@ class Destination():
         return self.__contact_number
 
     def set_contact_number(self, new_contact_number):
-        if models_validation.validate_destination_contact_number:
+        if models_validation.validate_contact_number:
             self.__contact_number = new_contact_number
         else:
             pass

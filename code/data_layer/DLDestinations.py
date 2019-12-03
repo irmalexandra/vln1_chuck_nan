@@ -30,11 +30,11 @@ class DLDestinations():
             new_destination.set_flight_time(line_list[DLDestinations.FLIGHT_TIME])
             new_destination.set_distance(line_list[DLDestinations.DISTANCE])
             new_destination.set_contact_name(line_list[DLDestinations.CONTACT_NAME])
-            new_destination.set_contact_num(line_list[DLDestinations.CONTACT_NUMBER])
+            new_destination.set_contact_number(line_list[DLDestinations.CONTACT_NUMBER])
 
             self.all_destinations_list.append(new_destination)
         filestream.closed
-        return self.all_destinations_list[1:]
+        return self.all_destinations_list
 
     def push_all_destinations(self):
         pass
