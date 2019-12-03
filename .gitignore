@@ -1,4 +1,4 @@
-ignore pycache folders
+#ignore pycache folders
 code/data_layer/__pycache__
 code/logic_layer/__pycache__
 code/models/__pycache__
