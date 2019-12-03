@@ -8,4 +8,5 @@ stuff = DLAPI()
 for emp in stuff.populate_all_employees():
     print(emp)
 
-print(stuff.populate_all_airplanes())
+for airplane in stuff.populate_all_airplanes():
+    print(airplane)
