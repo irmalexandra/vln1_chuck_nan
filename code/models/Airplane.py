@@ -1,4 +1,4 @@
-from validation import *
+from validation.validator import Validator
 
 models_validation = Validator()
 
