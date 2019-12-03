@@ -6,3 +6,5 @@
 ./code/validation/__pycache__
 ./__pycache__
 */*.pyc
+code/ui_layer/__pycache__/UIEmployees.cpython-37.pyc
+code/validation/__pycache__/validator.cpython-37.pyc
