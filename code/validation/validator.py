@@ -15,7 +15,7 @@ class Validator():
     def validate_name(self, name):
         try:
             first, last = name.split()
-            if self.__validate_string(first) and self.__validate_int(last):
+            if self.__validate_string(first) and self.__validate_string(last):
                 return True
 
         except ValueError:
