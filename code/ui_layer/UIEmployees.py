@@ -55,3 +55,6 @@ class UIEmployees():
 
     def change_airplane_type(self):
         pass
+
+    def get_employee_instance(self):
+        return Employee()
