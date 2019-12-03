@@ -2,36 +2,33 @@ class Validator():
     TITLE_LIST = ["Pilot", "Cabincrew"]
     PILOT_RANK_LIST = ["Captain", "Copilot"]
     CABINCREW_RANK_LIST = ["Flight Service Manager", "Flight Attendant"]
+    DOMAIN = "nanair.is"
+    PHONE_NUMBER = 7
+    SSN = 10
 
     def __validate_string(self, string):
-        if string.isalpha():
-            return True
-
-        return False
+        return string.isalpha()
 
     def __validate_int(self, integer):
-        if integer.isdigit():
-            return True
-
-        return False
+        return integer.isdigit()
 
     def validate_name(self, name):
         try:
             first, last = name.split()
-            if self.__validate_string(first) and self.__validate_int(last):
+            if self.__validate_string(first) and self.__validate_string(last):
                 return True
 
         except ValueError:
             return False
 
     def validate_employee_id(self, id):
-        return self.__validate_int
+        return self.__validate_int(id)
 
     def validate_employee_name(self, name):
         return self.validate_name(name)
 
     def validate_employee_ssn(self, ssn):
-        if (self.__validate_int(ssn)) and (len(ssn) == 10):
+        if (self.__validate_int(ssn)) and (len(ssn) == self.SSN):
             return True
 
         return False
@@ -46,7 +43,7 @@ class Validator():
             return False
 
     def validate_phone_number(self, number):
-        if (self.__validate_int(number)) and (len(number) == 7):
+        if (self.__validate_int(number)) and (len(number) == self.PHONE_NUMBER):
             return True
 
         return False
@@ -58,10 +55,12 @@ class Validator():
         return self.validate_phone_number(number)
 
     def validate_email(self, email):
-        if (email[-10] == "@nanair.is") and ("." in email[:-10]):
-            return True
-
-        return False
+        try:
+            name, domain = email.split("@")
+            if (domain == self.DOMAIN) and ("." in name):
+                return True
+        except ValueError:
+            return False
 
     def validate_title(self, title):
         if title in self.TITLE_LIST:
