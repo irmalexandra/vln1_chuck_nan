@@ -1,8 +1,8 @@
-from models.Airplane import Airplane
+from models.Voyage import Voyage
 
 
 def main():
-    employee_test = Airplane()
+    employee_test = Voyage()
     print(employee_test)
 
 
