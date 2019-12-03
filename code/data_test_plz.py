@@ -17,3 +17,5 @@ for airplane in stuff.populate_all_airplanes():
 
 #stuff.dl_employees.overwrite_all_employees(emp_list)
 
+for voyage in stuff.populate_all_voyages():
+    print(voyage)
