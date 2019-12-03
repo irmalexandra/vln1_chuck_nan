@@ -1,4 +1,4 @@
-from ui_layer import UIMain
+from ui_layer.UIMain import UIMain
 
 def main():
     ui_main = UIMain()
