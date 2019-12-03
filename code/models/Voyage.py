@@ -21,6 +21,10 @@ class Voyage():
         self.fsm_id = fsm_id
         self.fa_ids = fa_ids
     
+
+    def __str__(self):
+        return "{}".format(self.departing_flight_arrival_date)
+
     def get_departing_flight_num(self):
         return self.departing_flight_num
     
