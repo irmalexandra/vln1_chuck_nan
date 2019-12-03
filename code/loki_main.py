@@ -1,5 +1,5 @@
-# from ui_layer.UIEmployees import UIEmployees
 from ui_layer.UIEmployees import UIEmployees
+from models.ModelController import ModelController
 
 new_ui_emp = UIEmployees()
 #new_emp = new_ui_emp.Employee()
