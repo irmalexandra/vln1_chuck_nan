@@ -25,7 +25,7 @@ class DLVoyages():
 
     def pull_all_voyages(self):
         
-        filestream = open("./repo/Flight.csv", "r")
+        filestream = open("./repo/voyages.csv", "r")
         for line in filestream:
             line_list = line.strip().split(",")
             new_voyage = Voyage()
@@ -64,7 +64,7 @@ class DLVoyages():
 
             self.all_voyages_list.append(new_voyage)
         filestream.closed
-        return self.all_voyages_list
+        return self.all_voyages_list[1:]
 
     def push_all_voyages(self):
         pass

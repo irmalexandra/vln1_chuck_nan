@@ -4,7 +4,7 @@ models_validation = Validator()
 
 
 class Employee():
-    def __init__(self,a_id = "", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
+    def __init__(self, a_id = "", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
         self.__name = name
         self.__id = a_id
         self.__ssn = ssn
@@ -17,7 +17,7 @@ class Employee():
 
     def raw_info(self):
         returned_string = ""
-        returned_string = self.__id + "," + self.__ssn  + "," + self.__name+ "," + self.__address + "," + self.__home_num + "," + self.__mobile_num + "," + self.__email + "," + self.__title + "," + self.__rank 
+        returned_string = str(self.__id) + "," + self.__ssn  + "," + self.__name+ "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank 
         return returned_string
 
     def set_id(self, new_id):

@@ -34,7 +34,7 @@ class DLDestinations():
 
             self.all_destinations_list.append(new_destination)
         filestream.closed
-        return self.all_destinations_list
+        return self.all_destinations_list[1:]
 
     def push_all_destinations(self):
         pass
