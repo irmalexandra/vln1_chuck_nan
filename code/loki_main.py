@@ -1,4 +1,4 @@
-from ui_layer.UIEmployees import UIEmployees
+#from ui_layer.UIEmployees import UIEmployees
 from ui_layer import UIEmployees
 
 new_ui_emp = UIEmployees
