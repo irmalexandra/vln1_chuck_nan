@@ -24,9 +24,9 @@ class DLDestinations():
             line_list = line.strip().split(",")
             new_destination = Destination()
 
-            new_destination.set_id(line_list[DLDestinations.AIRPORT])
+            new_destination.set_airport(line_list[DLDestinations.AIRPORT])
             new_destination.set_country(line_list[DLDestinations.COUNTRY])
-            new_destination.set_airport(line_list[DLDestinations.CITY])
+            new_destination.set_city(line_list[DLDestinations.CITY])
             new_destination.set_flight_time(line_list[DLDestinations.FLIGHT_TIME])
             new_destination.set_distance(line_list[DLDestinations.DISTANCE])
             new_destination.set_contact_name(line_list[DLDestinations.CONTACT_NAME])
