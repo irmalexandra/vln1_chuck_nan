@@ -9,18 +9,15 @@ class Airplane():
 
     ID = 3
 
-    def __init__(self, a_id, name='', make='', model='', max_seats=0):
+    def __init__(self, a_id='', name='', make='', model='', max_seats=0):
         self.__id = a_id
-
-
-    def __init__(self, name='', make='', model='', max_seats=0):
         self.__name = name
         self.__make = make
         self.__model = model
         self.__max_seats = max_seats
 
     def __str__(self):
-        return "id: {:<2} name: {:>2} ssn: {:>2} address: {:>2} home number: {:>2} mobile number: {:>2} email: {:>2} title: {:>2} rank: {:>2}".format(self.__id, self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)
+        return "ID: {:<2}\nCountry: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__id, self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
 
     def get_id(self):
         return self.__id
