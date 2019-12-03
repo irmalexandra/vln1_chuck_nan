@@ -2,6 +2,9 @@ class Validator():
     TITLE_LIST = ["Pilot", "Cabincrew"]
     PILOT_RANK_LIST = ["Captain", "Copilot"]
     CABINCREW_RANK_LIST = ["Flight Service Manager", "Flight Attendant"]
+    DOMAIN = "nanair.is"
+    PHONE_NUMER = 7
+    SSN = 10
 
     def __validate_string(self, string):
         if string.isalpha():
@@ -31,7 +34,7 @@ class Validator():
         return self.validate_name(name)
 
     def validate_employee_ssn(self, ssn):
-        if (self.__validate_int(ssn)) and (len(ssn) == 10):
+        if (self.__validate_int(ssn)) and (len(ssn) == self.SSN):
             return True
 
         return False
@@ -46,7 +49,7 @@ class Validator():
             return False
 
     def validate_phone_number(self, number):
-        if (self.__validate_int(number)) and (len(number) == 7):
+        if (self.__validate_int(number)) and (len(number) == self.PHONE_NUMER):
             return True
 
         return False
@@ -58,7 +61,8 @@ class Validator():
         return self.validate_phone_number(number)
 
     def validate_email(self, email):
-        if (email[-10] == "@nanair.is") and ("." in email[:-10]):
+        name, domain = email.split("@")
+        if (domain == self.DOMAIN) and ("." in name):
             return True
 
         return False
