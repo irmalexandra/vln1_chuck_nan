@@ -1,6 +1,10 @@
+from models.Airplane import Airplane
+from models.Destination import Destination
+from models.Voyage import Voyage
 from models.Employee import Employee
-from models.Pilot import Pilot
 from models.FlightAttendant import FlightAttendant
+from models.Pilot import Pilot
+
 
 class DLEmployees():
     ID = 0
@@ -16,8 +20,9 @@ class DLEmployees():
 
     def __init__(self):
         self.all_crew_list = []
+
     def pull_all_employees(self):
-        self.filestream = open("./repo/employees.csv","r")
+        self.filestream = open("./repo/employees.csv", "r")
         for line in self.filestream:
             line_list = line.strip().split(",")
             if line_list[DLEmployees.TITLE] == 'Pilot':
@@ -36,19 +41,17 @@ class DLEmployees():
             new_emp.set_rank(line_list[DLEmployees.RANK])
             new_emp.set_title(line_list[DLEmployees.TITLE])
 
-
             self.all_crew_list.append(new_emp)
-        
+
         return self.all_crew_list[1:]
 
     def push_all_employees(self, emp_list):
-        #employee_file.write(new_emp_str)
+        # employee_file.write(new_emp_str)
         header = self.all_crew_list[0]
         raw_output = ""
         for line in emp_list:
             for thing in line:
-                raw_output += str(thing) +","
-        #print(raw_output)
-        filestream2 = open("Crew2.csv","w")
+                raw_output += str(thing) + ","
+        # print(raw_output)
+        filestream2 = open("Crew2.csv", "w")
         filestream2.write("lol")
-        

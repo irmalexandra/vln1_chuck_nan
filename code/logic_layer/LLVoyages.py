@@ -1,5 +1,10 @@
 from data_layer.DLAPI import DLAPI
-
+from models.Airplane import Airplane
+from models.Destination import Destination
+from models.Voyage import Voyage
+from models.Employee import Employee
+from models.FlightAttendant import FlightAttendant
+from models.Pilot import Pilot
 
 
 class LLVoyages:
