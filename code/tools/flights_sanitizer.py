@@ -1,6 +1,8 @@
+
+
 FLIGHTNUMBER = 0
-DEPARTING = 1
-ARRIVING = 2
+DEPARTINGFROM = 1
+ARRIVINGAT = 2
 DEPARTURE = 3
 ARRIVAL = 4
 AIRCRAFTID = 5
@@ -12,57 +14,102 @@ FA2 = 10
 
 
 
-flights_stream = open("Flight.csv", "r", encoding="UTF-8")
-new_flights_stream = open("newFlights.csv", "a", encoding=("UTF-8"))
-employees_stream = open ("employees.csv", "r", encoding="UTF-8")
+flights_stream = open("./repo/Flight.csv", "r", encoding="UTF-8")
+new_flights_stream = open("./repo/newFlights.csv", "a", encoding=("UTF-8"))
+employees_stream = open ("./repo/employees.csv", "r", encoding="UTF-8")
+        
 
+def fix_data():
+    old_flights_stream = open("./repo/Flight.csv", "r", encoding="UTF-8")
+    new_voyages_stream = open("./repo/voyages.csv", "a", encoding="UTF-8")
+    new_voyages_stream.write("departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,aircraftid,captainid,copilotid,fsmid,faids\n")
+    employees_stream = open ("./repo/employees.csv", "r", encoding="UTF-8")
+    old_flights_list = []
+    employee_list = []
+    voyage_list = []
+    employee_id_ssn_dict = {}
+    
+    for flight in flights_stream:
+        flight = flight.split(",")
+        old_flights_list.append(flight)
+    for employee in employees_stream:
+        employee = employee.split(",")
+        employee_list.append(employee)
+    for employee in employee_list:
+        employee_id_ssn_dict[employee[1]] = employee[0]
+    print()
+    for i in range(1,len(old_flights_list)-1,2):
+        flight_1 = old_flights_list[i]
+        flight_2 = old_flights_list[i+1]
+        
+        new_voyage = []
+        
+        departingflightnum = flight_1[FLIGHTNUMBER]
+        returnflightnum = flight_2[FLIGHTNUMBER]
+        
+        departingflightdepartingfrom = flight_1[DEPARTINGFROM]
+        departingflightdeparturedate = flight_1[DEPARTURE]
+        departingflightarrivaledate = flight_1[ARRIVAL]
+        
+        returnflightdepartingfrom = flight_2[DEPARTINGFROM]
+        returnflightdeparturedate = flight_2[DEPARTURE]
+        returnflightarrivaledate = flight_2[ARRIVAL]
+        
 
-employees_list = []
-for line in employees_stream:
-    line_list = line.split(",")
-    employees_list.append(line_list)
-
-
-new_flights = []
-for index, line in enumerate(flights_stream):
-    line_list = line.split(",")
-    captain_id = ""
-    co_pilot_id = ""
-    fsm_id = ""
-    fa1_id = ""
-    fa2_id = ""
-    if index != 0:
-        new_ID = ""
-        for emp in employees_list:
-            fa2_str = line_list[FA2].strip()
-            if line_list[CAPTAIN] == emp[1]:
-                captain_id = emp[0]
-            elif line_list[COPILOT] == emp[1]:
-                co_pilot_id = emp[0]
-            elif line_list[FSM] == emp[1]:
-                fsm_id = emp[0]
-            elif line_list[FA1] == emp[1]:
-                fa1_id = emp[0]
-            elif fa2_str == emp[1]:
-                fa2_id = emp[0]
-        new_flight = []
-        flight_line_list = line.split(",")
-        new_flight.append(flight_line_list[FLIGHTNUMBER])
-        new_flight.append(flight_line_list[DEPARTING])
-        new_flight.append(flight_line_list[ARRIVING])
-        new_flight.append(flight_line_list[DEPARTURE])
-        new_flight.append(flight_line_list[ARRIVAL])
-        new_flight.append(flight_line_list[AIRCRAFTID])
-        new_flight.append(captain_id)
-        new_flight.append(co_pilot_id)
-        new_flight.append(fsm_id)
         try:
-            new_flight.append(fa1_id+'='+fa2_id)
-        except NameError:
-            new_flight.append("-")
-        new_flights.append(new_flight)
+            aircraftid = flight_1[AIRCRAFTID]
+        except KeyError:
+            aircraftid = "."
+        try:
+            captainid = flight_1[CAPTAIN]
+            captainid = employee_id_ssn_dict[captainid]
+        except KeyError:
+            captainid = "."
+        try:
+            copilotid = flight_1[COPILOT]
+            copilotid = employee_id_ssn_dict[copilotid]
+        except KeyError:
+            copilotid = "."
+        try:
+            fsmid = flight_1[FSM]
+            fsmid = employee_id_ssn_dict[fsmid]
+        except KeyError:
+            fsmid = "."
+        try:
+            fa1id = flight_1[FA1]
+            fa1id = employee_id_ssn_dict[fa1id]
+        except KeyError:
+            fa1id = "."
+        try:
+            fa2id = flight_1[FA2]
+            fa2id = fa2id.strip()
+            fa2id = employee_id_ssn_dict[fa2id]
+        except KeyError:
+            fa2id = "."
         
+        faids = []
+        faids.append(fa1id)
+        faids.append(fa2id)
+        faids_str = ":".join(faids)
 
-print()
+        new_voyage.append(departingflightnum)
+        new_voyage.append(returnflightnum)
         
+        new_voyage.append(departingflightdepartingfrom)
+        new_voyage.append(departingflightdeparturedate)
+        new_voyage.append(departingflightarrivaledate)
         
+        new_voyage.append(returnflightdepartingfrom)
+        new_voyage.append(returnflightdeparturedate)
+        new_voyage.append(returnflightarrivaledate)
+
+        new_voyage.append(aircraftid)
+        new_voyage.append(captainid)
+        new_voyage.append(copilotid)
+        new_voyage.append(fsmid)
+        new_voyage.append(faids_str)
+        new_voyage_str = ",".join(new_voyage)
+        new_voyages_stream.write(new_voyage_str+"\n")
+
+
+fix_data()

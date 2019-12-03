@@ -19,3 +19,11 @@ class UIMain():
         print("-" * LENGTH)
         print("1. Employees 2. Voyages 3. Destinations 4. Airplanes")
         print("-" * LENGTH)
+
+
+def main():
+    test = UIMain()
+    test.display_main_menu()
+
+
+main()
