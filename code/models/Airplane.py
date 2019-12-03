@@ -14,7 +14,7 @@ class Airplane():
         self.__max_seats = max_seats
 
     def __str__(self):
-        return "ID: {:<2}\nCountry: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__id, self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
+        return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_num)
 
 
     def get_name(self):
@@ -30,25 +30,27 @@ class Airplane():
         return self.__make
 
     def set_make(self, new_make):
-        if models_validation.validate_airplane_make:
-            self.__make = new_make
-        else:
-            pass
+        # if models_validation.validate_airplane_make:
+        #     self.__make = new_make
+        # else:
+        #     pass
+        pass
 
     def get_model(self):
         return self.__model
 
     def set_model(self, new_model):
-        if models_validation.validate_airplane_model:
-            self.__model = new_model
-        else:
-            pass
-
+        # if models_validation.validate_airplane_model:
+        #     self.__model = new_model
+        # else:
+        #     pass
+        pass
     def get_max_seats(self):
         return self.__max_seats
 
     def set_max_seats(self, new_max_seats):
-        if models_validation.validate_airplane_max_seats:
-            self.__max_seats = new_max_seats
-        else:
-            pass
+        # if models_validation.validate_airplane_max_seats:
+        #     self.__max_seats = new_max_seats
+        # else:
+        #     pass
+        pass
