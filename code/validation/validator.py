@@ -43,7 +43,7 @@ class Validator():
             return False
 
     def validate_phone_number(self, number):
-        if (self.__validate_int(number)) and (len(number) == self.PHONE_NUMER):
+        if (self.__validate_int(number)) and (len(number) == self.PHONE_NUMBER):
             return True
 
         return False
