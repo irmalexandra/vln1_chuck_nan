@@ -3,20 +3,14 @@ class Validator():
     PILOT_RANK_LIST = ["Captain", "Copilot"]
     CABINCREW_RANK_LIST = ["Flight Service Manager", "Flight Attendant"]
     DOMAIN = "nanair.is"
-    PHONE_NUMER = 7
+    PHONE_NUMBER = 7
     SSN = 10
 
     def __validate_string(self, string):
-        if string.isalpha():
-            return True
-
-        return False
+        return string.isalpha():
 
     def __validate_int(self, integer):
-        if integer.isdigit():
-            return True
-
-        return False
+        return integer.isdigit():
 
     def validate_name(self, name):
         try:
@@ -28,7 +22,7 @@ class Validator():
             return False
 
     def validate_employee_id(self, id):
-        return self.__validate_int
+        return self.__validate_int(id)
 
     def validate_employee_name(self, name):
         return self.validate_name(name)
