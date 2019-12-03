@@ -5,26 +5,18 @@ models_validation = Validator()
 
 class Airplane():
     PLANE_TYPE_ID = 0
-    PLANE_INSIGNIA = 1
-    
-    ID = 3
+    PLANE_NAME = 1
+    PLANE_MAKE = 1
+    PLANE_MODEL = 2
+    MAX_SEATS = 3
     
 
-    def __init__(self, a_id, name='', make='', model='', max_seats=0):
-        self.__id = a_id
+    def __init__(self, name='', make='', model='', max_seats=0):
         self.__name = name
         self.__make = make
         self.__model = model
         self.__max_seats = max_seats
 
-    def get_id(self):
-        return self.__id
-
-    def set_id(self, new_id):
-        if models_validation.validate_airplane_id:
-            self.__id = new_id
-        else:
-            pass
 
     def get_name(self):
         return self.__name
