@@ -1,10 +1,6 @@
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
+from models.ModelController import ModelController
 import os
+
 
 
 class DLEmployees():
@@ -21,16 +17,17 @@ class DLEmployees():
 
     def __init__(self):
         self.all_crew_list = []
+        self.__model_controller = ModelController()
 
     def pull_all_employees(self):
         self.filestream = open("./repo/employees.csv", "r")
         for line in self.filestream:
             line_list = line.strip().split(",")
             if line_list[DLEmployees.TITLE] == 'Pilot':
-                new_emp = Pilot()
+                new_emp = self.__model_controller.get_model('Pilot')
                 new_emp.set_licence(line_list[DLEmployees.LICENSE])
             else:
-                new_emp = FlightAttendant()
+                new_emp = self.__model_controller.get_model('FlightAttendant')
 
             new_emp.set_id(line_list[DLEmployees.ID])
             new_emp.set_ssn(line_list[DLEmployees.SSN])
@@ -43,10 +40,11 @@ class DLEmployees():
             new_emp.set_title(line_list[DLEmployees.TITLE])
 
             self.all_crew_list.append(new_emp)
+        self.filestream.close()
 
         return self.all_crew_list[1:]
 
-    def overwrite_all_employees(self, emp_list):
+    def push_all_employees(self, emp_list):
         # employee_file.write(new_emp_str)
         HEADER = "id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"
         filestream2 = open("./repo/employees_temp.csv", "a")
@@ -54,7 +52,9 @@ class DLEmployees():
         for emp_info in emp_list:
             filestream2.write(emp_info.raw_info())
         filestream2.close()
-        os.rename("./repo/employees_temp.csv", "./repo/employees_temp2.csv")
+        os.remove("./repo/employees.csv")
+        os.rename("./repo/employees_temp.csv", "./repo/employees.csv")
+        return
         
         
 

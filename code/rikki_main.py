@@ -1,7 +1,9 @@
 from models.ModelController import ModelController
+from data_layer.DlEmployees import DLEmployees
 
-model_controller = ModelController()
-pilot = model_controller.request_model("Pilot")
-pilot.set_ssn("1234567890")
-print()
+dle = DLEmployees()
 
+emp_list = dle.pull_all_employees()
+spec_emp = emp_list[-1]
+spec_emp.set_name('Rikki Frikk')
+dle.overwrite_all_employees(emp_list)

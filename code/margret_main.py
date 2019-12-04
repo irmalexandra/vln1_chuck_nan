@@ -1,9 +1,24 @@
-from models.Destination import Destination
+# from ui_layer.UIEmployees import UIEmployees
+# from models.Destination import Destination
 
 
-def main():
-    employee_test = Destination()
-    print(employee_test)
+# def main():
+#     employee_test = Destination()
+#     print(employee_test)
 
 
-main()
+# main()
+
+
+# from ui_layer.UIEmployees import UIEmployees
+# new_ui_des = UIEmployees()
+
+
+# new_ui_des.display_all_employees()
+
+
+from ui_layer.UIDestinations import UIDestinations
+new_ui_des = UIDestinations()
+
+
+new_ui_des.display_all_destinations()
