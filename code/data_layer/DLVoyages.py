@@ -1,5 +1,5 @@
 from models.ModelController import ModelController
-
+import os
 class DLVoyages():
     DEPARTING_FLIGHT_NUM = 0
     RETURNING_FLIGHT_NUM = 1
@@ -37,7 +37,11 @@ class DLVoyages():
             new_voyage.set_captain_id(line_list[DLVoyages.CAPTAIN_ID])
             new_voyage.set_copilot_id(line_list[DLVoyages.COPILOT_ID])
             new_voyage.set_fsm_id(line_list[DLVoyages.FSMID])
-            new_voyage.set_fa_ids(line_list[DLVoyages.FAIDS])
+
+            flight_attendant_ids_list = line_list[DLVoyages.FAIDS].split(":")
+
+
+            new_voyage.set_fa_ids(flight_attendant_ids_list)
 
         
 
@@ -46,5 +50,21 @@ class DLVoyages():
         filestream.closed
         return self.all_voyages_list[1:]
 
-    def push_all_voyages(self):
-        pass
+    def append_voyage(self, new_voyage):
+        voyage_stream = open('./repo/voyages.csv', 'a')
+        voyage_str = new_voyage.raw_info()
+        voyage_stream.write(voyage_str)
+        voyage_stream.close()
+        return   
+
+    def push_all_voyages(self, voyage_list):
+        # employee_file.write(new_emp_str)
+        HEADER = "departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,aircraftid,captainid,copilotid,fsmid,faids\n"
+        filestream = open("./repo/voyages_temp.csv", "w")
+        filestream.write(HEADER)
+        for voyage_info in voyage_list:
+            filestream.write(voyage_info.raw_info())
+        filestream.close()
+        os.remove("./repo/voyages.csv")
+        os.rename("./repo/voyages_temp.csv", "./repo/voyages.csv")
+        return

@@ -9,6 +9,7 @@ from models.Employee import Employee
 from models.FlightAttendant import FlightAttendant
 from models.Pilot import Pilot
 
+
 class DLAPI():
     def __init__(self):
         self.dl_employees = DLEmployees()
@@ -18,7 +19,6 @@ class DLAPI():
 
     def populate_all_employees(self):
         return self.dl_employees.pull_all_employees()
-
 
     def populate_all_voyages(self):
         return self.dl_voyages.pull_all_voyages()
