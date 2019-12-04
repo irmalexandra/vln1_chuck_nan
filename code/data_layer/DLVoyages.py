@@ -37,7 +37,11 @@ class DLVoyages():
             new_voyage.set_captain_id(line_list[DLVoyages.CAPTAIN_ID])
             new_voyage.set_copilot_id(line_list[DLVoyages.COPILOT_ID])
             new_voyage.set_fsm_id(line_list[DLVoyages.FSMID])
-            new_voyage.set_fa_ids(line_list[DLVoyages.FAIDS])
+            
+            flight_attendant_ids_list = line_list[DLVoyages.FAIDS].split(":")
+
+
+            new_voyage.set_fa_ids(flight_attendant_ids_list)
 
         
 
