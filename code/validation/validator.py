@@ -135,9 +135,8 @@ class Validator():
         return False
 
     def validate_flight_number(self, flight_num):
-        if (self.__validate_string(flight_num[:2])) and (self.__validate_int(flight_num[2:])):
-            if (flight_num[:2] == "NA") and (len(flight_num) == 5):
-                return True
+        if (flight_num[:2] == "NA") and (self.__validate_int(flight_num[2:])):
+            return True
 
         return False
 
