@@ -44,7 +44,7 @@ class DLEmployees():
 
         return self.all_crew_list[1:]
 
-    def overwrite_all_employees(self, emp_list):
+    def push_all_employees(self, emp_list):
         # employee_file.write(new_emp_str)
         HEADER = "id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"
         filestream2 = open("./repo/employees_temp.csv", "a")
