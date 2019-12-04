@@ -1,9 +1,4 @@
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
+from models.ModelController import ModelController
 
 
 class DLAirplanes():
@@ -15,6 +10,7 @@ class DLAirplanes():
 
     def __init__(self):
         self.all_airplanes_list = []
+        self.__model_controller = ModelController()
 
     def pull_all_airplanes(self):
 
@@ -28,7 +24,7 @@ class DLAirplanes():
 
         for line in aircraft_stream:
             line_list = line.strip().split(",")
-            new_aircraft = Airplane()
+            new_aircraft = self.__model_controller.get_model('Airplane')
             plane_type = line_list[DLAirplanes.PLANE_TYPE_ID]
             new_aircraft.set_name(line_list[DLAirplanes.PLANE_NAME]) #Insignia
             aircraft_info_list = type_dict[plane_type]

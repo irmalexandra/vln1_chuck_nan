@@ -1,9 +1,4 @@
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
+from models.ModelController import ModelController
 import os
 
 
@@ -21,16 +16,17 @@ class DLEmployees():
 
     def __init__(self):
         self.all_crew_list = []
+        self.__model_controller = ModelController()
 
     def pull_all_employees(self):
         self.filestream = open("./repo/employees.csv", "r")
         for line in self.filestream:
             line_list = line.strip().split(",")
             if line_list[DLEmployees.TITLE] == 'Pilot':
-                new_emp = Pilot()
+                new_emp = self.__model_controller.get_model('Pilot')
                 new_emp.set_licence(line_list[DLEmployees.LICENSE])
             else:
-                new_emp = FlightAttendant()
+                new_emp = self.__model_controller.get_model('FlightAttendant')
 
             new_emp.set_id(line_list[DLEmployees.ID])
             new_emp.set_ssn(line_list[DLEmployees.SSN])
