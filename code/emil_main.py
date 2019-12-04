@@ -41,3 +41,5 @@ for voyage in stuff.populate_all_voyages():
     print(voyage)
 
 #stuff.dl_voyages.append_voyage(voyaes[0])
+
+#stuff.dl_voyages.push_all_voyages(voyaes)
