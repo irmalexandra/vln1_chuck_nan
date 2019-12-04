@@ -52,7 +52,7 @@ class UIDestinations():
     def display_one_destination(self):
         ''' Search for a destination and print the information '''
         # 3
-        # input
+        # need to implement input
         print("Country: ")
         print("Airport: ")
         print("Flight time: ")
