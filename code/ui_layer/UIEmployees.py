@@ -16,11 +16,16 @@ class UIEmployees():
         self.ll_api = LLAPI()
 
     def display_employee_sub_menu(self):
+        nav_dict = {1:"",2:self.display_all_employees,3:"",4:"",9:"",0:""}
         employee_menu = "1. Create 2. All 3. Search by"
         print("-" * self.UI_DIVIDER_INT)
         print("|{}{}{}|".format(employee_menu, " "*(self.UI_DIVIDER_INT -
                                                     len(employee_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
         print("-" * self.UI_DIVIDER_INT)
+        while True:
+            choice = int(input("Input: "))
+            nav_dict[choice]()
+            
 
     def display_employee_search_menu(self):
         search_menu = "1. SSN 2. Title 3. Period 4. Airplane"
