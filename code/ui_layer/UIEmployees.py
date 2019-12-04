@@ -16,12 +16,7 @@ class UIEmployees():
         self.ll_api = LLAPI()
 
     def display_employee_sub_menu(self):
-<<<<<<< HEAD
         nav_dict = {1:"",2:self.display_all_employees,3:"",4:"",9:"",0:""}
-=======
-        ''' Print the main menu of employee sub menu '''
-        # needs input
->>>>>>> 051d1f15d116c38a63d78f1ea052a339c3148782
         employee_menu = "1. Create 2. All 3. Search by"
         print("-" * self.UI_DIVIDER_INT)
         print("|{}{}{}|".format(employee_menu, " "*(self.UI_DIVIDER_INT -

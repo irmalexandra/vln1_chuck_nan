@@ -1,6 +1,5 @@
-from ui_layer.UIMain import UIMain
+import datetime
+now = datetime.datetime.now().replace(microsecond=0).isoformat()
 
 
-ui_main = UIMain()
-
-ui_main.display_main_menu()
+print(now)
