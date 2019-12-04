@@ -4,7 +4,7 @@ models_validation = Validator()
 
 
 class Voyage():
-    def __init__(self, departing_flight_num="", return_flight_num="", departing_flight_departing_from="", departing_flight_departure_date="", departing_flight_arrival_date="", return_flight_departing_from="", return_flight_departure_date="", return_flight_arrival_date="", aircraft_id="", captain_id="", copilot_id="", fsm_id="", fa_ids=""):
+    def __init__(self, departing_flight_num="", return_flight_num="", departing_flight_departing_from="", departing_flight_departure_date="", departing_flight_arrival_date="", return_flight_departing_from="", return_flight_departure_date="", return_flight_arrival_date="", aircraft_id="", captain_id="", copilot_id="", fsm_id="", fa_ids= []):
         self.__departing_flight_num = departing_flight_num
         self.__return_flight_num = return_flight_num
 
@@ -24,7 +24,7 @@ class Voyage():
     
 
     def __str__(self):
-        return "{}{}{}{}{}{}{}{}{}{}{}".format(self.__return_flight_arrival_date, self.__fa_ids, self.__)
+        return "{}{}{}".format(self.__return_flight_arrival_date, self.__fa_ids, self.__aircraft_id)
 
     def get_departing_flight_num(self):
         return self.__departing_flight_num
@@ -127,7 +127,9 @@ class Voyage():
 
     def set_fa_ids(self, new):
         if new != ".":
-            if models_validation.validate_employee_id(new):
-                self.__fa_ids.append(new)
-        else:
-            self.__fa_ids.append(new)
+            valid_ids = []
+            for emp_id in new:
+                if models_validation.validate_employee_id(emp_id):
+                    valid_ids.append(emp_id)
+            self.__fa_ids = valid_ids
+        
