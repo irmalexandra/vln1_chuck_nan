@@ -1,6 +1,4 @@
-from models.ModelController import ModelController
 import os
-
 class DLEmployees():
     ID = 0
     SSN = 1
@@ -13,9 +11,9 @@ class DLEmployees():
     RANK = 8
     LICENSE = 9
 
-    def __init__(self):
+    def __init__(self, model_controller):
         self.all_crew_list = []
-        self.__model_controller = ModelController()
+        self.__model_controller = model_controller
 
     def pull_all_employees(self):
         self.filestream = open("./repo/employees.csv", "r")

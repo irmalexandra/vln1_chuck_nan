@@ -1,6 +1,3 @@
-from models.ModelController import ModelController
-
-
 class DLDestinations():
     COUNTRY = 0
     AIRPORT = 1
@@ -9,9 +6,9 @@ class DLDestinations():
     CONTACT_NAME = 4
     CONTACT_NUMBER = 5
 
-    def __init__(self):
+    def __init__(self, model_controller):
         self.all_destinations_list = []
-        self.__model_controller = ModelController()
+        self.__model_controller = model_controller
 
     def pull_all_destinations(self):
 

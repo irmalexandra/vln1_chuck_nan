@@ -2,29 +2,25 @@ from data_layer.DLAirplanes import DLAirplanes
 from data_layer.DLDestinations import DLDestinations
 from data_layer.DlEmployees import DLEmployees
 from data_layer.DLVoyages import DLVoyages
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
+from models.ModelController import ModelController
 
 
 class DLAPI():
     def __init__(self):
-        self.dl_employees = DLEmployees()
-        self.dl_voyages = DLVoyages()
-        self.dl_destinations = DLDestinations()
-        self.dl_airplanes = DLAirplanes()
+        self.__model_controller = ModelController()
+        self.__dl_employees = DLEmployees(self.__model_controller)
+        self.__dl_voyages = DLVoyages(self.__model_controller)
+        self.__dl_destinations = DLDestinations(self.__model_controller)
+        self.__dl_airplanes = DLAirplanes(self.__model_controller)
 
     def populate_all_employees(self):
-        return self.dl_employees.pull_all_employees()
+        return self.__dl_employees.pull_all_employees()
 
     def populate_all_voyages(self):
-        return self.dl_voyages.pull_all_voyages()
+        return self.__dl_voyages.pull_all_voyages()
 
     def populate_all_destinations(self):
-        return self.dl_destinations.pull_all_destinations()
+        return self.__dl_destinations.pull_all_destinations()
 
     def populate_all_airplanes(self):
-        return self.dl_airplanes.pull_all_airplanes()
+        return self.__dl_airplanes.pull_all_airplanes()

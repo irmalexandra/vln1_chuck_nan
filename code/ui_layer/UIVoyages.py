@@ -1,21 +1,11 @@
-from logic_layer.LLAPI import LLAPI
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
-
-LENGTH = 90
-
-
 class UIVoyages():
     UI_DIVIDER_INT = 104
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
 
-    def __init__(self):
-        self.ll_api = LLAPI()
+    def __init__(self, LLAPI, model_controller):
+        self.__ll_api = LLAPI
+        self.__model_controller = model_controller
 
     def display_voyage_sub_menu(self):
         ''' Print the destination menu '''
@@ -44,7 +34,7 @@ class UIVoyages():
         print("{:15}{:11}{:27}{:27}{:27}{:27}{:17}".format(
             "Destination:", "Airplane:", "Departure date and time:", "Return date and time:", "Departure flight number:", "Return flight number:", "Status"))
         print("-" * self.UI_DIVIDER_INT)
-        voyages_list = self.ll_api.get_all_voyages_list()
+        voyages_list = self.__ll_api.get_all_voyages_list()
         for voyages in voyages_list[1:]:
             print("{:15}{:11}{:27}{:27}{:27}{:27}{:17}".format(voyages.get_return_flight_departing_from(),
                                                                voyages.get_aircraft_id(),

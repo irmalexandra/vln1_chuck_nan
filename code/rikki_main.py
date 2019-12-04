@@ -1,6 +1,8 @@
-from logic_layer.LLEmployees import LLEmployees
+from logic_layer.LLAPI import LLAPI
 from ui_layer.UIEmployees import UIEmployees
+from models.ModelController import ModelController
 
-new_UIE = UIEmployees()
+newUI = UIEmployees(LLAPI(),ModelController())
 
-new_UIE.display_all_employees()
+
+newUI.display_all_employees()
