@@ -27,11 +27,7 @@ class UIVoyages():
 
     def create_voyage(self):
         ''' Create a voyage '''
-        # 1
-<<<<<<< HEAD
-=======
-        # user input
->>>>>>> 762dc04e5066bdf32b86eca304ec34d664925356
+        # 1 
         destination = input("Destination: ")
         airplane = input("Airplane: ")
         departure_date = input("Departure date: ")
@@ -61,11 +57,7 @@ class UIVoyages():
     def display_one_voyage(self):
         ''' Search for a voyage and print the information '''
         # 3
-<<<<<<< HEAD
         # need to implement input
-=======
-        # user input
->>>>>>> 762dc04e5066bdf32b86eca304ec34d664925356
         print("Destination:")
         print("Airplane:")
         print("Departure date and time:")
