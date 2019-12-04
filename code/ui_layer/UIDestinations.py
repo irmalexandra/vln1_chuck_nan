@@ -34,6 +34,11 @@ class UIDestinations():
         contact_name = input("Contact name: ")
         contact_number = input("Contact number: ")
 
+    def display_create_destination_header(self):
+        counter = 1
+        header = "Create Destination " 
+        print ("{}{}".format(header, "("+ counter + "/6)"))
+    
     def display_all_destinations(self):
         ''' Print all destinations '''
         # 2
@@ -60,6 +65,7 @@ class UIDestinations():
         print("Distance: ")
         print("Contact name: ")
         print("Contact number: ")
+        self.display_destination_search_menu()
 
     def display_destination_search_menu(self):
         ''' Change contact name or emergency number and print the information '''
