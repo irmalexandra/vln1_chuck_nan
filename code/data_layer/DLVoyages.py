@@ -39,22 +39,7 @@ class DLVoyages():
             new_voyage.set_fsm_id(line_list[DLVoyages.FSMID])
             new_voyage.set_fa_ids(line_list[DLVoyages.FAIDS])
 
-        # self.departing_flight_num = departing_flight_num
-        # self.return_flight_num = return_flight_num
         
-        # self.departing_flight_departing_from = departing_flight_departing_from
-        # self.departing_flight_departure_date = departing_flight_departure_date
-        # self.departing_flight_arrival_date = departing_flight_arrival_date
-        
-        # self.return_flight_departing_from = return_flight_departing_from
-        # self.return_flight_departure_date = return_flight_departure_date
-        # self.return_flight_arrival_date = return_flight_arrival_date
-        
-        # self.aircraft_id = aircraft_id
-        # self.captain_id = captain_id
-        # self.copilot_id = copilot_id
-        # self.fsm_id = fsm_id
-        # self.fa_ids = fa_ids
 
 
             self.all_voyages_list.append(new_voyage)
