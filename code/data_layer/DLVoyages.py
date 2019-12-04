@@ -1,5 +1,6 @@
 from models.ModelController import ModelController
 import os
+from os import path
 class DLVoyages():
     DEPARTING_FLIGHT_NUM = 0
     RETURNING_FLIGHT_NUM = 1
@@ -20,8 +21,23 @@ class DLVoyages():
         self.__model_controller = ModelController()
 
     def pull_all_voyages(self):
-        
-        filestream = open("./repo/voyages.csv", "r")
+
+        print ("voyages file exist:"+str(path.exists('./repo/voyages.csv')))
+        print ("temp file exist:"+str(path.exists('./repo/voyages_temp.csv')))
+
+
+        if path.exists('./repo/voyages.csv') and path.exists('./repo/voyages_temp.csv'):
+            filestream = open("./repo/voyages.csv", "r")
+            os.remove("./repo/voyages_temp.csv")
+        elif  path.exists('./repo/voyages.csv') and path.exists('./repo/voyages_temp.csv') == False:
+            filestream = open("./repo/voyages.csv", "r")
+        elif path.exists('./repo/voyages.csv') == False and path.exists('./repo/voyages_temp.csv'):
+            filestream = open("./repo/voyages_temp.csv", "r")
+        else:
+            print("Voyage data files not found")
+            return
+
+
         for line in filestream:
             line_list = line.strip().split(",")
             new_voyage = self.__model_controller.get_model('Voyage')
