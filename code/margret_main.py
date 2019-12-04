@@ -10,11 +10,11 @@
 # main()
 
 
-from ui_layer.UIAirplanes import UIAirplanes
-new_ui_des = UIAirplanes()
+# from ui_layer.UIAirplanes import UIAirplanes
+# new_ui_des = UIAirplanes()
 
 
-new_ui_des.display_all_airplanes()
+# new_ui_des.display_all_airplanes()
 
 
 # from ui_layer.UIDestinations import UIDestinations
@@ -22,3 +22,9 @@ new_ui_des.display_all_airplanes()
 
 
 # new_ui_des.display_all_destinations()
+
+# from ui_layer.UIEmployees import UIEmployees
+# new_ui_des = UIEmployees()
+
+
+# new_ui_des.display_all_employees()
