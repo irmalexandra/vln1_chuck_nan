@@ -2,6 +2,7 @@ from models.ModelController import ModelController
 import os
 
 
+
 class DLEmployees():
     ID = 0
     SSN = 1
@@ -39,6 +40,7 @@ class DLEmployees():
             new_emp.set_title(line_list[DLEmployees.TITLE])
 
             self.all_crew_list.append(new_emp)
+        self.filestream.close()
 
         return self.all_crew_list[1:]
 
@@ -50,7 +52,9 @@ class DLEmployees():
         for emp_info in emp_list:
             filestream2.write(emp_info.raw_info())
         filestream2.close()
-        os.rename("./repo/employees_temp.csv", "./repo/employees_temp2.csv")
+        os.remove("./repo/employees.csv")
+        os.rename("./repo/employees_temp.csv", "./repo/employees.csv")
+        return
         
         
 
