@@ -1,8 +1,6 @@
 from models.ModelController import ModelController
 import os
 
-
-
 class DLEmployees():
     ID = 0
     SSN = 1
@@ -56,10 +54,9 @@ class DLEmployees():
         os.rename("./repo/employees_temp.csv", "./repo/employees.csv")
         return
         
-        
-
-        
-        
     def append_employee(self,employee):
-        pass
-        
+        employee_stream = open('./repo/employees.csv', 'a')
+        emp_str = employee.raw_info()
+        employee_stream.write(emp_str)
+        employee_stream.close()
+        return        
