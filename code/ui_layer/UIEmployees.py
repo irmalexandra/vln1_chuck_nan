@@ -36,9 +36,10 @@ class UIEmployees():
     def get_employee_by_ssn(self, ssn):
         employee = self.ll_api.get_employee_by_ssn(ssn)
         self.display_employee(employee)
+        return employee
 
     def display_employee(self, employee):
-        pass
+        print(employee)
 
     def display_edit_employee(self):
         pass
