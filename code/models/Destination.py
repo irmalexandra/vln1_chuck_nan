@@ -15,6 +15,10 @@ class Destination():
     def __str__(self):
         return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact numberber: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
 
+    def raw_info(self):
+        return self.__country + "," + self.__airport + "," + self.__flight_time + "," + self.__distance + "," + self.__contact_name + "," + self.__contact_number + "\n"
+
+
     def get_country(self):
         return self.__country
 

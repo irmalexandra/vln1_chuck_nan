@@ -3,8 +3,11 @@ from data_layer.DLAPI import DLAPI
 
 stuff = DLAPI()
 
-for destination in stuff.populate_all_destinations():
+destination_list = stuff.populate_all_destinations()
+for destination in destination_list:
     print(destination)
+
+stuff.dl_destinations.appent_destination(destination_list[5])
 
 print("------------------------------------ what")
 airplane_list = stuff.populate_all_airplanes()
@@ -32,4 +35,4 @@ for thing in airplane_list:
     raw_info += (thing.raw_info())
 print(raw_info)
 
-#stuff.dl_airplanes.push_all_airplanes(airplane_list[8])
+#stuff.dl_airplanes.append_aircraft(airplane_list[8])

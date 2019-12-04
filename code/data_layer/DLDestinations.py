@@ -31,5 +31,9 @@ class DLDestinations():
         filestream.closed
         return self.all_destinations_list[1:]
 
-    def push_all_destinations(self):
-        pass
+    def appent_destination(self, new_destination):
+        destination_stream = open('./repo/Destination.csv', 'a')
+        destination_str = new_destination.raw_info()
+        destination_stream.write(destination_str)
+        destination_stream.close()
+        return    
