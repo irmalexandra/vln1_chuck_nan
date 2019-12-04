@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+import datetime
+now = datetime.datetime.now().replace(microsecond=0).isoformat()
+
+
+print(now)
+=======
 from models.ModelController import ModelController
 from logic_layer.LLAPI import LLAPI
 
@@ -47,3 +54,4 @@ def run():
         nav_dict[i]()
 
 run()
+>>>>>>> 762dc04e5066bdf32b86eca304ec34d664925356

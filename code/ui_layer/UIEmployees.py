@@ -16,13 +16,24 @@ class UIEmployees():
         self.ll_api = LLAPI()
 
     def display_employee_sub_menu(self):
+<<<<<<< HEAD
+        nav_dict = {1:"",2:self.display_all_employees,3:"",4:"",9:"",0:""}
+=======
         ''' Print the main menu of employee sub menu '''
         # needs input
+>>>>>>> 762dc04e5066bdf32b86eca304ec34d664925356
         employee_menu = "1. Create 2. All 3. Search by"
         print("-" * self.UI_DIVIDER_INT)
         print("|{}{}{}|".format(employee_menu, " "*(self.UI_DIVIDER_INT -
                                                     len(employee_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
         print("-" * self.UI_DIVIDER_INT)
+<<<<<<< HEAD
+        while True:
+            choice = int(input("Input: "))
+            nav_dict[choice]()
+            
+=======
+>>>>>>> 762dc04e5066bdf32b86eca304ec34d664925356
 
     def display_employee_search_menu(self):
         ''' Print the search menu of employee sub menu '''
@@ -36,10 +47,16 @@ class UIEmployees():
     def get_employee_by_ssn(self, ssn):
         employee = self.ll_api.get_employee_by_ssn(ssn)
         self.display_employee(employee)
+<<<<<<< HEAD
+
+    def display_employee(self, employee):
+        pass
+=======
         return employee
 
     def display_employee(self, employee):
         print(employee)
+>>>>>>> 762dc04e5066bdf32b86eca304ec34d664925356
 
     def display_edit_employee(self):
         pass
