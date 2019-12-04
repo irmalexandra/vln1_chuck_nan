@@ -1,0 +1,13 @@
+@startuml flight
+hide empty description
+
+[*] --> Fully_booked
+[*] --> Not_fully_booked
+Fully_booked --> Departed
+Not_fully_booked --> Departed
+Fully_booked -> Cancelled
+Not_fully_booked -> Cancelled
+Departed -> Landed
+Landed --> [*]
+Cancelled --> [*]
+@enduml
