@@ -1,23 +1,49 @@
 from models.ModelController import ModelController
-from data_layer.DlEmployees import DLEmployees
+from logic_layer.LLAPI import LLAPI
 
-dle = DLEmployees()
-mdl = ModelController()
+def menu():
+    while True:
+        print("menu")
+        i = int(input("Enter: "))
+        a = nav_dict[i]()
+        if a == "0":
+            return "0"
+        if a == "9":
+            return
 
-new_pilot = mdl.get_model('Pilot')
+def subMenu():
+    while True:
+        print("subMenu")
+        i = int(input("Enter: "))
+        a = nav_dict[i]()
+        if a == "0":
+            return "0"
+        if a == "9":
+            return
 
+def subSubMenu():
+    while True:
+        print("subSubMenu")
+        i = int(input("Enter: "))
+        a = nav_dict[i]()
+        if a == "0":
+            return "0"
+        if a == "9":
+            return 
+        
 
-new_pilot.set_name('Test Pilot')
-new_pilot.set_id('39')
-new_pilot.set_ssn('1234567890')
-new_pilot.set_address('Prufugata 12')
-new_pilot.set_home_num('1234567')
-new_pilot.set_mobile_num('7654321')
-new_pilot.set_email('test.pilot@nanair.is')
-new_pilot.set_title('Pilot')
-new_pilot.set_rank('Captain')
-new_pilot.set_licence('NAFokkerF100')
+def back():
+    return "9"
 
-dle.append_employee(new_pilot)
+def home():
+    return "0"
 
+nav_dict = {1: menu, 2: subMenu, 3:subSubMenu, 9:back, 0:home}
 
+def run():
+    while True:
+        stackCount = 1
+        i = int(input("Enter: "))
+        nav_dict[i]()
+
+run()

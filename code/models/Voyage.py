@@ -23,7 +23,11 @@ class Voyage():
         self.__fa_ids = fa_ids
 
     def __str__(self):
-        return "{}{}{}".format(self.__return_flight_arrival_date, self.__fa_ids, self.__aircraft_id)
+        return "{} {} {} {} {} {} {} {} {} {} {} {} {}".format(self.__departing_flight_num , self.__return_flight_num , self.__departing_flight_departing_from  , self.__departing_flight_departure_date  , self.__departing_flight_arrival_date , self.__return_flight_departing_from , self.__return_flight_departure_date , self.__return_flight_arrival_date  , self.__aircraft_id , self.__captain_id, self.__copilot_id , self.__fsm_id ,":".join(self.__fa_ids))
+
+    def raw_info(self):
+        true_employees =":".join(self.__fa_ids)
+        return self.__departing_flight_num + "," + self.__return_flight_num + "," + self.__departing_flight_departing_from + "," + self.__departing_flight_departure_date + "," + self.__departing_flight_arrival_date + "," + self.__return_flight_departing_from + "," + self.__return_flight_departure_date + "," + self.__return_flight_arrival_date + "," + self.__aircraft_id + "," + self.__captain_id + "," + self.__copilot_id + "," + self.__fsm_id + "," + true_employees + "\n"
 
     def get_departing_flight_num(self):
         return self.__departing_flight_num
@@ -45,6 +49,7 @@ class Voyage():
     def set_departing_flight_departing_from(self, new):
         if models_validation.validate_city(new):
             self.__departing_flight_departing_from = new
+        self.__departing_flight_departing_from = new
 
     def get_departing_flight_departure_date(self):
         return self.__departing_flight_departure_date
@@ -65,7 +70,8 @@ class Voyage():
 
     def set_return_flight_departing_from(self, new):
         if models_validation.validate_city(new):
-            self.__return_flight_departure_from = new
+            self.__return_flight_departing_from = new
+        self.__return_flight_departing_from = new
 
     def get_return_flight_departure_date(self):
         return self.__return_flight_departure_date
