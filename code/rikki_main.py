@@ -1,14 +1,9 @@
 from models.ModelController import ModelController
-from data_layer.DLAPI import DLAPI
+from data_layer.DlEmployees import DLEmployees
 
-dlapi = DLAPI()
+dle = DLEmployees()
 
-airplanes = dlapi.populate_all_airplanes()
-destinations = dlapi.populate_all_destinations()
-voyage = dlapi.populate_all_voyages()
-empl = dlapi.populate_all_employees()
-
-print(airplanes)
-print(destinations)
-print(voyage)
-print(empl)
+emp_list = dle.pull_all_employees()
+spec_emp = emp_list[-1]
+spec_emp.set_name('Rikki Frikk')
+dle.overwrite_all_employees(emp_list)
