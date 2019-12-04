@@ -8,20 +8,22 @@ from models.Pilot import Pilot
 
 
 class UIDestinations():
-    UI_DIVIDER = 104
+    UI_DIVIDER_INT = 104
+    RETURN_MENU_STR = "9. Return 0. Home"
+    DEVIATION_INT = 2
 
     def __init__(self):
         self.ll_api = LLAPI()
 
     def display_destination_sub_menu(self):
-        print("-" * self.UI_DIVIDER)
+        print("-" * self.UI_DIVIDER_INT)
         print("1. Create 2. All 3. Search")
-        print("-" * self.UI_DIVIDER)
+        print("-" * self.UI_DIVIDER_INT)
 
     def display_destination_search_menu(self):
-        print("-" * self.UI_DIVIDER)
+        print("-" * self.UI_DIVIDER_INT)
         print("1. Change contact 2. Change emergency number 0. Home")
-        print("-" * self.UI_DIVIDER)
+        print("-" * self.UI_DIVIDER_INT)
 
     def display_destination(self, destination_id):
         print("Country: ")
@@ -32,10 +34,10 @@ class UIDestinations():
         print("Contact number: ")
 
     def display_all_destinations(self):
-        print("-" * self.UI_DIVIDER)
+        print("-" * self.UI_DIVIDER_INT)
         print("{:19}{:15}{:17}{:15}{:20}{:10}".format(
             "Country:", "Airport:", "Flight time:", "Distance:", "Contact name:", "Contact number:"))
-        print("-" * self.UI_DIVIDER)
+        print("-" * self.UI_DIVIDER_INT)
         destinations_list = self.ll_api.get_all_destinations_list()
         for destinations in destinations_list[1:]:
             print("{:19}{:15}{:17}{:15}{:20}{:10}".format(destinations.get_country(),
