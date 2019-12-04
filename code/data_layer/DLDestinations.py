@@ -2,8 +2,8 @@ from models.ModelController import ModelController
 
 
 class DLDestinations():
-    AIRPORT = 0
-    COUNTRY = 1
+    COUNTRY = 0
+    AIRPORT = 1
     FLIGHT_TIME = 2
     DISTANCE = 3
     CONTACT_NAME = 4
@@ -20,8 +20,8 @@ class DLDestinations():
             line_list = line.strip().split(",")
             new_destination = self.__model_controller.get_model('Destination')
 
-            new_destination.set_airport(line_list[DLDestinations.AIRPORT])
             new_destination.set_country(line_list[DLDestinations.COUNTRY])
+            new_destination.set_airport(line_list[DLDestinations.AIRPORT])
             new_destination.set_flight_time(
                 line_list[DLDestinations.FLIGHT_TIME])
             new_destination.set_distance(line_list[DLDestinations.DISTANCE])

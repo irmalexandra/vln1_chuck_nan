@@ -18,4 +18,4 @@ class LLDestinations:
         pass
 
     def get_all_destinations(self):
-        pass
+        return self.dl_api.populate_all_destinations()
