@@ -7,7 +7,7 @@ from models.FlightAttendant import FlightAttendant
 from models.Pilot import Pilot
 
 
-LENGTH = 52
+LENGTH = 90
 
 
 class UIEmployees():

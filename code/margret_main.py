@@ -10,15 +10,15 @@
 # main()
 
 
-# from ui_layer.UIEmployees import UIEmployees
-# new_ui_des = UIEmployees()
+from ui_layer.UIAirplanes import UIAirplanes
+new_ui_des = UIAirplanes()
 
 
-# new_ui_des.display_all_employees()
+new_ui_des.display_all_airplanes()
 
 
-from ui_layer.UIDestinations import UIDestinations
-new_ui_des = UIDestinations()
+# from ui_layer.UIDestinations import UIDestinations
+# new_ui_des = UIDestinations()
 
 
-new_ui_des.display_all_destinations()
+# new_ui_des.display_all_destinations()
