@@ -50,10 +50,11 @@ class UIEmployees():
         ''' Print'''
         print("-" * self.UI_DIVIDER_INT)
         print("|{:20}{:15}{:20}{:20}{:10}|".format(
-            "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
-        employee_list = self.ll_api.get_all_employee_list()
-        for employee in employee_list:
-            print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
+            "Index: ", "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
+        employee_dict = self.ll_api.get_all_employee_list()
+        for index, employee in employee_dict.items():
+            print("{:<10}{:20}{:15}{:20}{:20}{:10}|".format(index,
+                                                       employee.get_name(),
                                                        employee.get_ssn(),
                                                        employee.get_address(),
                                                        employee.get_mobile_num(),
