@@ -9,10 +9,10 @@ from models.Pilot import Pilot
 
 class LLAirplanes:
     def __init__(self):
-        dl_api = DLAPI()
+        self.dl_api = DLAPI()
 
     def validate_airplane(self):
         pass
 
     def get_all_airplanes(self):
-        pass
+        return self.dl_api.populate_all_airplanes()

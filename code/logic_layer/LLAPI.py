@@ -22,3 +22,6 @@ class LLAPI:
 
     def get_all_destinations_list(self):
         return self.ll_destinations.get_all_destinations()
+
+    def get_all_airplanes_list(self):
+        return self.ll_airplanes.get_all_airplanes()
