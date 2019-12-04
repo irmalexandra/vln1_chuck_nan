@@ -39,8 +39,11 @@ class UIMain():
     def display_main_menu(self):
         
         true_menu = "1. Employees 2. Voyages 3. Destinations 4. Airplanes"
+        true_menu2 = "1.  kakk"
+        true_menu3 = "1.  Idk fam  2.  help"
         print("|{}{}|".format(true_menu," " * (UIMain.TRUE_LEN - len(true_menu)-1)))
-        print("|{}{}|".format(true_menu," " * (UIMain.TRUE_LEN - len(true_menu)-1)))
+        print("|{}{}|".format(true_menu2," " * (UIMain.TRUE_LEN - len(true_menu2)-1)))
+        print("|{}{}|".format(true_menu3," " * (UIMain.TRUE_LEN - len(true_menu3)-1)))
         #print("-" * LENGTH)
         #print("1. Employees 2. Voyages 3. Destinations 4. Airplanes")
         #print("-" * LENGTH)
