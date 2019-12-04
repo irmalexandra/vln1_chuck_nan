@@ -1,8 +1,6 @@
 from models.ModelController import ModelController
 import os
 
-
-
 class DLEmployees():
     ID = 0
     SSN = 1
