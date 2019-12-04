@@ -11,11 +11,11 @@ LENGTH = 52
 
 class UIDestinations():
     def __init__(self):
-        ll_api = LLAPI()
+        self.ll_api = LLAPI()
 
     def display_destination_sub_menu(self):
         print("-" * LENGTH)
-        print("1. Create 2. All 3. Search 0. Home")
+        print("1. Create 2. All 3. Search")
         print("-" * LENGTH)
 
     def display_destination_search_menu(self):
@@ -31,8 +31,19 @@ class UIDestinations():
         print("Contact name: ")
         print("Contact number: ")
 
-    def display_destinations(self):
-        print("Country     Airport     Distance    FlightTime      ContactName     ContactNumber")
+    def display_all_destinations(self):
+        print("-" * LENGTH)
+        print("{:20}{:15}{:20}{:15}{:10}".format(
+            "Country:", "Airport:", "Flight time:", "Distance:", "Contact name:", "Contact number:"))
+        print("-" * LENGTH)
+        destinations_list = self.ll_api.get_all_destinations_list()
+        for destinations in destinations_list[1:]:
+            print("{:20}{:15}{:20}{:15}{:10}".format(destinations.get_country(),
+                                                     destinations.get_airport(),
+                                                     destinations.get_flight_time(),
+                                                     destinations.get_distance(),
+                                                     destinations.get_contact_name(),
+                                                     destinations.get_contact_number()))
 
     def create_destination(self):
         country = input("Country: ")

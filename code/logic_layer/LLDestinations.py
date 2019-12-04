@@ -9,7 +9,7 @@ from models.Pilot import Pilot
 
 class LLDestinations:
     def __init__(self):
-        dl_api = DLAPI()
+        self.dl_api = DLAPI()
 
     def validate_destination(self):
         pass

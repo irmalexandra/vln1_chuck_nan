@@ -19,3 +19,6 @@ class LLAPI:
 
     def get_all_employee_list(self):
         return self.ll_employees.get_all_employees()
+
+    def get_all_destinations_list(self):
+        return self.ll_destinations.get_all_destinations()
