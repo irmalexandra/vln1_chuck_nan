@@ -23,7 +23,7 @@ class Voyage():
     
 
     def __str__(self):
-        return "{}".format(self.departing_flight_arrival_date)
+        return "{}{}{}{}{}{}{}{}{}{}{}".format(self.__return_flight_arrival_date, self.__fa_ids, self.__)
 
     def get_departing_flight_num(self):
         return self.__departing_flight_num
