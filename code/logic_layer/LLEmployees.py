@@ -24,7 +24,11 @@ class LLEmployees:
 
     def get_all_employees(self):
         ''' pulls and returns a list of employee instances '''
-        return self.dl_api.populate_all_employees()
+        employee_list = self.dl_api.populate_all_employees()
+        employee_dict = {}
+        for index, employee in enumerate(employee_list):
+            employee_dict[index] = employee
+        return employee_dict
 
     def filter_all_employees_by_date(self):
         pass

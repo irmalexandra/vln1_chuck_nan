@@ -1,5 +1,6 @@
-from ui_layer.UIMain import UIMain
+from logic_layer.LLEmployees import LLEmployees
+from ui_layer.UIEmployees import UIEmployees
 
-newui = UImain()
+new_UIE = UIEmployees()
 
-newui.display_main_menu()
+new_UIE.display_all_employees()
