@@ -14,10 +14,16 @@ class LLEmployees:
     def validate_employee(self):
         pass
 
-    def get_employee(self, employee_ID):
-        pass
+    def get_employee_by_ssn(self, ssn):
+        ''' pulls a list of employee instances and returns a instance of employee by employee_ID '''
+
+        employee_list = self.dl_api.populate_all_employees()
+        for employee in employee_list:
+            if employee.get_ssn() == ssn:
+                return employee
 
     def get_all_employees(self):
+        ''' pulls and returns a list of employee instances '''
         return self.dl_api.populate_all_employees()
 
     def filter_all_employees_by_date(self):
@@ -28,10 +34,16 @@ class LLEmployees:
         # for employee in employee_list[1:]:
         pass
 
-    def filter_all_employees_by_title(self):
-        pass
+    def filter_all_employees_by_title(self, title):
+        '''takes list of all employees and returns list of employees filtered by title from input'''
+        filter_list = []
+        employee_list = self.dl_api.populate_all_employees()
+        for employee in employee_list:
+            if employee.get_title() == title:
+                filter_list.append(employee)
+        return filter_list
 
-    def filter_pilots_by_airplane_type(self):
+    def filter_pilots_by_airplane_type(self, airplane_type):
         pass
 
     def sort_pilots_bu_airplane_type(self):
