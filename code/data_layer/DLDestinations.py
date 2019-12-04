@@ -1,9 +1,4 @@
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
+from models.ModelController import ModelController
 
 class DLDestinations():
     AIRPORT = 0
@@ -16,13 +11,14 @@ class DLDestinations():
 
     def __init__(self):
         self.all_destinations_list = []
+        self.__model_controller = ModelController()
 
     def pull_all_destinations(self):
         
         filestream = open("./repo/Destination.csv", "r")
         for line in filestream:
             line_list = line.strip().split(",")
-            new_destination = Destination()
+            new_destination = self.__model_controller.get_model('Destination')
 
             new_destination.set_airport(line_list[DLDestinations.AIRPORT])
             new_destination.set_country(line_list[DLDestinations.COUNTRY])

@@ -1,9 +1,4 @@
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
+from models.ModelController import ModelController
 
 class DLVoyages():
     DEPARTING_FLIGHT_NUM = 0
@@ -22,14 +17,14 @@ class DLVoyages():
 
     def __init__(self):
         self.all_voyages_list = []
+        self.__model_controller = ModelController()
 
     def pull_all_voyages(self):
         
         filestream = open("./repo/voyages.csv", "r")
         for line in filestream:
             line_list = line.strip().split(",")
-            new_voyage = Voyage()
-
+            new_voyage = self.__model_controller.get_model('Voyage')
             new_voyage.set_departing_flight_num(line_list[DLVoyages.DEPARTING_FLIGHT_NUM])
             new_voyage.set_return_flight_num(line_list[DLVoyages.RETURNING_FLIGHT_NUM])
             new_voyage.set_departing_flight_departing_from(line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_FROM])
