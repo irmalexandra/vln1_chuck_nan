@@ -10,13 +10,13 @@
 # main()
 
 
-from ui_layer.UIAirplanes import UIAirplanes
-new_ui_des = UIAirplanes()
+# from ui_layer.UIAirplanes import UIAirplanes
+# new_ui_des = UIAirplanes()
 
 
 # new_ui_des.display_airplanes_sub_menu()
 # new_ui_des.create_airplane()
-new_ui_des.display_all_airplanes()
+# new_ui_des.display_all_airplanes()
 
 
 # from ui_layer.UIDestinations import UIDestinations
@@ -33,4 +33,8 @@ new_ui_des.display_all_airplanes()
 # new_ui_des = UIEmployees()
 
 
-# new_ui_des.display_all_employees()
+from ui_layer.UIVoyages import UIVoyages
+new_ui_des = UIVoyages()
+
+# new_ui_des.display_voyage_sub_menu()
+new_ui_des.display_all_voyages()
