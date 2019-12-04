@@ -16,9 +16,10 @@ class UIAirplanes():
         self.ll_api = LLAPI()
 
     def display_airplanes_sub_menu(self):
+        airplane_menu = "1. Create 2. Display all"
         print("-" * self.UI_DIVIDER_INT)
-        print("{}{}{}".format("1. Create 2. Display all", (' '*(self.UI_DIVIDER_INT -
-                                                                len(self.RETURN_MENU_STR)-self.DEVIATION_INT)), self.RETURN_MENU_STR))
+        print("|{}{}{}|".format(airplane_menu, " "*(self.UI_DIVIDER_INT - len(airplane_menu) -
+                                                    len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
         print("-" * self.UI_DIVIDER_INT)
 
     def display_airplanes(self):
