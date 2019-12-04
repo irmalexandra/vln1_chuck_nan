@@ -33,11 +33,18 @@ class UIEmployees():
                                                   len(search_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
         print("-" * self.UI_DIVIDER_INT)
 
-    def display_employee_by_ssn(self, ssn):
+    def get_employee_by_ssn(self, ssn):
         employee = self.ll_api.get_employee_by_ssn(ssn)
+        self.display_employee(employee)
+
+    def display_employee(self, employee):
+        pass
+
+    def display_edit_employee(self):
+        pass
 
     def display_all_employees(self):
-
+        ''' Print'''
         print("-" * self.UI_DIVIDER_INT)
         print("|{:20}{:15}{:20}{:20}{:10}|".format(
             "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
@@ -106,6 +113,9 @@ class UIEmployees():
         title = input("Title: ")
         licence = input("Licence: ")
         availability = input("Availability: ")
+
+    def edit_employee(self):
+        pass
 
     def change_airplane_type(self):
         pass

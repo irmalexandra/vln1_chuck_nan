@@ -19,7 +19,7 @@ class LLEmployees:
 
         employee_list = self.dl_api.populate_all_employees()
         for employee in employee_list:
-            if employee.get_employee_by_ssn() == ssn:
+            if employee.get_ssn() == ssn:
                 return employee
 
     def get_all_employees(self):
