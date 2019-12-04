@@ -37,7 +37,7 @@ class DLVoyages():
             new_voyage.set_captain_id(line_list[DLVoyages.CAPTAIN_ID])
             new_voyage.set_copilot_id(line_list[DLVoyages.COPILOT_ID])
             new_voyage.set_fsm_id(line_list[DLVoyages.FSMID])
-            
+
             flight_attendant_ids_list = line_list[DLVoyages.FAIDS].split(":")
 
 
@@ -51,4 +51,5 @@ class DLVoyages():
         return self.all_voyages_list[1:]
 
     def push_all_voyages(self):
+        
         pass

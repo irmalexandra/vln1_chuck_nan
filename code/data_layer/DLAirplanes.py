@@ -40,5 +40,9 @@ class DLAirplanes():
         type_stream.close()
         return self.all_airplanes_list[1:]
 
-    def push_all_airplanes(self):
-        pass
+    def push_all_airplanes(self, aircraft):
+        aircraft_stream = open('./repo/Aircraft.csv', 'a')
+        aircraft_str = aircraft.raw_info()
+        aircraft_stream.write(aircraft_str)
+        aircraft_stream.close()
+        return    
