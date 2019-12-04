@@ -54,27 +54,17 @@ class UIVoyages():
                                                                voyages.get_return_flight_num(),
                                                                "Missing status"))
 
-    def display_voyage_search_menu(self):
-        print("-" * LENGTH)
-        print("1. Destination 2. Period 3. Empty Voyages 0. Home")
-        print("-" * LENGTH)
-
-    def display_voyage(self, voyage_id):
-        print("Destination: ")
-
-        print("Airplane: ")
-        print("Departure date: ")
-        print("Departure time: ")
-        print("Return date: ")
-        print("Return time: ")
-
-        print("Departure flight number: ")
-        print("Return flight number: ")
-
-        print("Available seats: ")
-        print("Sold seats: ")
-
-        print("Status: ")
+    def display_one_voyage(self):
+        ''' Search for a voyage and print the information '''
+        # 3
+        # need to implement input
+        print("Destination:")
+        print("Airplane:")
+        print("Departure date and time:")
+        print("Return date and time:")
+        print("Departure flight number:")
+        print("Return flight number:")
+        print("Status:")
 
         print("Pilot: ")
         print("Co-Pilot: ")
@@ -85,16 +75,37 @@ class UIVoyages():
         print("Person 2: ")
         print("Person 3: ")
 
-    # def display_all_voyages(self):
-    #     print("Date           Country      Airport    Staffed")
+    def voyages_search_menu(self):
+        ''' Print the search menu for the voyages '''
+        search_menu = "1. Destination 2. Period 3. Empty Voyages"
+        print("-" * self.UI_DIVIDER_INT)
+        print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
+                                                  len(search_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
+        print("-" * self.UI_DIVIDER_INT)
 
-    # def display_all_empty_voyages(self):
-    #     print("Index   Date           Country      Airport    Staffed")
+    def voyages_search_sub_menu(self):
+        ''' Print the search menu for the voyages '''
+        search_menu = "1. Select Voyage"
+        print("-" * self.UI_DIVIDER_INT)
+        print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
+                                                  len(search_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
+        print("-" * self.UI_DIVIDER_INT)
+
+    def voyages_search_sub_sub_menu(self):
+        ''' Print the search menu for the voyages '''
+        search_menu = "1. Add Crew 2. Duplicate 3. Repeat"
+        print("-" * self.UI_DIVIDER_INT)
+        print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
+                                                  len(search_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
+        print("-" * self.UI_DIVIDER_INT)
 
     def display_all_voyages_by_period(self):
         period = input("Enter period (dd/mm/yyy-dd/mm/yyy): ")
 
     def display_all_voyages_by_destination(self):
+        pass
+
+    def display_all_empty_voyages(self):
         pass
 
     def add_crew(self):

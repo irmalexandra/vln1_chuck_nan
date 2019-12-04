@@ -37,4 +37,9 @@ from ui_layer.UIVoyages import UIVoyages
 new_ui_des = UIVoyages()
 
 # new_ui_des.display_voyage_sub_menu()
-new_ui_des.display_all_voyages()
+# new_ui_des.create_voyage()
+# new_ui_des.display_all_voyages()
+# new_ui_des.display_one_voyage()
+# new_ui_des.voyages_search_menu()
+# new_ui_des.voyages_search_sub_menu()
+new_ui_des.voyages_search_sub_sub_menu()
