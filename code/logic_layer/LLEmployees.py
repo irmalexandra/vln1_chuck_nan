@@ -23,6 +23,10 @@ class LLEmployees:
     def filter_all_employees_by_date(self):
         pass
 
+    def filter_all_employees_by_ssn(self):
+        employee_list = self.get_all_employees()
+        for employee in employee_list[1:]:
+
     def filter_all_employees_by_title(self):
         pass
 
