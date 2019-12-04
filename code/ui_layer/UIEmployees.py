@@ -33,7 +33,7 @@ class UIEmployees():
         pass
 
     def display_all_employees(self):
-        print("-" * self.UI_DIVIDER)
+        print("-" * self.UI_DIVIDER_INT)
         print("{:20}{:15}{:20}{:20}{:10}".format(
             "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
         employee_list = self.ll_api.get_all_employee_list()
@@ -43,9 +43,9 @@ class UIEmployees():
                                                      employee.get_address(),
                                                      employee.get_mobile_num(),
                                                      employee.get_title()))
-        print("-" * self.UI_DIVIDER)
+        print("-" * self.UI_DIVIDER_INT)
 
-        print("-" * self.UI_DIVIDER)
+        print("-" * self.UI_DIVIDER_INT)
 
     def display_all_employees_by_date(self):
         pass
