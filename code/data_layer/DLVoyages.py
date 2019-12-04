@@ -50,6 +50,9 @@ class DLVoyages():
         filestream.closed
         return self.all_voyages_list[1:]
 
-    def push_all_voyages(self):
-        
-        pass
+    def append_voyage(self, new_voyage):
+        voyage_stream = open('./repo/voyage2.csv', 'a')
+        voyage_str = new_voyage.raw_info()
+        voyage_stream.write(voyage_str)
+        voyage_stream.close()
+        return   

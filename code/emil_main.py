@@ -7,7 +7,7 @@ destination_list = stuff.populate_all_destinations()
 for destination in destination_list:
     print(destination)
 
-stuff.dl_destinations.appent_destination(destination_list[5])
+#stuff.dl_destinations.appent_destination(destination_list[5])
 
 print("------------------------------------ what")
 airplane_list = stuff.populate_all_airplanes()
@@ -22,6 +22,9 @@ print("------------------------------------------------plz send help")
 voyaes = stuff.populate_all_voyages()
 for voyage in stuff.populate_all_voyages():
     print(voyage)
+
+stuff.dl_voyages.append_voyage(voyaes[])
+
 
 the_dict = dict()
 the_dict[1] = stuff.populate_all_employees()

@@ -26,6 +26,9 @@ class Voyage():
     def __str__(self):
         return "{}{}{}".format(self.__return_flight_arrival_date, self.__fa_ids, self.__aircraft_id)
 
+    def raw_info(self):
+        return self.__departing_flight_num + "," + self.__return_flight_num + "," + self.__departing_flight_departing_from + "," + self.__departing_flight_departure_date + "," + self.__departing_flight_arrival_date + "," + self.__return_flight_departing_from + "," + self.__return_flight_departure_date + "," + self.__return_flight_arrival_date + "," + self.__aircraft_id + "," + self.__copilot_id + "," + self.__fsm_id + "," + str(self.__fa_ids) + "\n"
+
     def get_departing_flight_num(self):
         return self.__departing_flight_num
 
