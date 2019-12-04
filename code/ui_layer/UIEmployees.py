@@ -48,7 +48,6 @@ class UIEmployees():
         print("-" * self.UI_DIVIDER)
 
     def display_all_employees_by_date(self):
-        print()
         pass
 
     def display_all_employees_by_title(self):
