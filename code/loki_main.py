@@ -9,4 +9,4 @@ new_emp.set_email("hakon.stjani@nanair.is")
 # print(new_emp)
 
 
-# new_ui_emp.display_all_employees()
+new_ui_emp.display_all_employees_by_title("Pilot")

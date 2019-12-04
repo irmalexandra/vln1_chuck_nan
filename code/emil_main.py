@@ -37,8 +37,8 @@ print(raw_info)
 
 print("------------------------------------------------plz send help")
 voyaes = stuff.populate_all_voyages()
-for voyage in stuff.populate_all_voyages():
-    print(voyage)
+for thing in voyaes:
+    print(thing)
 
 #stuff.dl_voyages.append_voyage(voyaes[0])
 

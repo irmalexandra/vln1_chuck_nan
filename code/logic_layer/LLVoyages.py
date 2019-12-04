@@ -9,7 +9,7 @@ from models.Pilot import Pilot
 
 class LLVoyages:
     def __init__(self):
-        dl_api = DLAPI()
+        self.dl_api = DLAPI()
 
     def validate_voyage(self):
         pass
@@ -18,7 +18,7 @@ class LLVoyages:
         pass
 
     def get_all_voyages(self):
-        pass
+        return self.dl_api.populate_all_voyages()
 
     def filter_all_empty_voyages(self):
         pass
