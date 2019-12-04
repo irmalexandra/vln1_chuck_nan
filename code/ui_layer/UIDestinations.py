@@ -6,7 +6,7 @@ from models.Employee import Employee
 from models.FlightAttendant import FlightAttendant
 from models.Pilot import Pilot
 
-LENGTH = 90
+LENGTH = 105
 
 
 class UIDestinations():
@@ -33,17 +33,17 @@ class UIDestinations():
 
     def display_all_destinations(self):
         print("-" * LENGTH)
-        print("{:20}{:15}{:20}{:15}{:10}".format(
+        print("{:19}{:15}{:17}{:15}{:20}{:10}".format(
             "Country:", "Airport:", "Flight time:", "Distance:", "Contact name:", "Contact number:"))
         print("-" * LENGTH)
         destinations_list = self.ll_api.get_all_destinations_list()
         for destinations in destinations_list[1:]:
-            print("{:20}{:15}{:20}{:15}{:10}".format(destinations.get_country(),
-                                                     destinations.get_airport(),
-                                                     destinations.get_flight_time(),
-                                                     destinations.get_distance(),
-                                                     destinations.get_contact_name(),
-                                                     destinations.get_contact_number()))
+            print("{:19}{:15}{:17}{:15}{:20}{:10}".format(destinations.get_country(),
+                                                          destinations.get_airport(),
+                                                          destinations.get_flight_time(),
+                                                          destinations.get_distance(),
+                                                          destinations.get_contact_name(),
+                                                          destinations.get_contact_number()))
 
     def create_destination(self):
         country = input("Country: ")
