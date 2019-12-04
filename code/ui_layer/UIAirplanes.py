@@ -26,6 +26,7 @@ class UIAirplanes():
     def create_airplane(self):
         ''' Create an airplane '''
         # 1
+        # user input
         name = input("ID: ")
         make = input("Make: ")
         model = input("Model: ")
