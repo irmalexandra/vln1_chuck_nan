@@ -6,22 +6,22 @@ from models.Employee import Employee
 from models.FlightAttendant import FlightAttendant
 from models.Pilot import Pilot
 
-LENGTH = 105
-
 
 class UIDestinations():
+    UI_DIVIDER = 104
+
     def __init__(self):
         self.ll_api = LLAPI()
 
     def display_destination_sub_menu(self):
-        print("-" * LENGTH)
+        print("-" * self.UI_DIVIDER)
         print("1. Create 2. All 3. Search")
-        print("-" * LENGTH)
+        print("-" * self.UI_DIVIDER)
 
     def display_destination_search_menu(self):
-        print("-" * LENGTH)
+        print("-" * self.UI_DIVIDER)
         print("1. Change contact 2. Change emergency number 0. Home")
-        print("-" * LENGTH)
+        print("-" * self.UI_DIVIDER)
 
     def display_destination(self, destination_id):
         print("Country: ")
@@ -32,10 +32,10 @@ class UIDestinations():
         print("Contact number: ")
 
     def display_all_destinations(self):
-        print("-" * LENGTH)
+        print("-" * self.UI_DIVIDER)
         print("{:19}{:15}{:17}{:15}{:20}{:10}".format(
             "Country:", "Airport:", "Flight time:", "Distance:", "Contact name:", "Contact number:"))
-        print("-" * LENGTH)
+        print("-" * self.UI_DIVIDER)
         destinations_list = self.ll_api.get_all_destinations_list()
         for destinations in destinations_list[1:]:
             print("{:19}{:15}{:17}{:15}{:20}{:10}".format(destinations.get_country(),

@@ -17,11 +17,11 @@
 # new_ui_des.display_all_airplanes()
 
 
-# from ui_layer.UIDestinations import UIDestinations
-# new_ui_des = UIDestinations()
+from ui_layer.UIDestinations import UIDestinations
+new_ui_des = UIDestinations()
 
 
-# new_ui_des.display_all_destinations()
+new_ui_des.display_all_destinations()
 
 # from ui_layer.UIEmployees import UIEmployees
 # new_ui_des = UIEmployees()
