@@ -28,3 +28,9 @@ class LLAPI:
 
     def get_all_voyages_list(self):
         return self.ll_voyages.get_all_voyages()
+
+    def get_employee_list_by_title(self, title):
+        return self.ll_employees.filter_all_employees_by_title(title)
+
+    def get_employee_by_ssn(self, ssn):
+        return self.ll_employees.get_employee_by_ssn(ssn)

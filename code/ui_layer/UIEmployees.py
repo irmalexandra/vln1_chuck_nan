@@ -16,6 +16,8 @@ class UIEmployees():
         self.ll_api = LLAPI()
 
     def display_employee_sub_menu(self):
+        ''' Print the main menu of employee sub menu '''
+        # needs input
         employee_menu = "1. Create 2. All 3. Search by"
         print("-" * self.UI_DIVIDER_INT)
         print("|{}{}{}|".format(employee_menu, " "*(self.UI_DIVIDER_INT -
@@ -23,40 +25,76 @@ class UIEmployees():
         print("-" * self.UI_DIVIDER_INT)
 
     def display_employee_search_menu(self):
-        search_menu = "1. SSN 2. Title 3. Period 4. Airplane"
+        ''' Print the search menu of employee sub menu '''
+        # needs input
+        search_menu = "1. SSN 2. Title 3. Date 4. Airplane"
         print("-" * self.UI_DIVIDER_INT)
         print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
                                                   len(search_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
         print("-" * self.UI_DIVIDER_INT)
 
     def display_employee_by_ssn(self, ssn):
-        pass
+        employee = self.ll_api.get_employee_by_ssn(ssn)
 
     def display_all_employees(self):
+
         print("-" * self.UI_DIVIDER_INT)
-        print("{:20}{:15}{:20}{:20}{:10}".format(
+        print("|{:20}{:15}{:20}{:20}{:10}|".format(
             "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
         employee_list = self.ll_api.get_all_employee_list()
-        for employee in employee_list[1:]:
-            print("{:20}{:15}{:20}{:20}{:10}".format(employee.get_name(),
-                                                     employee.get_ssn(),
-                                                     employee.get_address(),
-                                                     employee.get_mobile_num(),
-                                                     employee.get_title()))
-        print("-" * self.UI_DIVIDER_INT)
-
+        for employee in employee_list:
+            print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
+                                                       employee.get_ssn(),
+                                                       employee.get_address(),
+                                                       employee.get_mobile_num(),
+                                                       employee.get_title()))
         print("-" * self.UI_DIVIDER_INT)
 
     def display_all_employees_by_date(self):
-        pass
+        '''Displays all employees availability on a specific day'''
+        # needs input
+        print("-" * self.UI_DIVIDER_INT)
+        print("|{:20}{:15}{:20}{:20}{:10}|".format(
+            "Name:", "SSN:", "Mobile Number:", "Title:", "Availability:"))
+        employee_list = self.ll_api.get_all_employee_list()
+        for employee in employee_list:
+            print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
+                                                       employee.get_ssn(),
+                                                       employee.get_mobile_num(),
+                                                       employee.get_title(), "Missing availability"))
+        print("-" * self.UI_DIVIDER_INT)
 
-    def display_all_employees_by_title(self):
-        pass
+    def display_all_employees_by_title(self, title):
+        ''' Print a filtered list of all employees by title '''
+
+        print("-" * self.UI_DIVIDER_INT)
+        print("|{:20}{:15}{:20}{:20}{:10}|".format(
+            "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
+        employee_list = self.ll_api.get_employee_list_by_title(title)
+        for employee in employee_list:
+            print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
+                                                       employee.get_ssn(),
+                                                       employee.get_address(),
+                                                       employee.get_mobile_num(),
+                                                       employee.get_title()))
+        print("-" * self.UI_DIVIDER_INT)
 
     def display_pilots_by_airplane_type_sorted(self):
-        pass
+        ''' print a sorted list of pilots '''
 
-    def display_pilots_by_airplane_type_filtered(self):
+        print("-" * self.UI_DIVIDER_INT)
+        print("|{:20}{:15}{:20}{:20}{:10}|".format(
+            "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
+        employee_list = self.ll_api.get_employee_list_by_title("Pilot")
+        for employee in employee_list:
+            print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
+                                                       employee.get_ssn(),
+                                                       employee.get_address(),
+                                                       employee.get_mobile_num(),
+                                                       employee.get_title()))
+        print("-" * self.UI_DIVIDER_INT)
+
+    def display_pilots_by_airplane_type_filtered(self, airplane_type):
         pass
 
     def create_employee(self):
@@ -71,6 +109,3 @@ class UIEmployees():
 
     def change_airplane_type(self):
         pass
-
-    def get_employee_instance(self):
-        return Employee()
