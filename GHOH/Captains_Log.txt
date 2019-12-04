@@ -86,7 +86,7 @@ Yfirferð gærdags.
 
 Captains Log, Stardate 29.11.2019
 
-Yfirferð gærdags.
+Yfirferð gærdags:
 
 	Verkefni komin langt:
 		Wireframes/Happy Path
@@ -101,7 +101,7 @@ Verkefni dagsins:
 
 Captains Log, Stardate 02.12.2019
 
-Yfiferð föstudag.
+Yfiferð föstudag:
 	Verkefni kláruð:
 		Wireframes/Happy Path
 		Use Cases
@@ -115,7 +115,7 @@ Verkefni dagsins:
 
 Captains Log, Stardate 03.12.2019
 
-Yfiferð mánudags.
+Yfiferð mánudags:
 	Skipulagning á næstu dögum
 	Gera beinagrind forritsins
 	Byrja að vinna í gagnagrunni
@@ -124,3 +124,18 @@ Verkefni dagsins:
 	Halda áfram að gera beinagrind forritsins
 	Halda áfram að vinna í gagnagrunni
 	Mastera git
+
+
+Captains Log, Stardate 04.12.2019
+
+Yfirferð þriðjudags:
+	Beinagrind forritsins kláruð
+	Tenging milli layera orðin fullvirk
+	Model controller búinn til
+	Lesa í og úr repository í data layer klárað
+
+Verkefni dagsisns:
+	Klára UI stŕucture
+	Implementa ID fyrir employees
+	Byrja á logic layer virkni
+	Finna útur Back og Home
