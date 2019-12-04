@@ -26,6 +26,7 @@ class UIDestinations():
     def create_destination(self):
         ''' Create a destination '''
         # 1
+        # user input
         country = input("Country: ")
         airport = input("Airport: ")
         flight_time = input("Flight time: ")
@@ -52,7 +53,7 @@ class UIDestinations():
     def display_one_destination(self):
         ''' Search for a destination and print the information '''
         # 3
-        # need to implement input
+        # user input
         print("Country: ")
         print("Airport: ")
         print("Flight time: ")
@@ -60,7 +61,7 @@ class UIDestinations():
         print("Contact name: ")
         print("Contact number: ")
 
-    def destination_search_menu(self):
+    def display_destination_search_menu(self):
         ''' Change contact name or emergency number and print the information '''
         search_menu = "1. Change contact name 2. Change emergency number"
         print("-" * self.UI_DIVIDER_INT)
