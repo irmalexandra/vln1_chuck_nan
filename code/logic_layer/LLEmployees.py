@@ -8,27 +8,30 @@ class LLEmployees:
 
     def get_all_employees(self):
         ''' pulls and returns a list of employee instances '''
-        employee_list = self.__dl_api.populate_all_employees()
-        employee_dict = {}
-        index = 1
-        for index, employee in enumerate(employee_list):
-            employee_dict[index] = employee
-        return employee_dict
+        return self.__dl_api.populate_all_employees()
 
-    def get_ssn_dict(self):
-        employee_dict = self.get_all_employees()
-        ssn_dict = {}
-        for index, employee in employee_dict.items():
-            ssn_dict[employee.get_ssn()] = index
-        return ssn_dict
+    def list_all_employees_by_name(self):
+        all_employee_list = self.get_all_employees()
 
-    def get_employee_by_ssn(self, ssn):
+        return sorted(all_employee_list, key=lambda employee: employee.get_name())
+
+    def get_name_dict(self):
+        employee_list = self.get_all_employees()
+        name_dict = {}
+        for employee in employee_list:
+            name_dict[employee.get_name()] = employee.get_ssn()
+        return name_dict
+
+    def get_employee_by_name(self, name):
         ''' pulls a list of employee instances and returns a instance of employee by employee_ID '''
-        ssn_dict = self.get_ssn_dict()
-        employee_id = ssn_dict[ssn]
-        employee_dict = self.get_all_employees()
-        employee = employee_dict[employee_id]
-        return employee
+        name_dict = self.get_name_dict()
+        employee_ssn = name_dict[name]
+
+        employee_list = self.get_all_employees()
+
+        for employee in employee_list:
+            if employee.get_ssn() == employee_ssn:
+                return employee
 
     def list_all_employees_by_date(self):
         pass
