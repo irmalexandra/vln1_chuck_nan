@@ -41,7 +41,7 @@ class UIAirplanes():
             print(number + 1, plane[1] + plane[2])
 
         
-        picked_airplane = input("Pick plane: ")
+        picked_airplane = input("Pick a airplane type: ")
         if picked_airplane == "1":
             make = existing_airplane_types_list[0][self.MAKE]
             model = existing_airplane_types_list[0][self.MODEL]
@@ -58,19 +58,8 @@ class UIAirplanes():
         new_airplane.set_make(make)
         new_airplane.set_model(model)
         new_airplane.set_name(insignia)
-        make_bool, model_bool, airplane = self.__ll_api.create_airplane(new_airplane, existing_airplane_types)
-        print("Make is ", make_bool, "model is ", model_bool)
-        if make_bool == True and model_bool == True:
-            print(airplane, "\n Created succesfully!")
-        elif make_bool == False  and model_bool == None:
-            print("Invalid input", model)
-        elif make_bool == None and model_bool == False :
-            print("Invalid input", make)
-        else:
-            print("Both",make,"and",model,"Invalid")
-
-
-
+        airplane = self.__ll_api.create_airplane(new_airplane, existing_airplane_types)
+        print("\nAirplane created!\n{}".format(airplane))
 
     def display_all_airplanes(self):
         ''' Print all airplanes '''
@@ -92,6 +81,7 @@ class UIAirplanes():
                                                                         "Missing flight_number",
                                                                         "Missing date_available"))
             choice = int(input("Input: "))
+            
             try:
                 choice =  nav_dict[choice]()
                 if choice == 0:

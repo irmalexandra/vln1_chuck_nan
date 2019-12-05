@@ -19,25 +19,15 @@ class LLAirplanes:
         existing_airplane_types = airplane_types
         airplane_make = airplane.get_make()
         airplane_model = airplane.get_model()
-        make = None 
-        model = None 
+        #need to see if plane already exist or na!
         for info in existing_airplane_types:
             info_list = info.split(",")
 
             if info_list[self.MAKE] == airplane_make and info_list[self.MODEL] == airplane_model:
                 airplane.set_max_seats(info_list[self.CAPACITY])
                 self.__dl_api.create_airplane(airplane)
-                make = True
-                model = True
-                return make, model, airplane
+
+                return  airplane
 
 
-            elif airplane_make == info_list[self.MAKE] and airplane_model != info_list[self.MODEL]:
-                model = False
-
-
-            elif airplane_make != info_list[self.MAKE] and airplane_model == info_list[self.MODEL]:
-                make = False 
-
-        return make, model, airplane
         
