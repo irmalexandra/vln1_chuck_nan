@@ -9,18 +9,19 @@ class UIEmployees():
         self.__ui_base_functions = UIBaseFunctions
 
     def display_employee_sub_menu(self):
-        nav_dict = {1:"",2:self.display_all_employees,3:"",4:"",9:"",0:""}
+        nav_dict = {1: "", 2: self.display_all_employees,
+                    3: "", 4: "", 9: "", 0: ""}
         employee_menu = "1. Create 2. All 3. Search by"
         print("-" * self.UI_DIVIDER_INT)
         print("|{}{}{}|".format(employee_menu, " "*(self.UI_DIVIDER_INT -
-                                len(employee_menu) - len(self.RETURN_MENU_STR)
-                                 - self.DEVIATION_INT), self.RETURN_MENU_STR))
+                                                    len(employee_menu) -
+                                                    len(self.RETURN_MENU_STR)
+                                                    - self.DEVIATION_INT), self.RETURN_MENU_STR))
 
         print("-" * self.UI_DIVIDER_INT)
         while True:
             choice = int(input("Input: "))
             nav_dict[choice]()
-            
 
     def display_employee_search_menu(self):
         ''' Print the search menu of employee sub menu '''
@@ -28,17 +29,17 @@ class UIEmployees():
         search_menu = "1. SSN 2. Title 3. Date 4. Airplane"
         print("-" * self.UI_DIVIDER_INT)
         print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
-                                len(search_menu) - len(self.RETURN_MENU_STR) - 
-                                self.DEVIATION_INT), self.RETURN_MENU_STR))
+                                                  len(search_menu) - len(self.RETURN_MENU_STR) -
+                                                  self.DEVIATION_INT), self.RETURN_MENU_STR))
 
         print("-" * self.UI_DIVIDER_INT)
 
     def get_employee_by_ssn(self, ssn):
-        employee = self.__ll_api.get_employee_by_ssn(ssn)
-        self.display_employee(employee)
+        ''' Search for employee and print out it's information '''
+        self.display_employee(self.__ll_api.get_employee_by_ssn(ssn))
 
     def display_employee(self, employee):
-        pass
+        print(employee)
 
     def display_edit_employee(self):
         pass
@@ -48,14 +49,14 @@ class UIEmployees():
         print("-" * self.UI_DIVIDER_INT)
         print("|{:<10}{:20}{:15}{:20}{:20}{:10}|".format(
             "Index: ", "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
-        employee_dict = self.__ll_api.get_all_employee_list()
+        employee_dict = self.__ll_api.get_all_employee_dict()
         for index, employee in employee_dict.items():
-            print("|{:02d}{:<8}{:20}{:15}{:20}{:20}{:10}|".format(index,"",
-                                                                employee.get_name(),
-                                                                employee.get_ssn(),
-                                                                employee.get_address(),
-                                                                employee.get_mobile_num(),
-                                                                employee.get_title()))
+            print("|{:02d}{:<8}{:20}{:15}{:20}{:20}{:10}|".format(index, "",
+                                                                  employee.get_name(),
+                                                                  employee.get_ssn(),
+                                                                  employee.get_address(),
+                                                                  employee.get_mobile_num(),
+                                                                  employee.get_title()))
         print("-" * self.UI_DIVIDER_INT)
 
     def display_all_employees_by_date(self):
@@ -69,7 +70,7 @@ class UIEmployees():
             print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
                                                        employee.get_ssn(),
                                                        employee.get_mobile_num(),
-                                                       employee.get_title(), 
+                                                       employee.get_title(),
                                                        "Missing availability"))
         print("-" * self.UI_DIVIDER_INT)
 
@@ -79,7 +80,7 @@ class UIEmployees():
         print("-" * self.UI_DIVIDER_INT)
         print("|{:20}{:15}{:20}{:20}{:10}|".format(
             "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
-        employee_list = self.__ll_api.get_employee_list_by_title(title)
+        employee_list = self.__ll_api.get_employee_dict_by_title(title)
         for employee in employee_list:
             print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
                                                        employee.get_ssn(),

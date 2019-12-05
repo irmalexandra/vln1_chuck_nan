@@ -12,11 +12,12 @@ class DLEmployees():
     LICENSE = 9
 
     def __init__(self, modelAPI):
-        self.all_crew_list = []
+        
         self.__modelAPI = modelAPI
 
     def pull_all_employees(self):
         self.filestream = open("./repo/employees.csv", "r")
+        self.all_crew_list = []
         for line in self.filestream:
             line_list = line.strip().split(",")
             if line_list[DLEmployees.TITLE] == 'Pilot':
