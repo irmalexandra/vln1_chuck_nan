@@ -36,8 +36,8 @@ class LLAPI:
     def get_one_destination(self, airport):
         return self.__ll_destinations.get_one_destination(airport)
 
-    def edit_destination(self, input_tpl):
-        return self.__ll_destinations.edit_destination(input_tpl)
+    def edit_destination(self, destination, input_tpl):
+        return self.__ll_destinations.edit_destination(destination, input_tpl)
 
     def pull_airplane_types(self):
         return self.__ll_airplanes.pull_airplane_types()

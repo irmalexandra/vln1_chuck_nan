@@ -6,11 +6,16 @@ class Validator():
     PHONE_NUMBER = 7
     SSN = 10
 
-    def __validate_string(self, string):
-        return string.isalpha()
+    def __validate_string(self, attribute):
+        attribute = str(attribute)
+        return attribute.isalpha()
 
-    def __validate_int(self, string):
-        return string.isdigit()
+    def __validate_int(self, attribute):
+        try:
+            int(attribute)
+            return True
+        except ValueError:
+            return False
 
     def validate_name(self, name):
         try:

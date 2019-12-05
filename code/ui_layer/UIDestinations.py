@@ -2,6 +2,7 @@ class UIDestinations():
     UI_DIVIDER_INT = 124
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
+    EDIT_FEEDBACK_TPL = ("name", "number")
 
     def __init__(self, LLAPI, modelAPI, UIBaseFunctions):
         self.__ll_api = LLAPI
@@ -103,14 +104,19 @@ class UIDestinations():
                     return 0
                 if choice == 9:
                     return
+                if self.__ll_api.edit_destination(destination, choice):
+                    print("Contact {} successful1y changed to {}".format(self.EDIT_FEEDBACK_TPL[choice[0]], choice[1]))
+                else:
+                    print("Invalid input!")
+                
             except KeyError:
                 print("Invalid input! try again")
-            self.__ll_api.edit_destination(choice)
+            
 
     def change_contact(self):
-        string = input("Enter new contact name:")
+        string = input("Enter new contact name: ")
         return (0, string)
 
     def change_contact_number(self):
-        number = int(input("Enter new contact number:"))
+        number = input("Enter new contact number: ")
         return (1, number)
