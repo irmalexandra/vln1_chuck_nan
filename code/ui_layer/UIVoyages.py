@@ -20,7 +20,7 @@ class UIVoyages():
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
@@ -61,7 +61,7 @@ class UIVoyages():
                                                                 "Missing status"))
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
@@ -103,7 +103,7 @@ class UIVoyages():
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
@@ -123,7 +123,7 @@ class UIVoyages():
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:

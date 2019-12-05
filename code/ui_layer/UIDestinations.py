@@ -21,7 +21,7 @@ class UIDestinations():
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice = nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
@@ -68,7 +68,7 @@ class UIDestinations():
                                                             destinations.get_contact_number()))
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:

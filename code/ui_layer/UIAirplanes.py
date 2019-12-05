@@ -20,7 +20,7 @@ class UIAirplanes():
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
@@ -58,7 +58,7 @@ class UIAirplanes():
                                                                         "Missing date_available"))
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
