@@ -26,7 +26,14 @@ all_employee_list = []
 for key, value in all_employee_dict.items():
     all_employee_list.append(value)
 all_employee_list.sort(key=lambda employee: employee.get_name(), reverse=False)
-all_employee_dict.sort(key=lambda employee: employee.get_name(), reverse=False)
+#all_employee_dict.sort(key=lambda employee: employee.get_name(), reverse=False)
+
+new_employee_dict = {}
 
 for employee in all_employee_list:
+    new_employee_dict[employee.get_id()] = employee
+
+for key, employee in new_employee_dict.items():
     print(employee.get_name())
+# for employee in all_employee_list:
+    # print(employee.get_name())
