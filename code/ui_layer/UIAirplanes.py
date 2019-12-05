@@ -32,10 +32,16 @@ class UIAirplanes():
         ''' Create an airplane '''
         # 1
         # user input
-        name = input("ID: ")
-        make = input("Make: ")
-        model = input("Model: ")
-        total_seats = input("Total seats: ")
+        make  = input("Make: ")
+        model =  input("Model: ")
+        insignia = input("Insignia: ").upper()
+        new_airplane = self.__modelAPI.get_model("Airplane")
+        new_airplane.set_make(make)
+        new_airplane.set_model(model)
+        new_airplane.set_name(insignia)
+        self.__ll_api.create_airplane(new_airplane)
+
+
 
     def display_all_airplanes(self):
         ''' Print all airplanes '''

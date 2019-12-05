@@ -43,3 +43,11 @@ class DLAirplanes():
         aircraft_stream.write(aircraft_str)
         aircraft_stream.close()
         return    
+
+    def pull_airplane_types_info(self):
+        filestream = open("./repo/AircraftType.csv", "r")
+        airplanes_list = []
+        for airplane in filestream:
+            airplanes_list.append(airplane.strip())
+        filestream.close()
+        return airplanes_list[1:]
