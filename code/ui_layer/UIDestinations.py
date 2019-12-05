@@ -84,6 +84,8 @@ class UIDestinations():
 
     def display_one_destination(self, destination):
         ''' Search for a destination and print the information '''
+
+        destination_menu = "1. Change Name 2. Change Phone Number"
         while True:
 
             nav_dict = {1: self.change_contact, 2: self.change_contact_number, 9: self.__ui_base_functions.back,
@@ -91,7 +93,8 @@ class UIDestinations():
             print("-" * self.UI_DIVIDER_INT)
             print(destination)
             print("-" * self.UI_DIVIDER_INT)
-            print("1. Change Name 2. Change Phone Number")
+            print("|{}{}{}|".format(destination_menu, " "*(self.UI_DIVIDER_INT - len(destination_menu) -
+                                                           len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
@@ -102,11 +105,7 @@ class UIDestinations():
                     return
             except KeyError:
                 print("Invalid input! try again")
-            if choice:
-                
-                print("Change successful")
-            else:
-                print("Invalid input")
+            self.__ll_api.edit_destination(choice)
 
     def change_contact(self):
         string = input("Enter new contact name:")
