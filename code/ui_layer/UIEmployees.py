@@ -59,7 +59,7 @@ class UIEmployees():
         ''' Search for employee instance and print out it's information '''
         self.display_employee(self.__ll_api.get_employee_by_name(name))
 
-    def display_employee(self, employee):
+    def display_one_employee(self, employee):
         print(employee)
 
     def display_edit_employee(self):
@@ -153,6 +153,8 @@ class UIEmployees():
         new_emp.set_name(name)
         ssn = input("SSN: ")
         new_emp.set_ssn(ssn)
+        address = input("Address: ")
+        new_emp.set_address(address)
         home_number = input("Home number: ")
         new_emp.set_home_num(home_number)
         mobile_number = input("Mobile number: ")
