@@ -13,8 +13,8 @@ class UIDestinations():
         ''' Print the destination menu '''
         while True:
         
-            nav_dict = {1:self.create_destination, 2:self.display_all_destinations, 3:self.display_destination_search_menu, 9:self.__ui_base_functions.back,0:self.__ui_base_functions.home}
-            destination_menu = "1. Create 2. All 3. Search"
+            nav_dict = {1:self.create_destination, 2:self.display_all_destinations, 3:self.display_search_by_name, 9:self.__ui_base_functions.back,0:self.__ui_base_functions.home}
+            destination_menu = "1. Create 2. All 3. Search by name"
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(destination_menu, " "*(self.UI_DIVIDER_INT - len(destination_menu) -
                                                         len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
@@ -39,6 +39,9 @@ class UIDestinations():
         distance = input("Distance: ")
         contact_name = input("Contact name: ")
         contact_number = input("Contact number: ")
+
+    def display_search_by_name(self):
+        pass
 
     def display_create_destination_header(self):
         counter = 1
@@ -84,27 +87,7 @@ class UIDestinations():
         print("Contact name: ")
         print("Contact number: ")
         self.display_destination_search_menu()
-
-    def display_destination_search_menu(self):
-        ''' Change contact name or emergency number and print the information '''
-        while True:
-        
-            nav_dict = {1: self.change_contact, 2: self.change_emergency_number, 9:self.__ui_base_functions.back,0:self.__ui_base_functions.home}
-            search_menu = "1. Change contact name 2. Change emergency number"
-            print("-" * self.UI_DIVIDER_INT)
-            print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
-                                                    len(search_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
-            print("-" * self.UI_DIVIDER_INT)
-            choice = int(input("Input: "))
-            try:
-                choice = choice = nav_dict[choice]()
-                if choice == 0:
-                    return 0
-                if choice == 9:
-                    return
-            except KeyError:
-                print("Invalid input! try again")
-
+    
     def change_contact(self, destination_id):
         print("change contact YAY!")
         pass
