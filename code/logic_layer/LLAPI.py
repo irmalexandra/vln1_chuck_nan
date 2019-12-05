@@ -33,5 +33,5 @@ class LLAPI:
     def get_employee_list_by_title(self, title):
         return self.__ll_employees.filter_all_employees_by_title(title)
 
-    def get_employee_by_name(self, name):
-        return self.__ll_employees.get_employee_by_name(name)
+    def get_employees_filtered_by_name(self, name):
+        return self.__ll_employees.get_employees_by_name(name)
