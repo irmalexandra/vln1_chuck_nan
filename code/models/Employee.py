@@ -1,9 +1,8 @@
 from validation.validator import Validator
 class Employee():
-    def __init__(self, a_id = "", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
+    def __init__(self, name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
         self.__models_validation = Validator()
         self.__name = name
-        self.__id = a_id
         self.__ssn = ssn
         self.__address = address
         self.__home_num = home_num
@@ -13,16 +12,13 @@ class Employee():
         self.__rank = rank
 
     def raw_info(self):
-        returned_string = ""
-        returned_string = str(self.__id) + "," + self.__ssn  + "," + self.__name+ "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank 
-        return returned_string
+        return self.__ssn  + "," + self.__name+ "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
 
 
 
-    def get_id(self):
-        return self.__id
     
     def __str__(self):
+        
         return "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nHome number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)
 
     def get_name(self):

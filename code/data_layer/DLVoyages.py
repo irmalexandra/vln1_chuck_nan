@@ -21,10 +21,6 @@ class DLVoyages():
 
     def pull_all_voyages(self):
 
-        print ("voyages file exist:"+str(path.exists('./repo/voyages.csv')))
-        print ("temp file exist:"+str(path.exists('./repo/voyages_temp.csv')))
-
-
         if path.exists('./repo/voyages.csv') and path.exists('./repo/voyages_temp.csv'):
             filestream = open("./repo/voyages.csv", "r")
             os.remove("./repo/voyages_temp.csv")
