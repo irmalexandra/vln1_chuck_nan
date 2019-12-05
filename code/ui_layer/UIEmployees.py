@@ -57,7 +57,35 @@ class UIEmployees():
 
     def get_employee_by_name(self, name):
         ''' Search for employee instance and print out it's information '''
-        self.display_employee(self.__ll_api.get_employee_by_name(name))
+        found_employee_list = self.__ll_api.get_employees_filtered_by_name(
+            name)
+        if len(found_employee_list) == 1:
+            self.display_employee(found_employee_list[0])
+
+        else:
+            self.display_found_employees_by_name(found_employee_list)
+
+    def display_found_employees_by_name(self, employee_list):
+        nav_dict = {9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        while True:
+            print("-" * self.UI_DIVIDER_INT)
+            print("|{:<10}{:20}{:15}|".format(
+                "Index: ", "Name:", "SSN:"))
+            for index, employee in enumerate(employee_list):
+                print("|{:02d}{:<8}{:20}{:15}|".format(index+1, "",
+                                                       employee.get_name(),
+                                                       employee.get_ssn()))
+            print("-" * self.UI_DIVIDER_INT)
+            choice = int(input("Input: "))
+            try:
+                choice = nav_dict[choice]()
+                if choice == 0:
+                    return 0
+                if choice == 9:
+                    return
+            except KeyError:
+                print("Invalid input! try again")
 
     def display_employee(self, employee):
         print(employee)
