@@ -17,7 +17,7 @@ ID = 0
 
 
 crew_stream = open("crew.csv", "r", encoding="UTF-8")
-employee_file = open ("employees.csv", "a", encoding="UTF-8")
+employee_file = open ("employees_temp.csv", "a", encoding="UTF-8")
 
 def generate_address():
     address = random.choice(ADDRESSES)
@@ -43,10 +43,8 @@ for index,line in enumerate(crew_stream):
         new_home_number = generate_phone_number()
         new_mobile_number = generate_phone_number()
         new_email = generate_email(employee[1])
-        ID += 1
-        new_id = ID
+        
         new_employee = []
-        new_employee.append(str(new_id))
         new_employee.append(str(employee[SSN]))
         new_employee.append(str(employee[NAME]))
         new_employee.append(str(new_address))
