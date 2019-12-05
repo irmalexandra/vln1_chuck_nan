@@ -36,12 +36,10 @@ class UIEmployees():
 
     def get_employee_by_ssn(self, ssn):
         ''' Search for employee and print out it's information '''
-        employee = self.__ll_api.get_employee_by_ssn(ssn)
-        self.display_employee(employee)
-        print(employee)
+        self.display_employee(self.__ll_api.get_employee_by_ssn(ssn))
 
     def display_employee(self, employee):
-        pass
+        print(employee)
 
     def display_edit_employee(self):
         pass
@@ -82,7 +80,7 @@ class UIEmployees():
         print("-" * self.UI_DIVIDER_INT)
         print("|{:20}{:15}{:20}{:20}{:10}|".format(
             "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
-        employee_list = self.__ll_api.get_employee_list_by_title(title)
+        employee_list = self.__ll_api.get_employee_dict_by_title(title)
         for employee in employee_list:
             print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
                                                        employee.get_ssn(),
