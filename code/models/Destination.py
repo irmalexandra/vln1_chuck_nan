@@ -56,8 +56,9 @@ class Destination():
     def set_contact_name(self, new_contact_name):
         if self.__models_validation.validate_contact_name:
             self.__contact_name = new_contact_name
+            return True
         else:
-            pass
+            return False
 
     def get_contact_number(self):
         return self.__contact_number
@@ -65,5 +66,6 @@ class Destination():
     def set_contact_number(self, new_contact_number):
         if self.__models_validation.validate_contact_number:
             self.__contact_number = new_contact_number
+            return True
         else:
-            pass
+            return False
