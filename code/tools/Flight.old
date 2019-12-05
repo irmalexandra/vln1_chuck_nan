@@ -1,6 +1,6 @@
 from validation.validator import Validator
 
-models_validation = Validator()
+self.__models_validation = Validator()
 
 
 class Flight():
@@ -16,7 +16,7 @@ class Flight():
         return self.__id
 
     def set_id(self, new_id):
-        if models_validation.validate_flight_id:
+        if self.__models_validation.validate_flight_id:
             self.__id = new_id
         else:
             pass
@@ -25,7 +25,7 @@ class Flight():
         return self.__departure_airport
 
     def set_departure_airport(self, new_departure_airport):
-        if models_validation.validate_flight_departure_airport:
+        if self.__models_validation.validate_flight_departure_airport:
             self.__departure_airport = new_departure_airport
         else:
             pass
@@ -34,7 +34,7 @@ class Flight():
         return self.__arrival_airport
 
     def set_arrival_airport(self, new_arrival_airport):
-        if models_validation.validate_flight_arrival_airport:
+        if self.__models_validation.validate_flight_arrival_airport:
             self.__arrival_airport = new_arrival_airport
         else:
             pass
@@ -43,7 +43,7 @@ class Flight():
         return self.__departure_date_time
 
     def set_departure_date_time(self, new_departure_date_time):
-        if models_validation.validate_flight_departure_date_time:
+        if self.__models_validation.validate_flight_departure_date_time:
             self.__departure_date_time = new_departure_date_time
         else:
             pass
@@ -52,7 +52,7 @@ class Flight():
         return self.__arrival_airport
 
     def set_arrival_date_time(self, new_arrival_date_time):
-        if models_validation.validate_flight_arrival_date_time:
+        if self.__models_validation.validate_flight_arrival_date_time:
             self.__arrival_date_time = new_arrival_date_time
         else:
             pass

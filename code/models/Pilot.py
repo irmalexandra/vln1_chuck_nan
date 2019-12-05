@@ -1,8 +1,5 @@
 from validation.validator import Validator
 from models.Employee import Employee
-models_validation = Validator()
-
-
 class Pilot(Employee):
     def __init__(self, licence=''):
         super().__init__(self)
@@ -12,7 +9,7 @@ class Pilot(Employee):
         return self.__licence
 
     def set_licence(self, new_licence):
-        # if models_validation.validate_pilot_airplane_type:
+        # if self.__models_validation.validate_pilot_airplane_type:
         #     self.__airplane_type = new_airplane_type
         # else:
         #     pass
