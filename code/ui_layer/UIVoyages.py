@@ -1,5 +1,5 @@
 class UIVoyages():
-    UI_DIVIDER_INT = 104
+    UI_DIVIDER_INT = 124
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
 
