@@ -36,7 +36,12 @@ class LLAPI:
     def get_employee_by_name(self, name):
         return self.__ll_employees.get_employee_by_name(name)
 
-    def create_airplane(self, airplane):
-        return self.__ll_airplanes.create_airplane(airplane)
+    def pull_airplane_types(self):
+        return self.__ll_airplanes.pull_airplane_types()
+
+
+    def create_airplane(self, airplane, airplane_types):
+        return self.__ll_airplanes.create_airplane(airplane, airplane_types)
+        
     def get_employees_filtered_by_name(self, name):
         return self.__ll_employees.get_employees_by_name(name)

@@ -2,6 +2,8 @@ class UIAirplanes():
     UI_DIVIDER_INT = 124
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
+    MAKE = 1
+    MODEL = 2
 
     def __init__(self, LLAPI, modelAPI, UIBaseFunctions):
         self.__ll_api = LLAPI
@@ -32,15 +34,41 @@ class UIAirplanes():
         ''' Create an airplane '''
         # 1
         # user input
+        existing_airplane_types = self.__ll_api.pull_airplane_types()
+        existing_airplane_types_list = [x.split(",") for x in existing_airplane_types]  
+        print("Supported airplanes: ")
+        for number, plane in enumerate(existing_airplane_types_list):
+            print(number + 1, plane[1] + plane[2])
+
         
-        make  = input("Make: ")
-        model =  input("Model: ")
-        insignia = input("Insignia: ").upper()
+        picked_airplane = input("Pick plane: ")
+        if picked_airplane == "1":
+            make = existing_airplane_types_list[0][self.MAKE]
+            model = existing_airplane_types_list[0][self.MODEL]
+        elif picked_airplane == "2":
+            make = existing_airplane_types_list[1][self.MAKE]
+            model = existing_airplane_types_list[1][self.MODEL]
+        elif picked_airplane == "3":
+            make = existing_airplane_types_list[2][self.MAKE]
+            model = existing_airplane_types_list[2][self.MODEL]
+        
+        insignia = "TF-" + input("Insignia: (must be 3 letters) ").upper()
+        
         new_airplane = self.__modelAPI.get_model("Airplane")
         new_airplane.set_make(make)
         new_airplane.set_model(model)
         new_airplane.set_name(insignia)
-        self.__ll_api.create_airplane(new_airplane)
+        make_bool, model_bool, airplane = self.__ll_api.create_airplane(new_airplane, existing_airplane_types)
+        print("Make is ", make_bool, "model is ", model_bool)
+        if make_bool == True and model_bool == True:
+            print(airplane, "\n Created succesfully!")
+        elif make_bool == False  and model_bool == None:
+            print("Invalid input", model)
+        elif make_bool == None and model_bool == False :
+            print("Invalid input", make)
+        else:
+            print("Both",make,"and",model,"Invalid")
+
 
 
 
