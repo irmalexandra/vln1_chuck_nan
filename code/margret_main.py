@@ -48,7 +48,9 @@ new_uibasefunctions = UIBaseFunctions()
 
 new_ui_des = UIEmployees(new_llapi, new_modelapi, new_uibasefunctions)
 # new_ui_des.display_employee_search_menu()
+new_ui_des.display_employee_sub_menu()
 new_ui_des.get_employee_by_ssn('3009907461')
+# new_ui_des.get_employee_by_ssn('3009907461')
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
