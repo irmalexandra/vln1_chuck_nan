@@ -32,6 +32,7 @@ class UIAirplanes():
         ''' Create an airplane '''
         # 1
         # user input
+        
         make  = input("Make: ")
         model =  input("Model: ")
         insignia = input("Insignia: ").upper()
