@@ -17,12 +17,8 @@ class Employee():
         returned_string = str(self.__id) + "," + self.__ssn  + "," + self.__name+ "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank 
         return returned_string
 
-    def set_id(self, new_id):
-        if self.__models_validation.validate_employee_id(new_id):
-            self.__id = new_id
-        else:
-            pass
-        
+
+
     def get_id(self):
         return self.__id
     
