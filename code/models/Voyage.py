@@ -15,7 +15,7 @@ class Voyage():
         self.__return_flight_departure_date = return_flight_departure_date
         self.__return_flight_arrival_date = return_flight_arrival_date
 
-        self.__aircraft_ssn = aircraft_ssn
+        self.__aircraft_ssn = aircraft_id
         self.__captain_ssn = captain_ssn
         self.__copilot_ssn = copilot_ssn
         self.__fsm_ssn = fsm_ssn
