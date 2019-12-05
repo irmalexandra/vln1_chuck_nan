@@ -141,13 +141,24 @@ class UIEmployees():
         pass
 
     def create_employee(self):
-        name = input("Name: ")
-        ssn = input("SSN: ")
-        home_number = input("Home number: ")
-        mobile_number = input("Mobile number: ")
-        email = input("E-mail: ")
+        ''' Create an employee, if employee is a pilot licence and rank is input '''
         title = input("Title: ")
-        licence = input("Licence: ")
+        new_emp = self.__modelAPI.get_model(title)
+        if title == "Pilot":
+            licence = input("Licence: ")
+            new_emp.set_licence(licence)
+            rank = input("Rank: ")
+            new_emp.set_rank(rank)
+        name = input("Name: ")
+        new_emp.set_name(name)
+        ssn = input("SSN: ")
+        new_emp.set_ssn(ssn)
+        home_number = input("Home number: ")
+        new_emp.set_home_num(home_number)
+        mobile_number = input("Mobile number: ")
+        new_emp.set_mobile_num(mobile_number)
+        email = input("E-mail: ")
+        new_emp.set_email(email)
 
     def edit_employee(self):
         pass
