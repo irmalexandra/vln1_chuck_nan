@@ -3,9 +3,9 @@ class UIEmployees():
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
 
-    def __init__(self, LLAPI, model_controller):
+    def __init__(self, LLAPI, modelAPI):
         self.__ll_api = LLAPI
-        self.__model_controller = model_controller
+        self.__modelAPI = modelAPI
 
     def display_employee_sub_menu(self):
         nav_dict = {1:"",2:self.display_all_employees,3:"",4:"",9:"",0:""}

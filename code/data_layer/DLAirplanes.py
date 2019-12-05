@@ -5,9 +5,9 @@ class DLAirplanes():
     AIRCRAFT_DICT_MODEL = 1
     AIRCRAFT_DICT_CAPACITY = 2
 
-    def __init__(self, model_controller):
+    def __init__(self, modelAPI):
         self.all_airplanes_list = []
-        self.__model_controller = model_controller
+        self.__modelAPI = modelAPI
 
     def pull_all_airplanes(self):
 
@@ -21,7 +21,7 @@ class DLAirplanes():
 
         for line in aircraft_stream:
             line_list = line.strip().split(",")
-            new_aircraft = self.__model_controller.get_model('Airplane')
+            new_aircraft = self.__modelAPI.get_model('Airplane')
             plane_type = line_list[DLAirplanes.PLANE_TYPE_ID]
             new_aircraft.set_name(line_list[DLAirplanes.PLANE_NAME]) #Insignia
             aircraft_info_list = type_dict[plane_type]

@@ -15,9 +15,9 @@ class DLVoyages():
     FSMID = 11
     FAIDS = 12
 
-    def __init__(self, model_controller):
+    def __init__(self, modelAPI):
         self.all_voyages_list = []
-        self.__model_controller = model_controller
+        self.__modelAPI = modelAPI
 
     def pull_all_voyages(self):
 
@@ -39,7 +39,7 @@ class DLVoyages():
 
         for line in filestream:
             line_list = line.strip().split(",")
-            new_voyage = self.__model_controller.get_model('Voyage')
+            new_voyage = self.__modelAPI.get_model('Voyage')
             new_voyage.set_departing_flight_num(line_list[DLVoyages.DEPARTING_FLIGHT_NUM])
             new_voyage.set_return_flight_num(line_list[DLVoyages.RETURNING_FLIGHT_NUM])
             new_voyage.set_departing_flight_departing_from(line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_FROM])

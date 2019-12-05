@@ -11,19 +11,19 @@ class DLEmployees():
     RANK = 8
     LICENSE = 9
 
-    def __init__(self, model_controller):
+    def __init__(self, modelAPI):
         self.all_crew_list = []
-        self.__model_controller = model_controller
+        self.__modelAPI = modelAPI
 
     def pull_all_employees(self):
         self.filestream = open("./repo/employees.csv", "r")
         for line in self.filestream:
             line_list = line.strip().split(",")
             if line_list[DLEmployees.TITLE] == 'Pilot':
-                new_emp = self.__model_controller.get_model('Pilot')
+                new_emp = self.__modelAPI.get_model('Pilot')
                 new_emp.set_licence(line_list[DLEmployees.LICENSE])
             else:
-                new_emp = self.__model_controller.get_model('FlightAttendant')
+                new_emp = self.__modelAPI.get_model('FlightAttendant')
 
             new_emp.set_id(line_list[DLEmployees.ID])
             new_emp.set_ssn(line_list[DLEmployees.SSN])

@@ -1,5 +1,5 @@
 from ui_layer.UIEmployees import UIEmployees
-#from models.ModelController import ModelController
+#from models.ModelAPI import ModelAPI
 
 new_ui_emp = UIEmployees()
 new_ui_emp.display_employee_search_menu()

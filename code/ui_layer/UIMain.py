@@ -1,9 +1,10 @@
 from logic_layer.LLAPI import LLAPI
+from ui_layer.UIBaseFunctions import UIBaseFunctions
 from ui_layer.UIEmployees import UIEmployees
 from ui_layer.UIVoyages import UIVoyages
 from ui_layer.UIDestinations import UIDestinations
 from ui_layer.UIAirplanes import UIAirplanes
-from models.ModelController import ModelController
+from models.ModelAPI import ModelAPI
 import string
 
 
@@ -18,20 +19,12 @@ class UIMain():
     DEVIATION_INT = 2
 
     def __init__(self):
-<<<<<<< HEAD
+        self.__LLAPI = LAPI()
+        self.__
         self.ui_employees = UIEmployees()
         self.ui_voyages = UIVoyages()
         self.ui_destinations = UIDestinations()
         self.ui_airplanes = UIAirplanes()
-=======
-        self.__LLAPI = LLAPI()
-        self.__model_controller = ModelController()
-        self.__ui_employees = UIEmployees(self.__LLAPI, self.__model_controller)
-        self.__ui_voyages = UIVoyages(self.__LLAPI, self.__model_controller)
-        self.__ui_destinations = UIDestinations(self.__LLAPI, self.__model_controller)
-        self.__ui_airplanes = UIAirplanes(self.__LLAPI, self.__model_controller)
-        
->>>>>>> 0d8f9d08fbfd60f1df163eb872269949f0f020d5
 
     def print_nan_airlines(self):
         print(UIMain.distinguisher)

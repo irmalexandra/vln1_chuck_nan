@@ -6,16 +6,16 @@ class DLDestinations():
     CONTACT_NAME = 4
     CONTACT_NUMBER = 5
 
-    def __init__(self, model_controller):
+    def __init__(self, modelAPI):
         self.all_destinations_list = []
-        self.__model_controller = model_controller
+        self.__modelAPI = modelAPI
 
     def pull_all_destinations(self):
 
         filestream = open("./repo/Destination.csv", "r")
         for line in filestream:
             line_list = line.strip().split(",")
-            new_destination = self.__model_controller.get_model('Destination')
+            new_destination = self.__modelAPI.get_model('Destination')
 
             new_destination.set_country(line_list[DLDestinations.COUNTRY])
             new_destination.set_airport(line_list[DLDestinations.AIRPORT])

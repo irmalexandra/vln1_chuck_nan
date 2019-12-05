@@ -2,16 +2,16 @@ from data_layer.DLAirplanes import DLAirplanes
 from data_layer.DLDestinations import DLDestinations
 from data_layer.DlEmployees import DLEmployees
 from data_layer.DLVoyages import DLVoyages
-from models.ModelController import ModelController
+from models.ModelAPI import ModelAPI
 
 
 class DLAPI():
     def __init__(self):
-        self.__model_controller = ModelController()
-        self.__dl_employees = DLEmployees(self.__model_controller)
-        self.__dl_voyages = DLVoyages(self.__model_controller)
-        self.__dl_destinations = DLDestinations(self.__model_controller)
-        self.__dl_airplanes = DLAirplanes(self.__model_controller)
+        self.__modelAPI = ModelAPI()
+        self.__dl_employees = DLEmployees(self.__modelAPI)
+        self.__dl_voyages = DLVoyages(self.__modelAPI)
+        self.__dl_destinations = DLDestinations(self.__modelAPI)
+        self.__dl_airplanes = DLAirplanes(self.__modelAPI)
 
     def populate_all_employees(self):
         return self.__dl_employees.pull_all_employees()

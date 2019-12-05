@@ -1,5 +1,5 @@
 class UIBaseFunctions():
-    def __init__():
+    def __init__(self):
         pass
 
     def back(self):

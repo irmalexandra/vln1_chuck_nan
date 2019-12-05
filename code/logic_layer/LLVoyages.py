@@ -1,7 +1,7 @@
 class LLVoyages:
-    def __init__(self, DLAPI, model_controller):
+    def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
-        self.__model_controller = model_controller
+        self.__modelAPI = modelAPI
 
     def validate_voyage(self):
         pass

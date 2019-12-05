@@ -7,7 +7,7 @@ from models.Destination import Destination
 
 
 
-class ModelController():
+class ModelAPI():
     def __init__(self):
         self.model_dict = {"Airplane": Airplane,\
                       "Employee": Employee,\
