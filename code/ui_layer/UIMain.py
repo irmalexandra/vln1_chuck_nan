@@ -1,10 +1,12 @@
 from logic_layer.LLAPI import LLAPI
+from models.ModelAPI import ModelAPI
+from ui_layer import UIBaseFunctions
 from ui_layer.UIBaseFunctions import UIBaseFunctions
 from ui_layer.UIEmployees import UIEmployees
 from ui_layer.UIVoyages import UIVoyages
 from ui_layer.UIDestinations import UIDestinations
 from ui_layer.UIAirplanes import UIAirplanes
-from models.ModelAPI import ModelAPI
+
 import string
 
 
@@ -19,12 +21,13 @@ class UIMain():
     DEVIATION_INT = 2
 
     def __init__(self):
-        self.__LLAPI = LAPI()
-        self.__
-        self.ui_employees = UIEmployees()
-        self.ui_voyages = UIVoyages()
-        self.ui_destinations = UIDestinations()
-        self.ui_airplanes = UIAirplanes()
+        self.__LLAPI = LLAPI()
+        self.__ui_base_functions = UIBaseFunctions()
+        self.__modelAPI = ModelAPI()
+        self.ui__employees = UIEmployees(self.__LLAPI, self.__modelAPI, self.__ui_base_functions)
+        self.ui__voyages = UIVoyages(self.__LLAPI, self.__modelAPI, self.__ui_base_functions)
+        self.ui__destinations = UIDestinations(self.__LLAPI, self.__modelAPI, self.__ui_base_functions)
+        self.ui__airplanes = UIAirplanes(self.__LLAPI, self.__modelAPI, self.__ui_base_functions)
 
     def print_nan_airlines(self):
         print(UIMain.distinguisher)
@@ -37,7 +40,7 @@ class UIMain():
         print(UIMain.distinguisher, end="")
 
     def display_main_menu(self):
-        nav_dict = {1:self.ui_employees.display_employee_sub_menu,2:"",3:"",4:"",9:"",0:""}
+        nav_dict = {1:self.ui__employees.display_employee_sub_menu,2:"",3:"",4:"",9:"",0:""}
         self.print_nan_airlines()
         main_menu = "1. Employees 2. Voyages 3. Destinations 4. Airplanes"
         #print("{}{}".format(true_menu, " " * (UIMain.TRUE_LEN - len(true_menu)-1)))

@@ -3,9 +3,10 @@ class UIAirplanes():
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
 
-    def __init__(self, LLAPI, modelAPI):
+    def __init__(self, LLAPI, modelAPI, UIBaseFunctions):
         self.__ll_api = LLAPI
         self.__modelAPI = modelAPI
+        self.__ui_base_functions = UIBaseFunctions
 
     def display_airplanes_sub_menu(self):
         ''' Print the airplanes menu '''
