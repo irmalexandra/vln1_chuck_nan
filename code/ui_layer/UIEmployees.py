@@ -36,9 +36,9 @@ class UIEmployees():
         # needs input
         while True:
 
-            nav_dict = {1: self.get_employee_by_ssn, 2: self.display_all_employees_by_title, 3: self.display_all_employees_by_date,
+            nav_dict = {1: self.get_employee_by_name, 2: self.display_all_employees_by_title, 3: self.display_all_employees_by_date,
                         4: self.display_all_employees_by_title, 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
-            search_menu = "1. SSN 2. Title 3. Date 4. Airplane"
+            search_menu = "1. Name 2. Title 3. Date 4. Airplane"
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
                                                       len(search_menu) - len(self.RETURN_MENU_STR) -
@@ -55,9 +55,9 @@ class UIEmployees():
             except KeyError:
                 print("Invalid input! try again")
 
-    def get_employee_by_ssn(self, ssn):
-        ''' Search for employee and print out it's information '''
-        self.display_employee(self.__ll_api.get_employee_by_ssn(ssn))
+    def get_employee_by_name(self, name):
+        ''' Search for employee instance and print out it's information '''
+        self.display_employee(self.__ll_api.get_employee_by_name(name))
 
     def display_employee(self, employee):
         print(employee)
@@ -73,9 +73,9 @@ class UIEmployees():
             print("-" * self.UI_DIVIDER_INT)
             print("|{:<10}{:20}{:15}{:20}{:20}{:10}|".format(
                 "Index: ", "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
-            employee_dict = self.__ll_api.get_all_employee_list()
-            for index, employee in employee_dict.items():
-                print("|{:02d}{:<8}{:20}{:15}{:20}{:20}{:10}|".format(index, "",
+            employee_list = self.__ll_api.get_employee_list_by_name()
+            for index, employee in enumerate(employee_list):
+                print("|{:02d}{:<8}{:20}{:15}{:20}{:20}{:10}|".format(index+1, "",
                                                                       employee.get_name(),
                                                                       employee.get_ssn(),
                                                                       employee.get_address(),
@@ -141,13 +141,24 @@ class UIEmployees():
         pass
 
     def create_employee(self):
-        name = input("Name: ")
-        ssn = input("SSN: ")
-        home_number = input("Home number: ")
-        mobile_number = input("Mobile number: ")
-        email = input("E-mail: ")
+        ''' Create an employee, if employee is a pilot licence and rank is input '''
         title = input("Title: ")
-        licence = input("Licence: ")
+        new_emp = self.__modelAPI.get_model(title)
+        if title == "Pilot":
+            licence = input("Licence: ")
+            new_emp.set_licence(licence)
+            rank = input("Rank: ")
+            new_emp.set_rank(rank)
+        name = input("Name: ")
+        new_emp.set_name(name)
+        ssn = input("SSN: ")
+        new_emp.set_ssn(ssn)
+        home_number = input("Home number: ")
+        new_emp.set_home_num(home_number)
+        mobile_number = input("Mobile number: ")
+        new_emp.set_mobile_num(mobile_number)
+        email = input("E-mail: ")
+        new_emp.set_email(email)
 
     def edit_employee(self):
         pass
