@@ -2,6 +2,7 @@ class UIEmployees():
     UI_DIVIDER_INT = 124
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
+    WALL = "|"
 
     def __init__(self, LLAPI, modelAPI, UIBaseFunctions):
         self.__ll_api = LLAPI
@@ -58,8 +59,7 @@ class UIEmployees():
     def get_employee_by_name(self, name):
         ''' Search for employee instance and print out it's information '''
         
-        found_employee_list = self.__ll_api.get_employees_filtered_by_name(
-            name)
+        found_employee_list = self.__ll_api.get_employees_filtered_by_name(name)
         if len(found_employee_list) == 1:
             self.display_employee(found_employee_list[0])
 

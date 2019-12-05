@@ -9,8 +9,8 @@ class Validator():
     def __validate_string(self, string):
         return string.isalpha()
 
-    def __validate_int(self, integer):
-        return integer.isdigit()
+    def __validate_int(self, string):
+        return string.isdigit()
 
     def validate_name(self, name):
         try:
@@ -103,15 +103,11 @@ class Validator():
         return False
 
     def validate_airplane_typeid(self, typeid):
-        if (self.__validate_string(typeid)) and (typeid.isupper()):
-            if typeid[:2] == "NA":
-                return True
+        return typeid[:2] == "NA"
 
-        return False
-
-    def validate_airplane_id(self, id):
-        if id[2] == "-":
-            if len(id) == 6:
+    def validate_airplane_insignia(self, insignia):
+        if insignia[2] == "-":
+            if len(insignia) == 6:
                 return self.__validate_string(id.replace("-", ""))
 
         return False
@@ -160,3 +156,5 @@ class Validator():
 
     def validate_contact_number(self, number): #<---------------
         return self.validate_phone_number(number)
+
+    
