@@ -2,6 +2,8 @@ class UIAirplanes():
     UI_DIVIDER_INT = 124
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
+    MAKE = 1
+    MODEL = 2
 
     def __init__(self, LLAPI, modelAPI, UIBaseFunctions):
         self.__ll_api = LLAPI
@@ -32,17 +34,32 @@ class UIAirplanes():
         ''' Create an airplane '''
         # 1
         # user input
+        existing_airplane_types = self.__ll_api.pull_airplane_types()
+        existing_airplane_types_list = [x.split(",") for x in existing_airplane_types]  
+        print("Supported airplanes: ")
+        for number, plane in enumerate(existing_airplane_types_list):
+            print(number + 1, plane[1] + plane[2])
+
         
-        make  = input("Make: ")
-        model =  input("Model: ")
-        insignia = input("Insignia: ").upper()
+        picked_airplane = input("Pick a airplane type: ")
+        if picked_airplane == "1":
+            make = existing_airplane_types_list[0][self.MAKE]
+            model = existing_airplane_types_list[0][self.MODEL]
+        elif picked_airplane == "2":
+            make = existing_airplane_types_list[1][self.MAKE]
+            model = existing_airplane_types_list[1][self.MODEL]
+        elif picked_airplane == "3":
+            make = existing_airplane_types_list[2][self.MAKE]
+            model = existing_airplane_types_list[2][self.MODEL]
+        
+        insignia = "TF-" + input("Insignia: (must be 3 letters) ").upper()
+        
         new_airplane = self.__modelAPI.get_model("Airplane")
         new_airplane.set_make(make)
         new_airplane.set_model(model)
         new_airplane.set_name(insignia)
-        self.__ll_api.create_airplane(new_airplane)
-
-
+        airplane = self.__ll_api.create_airplane(new_airplane, existing_airplane_types)
+        print("\nAirplane created!\n{}".format(airplane))
 
     def display_all_airplanes(self):
         ''' Print all airplanes '''
@@ -64,6 +81,7 @@ class UIAirplanes():
                                                                         "Missing flight_number",
                                                                         "Missing date_available"))
             choice = int(input("Input: "))
+            
             try:
                 choice =  nav_dict[choice]()
                 if choice == 0:

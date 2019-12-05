@@ -11,19 +11,23 @@ class LLAirplanes:
 
     def get_all_airplanes(self):
         return self.__dl_api.populate_all_airplanes()
+
+    def pull_airplane_types(self):
+        return self.__dl_api.populate_all_airplane_types()
     
-    def create_airplane(self, airplane):
-        existing_airplanes = self.__dl_api.populate_all_airplane_types()
+    def create_airplane(self, airplane, airplane_types):
+        existing_airplane_types = airplane_types
         airplane_make = airplane.get_make()
         airplane_model = airplane.get_model()
-        print(existing_airplanes)
-        for info in existing_airplanes:
+        #need to see if plane already exist or na!
+        for info in existing_airplane_types:
             info_list = info.split(",")
-            print(info_list[self.MAKE],airplane_make,info_list[self.MODEL],airplane_model, "<----")
-            if info_list[self.MAKE] == airplane_make and info_list[self.MODEL] == airplane_model:
-                print("yays")
-                airplane.set_max_seats(info_list[self.CAPACITY])
-        
 
-        print(airplane)
-        self.__dl_api.create_airplane(airplane)
+            if info_list[self.MAKE] == airplane_make and info_list[self.MODEL] == airplane_model:
+                airplane.set_max_seats(info_list[self.CAPACITY])
+                self.__dl_api.create_airplane(airplane)
+
+                return  airplane
+
+
+        

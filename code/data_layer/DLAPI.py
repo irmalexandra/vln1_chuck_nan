@@ -22,6 +22,9 @@ class DLAPI():
     def populate_all_destinations(self):
         return self.__dl_destinations.pull_all_destinations()
 
+    def overwrite_all_destinations(self, destination_list):
+        self.__dl_destinations.push_all_destinations(destination_list)
+        
     def populate_all_airplanes(self):
         return self.__dl_airplanes.pull_all_airplanes()
     
