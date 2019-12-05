@@ -3,7 +3,7 @@ class UIBaseFunctions():
         pass
 
     def back(self):
-        return
+        return 9
     
     def home(self):
         return 0
