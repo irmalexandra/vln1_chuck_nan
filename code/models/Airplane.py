@@ -28,7 +28,7 @@ class Airplane():
         return self.__make
 
     def set_make(self, new_make):
-        if self.__models_validation.validate_airplane_make():
+        if self.__models_validation.validate_airplane_make(new_make):
             self.__make = new_make
         else:
             pass
