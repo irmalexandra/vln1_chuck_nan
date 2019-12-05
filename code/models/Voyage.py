@@ -91,7 +91,7 @@ class Voyage():
 
     def set_aircraft_id(self, new):
         if new != ".":
-            if self.__models_validation.validate_airplane_id(new):
+            if self.__models_validation.validate_airplane_insignia(new):
                 self.__aircraft_id = new
         else:
             self.__aircraft_id = new

@@ -221,7 +221,7 @@ class Airplane():
         return self.__id
 
     def set_id(self, new_id):
-        if self.__models_validation.validate_airplane_id:
+        if self.__models_validation.validate_airplane_insignia:
             self.__id = new_id
         else:
             pass

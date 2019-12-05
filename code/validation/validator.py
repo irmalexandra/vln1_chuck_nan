@@ -108,7 +108,7 @@ class Validator():
     def validate_airplane_insignia(self, insignia):
         if insignia[2] == "-":
             if len(insignia) == 6:
-                return self.__validate_string(id.replace("-", ""))
+                return self.__validate_string(insignia.replace("-", ""))
 
         return False
 
