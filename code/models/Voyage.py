@@ -1,10 +1,7 @@
 from validation.validator import Validator
-
-models_validation = Validator()
-
-
 class Voyage():
     def __init__(self, departing_flight_num="", return_flight_num="", departing_flight_departing_from="", departing_flight_departure_date="", departing_flight_arrival_date="", return_flight_departing_from="", return_flight_departure_date="", return_flight_arrival_date="", aircraft_id="", captain_id="", copilot_id="", fsm_id="", fa_ids=[]):
+        self.__models_validation = Validator()
         self.__departing_flight_num = departing_flight_num
         self.__return_flight_num = return_flight_num
 
@@ -33,21 +30,21 @@ class Voyage():
         return self.__departing_flight_num
 
     def set_departing_flight_num(self, new):
-        if models_validation.validate_flight_number(new):
+        if self.__models_validation.validate_flight_number(new):
             self.__departing_flight_num = new
 
     def get_return_flight_num(self):
         return self.__return_flight_num
 
     def set_return_flight_num(self, new):
-        if models_validation.validate_flight_number(new):
+        if self.__models_validation.validate_flight_number(new):
             self.__return_flight_num = new
 
     def get_departing_flight_departing_from(self):
         return self.__departing_flight_departing_from
 
     def set_departing_flight_departing_from(self, new):
-        if models_validation.validate_city(new):
+        if self.__models_validation.validate_city(new):
             self.__departing_flight_departing_from = new
         self.__departing_flight_departing_from = new
 
@@ -55,21 +52,21 @@ class Voyage():
         return self.__departing_flight_departure_date
 
     def set_departing_flight_departure_date(self, new):
-        if models_validation.validate_date_time(new):
+        if self.__models_validation.validate_date_time(new):
             self.__departing_flight_departure_date = new
 
     def get_departing_flight_arrival_date(self):
         return self.__departing_flight_arrival_date
 
     def set_departing_flight_arrival_date(self, new):
-        if models_validation.validate_date_time(new):
+        if self.__models_validation.validate_date_time(new):
             self.__departing_flight_arrival_date = new
 
     def get_return_flight_departing_from(self):
         return self.__return_flight_departing_from
 
     def set_return_flight_departing_from(self, new):
-        if models_validation.validate_city(new):
+        if self.__models_validation.validate_city(new):
             self.__return_flight_departing_from = new
         self.__return_flight_departing_from = new
 
@@ -77,14 +74,14 @@ class Voyage():
         return self.__return_flight_departure_date
 
     def set_return_flight_departure_date(self, new):
-        if models_validation.validate_date_time(new):
+        if self.__models_validation.validate_date_time(new):
             self.__return_flight_departure_date = new
 
     def get_return_flight_arrival_date(self):
         return self.__return_flight_arrival_date
 
     def set_return_flight_arrival_date(self, new):
-        if models_validation.validate_date_time(new):
+        if self.__models_validation.validate_date_time(new):
             self.__return_flight_arrival_date = new
 
     def get_aircraft_id(self):
@@ -92,7 +89,7 @@ class Voyage():
 
     def set_aircraft_id(self, new):
         if new != ".":
-            if models_validation.validate_airplane_id(new):
+            if self.__models_validation.validate_airplane_id(new):
                 self.__aircraft_id = new
         else:
             self.__aircraft_id = new
@@ -102,7 +99,7 @@ class Voyage():
 
     def set_captain_id(self, new):
         if new != ".":
-            if models_validation.validate_employee_id(new):
+            if self.__models_validation.validate_employee_id(new):
                 self.__captain_id = new
         else:
             self.__captain_id = new
@@ -112,7 +109,7 @@ class Voyage():
 
     def set_copilot_id(self, new):
         if new != ".":
-            if models_validation.validate_employee_id(new):
+            if self.__models_validation.validate_employee_id(new):
                 self.__copilot_id = new
         else:
             self.__copilot_id = new
@@ -122,7 +119,7 @@ class Voyage():
 
     def set_fsm_id(self, new):
         if new != ".":
-            if models_validation.validate_employee_id(new):
+            if self.__models_validation.validate_employee_id(new):
                 self.__fsm_id = new
         else:
             self.__fsm_id = new
@@ -134,6 +131,6 @@ class Voyage():
         if new != ".":
             valid_ids = []
             for emp_id in new:
-                if models_validation.validate_employee_id(emp_id):
+                if self.__models_validation.validate_employee_id(emp_id):
                     valid_ids.append(emp_id)
             self.__fa_ids = valid_ids

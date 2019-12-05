@@ -1,10 +1,7 @@
 from validation.validator import Validator
-
-models_validation = Validator()
-
-
 class Employee():
     def __init__(self, a_id = "", name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
+        self.__models_validation = Validator()
         self.__name = name
         self.__id = a_id
         self.__ssn = ssn
@@ -21,7 +18,7 @@ class Employee():
         return returned_string
 
     def set_id(self, new_id):
-        if models_validation.validate_employee_id(new_id):
+        if self.__models_validation.validate_employee_id(new_id):
             self.__id = new_id
         else:
             pass
@@ -36,7 +33,7 @@ class Employee():
         return self.__name
 
     def set_name(self, new_name):
-        if models_validation.validate_employee_name(new_name):
+        if self.__models_validation.validate_employee_name(new_name):
             self.__name = new_name
         else:
             pass
@@ -45,14 +42,14 @@ class Employee():
         return self.__ssn
 
     def set_ssn(self, new_ssn):
-        if models_validation.validate_employee_ssn(new_ssn):
+        if self.__models_validation.validate_employee_ssn(new_ssn):
             self.__ssn = new_ssn
 
     def get_address(self):
         return self.__address
 
     def set_address(self, new_address):
-        if models_validation.validate_employee_address(new_address):
+        if self.__models_validation.validate_employee_address(new_address):
             self.__address = new_address
         else:
             pass
@@ -61,7 +58,7 @@ class Employee():
         return self.__home_num
 
     def set_home_num(self, new_home_num):
-        if models_validation.validate_home_number(new_home_num):
+        if self.__models_validation.validate_home_number(new_home_num):
             self.__home_num = new_home_num
 
 
@@ -69,7 +66,7 @@ class Employee():
         return self.__mobile_num
 
     def set_mobile_num(self, new_mobile_num):
-        if models_validation.validate_mobile_number(new_mobile_num):
+        if self.__models_validation.validate_mobile_number(new_mobile_num):
             self.__mobile_num = new_mobile_num
         else:
             pass
@@ -79,7 +76,7 @@ class Employee():
         return self.__email
 
     def set_email(self, new_email):
-        if models_validation.validate_email(new_email):
+        if self.__models_validation.validate_email(new_email):
             self.__email = new_email
         else:
             pass
@@ -88,7 +85,7 @@ class Employee():
         return self.__title
 
     def set_title(self, new_title):
-        if models_validation.validate_title(new_title):
+        if self.__models_validation.validate_title(new_title):
             self.__title = new_title
         else:
             pass
