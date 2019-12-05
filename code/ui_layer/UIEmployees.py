@@ -9,6 +9,19 @@ class UIEmployees():
         self.__ui_base_functions = UIBaseFunctions
 
     def display_employee_sub_menu(self):
+<<<<<<< HEAD
+=======
+        nav_dict = {1: "", 2: self.display_all_employees,
+                    3: "", 4: "", 9: "", 0: ""}
+        employee_menu = "1. Create 2. All 3. Search by"
+        print("-" * self.UI_DIVIDER_INT)
+        print("|{}{}{}|".format(employee_menu, " "*(self.UI_DIVIDER_INT -
+                                                    len(employee_menu) -
+                                                    len(self.RETURN_MENU_STR)
+                                                    - self.DEVIATION_INT), self.RETURN_MENU_STR))
+
+        print("-" * self.UI_DIVIDER_INT)
+>>>>>>> c44c4a728d156425267a4fa07e394dacb5c673cd
         while True:
         
             nav_dict = {1:self.create_employee, 2:self.display_all_employees, 3:self.display_employee_search_menu, 9:self.__ui_base_functions.back,0:self.__ui_base_functions.home}
@@ -20,6 +33,7 @@ class UIEmployees():
 
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
+<<<<<<< HEAD
             try:
                 choice = nav_dict[choice]()
                 if choice == 0:
@@ -29,10 +43,14 @@ class UIEmployees():
             except KeyError:
                 print("Invalid input! try again")
             
+=======
+            nav_dict[choice]()
+>>>>>>> c44c4a728d156425267a4fa07e394dacb5c673cd
 
     def display_employee_search_menu(self):
         ''' Print the search menu of employee sub menu '''
         # needs input
+<<<<<<< HEAD
         while True:
         
             nav_dict = {1:self.get_employee_by_ssn, 2:self.display_all_employees_by_title, 3:self.display_all_employees_by_date, 4:self.display_all_employees_by_title, 9:self.__ui_base_functions.back,0:self.__ui_base_functions.home}
@@ -52,19 +70,29 @@ class UIEmployees():
                     return
             except KeyError:
                 print("Invalid input! try again")
+=======
+        search_menu = "1. SSN 2. Title 3. Date 4. Airplane"
+        print("-" * self.UI_DIVIDER_INT)
+        print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
+                                                  len(search_menu) - len(self.RETURN_MENU_STR) -
+                                                  self.DEVIATION_INT), self.RETURN_MENU_STR))
+
+        print("-" * self.UI_DIVIDER_INT)
+>>>>>>> c44c4a728d156425267a4fa07e394dacb5c673cd
 
     def get_employee_by_ssn(self, ssn):
-        employee = self.__ll_api.get_employee_by_ssn(ssn)
-        self.display_employee(employee)
+        ''' Search for employee and print out it's information '''
+        self.display_employee(self.__ll_api.get_employee_by_ssn(ssn))
 
     def display_employee(self, employee):
-        pass
+        print(employee)
 
     def display_edit_employee(self):
         pass
 
     def display_all_employees(self):
         ''' Print the given dictionary of employees '''
+<<<<<<< HEAD
         nav_dict = {9:self.__ui_base_functions.back,0:self.__ui_base_functions.home}
         while True:
             print("-" * self.UI_DIVIDER_INT)
@@ -88,6 +116,20 @@ class UIEmployees():
                     return
             except KeyError:
                 print("Invalid input! try again")
+=======
+        print("-" * self.UI_DIVIDER_INT)
+        print("|{:<10}{:20}{:15}{:20}{:20}{:10}|".format(
+            "Index: ", "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
+        employee_dict = self.__ll_api.get_all_employee_dict()
+        for index, employee in employee_dict.items():
+            print("|{:02d}{:<8}{:20}{:15}{:20}{:20}{:10}|".format(index, "",
+                                                                  employee.get_name(),
+                                                                  employee.get_ssn(),
+                                                                  employee.get_address(),
+                                                                  employee.get_mobile_num(),
+                                                                  employee.get_title()))
+        print("-" * self.UI_DIVIDER_INT)
+>>>>>>> c44c4a728d156425267a4fa07e394dacb5c673cd
 
     def display_all_employees_by_date(self):
         '''Displays all employees availability on a specific day'''
@@ -100,7 +142,7 @@ class UIEmployees():
             print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
                                                        employee.get_ssn(),
                                                        employee.get_mobile_num(),
-                                                       employee.get_title(), 
+                                                       employee.get_title(),
                                                        "Missing availability"))
         print("-" * self.UI_DIVIDER_INT)
         
@@ -111,7 +153,7 @@ class UIEmployees():
         print("-" * self.UI_DIVIDER_INT)
         print("|{:20}{:15}{:20}{:20}{:10}|".format(
             "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
-        employee_list = self.__ll_api.get_employee_list_by_title(title)
+        employee_list = self.__ll_api.get_employee_dict_by_title(title)
         for employee in employee_list:
             print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
                                                        employee.get_ssn(),
