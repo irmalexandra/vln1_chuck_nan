@@ -3,7 +3,6 @@ class LLEmployees:
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
 
-
     def validate_employee(self):
         pass
 
@@ -32,7 +31,7 @@ class LLEmployees:
         pass
 
     def filter_all_employees_by_title(self, title):
-        '''takes list of all employees and returns list of employees filtered by title from input'''
+        ''' Takes list of all employees and returns list of employees filtered by title from input '''
         filter_list = []
         employee_list = self.__dl_api.populate_all_employees()
         for employee in employee_list:
