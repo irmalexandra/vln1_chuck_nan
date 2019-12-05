@@ -14,19 +14,11 @@ class Employee():
         self.__rank = rank
 
     def raw_info(self):
-<<<<<<< HEAD
-        returned_string = ""
-        returned_string = str(self.__id) + "," + self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(
-            self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank
-        return returned_string
-
-=======
         return self.__ssn  + "," + self.__name+ "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
 
 
 
     
->>>>>>> c38dfbd53f789be87e827788865a9089333665a1
     def __str__(self):
         
         return "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nHome number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)

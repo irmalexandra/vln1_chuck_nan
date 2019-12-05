@@ -49,7 +49,7 @@ class DLVoyages():
             new_voyage.set_copilot_ssn(line_list[DLVoyages.COPILOT_SSN])
             new_voyage.set_fsm_ssn(line_list[DLVoyages.FSM_SSN])
 
-            flight_attendant_ssns_list = line_list[DLVoyages.FAssnS].split(":")
+            flight_attendant_ssns_list = line_list[DLVoyages.FAS_SSN].split("-")
 
 
             new_voyage.set_fa_ssns(flight_attendant_ssns_list)
