@@ -1,3 +1,6 @@
+import os
+from os import path
+
 class DLDestinations():
     COUNTRY = 0
     AIRPORT = 1
@@ -12,7 +15,17 @@ class DLDestinations():
 
     def pull_all_destinations(self):
 
-        filestream = open("./repo/Destination.csv", "r")
+        if path.exists('./repo/destination.csv') and path.exists('./repo/destinations_temp.csv'):
+            filestream = open("./repo/destination.csv", "r")
+            os.remove("./repo/destinations_temp.csv")
+        elif  path.exists('./repo/destination.csv') and path.exists('./repo/destinations_temp.csv') == False:
+            filestream = open("./repo/destination.csv", "r")
+        elif path.exists('./repo/destination.csv') == False and path.exists('./repo/destinations_temp.csv'):
+            filestream = open("./repo/destinations_temp.csv", "r")
+        else:
+            print("destination data files not found")
+            return
+
         for line in filestream:
             line_list = line.strip().split(",")
             new_destination = self.__modelAPI.get_model('Destination')
@@ -34,3 +47,16 @@ class DLDestinations():
         destination_stream.write(destination_str)
         destination_stream.close()
         return    
+
+
+    def push_all_destinations(self, destination_list):
+        # employee_file.write(new_emp_str)
+        HEADER = "country,airport,flight time,distance,contact name,contact number\n"
+        filestream = open("./repo/destinations_temp.csv", "w")
+        filestream.write(HEADER)
+        for destination_info in destination_list:
+            filestream.write(destination_info.raw_info())
+        filestream.close()
+        os.remove("./repo/destination.csv")
+        os.rename("./repo/destinations_temp.csv", "./repo/destination.csv")
+        return
