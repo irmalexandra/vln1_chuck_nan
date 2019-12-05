@@ -1,5 +1,5 @@
 class UIAirplanes():
-    UI_DIVIDER_INT = 104
+    UI_DIVIDER_INT = 124
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
 
@@ -20,7 +20,7 @@ class UIAirplanes():
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
@@ -32,10 +32,16 @@ class UIAirplanes():
         ''' Create an airplane '''
         # 1
         # user input
-        name = input("ID: ")
-        make = input("Make: ")
-        model = input("Model: ")
-        total_seats = input("Total seats: ")
+        make  = input("Make: ")
+        model =  input("Model: ")
+        insignia = input("Insignia: ").upper()
+        new_airplane = self.__modelAPI.get_model("Airplane")
+        new_airplane.set_make(make)
+        new_airplane.set_model(model)
+        new_airplane.set_name(insignia)
+        self.__ll_api.create_airplane(new_airplane)
+
+
 
     def display_all_airplanes(self):
         ''' Print all airplanes '''
@@ -58,7 +64,7 @@ class UIAirplanes():
                                                                         "Missing date_available"))
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:

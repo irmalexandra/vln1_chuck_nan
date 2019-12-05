@@ -24,3 +24,9 @@ class DLAPI():
 
     def populate_all_airplanes(self):
         return self.__dl_airplanes.pull_all_airplanes()
+    
+    def populate_all_airplane_types(self):
+        return self.__dl_airplanes.pull_airplane_types_info()
+    
+    def create_airplane(self, airplane):
+        self.__dl_airplanes.append_aircraft(airplane)

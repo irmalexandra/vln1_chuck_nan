@@ -1,5 +1,5 @@
 class UIDestinations():
-    UI_DIVIDER_INT = 104
+    UI_DIVIDER_INT = 124
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
 
@@ -21,7 +21,7 @@ class UIDestinations():
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice = nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
@@ -68,7 +68,7 @@ class UIDestinations():
                                                             destinations.get_contact_number()))
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
