@@ -57,18 +57,22 @@ class UIEmployees():
 
     def get_employee_by_name(self, name):
         ''' Search for employee instance and print out it's information '''
+        
         found_employee_list = self.__ll_api.get_employees_filtered_by_name(
             name)
         if len(found_employee_list) == 1:
             self.display_employee(found_employee_list[0])
 
         else:
-            self.display_found_employees_by_name(found_employee_list)
+            self.display_found_employees_by_name(found_employee_list, name)
 
-    def display_found_employees_by_name(self, employee_list):
+    def display_found_employees_by_name(self, employee_list, name):
+        ''' display list of employees by input'''
+
         nav_dict = {9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
         while True:
+            print("There were more than one ""{}"" found.".format(name))
             print("-" * self.UI_DIVIDER_INT)
             print("|{:<10}{:20}{:15}|".format(
                 "Index: ", "Name:", "SSN:"))
