@@ -139,3 +139,14 @@ Verkefni dagsisns:
 	Implementa ID fyrir employees
 	Byrja á logic layer virkni
 	Finna útur Back og Home
+
+Captains Log, Stardate 05.12.2019
+
+Yfirferð Miðvikudags:
+	DataLayer kláraður (þar til annað kemur í ljós)
+	UI structure kominn með svip, en þó tekur ekki við input
+
+verkefni dagsins:
+	Koma UI layernum í lag 
+	Vinna að Logic layer í leið
+	kroppa aðeins í validatorinn 
