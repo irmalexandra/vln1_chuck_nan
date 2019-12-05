@@ -16,7 +16,7 @@ class LLEmployees:
         return employee_dict
 
     def get_ssn_dict(self):
-        employee_dict = self.get_all_employees
+        employee_dict = self.get_all_employees()
         ssn_dict = {}
         for index, employee in employee_dict.items():
             ssn_dict[employee.get_ssn()] = index
@@ -24,9 +24,9 @@ class LLEmployees:
 
     def get_employee_by_ssn(self, ssn):
         ''' pulls a list of employee instances and returns a instance of employee by employee_ID '''
-        ssn_dict = self.get_ssn_dict
+        ssn_dict = self.get_ssn_dict()
         employee_id = ssn_dict[ssn]
-        employee_dict = self.get_all_employees
+        employee_dict = self.get_all_employees()
         employee = employee_dict[employee_id]
         return employee
 
