@@ -1,4 +1,6 @@
 from validation.validator import Validator
+
+
 class Employee():
     def __init__(self, name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
         self.__models_validation = Validator()
@@ -12,13 +14,10 @@ class Employee():
         self.__rank = rank
 
     def raw_info(self):
-        return self.__ssn  + "," + self.__name+ "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
+        return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
 
-
-
-    
     def __str__(self):
-        
+
         return "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nHome number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)
 
     def get_name(self):
@@ -53,7 +52,6 @@ class Employee():
         if self.__models_validation.validate_home_number(new_home_num):
             self.__home_num = new_home_num
 
-
     def get_mobile_num(self):
         return self.__mobile_num
 
@@ -62,7 +60,6 @@ class Employee():
             self.__mobile_num = new_mobile_num
         else:
             pass
-
 
     def get_email(self):
         return self.__email
@@ -81,7 +78,6 @@ class Employee():
             self.__title = new_title
         else:
             pass
-
 
     def get_rank(self):
         return self.__rank

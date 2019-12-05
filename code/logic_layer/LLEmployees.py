@@ -22,16 +22,23 @@ class LLEmployees:
             name_dict[employee.get_name()] = employee.get_ssn()
         return name_dict
 
-    def get_employee_by_name(self, name):
+    def get_employees_by_name(self, search_string):
         ''' pulls a list of employee instances and returns a instance of employee by employee_ID '''
+
         name_dict = self.get_name_dict()
-        employee_ssn = name_dict[name]
+        found_ssn_list = []
+        found_employee_list = []
 
-        employee_list = self.get_all_employees()
+        for name, ssn in name_dict.items():
+            if search_string in name:
+                found_ssn_list.append(ssn)
 
-        for employee in employee_list:
-            if employee.get_ssn() == employee_ssn:
-                return employee
+        all_employee_list = self.get_all_employees()
+
+        for employee in all_employee_list:
+            if employee.get_ssn() in found_ssn_list:
+                found_employee_list.append(employee)
+        return found_employee_list
 
     def list_all_employees_by_date(self):
         pass

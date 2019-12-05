@@ -51,7 +51,7 @@ class UIMain():
             print("-"*self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice =  nav_dict[choice]()
 
             except KeyError:
                 print("Invalid input! try again")
