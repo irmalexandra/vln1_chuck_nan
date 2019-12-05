@@ -6,7 +6,6 @@ from logic_layer.LLAirplanes import LLAirplanes
 from models.ModelAPI import ModelAPI
 
 
-
 class LLAPI:
     def __init__(self):
         self.__DLAPI = DLAPI()
@@ -16,7 +15,7 @@ class LLAPI:
         self.__ll_destinations = LLDestinations(self.__DLAPI, self.__modelAPI)
         self.__ll_airplanes = LLAirplanes(self.__DLAPI, self.__modelAPI)
 
-    def get_all_employee_list(self):
+    def get_all_employee_dict(self):
         return self.__ll_employees.get_all_employees()
 
     def get_all_destinations_list(self):
