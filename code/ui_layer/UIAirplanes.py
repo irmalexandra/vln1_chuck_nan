@@ -1,19 +1,11 @@
-from logic_layer.LLAPI import LLAPI
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
-
-
 class UIAirplanes():
     UI_DIVIDER_INT = 104
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
 
-    def __init__(self):
-        self.ll_api = LLAPI()
+    def __init__(self, LLAPI, model_controller):
+        self.__ll_api = LLAPI
+        self.__model_controller = model_controller
 
     def display_airplanes_sub_menu(self):
         ''' Print the airplanes menu '''
@@ -39,7 +31,7 @@ class UIAirplanes():
         print("{:11}{:11}{:12}{:17}{:11}{:17}{:17}{:12}".format(
             "ID:", "Make:", "Model:", "Total seats:", "Status:", "Destination:", "Flight number:", "Date available:"))
         print("-" * self.UI_DIVIDER_INT)
-        airplanes_list = self.ll_api.get_all_airplanes_list()
+        airplanes_list = self.__ll_api.get_all_airplanes_list()
         for airplanes in airplanes_list[1:]:
             print("{:11}{:11}{:12}{:17}{:11}{:17}{:17}{:12}".format(airplanes.get_name(),
                                                                     airplanes.get_make(),

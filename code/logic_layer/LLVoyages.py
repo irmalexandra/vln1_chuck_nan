@@ -1,15 +1,7 @@
-from data_layer.DLAPI import DLAPI
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
-
-
 class LLVoyages:
-    def __init__(self):
-        self.dl_api = DLAPI()
+    def __init__(self, DLAPI, model_controller):
+        self.__dl_api = DLAPI
+        self.__model_controller = model_controller
 
     def validate_voyage(self):
         pass
@@ -18,7 +10,7 @@ class LLVoyages:
         pass
 
     def get_all_voyages(self):
-        return self.dl_api.populate_all_voyages()
+        return self.__dl_api.populate_all_voyages()
 
     def filter_all_empty_voyages(self):
         pass

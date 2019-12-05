@@ -1,6 +1,3 @@
-from models.ModelController import ModelController
-
-
 class DLAirplanes():
     PLANE_TYPE_ID = 0
     PLANE_NAME = 1
@@ -8,9 +5,9 @@ class DLAirplanes():
     AIRCRAFT_DICT_MODEL = 1
     AIRCRAFT_DICT_CAPACITY = 2
 
-    def __init__(self):
+    def __init__(self, model_controller):
         self.all_airplanes_list = []
-        self.__model_controller = ModelController()
+        self.__model_controller = model_controller
 
     def pull_all_airplanes(self):
 

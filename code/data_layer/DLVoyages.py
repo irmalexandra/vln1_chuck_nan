@@ -1,4 +1,3 @@
-from models.ModelController import ModelController
 import os
 from os import path
 class DLVoyages():
@@ -16,9 +15,9 @@ class DLVoyages():
     FSMID = 11
     FAIDS = 12
 
-    def __init__(self):
+    def __init__(self, model_controller):
         self.all_voyages_list = []
-        self.__model_controller = ModelController()
+        self.__model_controller = model_controller
 
     def pull_all_voyages(self):
 

@@ -1,19 +1,12 @@
-from logic_layer.LLAPI import LLAPI
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
-
-
 class UIDestinations():
     UI_DIVIDER_INT = 104
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
 
-    def __init__(self):
-        self.ll_api = LLAPI()
+    def __init__(self, LLAPI, model_controller):
+        self.__ll_api = LLAPI
+        self.__model_controller = model_controller
+
 
     def display_destination_sub_menu(self):
         ''' Print the destination menu '''
@@ -34,6 +27,11 @@ class UIDestinations():
         contact_name = input("Contact name: ")
         contact_number = input("Contact number: ")
 
+    def display_create_destination_header(self):
+        counter = 1
+        header = "Create Destination " 
+        print ("{}{}".format(header, "("+ counter + "/6)"))
+    
     def display_all_destinations(self):
         ''' Print all destinations '''
         # 2
@@ -41,7 +39,7 @@ class UIDestinations():
         print("{:19}{:15}{:17}{:15}{:20}{:10}".format(
             "Country:", "Airport:", "Flight time:", "Distance:", "Contact name:", "Contact number:"))
         print("-" * self.UI_DIVIDER_INT)
-        destinations_list = self.ll_api.get_all_destinations_list()
+        destinations_list = self.__ll_api.get_all_destinations_list()
         for destinations in destinations_list[1:]:
             print("{:19}{:15}{:17}{:15}{:20}{:10}".format(destinations.get_country(),
                                                           destinations.get_airport(),
@@ -60,6 +58,7 @@ class UIDestinations():
         print("Distance: ")
         print("Contact name: ")
         print("Contact number: ")
+        self.display_destination_search_menu()
 
     def display_destination_search_menu(self):
         ''' Change contact name or emergency number and print the information '''

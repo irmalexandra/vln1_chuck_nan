@@ -1,15 +1,8 @@
-from data_layer.DLAPI import DLAPI
-from models.Airplane import Airplane
-from models.Destination import Destination
-from models.Voyage import Voyage
-from models.Employee import Employee
-from models.FlightAttendant import FlightAttendant
-from models.Pilot import Pilot
-
-
 class LLEmployees:
-    def __init__(self):
-        self.dl_api = DLAPI()
+    def __init__(self, DLAPI, model_controller):
+        self.__dl_api = DLAPI
+        self.__model_controller = model_controller
+
 
     def validate_employee(self):
         pass
@@ -17,14 +10,18 @@ class LLEmployees:
     def get_employee_by_ssn(self, ssn):
         ''' pulls a list of employee instances and returns a instance of employee by employee_ID '''
 
-        employee_list = self.dl_api.populate_all_employees()
+        employee_list = self.__dl_api.populate_all_employees()
         for employee in employee_list:
             if employee.get_ssn() == ssn:
                 return employee
 
     def get_all_employees(self):
         ''' pulls and returns a list of employee instances '''
-        return self.dl_api.populate_all_employees()
+        employee_list = self.__dl_api.populate_all_employees()
+        employee_dict = {}
+        for index, employee in enumerate(employee_list):
+            employee_dict[index] = employee
+        return employee_dict
 
     def filter_all_employees_by_date(self):
         pass
@@ -37,7 +34,7 @@ class LLEmployees:
     def filter_all_employees_by_title(self, title):
         '''takes list of all employees and returns list of employees filtered by title from input'''
         filter_list = []
-        employee_list = self.dl_api.populate_all_employees()
+        employee_list = self.__dl_api.populate_all_employees()
         for employee in employee_list:
             if employee.get_title() == title:
                 filter_list.append(employee)
