@@ -14,7 +14,6 @@ class Airplane():
     def raw_info(self):
         return "NA" + self.__make + self.__model + "," + self.__name + "\n"
 
-
     def get_name(self):
         return self.__name
 

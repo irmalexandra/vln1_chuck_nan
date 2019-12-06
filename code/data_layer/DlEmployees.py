@@ -16,7 +16,7 @@ class DLEmployees():
         self.__modelAPI = modelAPI
 
     def pull_all_employees(self):
-
+        '''Opens a csv and returns a list of all employees (ssn, name, address, home number, mobile number, e-mail, rank, title)'''
         if path.exists('./repo/employees.csv') and path.exists('./repo/employees_temp.csv'):
             filestream = open("./repo/employees.csv", "r")
             os.remove("./repo/employees_temp.csv")
@@ -52,6 +52,7 @@ class DLEmployees():
         return self.all_crew_list[1:]
 
     def push_all_employees(self, emp_list):
+        
         # employee_file.write(new_emp_str)
         HEADER = "id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"
         filestream2 = open("./repo/employees_temp.csv", "a")
