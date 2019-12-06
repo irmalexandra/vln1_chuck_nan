@@ -175,37 +175,3 @@ class Employee():
                                                        self.get_title(),
                                                        self.get_licence())
         return returnObject
-=======
-        returnObject = "|{:20}{:15}{:20}{:20}{:10}|\n".format(
-            self.get_name(),
-            self.get_ssn(),
-            self.get_mobile_num(),
-            self.get_title(),
-            "Missing availability")
-        return returnObject
-
-    def get_model_list_default_info(self):
-        returnObject = ("|{:20}{:15}{:20}{:20}{:10}|\n".format(
-            self.get_name(),
-            self.get_ssn(),
-            self.get_address(),
-            self.get_mobile_num(),
-            self.get_title()))
-        return returnObject
-
-    def get_model_list_aircraft_info(self):
-        returnObject = "|{:20}{:15}{:20}{:20}{:10}{:10}|\n".format(
-            self.get_name(),
-            self.get_ssn(),
-            self.get_address(),
-            self.get_mobile_num(),
-            self.get_title(),
-            self.get_licence())
-        return returnObject
-
-    def get_validation_dict(self):
-        return self.__validation_dict
-
-    def get_creation_order_list(self):
-        return self.__creation_order_list
->>>>>>> f7cfb196b60850d64c7570c2c2d7eb4b7fb83816
