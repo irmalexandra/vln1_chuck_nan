@@ -16,6 +16,16 @@ class ModelAPI():
                       "Voyage": Voyage,\
                       "Destination": Destination}
 
+
     def get_model(self, model_name):
         model_obj = self.model_dict[model_name]
         return model_obj()
+
+    def get_model_header_format(self, model, header_flag):
+        return model.get_model_header_format(header_flag)
+
+    def get_model_list_info(self, model_list, header_flag):
+        returnObject = ""
+        for index, model in enumerate(model_list):
+            returnObject += "{:02d}{}".format(index+1, model.get_model_list_info(header_flag))
+        return returnObject
