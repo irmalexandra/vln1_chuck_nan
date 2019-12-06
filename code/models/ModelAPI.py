@@ -24,11 +24,15 @@ class ModelAPI():
         return model_obj()
 
     def get_model_header_format(self, model, header_flag):
-        return model.get_model_header_format(header_flag)
+        return "|{}|".format(model.get_model_header_format(header_flag))
 
     def get_model_list_info(self, model_list, header_flag):
         returnObject = ""
         for index, model in enumerate(model_list):
+<<<<<<< HEAD
+            returnObject += "|{:02d}{}|".format(index+1, model.get_model_list_info(header_flag))# index+1 for human readability
+        return returnObject
+=======
             returnObject += "{:02d}{}".format(index+1, model.get_model_list_info(header_flag))
         return returnObject
 
@@ -44,3 +48,4 @@ class ModelAPI():
             order_counter += 1
         
         return check
+>>>>>>> f7cfb196b60850d64c7570c2c2d7eb4b7fb83816
