@@ -11,7 +11,7 @@ class UIBaseFunctions():
         return 0
 
     def get_user_input(self, acronym):
-        return input("Please enter{}: ".format(acronym))
+        return input("Please enter {}: ".format(acronym))
 
     def exit_program(self):
         exit()
