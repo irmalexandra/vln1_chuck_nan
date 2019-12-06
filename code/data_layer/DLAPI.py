@@ -14,7 +14,7 @@ class DLAPI():
         self.__dl_airplanes = DLAirplanes(self.__modelAPI)
 
     def pull_all_employees(self):
-        '''Get a list of all employees from data layer and returns it'''
+        '''Gets a list of all employees from data layer and returns it'''
         return self.__dl_employees.pull_all_employees()
 
     def overwrite_all_employees(self, employee_list):
@@ -30,18 +30,17 @@ class DLAPI():
 
     def overwrite_all_destinations(self, destination_list):
         self.__dl_destinations.push_all_destinations(destination_list)
-        
+
     def pull_all_airplanes(self):
         '''Gets a list of all airplanes from the data layer and returns it'''
         return self.__dl_airplanes.pull_all_airplanes()
-    
+
     def pull_all_airplane_types(self):
         '''Gets a list of all airplane types from the data layer and returns it'''
         return self.__dl_airplanes.pull_airplane_types_info()
-    
+
     def create_airplane(self, airplane):
         self.__dl_airplanes.append_airplane(airplane)
 
     def clear_airplane_list(self):
         self.__dl_airplanes.clear_airplane_list()
-        
