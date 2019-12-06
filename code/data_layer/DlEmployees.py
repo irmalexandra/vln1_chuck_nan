@@ -16,7 +16,7 @@ class DLEmployees():
         self.__modelAPI = modelAPI
 
     def pull_all_employees(self):
-    '''Opens a csv and returns a list of all employees (ssn, name, address, home number, mobile number, e-mail, rank, title)'''
+        '''Opens a csv and returns a list of all employees (ssn, name, address, home number, mobile number, e-mail, rank, title)'''
         if path.exists('./repo/employees.csv') and path.exists('./repo/employees_temp.csv'):
             filestream = open("./repo/employees.csv", "r")
             os.remove("./repo/employees_temp.csv")

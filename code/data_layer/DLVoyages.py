@@ -20,10 +20,10 @@ class DLVoyages():
         self.__modelAPI = modelAPI
 
     def pull_all_voyages(self):
-    '''Opens csv files and returns a list of all voyages 
-    (departing flight num, return flight num, departing from, departure date, departing flight arrival date, 
-    return flight departing from, return flight departure date, return flight arrival date, aircraft id,captain ssn, 
-    co pilot ssn, fsm ssn, flightattendants_ssn)'''
+        '''Opens csv files and returns a list of all voyages 
+        (departing flight num, return flight num, departing from, departure date, departing flight arrival date, 
+        return flight departing from, return flight departure date, return flight arrival date, aircraft id,captain ssn, 
+        co pilot ssn, fsm ssn, flightattendants_ssn)'''
         if path.exists('./repo/voyages.csv') and path.exists('./repo/voyages_temp.csv'):
             filestream = open("./repo/voyages.csv", "r")
             os.remove("./repo/voyages_temp.csv")
