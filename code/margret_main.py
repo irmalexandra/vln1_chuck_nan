@@ -73,6 +73,6 @@
 #     ssn = ssn.strip(ssn[6])
 #     print(ssn)
 
-some_string = "Hi!......"
-some_string.strip("!")
-print(some_string)
+name = 'Faroe Islands'
+name = name.strip(" ")
+print(name)
