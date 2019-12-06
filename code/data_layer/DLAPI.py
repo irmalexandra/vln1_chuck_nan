@@ -20,6 +20,9 @@ class DLAPI():
     def overwrite_all_employees(self, employee_list):
         self.__dl_employees.push_all_employees(employee_list)
 
+    def append_employee(self, employee):
+        self.__dl_employees.append_employee(employee)
+
     def pull_all_voyages(self):
         '''Gets a list of all voyages from the data layer and returns it'''
         return self.__dl_voyages.pull_all_voyages()
