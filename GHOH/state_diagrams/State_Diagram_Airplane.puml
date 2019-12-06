@@ -1,0 +1,14 @@
+@startuml airplane
+hide empty description
+
+[*] --> Not_in_use
+Not_in_use -> In_use
+In_use --> In_the_air
+In_use -> Not_in_use
+Not_in_use : Reykjavik
+On_the_ground : Destination
+In_the_air -> In_use
+In_the_air -> On_the_ground
+On_the_ground -> In_the_air
+
+@enduml
