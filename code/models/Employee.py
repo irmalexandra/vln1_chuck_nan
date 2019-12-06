@@ -23,6 +23,12 @@ class Employee():
                                  "date": self.get_model_list_date_info,
                                  "aircraft": self.get_model_list_aircraft_info}
 
+        self.__validation_dict = {self.get_name: self.set_name, self.get_ssn: self.set_ssn,
+                                  self.get_address: self.set_address, self.get_home_num: self.set_home_num,
+                                  self.get_mobile_num: self.set_mobile_num, self.get_email: self.set_email}
+
+        self.__creation_order_list = [
+            'name', 'ssn', 'home address', 'home number', 'mobile number', 'email']
         
 
     def raw_info(self):
@@ -108,6 +114,12 @@ class Employee():
 
     def set_licence(self, new_licence):
         self.__licence = new_licence
+
+    def get_validation_dict(self):
+        return self.__validation_dict
+
+    def get_creation_order_list(self):
+        return self.__creation_order_list
 
     def get_model_header_format(self, header_flag):
         return self.__header_format_dict[header_flag]()

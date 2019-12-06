@@ -120,7 +120,7 @@ class UIEmployees():
         
         found_employee_list = self.__ll_api.get_employees_filtered_by_name(name)
         if len(found_employee_list) == 1:
-            self.display_employee(found_employee_list[0])
+            self.__ui_base_functions.print_object(found_employee_list[0])
 
         else:
             self.display_found_employees_by_name(found_employee_list, name)
