@@ -49,8 +49,9 @@ class Employee():
     def get_ssn(self):
         return self.__ssn
 
-    def set_ssn(self, new_ssn, all_employee_list):
-        if self.__models_validation.validate_employee_ssn(new_ssn, all_employee_list):
+    def set_ssn(self, new_ssn):
+
+        if self.__models_validation.validate_employee_ssn(new_ssn):
             self.__ssn = new_ssn
             return True
 

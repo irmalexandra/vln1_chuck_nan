@@ -9,7 +9,8 @@ class LLEmployees:
         return self.__modelAPI.validate_model(employee)
 
     def create_employee(self, employee):
-        if self.validate_employee()
+        pass
+        #if self.validate_employee()
 
     def get_all_employees(self):
         ''' pulls and returns a list of employee instances '''
