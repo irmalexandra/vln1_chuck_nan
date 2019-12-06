@@ -7,3 +7,6 @@ class UIBaseFunctions():
     
     def home(self):
         return 0
+
+    def exit_program(self):
+        exit()

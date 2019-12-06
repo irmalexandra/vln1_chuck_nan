@@ -6,11 +6,16 @@ class Validator():
     PHONE_NUMBER = 7
     SSN = 10
 
-    def __validate_string(self, string):
-        return string.isalpha()
+    def __validate_string(self, attribute):
+        attribute = str(attribute)
+        return attribute.isalpha()
 
-    def __validate_int(self, integer):
-        return integer.isdigit()
+    def __validate_int(self, attribute):
+        try:
+            int(attribute)
+            return True
+        except ValueError:
+            return False
 
     def validate_name(self, name):
         try:
@@ -21,7 +26,7 @@ class Validator():
         except ValueError:
             return False
 
-    def validate_employee_id(self, id):
+    def validate_employee_id(self, id): #<---------
         return self.__validate_int(id)
 
     def validate_employee_name(self, name):
@@ -48,10 +53,10 @@ class Validator():
 
         return False
 
-    def validate_mobile_number(self, number):
+    def validate_mobile_number(self, number): #<-----
         return self.validate_phone_number(number)
 
-    def validate_home_number(self, number):
+    def validate_home_number(self, number): #<-----------
         return self.validate_phone_number(number)
 
     def validate_email(self, email):
@@ -103,20 +108,16 @@ class Validator():
         return False
 
     def validate_airplane_typeid(self, typeid):
-        if (self.__validate_string(typeid)) and (typeid.isupper()):
-            if typeid[:2] == "NA":
-                return True
+        return typeid[:2] == "NA"
+
+    def validate_airplane_insignia(self, insignia):
+        if insignia[2] == "-":
+            if len(insignia) == 6:
+                return self.__validate_string(insignia.replace("-", ""))
 
         return False
 
-    def validate_airplane_id(self, id):
-        if id[2] == "-":
-            if len(id) == 6:
-                return self.__validate_string(id.replace("-", ""))
-
-        return False
-
-    def validate_airplane_make(self, make):
+    def validate_airplane_make(self, make): #<---------------
         return self.__validate_string(make)
 
     def validate_airplane_model(self, model):
@@ -124,7 +125,7 @@ class Validator():
             return True
         return False
 
-    def validate_airplane_capacity(self, capacity):
+    def validate_airplane_capacity(self, capacity): #<--------------
         return self.__validate_int(capacity)
 
     def validate_destinationid(self, id_int):
@@ -140,23 +141,25 @@ class Validator():
 
         return False
 
-    def validate_country(self, country):
+    def validate_country(self, country): #<--------------
         return self.__validate_string(country)
 
-    def validate_city(self, city):
+    def validate_city(self, city): #<-------------------
         return self.__validate_string(city)
 
-    def validate_airport(self, airport):
+    def validate_airport(self, airport): # <------------------
         return self.__validate_string(airport)
 
-    def validate_flight_time(self, time):
+    def validate_flight_time(self, time): #<--------------
         return self.__validate_int(time)
 
-    def validate_distance(self, distance):
+    def validate_distance(self, distance): #<--------------
         return self.__validate_int(distance)
 
-    def validate_contact_name(self, name):
+    def validate_contact_name(self, name): #<-------------------
         return self.validate_name(name)
 
-    def validate_contact_number(self, number):
+    def validate_contact_number(self, number): #<---------------
         return self.validate_phone_number(number)
+
+    

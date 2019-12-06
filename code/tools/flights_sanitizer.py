@@ -114,7 +114,7 @@ def fix_data():
 
 def fix_data2():
     old_flights_stream = open("./old_repo/Flight.csv", "r", encoding="UTF-8")
-    new_voyages_stream = open("./old_repo/voyages.csv", "a", encoding="UTF-8")
+    new_voyages_stream = open("./voyages.csv", "a", encoding="UTF-8")
     new_voyages_stream.write("departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,aircraftid,captainid,copilotid,fsmid,faids\n")
     employees_stream = open ("./old_repo/employees.csv", "r", encoding="UTF-8")
     old_flights_list = []
@@ -151,16 +151,11 @@ def fix_data2():
         fa1 = flight_1[FA1]
         fa2 = flight_1[FA2]
         
-
+        flight_attendants = []
+        flight_attendants.append(fa1)
+        flight_attendants.append(fa2)
         
-        cabin_crew = []
-        cabin_crew.append(captain_ssn)
-        cabin_crew.append(copilot_ssn)
-        cabin_crew.append(fsm_ssn)
-        cabin_crew.append(fa1)
-        cabin_crew.append(fa2)
-
-        cabin_str = "^".join(cabin_crew)
+        cabin_str = ":".join(flight_attendants)
 
         new_voyage.append(departingflightnum)
         new_voyage.append(returnflightnum)
@@ -172,6 +167,12 @@ def fix_data2():
         new_voyage.append(returnflightdepartingfrom)
         new_voyage.append(returnflightdeparturedate)
         new_voyage.append(returnflightarrivaledate)
+
+        new_voyage.append(aircraft_id)
+
+        new_voyage.append(captain_ssn)
+        new_voyage.append(copilot_ssn)
+        new_voyage.append(fsm_ssn)
 
         new_voyage.append(cabin_str)
 

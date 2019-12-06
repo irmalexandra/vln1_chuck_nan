@@ -1,27 +1,28 @@
 class UIDestinations():
-    UI_DIVIDER_INT = 104
+    UI_DIVIDER_INT = 124
     RETURN_MENU_STR = "9. Return 0. Home"
     DEVIATION_INT = 2
+    EDIT_FEEDBACK_TPL = ("name", "number")
 
     def __init__(self, LLAPI, modelAPI, UIBaseFunctions):
         self.__ll_api = LLAPI
         self.__modelAPI = modelAPI
         self.__ui_base_functions = UIBaseFunctions
 
-
     def display_destination_sub_menu(self):
         ''' Print the destination menu '''
         while True:
-        
-            nav_dict = {1:self.create_destination, 2:self.display_all_destinations, 3:self.display_destination_search_menu, 9:self.__ui_base_functions.back,0:self.__ui_base_functions.home}
-            destination_menu = "1. Create 2. All 3. Search"
+
+            nav_dict = {1: self.create_destination, 2: self.display_all_destinations,
+                        3: self.display_search_by_name, 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
+            destination_menu = "1. Create 2. All 3. Search by name"
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(destination_menu, " "*(self.UI_DIVIDER_INT - len(destination_menu) -
-                                                        len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
+                                                           len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice = nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
@@ -40,17 +41,26 @@ class UIDestinations():
         contact_name = input("Contact name: ")
         contact_number = input("Contact number: ")
 
+    def display_search_by_name(self):
+        airport = input("Airport name: ")
+        destination = self.__ll_api.get_one_destination(airport)
+        if destination == None:
+            print("Airport not found.")
+        else:
+            self.display_one_destination(destination)
+
     def display_create_destination_header(self):
         counter = 1
-        header = "Create Destination " 
-        print ("{}{}".format(header, "("+ counter + "/6)"))
-    
+        header = "Create Destination "
+        print("{}{}".format(header, "(" + counter + "/6)"))
+
     def display_all_destinations(self):
         ''' Print all destinations '''
         # 2
         while True:
-        
-            nav_dict = {9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
+
+            nav_dict = {9: self.__ui_base_functions.back,
+                        0: self.__ui_base_functions.home}
             print("-" * self.UI_DIVIDER_INT)
             print("{:19}{:15}{:17}{:15}{:20}{:10}".format(
                 "Country:", "Airport:", "Flight time:", "Distance:", "Contact name:", "Contact number:"))
@@ -58,14 +68,14 @@ class UIDestinations():
             destinations_list = self.__ll_api.get_all_destinations_list()
             for destinations in destinations_list[1:]:
                 print("{:19}{:15}{:17}{:15}{:20}{:10}".format(destinations.get_country(),
-                                                            destinations.get_airport(),
-                                                            destinations.get_flight_time(),
-                                                            destinations.get_distance(),
-                                                            destinations.get_contact_name(),
-                                                            destinations.get_contact_number()))
+                                                              destinations.get_airport(),
+                                                              destinations.get_flight_time(),
+                                                              destinations.get_distance(),
+                                                              destinations.get_contact_name(),
+                                                              destinations.get_contact_number()))
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice = nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
@@ -73,42 +83,40 @@ class UIDestinations():
             except KeyError:
                 print("Invalid input! try again")
 
-    def display_one_destination(self):
+    def display_one_destination(self, destination):
         ''' Search for a destination and print the information '''
-        # 3
-        # user input
-        print("Country: ")
-        print("Airport: ")
-        print("Flight time: ")
-        print("Distance: ")
-        print("Contact name: ")
-        print("Contact number: ")
-        self.display_destination_search_menu()
 
-    def display_destination_search_menu(self):
-        ''' Change contact name or emergency number and print the information '''
+        destination_menu = "1. Change Name 2. Change Phone Number"
         while True:
-        
-            nav_dict = {1: self.change_contact, 2: self.change_emergency_number, 9:self.__ui_base_functions.back,0:self.__ui_base_functions.home}
-            search_menu = "1. Change contact name 2. Change emergency number"
+
+            nav_dict = {1: self.change_contact, 2: self.change_contact_number, 9: self.__ui_base_functions.back,
+                        0: self.__ui_base_functions.home}
             print("-" * self.UI_DIVIDER_INT)
-            print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
-                                                    len(search_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
+            print(destination)
+            print("-" * self.UI_DIVIDER_INT)
+            print("|{}{}{}|".format(destination_menu, " "*(self.UI_DIVIDER_INT - len(destination_menu) -
+                                                           len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
             print("-" * self.UI_DIVIDER_INT)
             choice = int(input("Input: "))
             try:
-                choice = choice = nav_dict[choice]()
+                choice = nav_dict[choice]()
                 if choice == 0:
                     return 0
                 if choice == 9:
                     return
+                if self.__ll_api.edit_destination(destination, choice):
+                    print("Contact {} successful1y changed to {}".format(self.EDIT_FEEDBACK_TPL[choice[0]], choice[1]))
+                else:
+                    print("Invalid input!")
+                
             except KeyError:
                 print("Invalid input! try again")
+            
 
-    def change_contact(self, destination_id):
-        print("change contact YAY!")
-        pass
+    def change_contact(self):
+        string = input("Enter new contact name: ")
+        return (0, string)
 
-    def change_emergency_number(self, destination_id):
-        print("change emergency number YAY!")
-        pass
+    def change_contact_number(self):
+        number = input("Enter new contact number: ")
+        return (1, number)

@@ -1,3 +1,4 @@
+
 def menu():
     while True:
         print("menu")
@@ -28,6 +29,11 @@ def subSubMenu():
         if a == "9":
             return 
         
+def run():
+    while True:
+        print("run")
+        i = int(input("Enter: "))
+        nav_dict[i]()
 
 def back():
     return "9"
@@ -37,10 +43,5 @@ def home():
 
 nav_dict = {1: menu, 2: subMenu, 3:subSubMenu, 9:back, 0:home}
 
-def run():
-    while True:
-        print("run")
-        i = int(input("Enter: "))
-        nav_dict[i]()
 
 run()

@@ -19,7 +19,7 @@ class Airplane():
         return self.__name
 
     def set_name(self, new_name):
-        if self.__models_validation.validate_airplane_id:
+        if self.__models_validation.validate_airplane_insignia(new_name):
             self.__name = new_name
         else:
             pass
@@ -28,7 +28,7 @@ class Airplane():
         return self.__make
 
     def set_make(self, new_make):
-        if self.__models_validation.validate_airplane_make:
+        if self.__models_validation.validate_airplane_make(new_make):
             self.__make = new_make
         else:
             pass
@@ -37,7 +37,7 @@ class Airplane():
         return self.__model
 
     def set_model(self, new_model):
-        if self.__models_validation.validate_airplane_model:
+        if self.__models_validation.validate_airplane_model(new_model):
             self.__model = new_model
         else:
             pass
@@ -46,7 +46,7 @@ class Airplane():
         return self.__max_seats
 
     def set_max_seats(self, new_max_seats):
-        if self.__models_validation.validate_airplane_capacity:
+        if self.__models_validation.validate_airplane_capacity(new_max_seats):
             self.__max_seats = new_max_seats
         else:
             pass

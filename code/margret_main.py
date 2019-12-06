@@ -37,18 +37,20 @@
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-from logic_layer.LLAPI import LLAPI
-from models.ModelAPI import ModelAPI
-from ui_layer.UIBaseFunctions import UIBaseFunctions
-from ui_layer.UIEmployees import UIEmployees
+# from logic_layer.LLAPI import LLAPI
+# from models.ModelAPI import ModelAPI
+# from ui_layer.UIBaseFunctions import UIBaseFunctions
+# from ui_layer.UIEmployees import UIEmployees
 
-new_llapi = LLAPI()
-new_modelapi = ModelAPI()
-new_uibasefunctions = UIBaseFunctions()
+# new_llapi = LLAPI()
+# new_modelapi = ModelAPI()
+# new_uibasefunctions = UIBaseFunctions()
 
-new_ui_des = UIEmployees(new_llapi, new_modelapi, new_uibasefunctions)
-# new_ui_des.display_employee_search_menu()
-new_ui_des.get_employee_by_ssn('3009907461')
+# new_ui_des = UIEmployees(new_llapi, new_modelapi, new_uibasefunctions)
+# # new_ui_des.display_employee_search_menu()
+# new_ui_des.display_employee_sub_menu()
+# new_ui_des.get_employee_by_ssn('3009907461')
+# new_ui_des.get_employee_by_ssn('3009907461')
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -62,3 +64,11 @@ new_ui_des.get_employee_by_ssn('3009907461')
 
 # new_ui_des = LLEmployees(new_dlapi, new_modelapi)
 # new_ui_des.get_employee_by_ssn(3009907461)
+
+
+###################################################################
+
+bla = 'pilot'
+if bla == 'pilot':
+    print('pilot')
+print('not pilot')
