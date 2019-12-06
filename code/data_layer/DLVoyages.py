@@ -9,7 +9,7 @@ class DLVoyages():
     RETURNING_FLIGHT_DEPARTING_FROM = 5
     RETURNING_FLIGHT_DEPARTURE_DATE = 6
     RETURNING_FLIGHT_ARRIVAL_DATE= 7
-    AIRCRAFT_ID = 8
+    AIRPLANE_ID = 8
     CAPTAIN_SSN = 9
     COPILOT_SSN = 10
     FSM_SSN = 11
@@ -20,7 +20,10 @@ class DLVoyages():
         self.__modelAPI = modelAPI
 
     def pull_all_voyages(self):
-
+        '''Opens csv files and returns a list of all voyages 
+        (departing flight num, return flight num, departing from, departure date, departing flight arrival date, 
+        return flight departing from, return flight departure date, return flight arrival date, airplane id,captain ssn, 
+        co-pilot ssn, fsm ssn, flightattendants ssn)'''
         if path.exists('./repo/voyages.csv') and path.exists('./repo/voyages_temp.csv'):
             filestream = open("./repo/voyages.csv", "r")
             os.remove("./repo/voyages_temp.csv")
@@ -31,7 +34,6 @@ class DLVoyages():
         else:
             print("Voyage data files not found")
             return
-
 
         for line in filestream:
             line_list = line.strip().split(",")
@@ -44,19 +46,16 @@ class DLVoyages():
             new_voyage.set_return_flight_departing_from(line_list[DLVoyages.RETURNING_FLIGHT_DEPARTING_FROM])
             new_voyage.set_return_flight_departure_date(line_list[DLVoyages.RETURNING_FLIGHT_DEPARTURE_DATE])
             new_voyage.set_return_flight_arrival_date(line_list[DLVoyages.RETURNING_FLIGHT_ARRIVAL_DATE])
-            new_voyage.set_aircraft_id(line_list[DLVoyages.AIRCRAFT_ID])
+            new_voyage.set_airplane_id(line_list[DLVoyages.airplane_ID])
             new_voyage.set_captain_ssn(line_list[DLVoyages.CAPTAIN_SSN])
             new_voyage.set_copilot_ssn(line_list[DLVoyages.COPILOT_SSN])
             new_voyage.set_fsm_ssn(line_list[DLVoyages.FSM_SSN])
 
             flight_attendant_ssns_list = line_list[DLVoyages.FAS_SSN].split("-")
 
-
             new_voyage.set_fa_ssns(flight_attendant_ssns_list)
 
         
-
-
             self.all_voyages_list.append(new_voyage)
         filestream.closed
         return self.all_voyages_list[1:]
@@ -70,7 +69,7 @@ class DLVoyages():
 
     def push_all_voyages(self, voyage_list):
         # employee_file.write(new_emp_str)
-        HEADER = "departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,aircraftssn,captainssn,copilotssn,fsmssn,fassns\n"
+        HEADER = "departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,airplanessn,captainssn,copilotssn,fsmssn,fassns\n"
         filestream = open("./repo/voyages_temp.csv", "w")
         filestream.write(HEADER)
         for voyage_info in voyage_list:

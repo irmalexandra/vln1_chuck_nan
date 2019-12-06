@@ -14,15 +14,15 @@ class Airplane():
     def raw_info(self):
         return "NA" + self.__make + self.__model + "," + self.__name + "\n"
 
-
     def get_name(self):
         return self.__name
 
     def set_name(self, new_name):
         if self.__models_validation.validate_airplane_insignia(new_name):
             self.__name = new_name
+            return True
         else:
-            pass
+            return False
 
     def get_make(self):
         return self.__make

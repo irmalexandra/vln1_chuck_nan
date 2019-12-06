@@ -1,9 +1,7 @@
-from models.Voyage import Voyage
+from data_layer.DLAPI import DLAPI
 
+new_DLAPI = DLAPI()
 
-def main():
-    voyage_test = Voyage()
-    print(voyage_test)
-
-
-main()
+airplane_list = new_DLAPI.pull_all_airplanes()
+for airplane in airplane_list:
+    print(airplane)

@@ -14,7 +14,8 @@ class DLDestinations():
         self.__modelAPI = modelAPI
 
     def pull_all_destinations(self):
-
+        '''Opens csv files and returns a list of all destinations 
+        (country,airport,flight time,distance,contact name,contact number) '''
         if path.exists('./repo/destination.csv') and path.exists('./repo/destinations_temp.csv'):
             filestream = open("./repo/destination.csv", "r")
             os.remove("./repo/destinations_temp.csv")
@@ -41,13 +42,13 @@ class DLDestinations():
         filestream.closed
         return self.all_destinations_list[1:]
 
-    def appent_destination(self, new_destination):
+    def append_destination(self, new_destination):
+        '''Opens a csv file and adds a nes destination to the destination string '''
         destination_stream = open('./repo/Destination.csv', 'a')
         destination_str = new_destination.raw_info()
         destination_stream.write(destination_str)
         destination_stream.close()
         return    
-
 
     def push_all_destinations(self, destination_list):
         # employee_file.write(new_emp_str)
