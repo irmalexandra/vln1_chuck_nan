@@ -30,8 +30,8 @@ class Validator():
         return self.validate_name(name)
 
     def validate_employee_ssn(self, ssn):
-        if ssn[6] == '-':
-            ssn.strip('-')
+        # if ssn[6] == '-':
+        #     ssn = ssn.strip('-')
         if (self.__validate_int(ssn)) and (len(ssn) == self.SSN):
             return True
 
