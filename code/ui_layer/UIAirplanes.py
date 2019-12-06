@@ -35,7 +35,6 @@ class UIAirplanes():
         # 1
         # user input
         existing_airplane_types_list = self.__ll_api.pull_airplane_types()
-        print("the planes list is ", existing_airplane_types_list)
         print("Supported airplanes: ")
         for number, plane in enumerate(existing_airplane_types_list):
             print(number + 1, plane.get_make() + plane.get_model())
@@ -51,7 +50,9 @@ class UIAirplanes():
         elif picked_airplane == "3":
             make = existing_airplane_types_list[2].get_make()
             model = existing_airplane_types_list[2].get_model()
-        
+        else:
+            print("Input: {} invalid".format(picked_airplane))
+            return self.create_airplane()
         insignia = "TF-" + input("Insignia (must be 3 letters): TF-").upper()
         
         new_airplane = self.__modelAPI.get_model("Airplane")
@@ -59,8 +60,12 @@ class UIAirplanes():
         new_airplane.set_model(model)
         check = new_airplane.set_name(insignia)
         if check:
-            airplane = self.__ll_api.create_airplane(new_airplane, existing_airplane_types_list,insignia)
-            print("\nAirplane created!\n{}".format(airplane))
+
+            airplane,duplicate_check = self.__ll_api.create_airplane(new_airplane, existing_airplane_types_list,insignia)
+            if duplicate_check:
+                print("\nAirplane created!\n{}".format(airplane))
+            else:
+                print("\n{}\nAlready exists!".format(airplane.get_name()))
         else:
             print("\nInvalid insignia {}\n".format(insignia))
         self.__ll_api.clear_airplane_list()
