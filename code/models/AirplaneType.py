@@ -18,8 +18,7 @@ class AirplaneType():
     def get_plane_type_id(self):
         return self.__plane_type_id
 
-    def set_plane_type_id(self):
-        plane_type_id = "NA"+self.__make.upper()+self.__model
+    def set_plane_type_id(self, plane_type_id):
         if self.__model_validator.validate_airplane_typeid(plane_type_id):
             self.__plane_type_id = plane_type_id
             return True
