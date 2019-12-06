@@ -30,6 +30,7 @@ class UIEmployees():
         if return_bool == 9:
             return
 
+
     def display_found_employees_by_name(self, employee_list, name):
         ''' display list of employees by input'''
 
@@ -58,13 +59,20 @@ class UIEmployees():
     def display_edit_employee(self):
         pass
 
-    def display_one_employee(self, employee):
-        print(employee)
-    
     def display_select_from_employee_list_menu(self, employee_list):
         nav_dict = {1: employee_list,
         9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
         employee_menu = "1. Select employee:"
+        return_bool = self.__ui_base_functions.display_menu(employee_menu, nav_dict)
+        if return_bool == 0:
+            return 0
+        if return_bool == 9:
+            return
+
+    def display_select_from_pilots_list_menu(self, employee_list):
+        nav_dict = {1: employee_list, 2: "",
+        9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
+        employee_menu = "1. Select employee 2. Filter by airplane type"
         return_bool = self.__ui_base_functions.display_menu(employee_menu, nav_dict)
         if return_bool == 0:
             return 0
@@ -105,19 +113,9 @@ class UIEmployees():
         self.__ui_base_functions.print_object_list(employee_list, self.__modelAPI, header_flag)
         self.display_select_from_pilots_list_menu(employee_list)
         
-    def display_select_from_pilots_list_menu(self, employee_list):
-        nav_dict = {1: employee_list, 2: "",
-        9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
-        employee_menu = "1. Select employee 2. Filter by airplane type"
-        return_bool = self.__ui_base_functions.display_menu(employee_menu, nav_dict)
-        if return_bool == 0:
-            return 0
-        if return_bool == 9:
-            return
-
-    def get_employee_by_name(self, name):
+    def get_employee_by_name(self):
         ''' Search for employee instance and print out it's information '''
-        
+        name = self.__ui_base_functions.get_user_input("name")
         found_employee_list = self.__ll_api.get_employees_filtered_by_name(name)
         if len(found_employee_list) == 1:
             self.display_employee(found_employee_list[0])
