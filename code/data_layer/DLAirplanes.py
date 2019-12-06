@@ -9,9 +9,12 @@ class DLAirplanes():
         self.all_airplanes_list = []
         self.__modelAPI = modelAPI
 
+    def clear_airplane_list(self):
+        self.all_airplanes_list.clear()
+
+
     def pull_all_airplanes(self):
         '''Opens csv files and returns a list of all the airplanes (type ID, name, type)'''
-        self.all_airplanes_list.clear()
         airplane_stream = open("./repo/Airplane.csv", "r")
         type_stream = open("./repo/AirplaneType.csv", "r")
 
@@ -47,6 +50,7 @@ class DLAirplanes():
         # Ath!!
         filestream = open("./repo/AirplaneType.csv", "r")
         airplanes_list = []
+        new_airplane_type = self.modelAPI.get_model("AirplaneType")
         for airplane in filestream:
             airplanes_list.append(airplane.strip())
         filestream.close()

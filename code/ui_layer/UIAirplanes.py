@@ -63,6 +63,7 @@ class UIAirplanes():
             print("\nAirplane created!\n{}".format(airplane))
         else:
             print("\nInvalid insignia {}\n".format(insignia))
+        self.__ll_api.clear_airplane_list()
 
     def display_all_airplanes(self):
         ''' Print all airplanes '''
