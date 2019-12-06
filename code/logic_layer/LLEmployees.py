@@ -51,7 +51,7 @@ class LLEmployees:
         for employee in self.__all_employee_list:
             if employee.get_ssn() == ssn:
                 return employee
-                
+
     def list_all_employees_by_date(self):
         pass
 
@@ -80,7 +80,7 @@ class LLEmployees:
                                     3:employee.set_email, 4:employee.set_title, 5:employee.set_rank}
         success_check = set_employee_info_dict[input_tpl[0]](input_tpl[1])
         if success_check:
-            self.__dl_api.overwrite_all_employees(self.__all_employees)
+            self.__dl_api.overwrite_all_employees(self.__all_employee_list)
         return success_check
 
     def create_work_scedule(self):
