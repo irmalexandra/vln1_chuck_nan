@@ -68,7 +68,11 @@
 
 ###################################################################
 
-bla = 'pilot'
-if bla == 'pilot':
-    print('pilot')
-print('not pilot')
+# ssn = '0510922799'
+# if ssn[6] == '-':
+#     ssn = ssn.strip(ssn[6])
+#     print(ssn)
+
+some_string = "Hi!......"
+some_string.strip("!")
+print(some_string)

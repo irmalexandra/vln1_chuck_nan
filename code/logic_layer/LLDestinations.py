@@ -7,7 +7,7 @@ class LLDestinations:
 
 
     def get_all_destinations(self):
-        return self.__dl_api.populate_all_destinations()
+        return self.__dl_api.pull_all_destinations()
 
     def push_all_destinations(self, all_destinations):
         self.__dl_api.overwrite_all_destinations(all_destinations)
