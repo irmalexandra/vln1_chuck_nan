@@ -42,8 +42,8 @@ class LLAPI:
     def pull_airplane_types(self):
         return self.__ll_airplanes.pull_airplane_types()
 
-    def create_airplane(self, airplane, airplane_types):
-        return self.__ll_airplanes.create_airplane(airplane, airplane_types)
+    def create_airplane(self, airplane, airplane_types, insignia):
+        return self.__ll_airplanes.create_airplane(airplane, airplane_types, insignia)
         
     def get_employees_filtered_by_name(self, search_string):
         return self.__ll_employees.get_employees_by_name(search_string)
