@@ -4,6 +4,7 @@ from models.Pilot import Pilot
 from models.FlightAttendant import FlightAttendant
 from models.Voyage import Voyage
 from models.Destination import Destination
+from models.AirplaneType import AirplaneType
 
 
 
@@ -14,7 +15,8 @@ class ModelAPI():
                       "Pilot": Pilot,\
                       "FlightAttendant": FlightAttendant,\
                       "Voyage": Voyage,\
-                      "Destination": Destination}
+                      "Destination": Destination,
+                      "AirplaneType": AirplaneType}
 
 
     def get_model(self, model_name):
