@@ -10,7 +10,7 @@ class LLVoyages:
         pass
 
     def get_all_voyages(self):
-        return self.__dl_api.populate_all_voyages()
+        return self.__dl_api.pull_all_voyages()
 
     def filter_all_empty_voyages(self):
         pass

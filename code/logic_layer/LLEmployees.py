@@ -9,7 +9,7 @@ class LLEmployees:
 
     def get_all_employees(self):
         ''' pulls and returns a list of employee instances '''
-        return self.__dl_api.populate_all_employees()
+        return self.__dl_api.pull_all_employees()
 
     def push_all_employees(self, all_employees):
         self.__dl_api.overwrite_all_employees(all_employees)
@@ -61,7 +61,7 @@ class LLEmployees:
     def filter_all_employees_by_title(self, title):
         ''' Takes list of all employees and returns list of employees filtered by title from input '''
         filter_list = []
-        employee_list = self.__dl_api.populate_all_employees()
+        employee_list = self.__dl_api.pull_all_employees()
         for employee in employee_list:
             if employee.get_title() == title:
                 filter_list.append(employee)

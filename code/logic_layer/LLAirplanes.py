@@ -10,10 +10,10 @@ class LLAirplanes:
         pass
 
     def get_all_airplanes(self):
-        return self.__dl_api.populate_all_airplanes()
+        return self.__dl_api.pull_all_airplanes()
 
     def pull_airplane_types(self):
-        return self.__dl_api.populate_all_airplane_types()
+        return self.__dl_api.pull_all_airplane_types()
     
     def create_airplane(self, airplane, airplane_types):
         existing_airplane_types = airplane_types
