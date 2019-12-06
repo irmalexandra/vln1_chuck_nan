@@ -1,8 +1,5 @@
 
 class LLAirplanes:
-    MAKE = 1
-    MODEL = 2
-    CAPACITY = 3
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
@@ -20,20 +17,19 @@ class LLAirplanes:
     def create_airplane(self, airplane, airplane_types,insignia):
 
         self.__existing_airplanes = self.get_all_airplanes()
-        print("idk fam ", self.__existing_airplanes,"<-------")
         existing_airplanes_list = [x.get_name() for x in self.__existing_airplanes]
-        existing_airplane_types = airplane_types
-        airplane_make = airplane.get_make()
-        airplane_model = airplane.get_model()
-        #need to see if plane already exist or na!
-        for info in existing_airplane_types:
-            info_list = info.split(",")
+        if airplane.get_name() not in existing_airplanes_list:
+            existing_airplane_types = airplane_types
+            airplane_make = airplane.get_make()
+            airplane_model = airplane.get_model()
+            #need to see if plane already exist or na!
+            for info in existing_airplane_types:
+                if info.get_make() == airplane_make and info.get_model() == airplane_model:
+                    airplane.set_max_seats(info.get_capacity())
+                    self.__dl_api.create_airplane(airplane)
 
-            if info_list[self.MAKE] == airplane_make and info_list[self.MODEL] == airplane_model:
-                airplane.set_max_seats(info_list[self.CAPACITY])
-                self.__dl_api.create_airplane(airplane)
-
-                return  airplane
+                    return  airplane,True
+        return airplane,False
 
 
         

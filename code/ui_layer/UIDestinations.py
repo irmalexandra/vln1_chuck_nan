@@ -15,7 +15,7 @@ class UIDestinations():
 
             nav_dict = {1: self.create_destination, 2: self.display_all_destinations,
                         3: self.display_search_by_name, 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
-            destination_menu = "1. Create 2. All 3. Search by name"
+            destination_menu = "1. Create 2. Display all 3. Search by name"
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(destination_menu, " "*(self.UI_DIVIDER_INT - len(destination_menu) -
                                                            len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
@@ -36,8 +36,8 @@ class UIDestinations():
         # user input
         country = input("Country: ")
         airport = input("Airport: ")
-        flight_time = input("Flight time: ")
-        distance = input("Distance: ")
+        flight_time = input("Flight time (h): ")
+        distance = input("Distance (km): ")
         contact_name = input("Contact name: ")
         contact_number = input("Contact number: ")
 
@@ -105,13 +105,13 @@ class UIDestinations():
                 if choice == 9:
                     return
                 if self.__ll_api.edit_destination(destination, choice):
-                    print("Contact {} successful1y changed to {}".format(self.EDIT_FEEDBACK_TPL[choice[0]], choice[1]))
+                    print("Contact {} successful1y changed to {}".format(
+                        self.EDIT_FEEDBACK_TPL[choice[0]], choice[1]))
                 else:
                     print("Invalid input!")
-                
+
             except KeyError:
                 print("Invalid input! try again")
-            
 
     def change_contact(self):
         string = input("Enter new contact name: ")

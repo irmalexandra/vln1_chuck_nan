@@ -4,14 +4,21 @@ class DLAirplanes():
     AIRPLANE_DICT_PLANE_TYPE = 0
     AIRPLANE_DICT_MODEL = 1
     AIRPLANE_DICT_CAPACITY = 2
-
+    PLANE_TYPE_ID = 0
+    PLANE_TYPE_MAKE = 1
+    PLANE_TYPE_MODEL = 2
+    PLANE_TYPE_CAPACITY = 3
     def __init__(self, modelAPI):
         self.all_airplanes_list = []
         self.__modelAPI = modelAPI
+        self.airplanes_types_list = []
+
+    def clear_airplane_list(self):
+        self.all_airplanes_list.clear()
+
 
     def pull_all_airplanes(self):
         '''Opens csv files and returns a list of all the airplanes (type ID, name, type)'''
-        self.all_airplanes_list.clear()
         airplane_stream = open("./repo/Airplane.csv", "r")
         type_stream = open("./repo/AirplaneType.csv", "r")
 
@@ -46,8 +53,18 @@ class DLAirplanes():
     def pull_airplane_types_info(self):
         # Ath!!
         filestream = open("./repo/AirplaneType.csv", "r")
-        airplanes_list = []
+        self.airplanes_types_list = []
+        new_airplane_type_list = []
+        
         for airplane in filestream:
-            airplanes_list.append(airplane.strip())
+            check_list = []
+            new_airplane_type = self.__modelAPI.get_model("AirplaneType")
+            self.airplanes_types_list = airplane.strip().split(",")
+            check_list.append(new_airplane_type.set_plane_type_id(self.airplanes_types_list[self.PLANE_TYPE_ID]))
+            check_list.append(new_airplane_type.set_make(self.airplanes_types_list[self.PLANE_TYPE_MAKE]))
+            check_list.append(new_airplane_type.set_model(self.airplanes_types_list[self.PLANE_TYPE_MODEL]))
+            check_list.append(new_airplane_type.set_capacity(self.airplanes_types_list[self.PLANE_TYPE_CAPACITY]))      
+            if False not in check_list:
+                new_airplane_type_list.append(new_airplane_type)
         filestream.close()
-        return airplanes_list[1:]
+        return new_airplane_type_list

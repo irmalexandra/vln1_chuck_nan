@@ -146,7 +146,16 @@ Yfirferð Miðvikudags:
 	DataLayer kláraður (þar til annað kemur í ljós)
 	UI structure kominn með svip, en þó tekur ekki við input
 
-verkefni dagsins:
+Verkefni dagsins:
 	Koma UI layernum í lag 
 	Vinna að Logic layer í leið
 	kroppa aðeins í validatorinn 
+
+Captains Log, Stardate 06.12.2019
+
+Yfirferð Fimmtudags:
+	Unnið frekar í UI og logic layernum
+
+Verkefni dagsins:
+	Áframhaldandi vinna í UI og logic layernum 
+	Vinna í validatornum

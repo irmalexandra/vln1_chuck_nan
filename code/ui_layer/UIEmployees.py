@@ -21,6 +21,7 @@ class UIEmployees():
             
     def display_employee_search_menu(self):
         ''' Print the search menu of employee sub menu '''
+<<<<<<< HEAD
         nav_dict = {1: self.get_employee_by_name, 2: self.display_all_employees_by_title, 3: self.display_all_employees_by_date,
         4: self.display_pilots_by_airplane_type_sorted, 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
         employee_menu = "1. Name 2. Title 3. Date 4. Airplane"
@@ -29,6 +30,39 @@ class UIEmployees():
             return 0
         if return_bool == 9:
             return
+=======
+        # needs input
+        while True:
+
+            nav_dict = {1: self.get_employee_by_name, 2: self.display_all_employees_by_title2, 3: self.display_all_employees_by_date2,
+                        4: self.display_pilots_by_airplane_type_sorted2, 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
+            search_menu = "1. Name 2. Title 3. Date 4. Airplane"
+            print("-" * self.UI_DIVIDER_INT)
+            print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
+                                                      len(search_menu) - len(self.RETURN_MENU_STR) -
+                                                      self.DEVIATION_INT), self.RETURN_MENU_STR))
+
+            print("-" * self.UI_DIVIDER_INT)
+            choice = int(input("Input: "))
+            try:
+                choice = nav_dict[choice]()
+                if choice == 0:
+                    return 0
+                if choice == 9:
+                    return
+            except KeyError:
+                print("Invalid input! try again")
+
+    def get_employee_by_name(self, name):
+        ''' Search for employee instance and print out it's information '''
+        
+        found_employee_list = self.__ll_api.get_employees_filtered_by_name(name)
+        if len(found_employee_list) == 1:
+            self.display_one_employee(found_employee_list[0])
+            return found_employee_list[0]
+        else:
+            self.display_found_employees_by_name(found_employee_list, name)
+>>>>>>> f7cfb196b60850d64c7570c2c2d7eb4b7fb83816
 
     def display_found_employees_by_name(self, employee_list, name):
         ''' display list of employees by input'''

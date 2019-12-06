@@ -14,7 +14,7 @@ class UIVoyages():
 
             nav_dict = {1: self.create_voyage, 2: self.display_all_voyages, 3: self.voyages_search_menu,
                         9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
-            voyage_menu = "1. Create 2. All 3. Search"
+            voyage_menu = "1. Create 2. Display all 3. Search by"
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(voyage_menu, " "*(self.UI_DIVIDER_INT - len(voyage_menu) -
                                                       len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
@@ -85,7 +85,7 @@ class UIVoyages():
         print("Status:")
 
         print("Pilot: ")
-        print("Co-Pilot: ")
+        print("Copilot: ")
         print("Flight Service Manager: ")
         print("Cabin Crew: ")
 
@@ -137,7 +137,7 @@ class UIVoyages():
 
     def add_crew(self):
         pilot = input("Select pilot: ")
-        co_pilot = input("Select Co-Pilot: ")
+        co_pilot = input("Select Copilot: ")
         flight_service_management = ("Select flight service manager: ")
         add_crew = ("Select flight attendant (input 1 when done): ")
 
