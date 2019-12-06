@@ -1,5 +1,5 @@
 class Validator():
-    TITLE_LIST = ["Pilot", "Cabin crew"]
+    TITLE_LIST = ["Pilot", "Cabin Crew"]
     PILOT_RANK_LIST = ["Captain", "Copilot"]
     CABINCREW_RANK_LIST = ["Flight Service Manager", "Flight Attendant"]
     DOMAIN = "nanair.is"
@@ -19,7 +19,7 @@ class Validator():
 
     def validate_name(self, name):
         try:
-            name = name.strip()
+            name = name.replace(" ", "")
             if self.__validate_string(name):
                 return True
 
@@ -31,7 +31,7 @@ class Validator():
 
     def validate_employee_ssn(self, ssn):
         # if ssn[6] == '-':
-        #     ssn = ssn.strip('-')
+        #     ssn = ssn.replace("-", "")
         if (self.__validate_int(ssn)) and (len(ssn) == self.SSN):
             return True
 

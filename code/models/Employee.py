@@ -2,7 +2,7 @@ from validation.validator import Validator
 
 
 class Employee():
-    def __init__(self, name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank=''):
+    def __init__(self, name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank='', licence=''):
         self.__models_validation = Validator()
         self.__name = name
         self.__ssn = ssn
@@ -12,6 +12,15 @@ class Employee():
         self.__email = email
         self.__title = title
         self.__rank = rank
+        self.__licence = licence
+
+        self.__header_format_dict = {"default": self.get_model_header_default_format,
+                                     "date": self.get_model_header_date_format,
+                                     "aircraft": self.get_model_header_aircraft_format}
+        
+        self.__list_info_dict = {"default": self.get_model_list_default_info, 
+                                 "date": self.get_model_list_date_info,
+                                 "aircraft": self.get_model_list_aircraft_info}
 
     def raw_info(self):
         return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
@@ -84,3 +93,70 @@ class Employee():
 
     def set_rank(self, new_rank):
         self.__rank = new_rank
+
+    def get_licence(self):
+        return self.__licence
+
+    def set_licence(self, new_licence):
+        # if self.__models_validation.validate_pilot_airplane_type:
+        #     self.__airplane_type = new_airplane_type
+        # else:
+        #     pass
+        self.__licence = new_licence
+    
+    def get_model_header_format(self, header_flag):
+        return self.__header_format_dict[header_flag]()
+
+    def get_model_header_date_format(self):
+        return "|{:20}{:15}{:20}{:20}{:10}|".format("Name:",
+                                                    "SSN:",
+                                                    "Mobile Number:",
+                                                    "Title:", 
+                                                    "Availability:")
+
+    def get_model_header_default_format(self):
+        return "|{:<10}{:20}{:15}{:20}{:20}{:10}|".format("Index: ",
+                                                          "Name:",
+                                                          "SSN:",
+                                                          "Address:",
+                                                          "Mobile Number:",
+                                                          "Title:")
+        
+    def get_model_header_aircraft_format(self):
+        return "|{:20}{:15}{:20}{:20}{:10}{:10}|".format("Name:",
+                                                         "SSN:",
+                                                         "Address:",
+                                                         "Mobile Number:",
+                                                         "Title:",
+                                                         "Licence:")
+
+    def get_model_list_info(self, header_flag):
+        return self.__list_info_dict[header_flag]()
+
+    def get_model_list_date_info(self):
+        returnObject = "|{:20}{:15}{:20}{:20}{:10}|\n".format(
+                                                     self.get_name(),
+                                                     self.get_ssn(),
+                                                     self.get_mobile_num(),
+                                                     self.get_title(),
+                                                     "Missing availability")
+        return returnObject
+
+    def get_model_list_default_info(self):
+        returnObject = ("|{:20}{:15}{:20}{:20}{:10}|\n".format(
+                                                                      self.get_name(),
+                                                                      self.get_ssn(),
+                                                                      self.get_address(),
+                                                                      self.get_mobile_num(),
+                                                                      self.get_title()))
+        return returnObject
+
+    def get_model_list_aircraft_info(self):
+        returnObject = "|{:20}{:15}{:20}{:20}{:10}{:10}|\n".format(
+                                                       self.get_name(),
+                                                       self.get_ssn(),
+                                                       self.get_address(),
+                                                       self.get_mobile_num(),
+                                                       self.get_title(),
+                                                       self.get_licence())
+        return returnObject

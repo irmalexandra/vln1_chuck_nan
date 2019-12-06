@@ -31,12 +31,8 @@ class DLEmployees():
         self.all_crew_list = []
         for line in filestream:
             line_list = line.strip().split(",")
-            if line_list[DLEmployees.TITLE] == 'Pilot':
-                new_emp = self.__modelAPI.get_model('Pilot')
-                new_emp.set_licence(line_list[DLEmployees.LICENSE])
-            else:
-                new_emp = self.__modelAPI.get_model('FlightAttendant')
-
+            new_emp = self.__modelAPI.get_model('Employee')
+            
             new_emp.set_ssn(line_list[DLEmployees.SSN])
             new_emp.set_name(line_list[DLEmployees.NAME])
             new_emp.set_address(line_list[DLEmployees.ADDRESS])
@@ -45,6 +41,7 @@ class DLEmployees():
             new_emp.set_email(line_list[DLEmployees.EMAIL])
             new_emp.set_rank(line_list[DLEmployees.RANK])
             new_emp.set_title(line_list[DLEmployees.TITLE])
+            new_emp.set_licence(line_list[DLEmployees.LICENSE])
 
             self.all_crew_list.append(new_emp)
         filestream.close()

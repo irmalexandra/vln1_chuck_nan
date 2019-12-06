@@ -12,7 +12,7 @@ class UIEmployees():
     def display_employee_sub_menu(self):
         while True:
 
-            nav_dict = {1: self.create_employee, 2: self.display_all_employees, 3: self.display_employee_search_menu,
+            nav_dict = {1: self.create_employee, 2: self.display_all_employees2, 3: self.display_employee_search_menu,
                         9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
             employee_menu = "1. Create 2. All 3. Search by"
             print("-" * self.UI_DIVIDER_INT)
@@ -37,8 +37,8 @@ class UIEmployees():
         # needs input
         while True:
 
-            nav_dict = {1: self.get_employee_by_name, 2: self.display_all_employees_by_title, 3: self.display_all_employees_by_date,
-                        4: self.display_all_employees_by_title, 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
+            nav_dict = {1: self.get_employee_by_name, 2: self.display_all_employees_by_title2, 3: self.display_all_employees_by_date2,
+                        4: self.display_pilots_by_airplane_type_sorted2, 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
             search_menu = "1. Name 2. Title 3. Date 4. Airplane"
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(search_menu, " "*(self.UI_DIVIDER_INT -
@@ -123,7 +123,13 @@ class UIEmployees():
                     return
             except KeyError:
                 print("Invalid input! try again")
-
+    
+    def display_all_employees2(self):
+        ''' Print the given dictionary of employees '''
+        header_flag = "default"
+        employee_list = self.__ll_api.get_employee_list_by_name()
+        self.__ui_base_functions.print_object_list(employee_list, self.__modelAPI, header_flag)
+        
     def display_all_employees_by_date(self):
         '''Displays all employees availability on a specific day'''
         # needs input
@@ -138,7 +144,14 @@ class UIEmployees():
                                                        employee.get_title(),
                                                        "Missing availability"))
         print("-" * self.UI_DIVIDER_INT)
-
+    
+    def display_all_employees_by_date2(self):
+        '''Displays all employees availability on a specific day'''
+        #needs input
+        header_flag = "date"
+        employee_list = self.__ll_api.get_all_employee_list()
+        self.__ui_base_functions.print_object_list(employee_list, self.__modelAPI, header_flag)
+        
     def display_all_employees_by_title(self, title):
         ''' Print a filtered list of all employees by title '''
 
@@ -154,21 +167,24 @@ class UIEmployees():
                                                        employee.get_title()))
         print("-" * self.UI_DIVIDER_INT)
 
-    def display_pilots_by_airplane_type_sorted(self):
+    def display_all_employees_by_title2(self):
+        ''' Print a filtered list of all employees by title '''
+        header_flag = "default"
+        title = self.__ui_base_functions.get_user_input("title")
+        employee_list = self.__ll_api.get_employee_list_by_title(title)
+        self.__ui_base_functions.print_object_list(employee_list, self.__modelAPI, header_flag)
+        
+    def display_pilots_by_airplane_type_sorted2(self):
         ''' print a sorted list of pilots '''
 
-        print("-" * self.UI_DIVIDER_INT)
-        print("|{:20}{:15}{:20}{:20}{:10}|".format(
-            "Name:", "SSN:", "Address:", "Mobile Number:", "Title:"))
-        employee_list = self.__ll_api.get_employee_list_by_title("Pilot")
-        for employee in employee_list:
-            print("|{:20}{:15}{:20}{:20}{:10}|".format(employee.get_name(),
-                                                       employee.get_ssn(),
-                                                       employee.get_address(),
-                                                       employee.get_mobile_num(),
-                                                       employee.get_title()))
-        print("-" * self.UI_DIVIDER_INT)
+        header_flag = "aircraft"
+        title = "Pilot"
+        employee_list = self.__ll_api.get_pilots_sorted_by_airplane_type()
+        self.__ui_base_functions.print_object_list(employee_list, self.__modelAPI, header_flag)
+        
 
+
+        
     def display_pilots_by_airplane_type_filtered(self, airplane_type):
         pass
 
