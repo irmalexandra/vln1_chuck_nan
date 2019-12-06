@@ -179,16 +179,11 @@ class UIEmployees():
 
         header_flag = "aircraft"
         title = "Pilot"
-        employee_list = self.__ll_api.get_employee_list_by_title(title)
+        employee_list = self.__ll_api.get_pilots_sorted_by_airplane_type()
         self.__ui_base_functions.print_object_list(employee_list, self.__modelAPI, header_flag)
         
 
 
-    def display_pilots_by_airplane_type_sorted32(self):
-        ''' print a sorted list of pilots '''
-        header_flag = "aircraft"
-        employee_list = self.__ll_api.get_all_employee_list()
-        self.__ui_base_functions.print_object_list(employee_list, self.__modelAPI, header_flag)
         
     def display_pilots_by_airplane_type_filtered(self, airplane_type):
         pass

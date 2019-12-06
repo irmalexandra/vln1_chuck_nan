@@ -81,7 +81,7 @@ class LLEmployees:
         ''' Gets a list of pilots and returns it sorted '''
         title = "Pilot"
         pilot_list = self.filter_all_employees_by_title(title)
-        return sorted(pilot_list, key=lambda employee: employee.get_title())
+        return sorted(pilot_list, key=lambda employee: employee.get_licence())
 
     def edit_employee(self, employee, input_tpl):
         ''' Gets an instance and a tuple that holds a input flag and input string,
