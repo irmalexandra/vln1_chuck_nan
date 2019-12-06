@@ -16,6 +16,9 @@ class DLAPI():
     def populate_all_employees(self):
         return self.__dl_employees.pull_all_employees()
 
+    def overwrite_all_employees(self, employee_list):
+        self.__dl_employees.push_all_employees(employee_list)
+
     def populate_all_voyages(self):
         return self.__dl_voyages.pull_all_voyages()
 
