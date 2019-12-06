@@ -29,11 +29,7 @@ class Validator():
     def validate_employee_name(self, name):
         return self.validate_name(name)
 
-    def validate_employee_ssn(self, ssn, all_employee_list):
-        ssn_list = [(employee.get_ssn) for employee in all_employee_list]
-        if ssn in ssn_list:
-            return False
-        
+    def validate_employee_ssn(self, ssn):
         try:
             if ssn[6] == '-':
                 ssn = ssn.replace("-", "")
@@ -117,7 +113,7 @@ class Validator():
     def validate_airplane_typeid(self, typeid):
         return typeid[:2] == "NA"
 
-    def validate_airplane_insignia(self, insignia):
+    def validate_airplane_insignia(self, insignia, ):
         if insignia[2] == "-":
             if len(insignia) == 6:
                 return self.__validate_string(insignia.replace("-", ""))
