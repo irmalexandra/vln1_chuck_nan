@@ -23,16 +23,7 @@ class Employee():
                                  "date": self.get_model_list_date_info,
                                  "aircraft": self.get_model_list_aircraft_info}
 
-<<<<<<< HEAD
         
-=======
-        self.__validation_dict = {self.get_name: self.set_name, self.get_ssn: self.set_ssn,
-                                  self.get_address: self.set_address, self.get_home_num: self.set_home_num,
-                                  self.get_mobile_num: self.set_mobile_num, self.get_email: self.set_email}
-
-        self.__creation_order_list = [
-            'name', 'ssn', 'home address', 'home number', 'mobile number', 'email']
->>>>>>> f7cfb196b60850d64c7570c2c2d7eb4b7fb83816
 
     def raw_info(self):
         return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
@@ -148,7 +139,6 @@ class Employee():
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-<<<<<<< HEAD
         returnObject = "{:20}{:15}{:20}{:20}{:10}\n".format(
                                                      self.get_name(),
                                                      self.get_ssn(),
