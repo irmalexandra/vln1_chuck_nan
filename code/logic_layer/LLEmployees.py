@@ -71,7 +71,11 @@ class LLEmployees:
     def filter_pilots_by_airplane_type(self, airplane_type):
         pilot_list = self.sort_pilots_by_airplane_type()
         
-        for pilot in pilot_list( )
+        filter_list = []
+        for pilot in pilot_list:
+            if employee.get_licence() == airplane_type:
+                filter_list.append(employee)
+        return filter_list
 
     def sort_pilots_by_airplane_type(self):
         ''' Gets a list of pilots and returns it sorted '''
