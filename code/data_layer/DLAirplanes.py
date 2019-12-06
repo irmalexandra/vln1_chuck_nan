@@ -10,7 +10,7 @@ class DLAirplanes():
         self.__modelAPI = modelAPI
 
     def pull_all_airplanes(self):
-
+    '''Opens csv files and returns a list of all the airplanes (type ID, name, type)'''
         aircraft_stream = open("./repo/Aircraft.csv", "r")
         type_stream = open("./repo/AircraftType.csv", "r")
 
@@ -29,15 +29,13 @@ class DLAirplanes():
             new_aircraft.set_model(aircraft_info_list[DLAirplanes.AIRCRAFT_DICT_MODEL])    #Model
             new_aircraft.set_max_seats(aircraft_info_list[DLAirplanes.AIRCRAFT_DICT_CAPACITY])    #Capacity
 
-
-
-
             self.all_airplanes_list.append(new_aircraft)
         aircraft_stream.close()
         type_stream.close()
         return self.all_airplanes_list[1:]
-
+        
     def append_aircraft(self, aircraft):
+        '''Adds a new airplane to the airplane string'''
         aircraft_stream = open('./repo/Aircraft.csv', 'a')
         aircraft_str = aircraft.raw_info()
         aircraft_stream.write(aircraft_str)
@@ -45,6 +43,7 @@ class DLAirplanes():
         return    
 
     def pull_airplane_types_info(self):
+        # Ath!!
         filestream = open("./repo/AircraftType.csv", "r")
         airplanes_list = []
         for airplane in filestream:
