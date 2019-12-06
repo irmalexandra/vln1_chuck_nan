@@ -73,6 +73,9 @@
 #     ssn = ssn.strip(ssn[6])
 #     print(ssn)
 
-name = 'Faroe Islands'
-name = name.strip(" ")
-print(name)
+
+ssn = '051092-2799'
+if ssn[6] == '-':
+    ssn = ssn.replace("-", "")
+
+print(ssn)
