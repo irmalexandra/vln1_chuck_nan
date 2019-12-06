@@ -36,7 +36,7 @@ class UIDestinations():
         # user input
         country = input("Country: ")
         airport = input("Airport: ")
-        flight_time = input("Flight time (hours): ")
+        flight_time = input("Flight time (h): ")
         distance = input("Distance (km): ")
         contact_name = input("Contact name: ")
         contact_number = input("Contact number: ")
