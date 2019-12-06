@@ -40,4 +40,4 @@ class DLAPI():
         return self.__dl_airplanes.pull_airplane_types_info()
     
     def create_airplane(self, airplane):
-        self.__dl_airplanes.append_aircraft(airplane)
+        self.__dl_airplanes.append_airplane(airplane)

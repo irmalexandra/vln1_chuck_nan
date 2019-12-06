@@ -52,14 +52,17 @@ class UIAirplanes():
             make = existing_airplane_types_list[2][self.MAKE]
             model = existing_airplane_types_list[2][self.MODEL]
         
-        insignia = "TF-" + input("Insignia: (must be 3 letters) ").upper()
+        insignia = "TF-" + input("Insignia (must be 3 letters): TF-").upper()
         
         new_airplane = self.__modelAPI.get_model("Airplane")
         new_airplane.set_make(make)
         new_airplane.set_model(model)
-        new_airplane.set_name(insignia)
-        airplane = self.__ll_api.create_airplane(new_airplane, existing_airplane_types)
-        print("\nAirplane created!\n{}".format(airplane))
+        check = new_airplane.set_name(insignia)
+        if check:
+            airplane = self.__ll_api.create_airplane(new_airplane, existing_airplane_types,insignia)
+            print("\nAirplane created!\n{}".format(airplane))
+        else:
+            print("\nInvalid insignia {}\n".format(insignia))
 
     def display_all_airplanes(self):
         ''' Print all airplanes '''

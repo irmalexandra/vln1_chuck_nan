@@ -7,17 +7,17 @@ class DLAPI():
         self.dl_destinations = DLDestinations()
         self.dl_airplanes = DLAirplanes()
 
-    def populate_all_employees(self):
+    def pull_all_employees(self):
         return self.dl_employees.pull_all_employees()
 
 
-    def populate_all_voyages(self):
+    def pull_all_voyages(self):
         return self.dl_voyages.pull_all_voyages()
 
-    def populate_all_destinations(self):
+    def pull_all_destinations(self):
         return self.dl_destinations.pull_all_destinations()
 
-    def populate_all_airplanes(self):
+    def pull_all_airplanes(self):
         return self.dl_airplanes.pull_all_airplanes()
 
 class DLEmployees():
@@ -110,7 +110,7 @@ class DLAirplanes():
 
     def pull_all_airplanes(self):
         all_airplanes_list = []
-        filestream = open("Aircraft.csv", "r")
+        filestream = open("Airplane.csv", "r")
         for line in filestream:
             all_airplanes_list.append(line.strip("\n").split(","))
         filestream.closed
@@ -121,11 +121,11 @@ class DLAirplanes():
 
 
 stuff = DLAPI()
-# print("What", stuff.populate_all_employees())
-# print("\n", stuff.populate_all_airplanes())
-# print("\n", stuff.populate_all_destinations())
-# print("\n", stuff.populate_all_voyages())
-emp_list = stuff.populate_all_employees()
+# print("What", stuff.pull_all_employees())
+# print("\n", stuff.pull_all_airplanes())
+# print("\n", stuff.pull_all_destinations())
+# print("\n", stuff.pull_all_voyages())
+emp_list = stuff.pull_all_employees()
 for emp in emp_list:
     print(emp)
 

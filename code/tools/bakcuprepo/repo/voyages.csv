@@ -1,4 +1,4 @@
-departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,aircraftid,captainid,copilotid,fsmid,faids
+departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,airplaneid,captainid,copilotid,fsmid,faids
 NA5614,NA7299,Reykjavík,2019-11-02T06:21:00,2019-11-02T10:21:00,Longyearbyen,2019-11-02T11:21:00,2019-11-02T15:21:00,TF-TYQ,1,7,13,21:32
 NA2551,NA5675,Reykjavík,2019-11-04T05:32:00,2019-11-04T09:32:00,Longyearbyen,2019-11-04T10:32:00,2019-11-04T14:32:00,TF-XZR,2,8,14,22:33
 NA1377,NA6283,Reykjavík,2019-11-06T05:39:00,2019-11-06T09:39:00,Longyearbyen,2019-11-06T10:39:00,2019-11-06T14:39:00,TF-XZR,2,8,14,23:36
