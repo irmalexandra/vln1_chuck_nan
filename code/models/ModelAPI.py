@@ -1,7 +1,5 @@
 from models.Airplane import Airplane
 from models.Employee import Employee
-from models.Pilot import Pilot
-from models.FlightAttendant import FlightAttendant
 from models.Voyage import Voyage
 from models.Destination import Destination
 from models.AirplaneType import AirplaneType
@@ -12,8 +10,6 @@ class ModelAPI():
     def __init__(self):
         self.model_dict = {"Airplane": Airplane,\
                       "Employee": Employee,\
-                      "Pilot": Pilot,\
-                      "FlightAttendant": FlightAttendant,\
                       "Voyage": Voyage,\
                       "Destination": Destination,
                       "AirplaneType": AirplaneType}
@@ -35,10 +31,11 @@ class ModelAPI():
     def validate_model(self, model):
         ''' Gets a object instance from the logic layer and returns a tuple '''
         validation_dict = model.get_validation_dict()
-        creation_order_list = model.get_creation_order_list
+        creation_order_list = model.get_creation_order_list()
         order_counter = 0
+
         for key, value in validation_dict.items():
-            check = model.value(key)
+            check = model.handle_key_value(key, value)
             if not check:
                 return (creation_order_list[order_counter], check)
             order_counter += 1
