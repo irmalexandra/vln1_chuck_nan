@@ -29,7 +29,11 @@ class Validator():
     def validate_employee_name(self, name):
         return self.validate_name(name)
 
-    def validate_employee_ssn(self, ssn):
+    def validate_employee_ssn(self, ssn, all_employee_list):
+        ssn_list = [(employee.get_ssn) for employee in all_employee_list]
+        if ssn in ssn_list:
+            return False
+        
         try:
             if ssn[6] == '-':
                 ssn = ssn.replace("-", "")
