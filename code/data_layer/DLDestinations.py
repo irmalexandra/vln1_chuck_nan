@@ -1,6 +1,7 @@
 import os
 from os import path
 
+
 class DLDestinations():
     COUNTRY = 0
     AIRPORT = 1
@@ -14,12 +15,11 @@ class DLDestinations():
         self.__modelAPI = modelAPI
 
     def pull_all_destinations(self):
-        '''Opens csv files and returns a list of all destinations 
-        (country,airport,flight time,distance,contact name,contact number) '''
+        '''Opens csv files and returns a list of all destinations (country, airport, flight time, distance, contact name, contact number)'''
         if path.exists('./repo/destination.csv') and path.exists('./repo/destinations_temp.csv'):
             filestream = open("./repo/destination.csv", "r")
             os.remove("./repo/destinations_temp.csv")
-        elif  path.exists('./repo/destination.csv') and path.exists('./repo/destinations_temp.csv') == False:
+        elif path.exists('./repo/destination.csv') and path.exists('./repo/destinations_temp.csv') == False:
             filestream = open("./repo/destination.csv", "r")
         elif path.exists('./repo/destination.csv') == False and path.exists('./repo/destinations_temp.csv'):
             filestream = open("./repo/destinations_temp.csv", "r")
@@ -33,22 +33,25 @@ class DLDestinations():
 
             new_destination.set_country(line_list[DLDestinations.COUNTRY])
             new_destination.set_airport(line_list[DLDestinations.AIRPORT])
-            new_destination.set_flight_time(line_list[DLDestinations.FLIGHT_TIME])
+            new_destination.set_flight_time(
+                line_list[DLDestinations.FLIGHT_TIME])
             new_destination.set_distance(line_list[DLDestinations.DISTANCE])
-            new_destination.set_contact_name(line_list[DLDestinations.CONTACT_NAME])
-            new_destination.set_contact_number(line_list[DLDestinations.CONTACT_NUMBER])
+            new_destination.set_contact_name(
+                line_list[DLDestinations.CONTACT_NAME])
+            new_destination.set_contact_number(
+                line_list[DLDestinations.CONTACT_NUMBER])
 
             self.all_destinations_list.append(new_destination)
         filestream.closed
         return self.all_destinations_list[1:]
 
     def append_destination(self, new_destination):
-        '''Opens a csv file and adds a nes destination to the destination string '''
+        '''Opens a csv file and adds a new destination to the destination string'''
         destination_stream = open('./repo/Destination.csv', 'a')
         destination_str = new_destination.raw_info()
         destination_stream.write(destination_str)
         destination_stream.close()
-        return    
+        return
 
     def push_all_destinations(self, destination_list):
         # employee_file.write(new_emp_str)
