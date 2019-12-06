@@ -4,7 +4,7 @@ from validation.validator import Validator
 class Voyage():
     def __init__(self, destination = "", departing_flight_num = "", return_flight_num = "", departing_flight_departing_from = "", 
                 departing_flight_departure_date = "", departing_flight_arrival_date = "", return_flight_departing_from = "", 
-                return_flight_departure_date = "", return_flight_arrival_date = "", airplane_id = "", 
+                return_flight_departure_date = "", return_flight_arrival_date = "", airplane_insignia = "", 
                 captain_ssn = "", copilot_ssn = "", fsm_ssn = "", fa_ssns=[]):
         self.__models_validation = Validator()
         self.__departing_flight_num = departing_flight_num
@@ -20,7 +20,7 @@ class Voyage():
         self.__return_flight_departure_date = return_flight_departure_date
         self.__return_flight_arrival_date = return_flight_arrival_date
 
-        self.__airplane_ssn = airplane_id
+        self.__airplane_ssn = airplane_insignia
         self.__captain_ssn = captain_ssn
         self.__copilot_ssn = copilot_ssn
         self.__fsm_ssn = fsm_ssn
@@ -32,11 +32,11 @@ class Voyage():
         self.__creation_order_list = ["destination", "departure date"]
 
     def __str__(self):
-        return "{} {} {} {} {} {} {} {} {} {} {} {} {}".format(self.__departing_flight_num, self.__return_flight_num, self.__departing_flight_departing_from, self.__departing_flight_departure_date, self.__departing_flight_arrival_date, self.__return_flight_departing_from, self.__return_flight_departure_date, self.__return_flight_arrival_date, self.__airplane_id, self.__captain_ssn, self.__copilot_ssn, self.__fsm_ssn, ":".join(self.__fa_ssns))
+        return "{} {} {} {} {} {} {} {} {} {} {} {} {}".format(self.__departing_flight_num, self.__return_flight_num, self.__departing_flight_departing_from, self.__departing_flight_departure_date, self.__departing_flight_arrival_date, self.__return_flight_departing_from, self.__return_flight_departure_date, self.__return_flight_arrival_date, self.__airplane_insignia, self.__captain_ssn, self.__copilot_ssn, self.__fsm_ssn, ":".join(self.__fa_ssns))
 
     def raw_info(self):
         true_employees = ":".join(self.__fa_ssns)
-        return self.__departing_flight_num + "," + self.__return_flight_num + "," + self.__departing_flight_departing_from + "," + self.__departing_flight_departure_date + "," + self.__departing_flight_arrival_date + "," + self.__return_flight_departing_from + "," + self.__return_flight_departure_date + "," + self.__return_flight_arrival_date + "," + self.__airplane_id + "," + self.__captain_ssn + "," + self.__copilot_ssn + "," + self.__fsm_ssn + "," + true_employees + "\n"
+        return self.__departing_flight_num + "," + self.__return_flight_num + "," + self.__departing_flight_departing_from + "," + self.__departing_flight_departure_date + "," + self.__departing_flight_arrival_date + "," + self.__return_flight_departing_from + "," + self.__return_flight_departure_date + "," + self.__return_flight_arrival_date + "," + self.__airplane_insignia + "," + self.__captain_ssn + "," + self.__copilot_ssn + "," + self.__fsm_ssn + "," + true_employees + "\n"
 
     def get_validation_dict(self):
         return self.__validation_dict
@@ -79,7 +79,7 @@ class Voyage():
         return self.__departing_flight_departure_date
 
     def set_departing_flight_departure_date(self, new_departure):
-        if self.__models_validation.validate_date_time(new):
+        if self.__models_validation.validate_date_time(new_departure):
             self.__departing_flight_departure_date = new_departure
 
     def get_departing_flight_arrival_date(self):
@@ -111,15 +111,15 @@ class Voyage():
         if self.__models_validation.validate_date_time(new):
             self.__return_flight_arrival_date = new
 
-    def get_airplane_id(self):
-        return self.__airplane_id
+    def get_airplane_insignia(self):
+        return self.__airplane_insignia
 
-    def set_airplane_id(self, new):
+    def set_airplane_insignia(self, new):
         if new != ".":
             if self.__models_validation.validate_airplane_insignia(new):
-                self.__airplane_id = new
+                self.__airplane_insignia = new
         else:
-            self.__airplane_id = new
+            self.__airplane_insignia = new
 
     def get_captain_ssn(self):
         return self.__captain_ssn
