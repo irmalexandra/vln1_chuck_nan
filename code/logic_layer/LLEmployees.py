@@ -20,7 +20,7 @@ class LLEmployees:
         return sorted(all_employee_list, key=lambda employee: employee.get_name())
 
     def get_name_dict(self):
-        ''' gets a list of employee instances and returns a dict where key is name and value is ssn '''
+        ''' Gets a list of employee instances and returns a dict where key is name and value is ssn '''
         employee_list = self.get_all_employees()
         name_dict = {}
         for employee in employee_list:
@@ -28,7 +28,7 @@ class LLEmployees:
         return name_dict
 
     def get_employees_by_name(self, search_string):
-        ''' pulls a list of employee instances and returns a instance of employee by employee_ID '''
+        ''' Pulls a list of employee instances and returns a list of instances based on search_string '''
 
         name_dict = self.get_name_dict()
         found_ssn_list = []
@@ -60,6 +60,7 @@ class LLEmployees:
 
     def filter_all_employees_by_title(self, title):
         ''' Takes list of all employees and returns list of employees filtered by title from input '''
+
         filter_list = []
         employee_list = self.__dl_api.pull_all_employees()
         for employee in employee_list:
@@ -69,13 +70,16 @@ class LLEmployees:
 
     def filter_pilots_by_airplane_type(self, airplane_type):
         pass
-
     def sort_pilots_by_airplane_type(self):
-        pass
+        ''' Gets a list of pilots and returns it sorted '''
+        title = "Pilot"
+        pilot_list = self.filter_all_employees_by_title(title)
+        return sorted(pilot_list, key=lambda employee: employee.get_title())
 
     def edit_employee(self, employee, input_tpl):
-        ''' gets an instance and a tuple that holds a input flag and input string,
+        ''' Gets an instance and a tuple that holds a input flag and input string,
             calls a set function depending on flag and returns a boolean '''
+
         set_employee_info_dict = {0:employee.set_home_address, 1:employee.set_home_number, 2:employee.set_mobile_number, 
                                     3:employee.set_email, 4:employee.set_title, 5:employee.set_rank}
         success_check = set_employee_info_dict[input_tpl[0]](input_tpl[1])
