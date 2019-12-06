@@ -1,3 +1,4 @@
+
 class LLAirplanes:
     MAKE = 1
     MODEL = 2
@@ -5,6 +6,7 @@ class LLAirplanes:
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
+        self.__existing_airplanes = []
 
     def validate_airplane(self):
         pass
@@ -17,8 +19,9 @@ class LLAirplanes:
     
     def create_airplane(self, airplane, airplane_types,insignia):
 
-       # existing_airplanes = self.__dl_api.
-
+        self.__existing_airplanes = self.get_all_airplanes()
+        print("idk fam ", self.__existing_airplanes,"<-------")
+        existing_airplanes_list = [x.get_name() for x in self.__existing_airplanes]
         existing_airplane_types = airplane_types
         airplane_make = airplane.get_make()
         airplane_model = airplane.get_model()

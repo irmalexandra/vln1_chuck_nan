@@ -47,3 +47,4 @@ class LLAPI:
         
     def get_employees_filtered_by_name(self, search_string):
         return self.__ll_employees.get_employees_by_name(search_string)
+
