@@ -23,7 +23,7 @@ class DLVoyages():
         '''Opens csv files and returns a list of all voyages 
         (departing flight num, return flight num, departing from, departure date, departing flight arrival date, 
         return flight departing from, return flight departure date, return flight arrival date, airplane id,captain ssn, 
-        co pilot ssn, fsm ssn, flightattendants_ssn)'''
+        co-pilot ssn, fsm ssn, flightattendants ssn)'''
         if path.exists('./repo/voyages.csv') and path.exists('./repo/voyages_temp.csv'):
             filestream = open("./repo/voyages.csv", "r")
             os.remove("./repo/voyages_temp.csv")
