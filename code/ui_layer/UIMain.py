@@ -6,6 +6,7 @@ from ui_layer.UIEmployees import UIEmployees
 from ui_layer.UIVoyages import UIVoyages
 from ui_layer.UIDestinations import UIDestinations
 from ui_layer.UIAirplanes import UIAirplanes
+import os
 
 import string
 
@@ -45,18 +46,11 @@ class UIMain():
 
     def display_main_menu(self):
         while True:
-            nav_dict = {1: self.__ui_employees.display_employee_sub_menu, 2: self.__ui_voyages.display_voyage_sub_menu,
-                        3: self.__ui_destinations.display_destination_sub_menu, 4: self.__ui_airplanes.display_airplanes_sub_menu, 0: self.__ui_base_functions.exit_program}
             self.print_nan_airlines()
+            nav_dict = {1: self.__ui_employees.display_employee_sub_menu, 2: self.__ui_voyages.display_voyage_sub_menu,
+            3: self.__ui_destinations.display_destination_sub_menu, 4: self.__ui_airplanes.display_airplanes_sub_menu, 0: self.__ui_base_functions.exit_program}
             main_menu = "1. Employees 2. Voyages 3. Destinations 4. Airplanes"
-            #print("{}{}".format(true_menu, " " * (UIMain.TRUE_LEN - len(true_menu)-1)))
-            print("-"*self.UI_DIVIDER_INT)
-            print("|{}{}{}|".format(main_menu, " "*(self.UI_DIVIDER_INT -
-                                                    len(main_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
-            print("-"*self.UI_DIVIDER_INT)
-            choice = int(input("Input: "))
-            try:
-                choice = nav_dict[choice]()
-
-            except KeyError:
-                print("Invalid input! try again")
+            return_bool = self.__ui_base_functions.display_menu(main_menu, nav_dict, self.RETURN_MENU_STR)
+            if return_bool == 9:
+                return
+            
