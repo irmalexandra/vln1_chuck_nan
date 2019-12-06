@@ -151,7 +151,7 @@ class Employee():
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-        returnObject = "{:20}{:15}{:20}{:20}{:10}|\n".format(
+        returnObject = "{:20}{:15}{:20}{:20}{:10}                                        |\n".format(
                                                      self.get_name(),
                                                      self.get_ssn(),
                                                      self.get_mobile_num(),
