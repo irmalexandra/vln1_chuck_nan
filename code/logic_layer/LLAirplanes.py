@@ -15,7 +15,10 @@ class LLAirplanes:
     def pull_airplane_types(self):
         return self.__dl_api.pull_all_airplane_types()
     
-    def create_airplane(self, airplane, airplane_types):
+    def create_airplane(self, airplane, airplane_types,insignia):
+
+       # existing_airplanes = self.__dl_api.
+
         existing_airplane_types = airplane_types
         airplane_make = airplane.get_make()
         airplane_model = airplane.get_model()

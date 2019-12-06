@@ -19,8 +19,8 @@ class Validator():
 
     def validate_name(self, name):
         try:
-            first, last = name.split()
-            if self.__validate_string(first) and self.__validate_string(last):
+            name = name.strip()
+            if self.__validate_string(name):
                 return True
 
         except ValueError:
@@ -125,15 +125,8 @@ class Validator():
             return True
         return False
 
-    def validate_airplane_capacity(self, capacity):  # <--------------
+    def validate_airplane_capacity(self, capacity):
         return self.__validate_int(capacity)
-
-    def validate_destinationid(self, id_int):
-        if self.__validate_string(id_int):
-            if (id_int.isupper()) and (len(id_int) == 3):
-                return True
-
-        return False
 
     def validate_flight_number(self, flight_num):
         if (flight_num[:2] == "NA") and (self.__validate_int(flight_num[2:])):
@@ -141,24 +134,23 @@ class Validator():
 
         return False
 
-    # <-------------- # thurfum ad gera rad fyrir 1 eda 2 nofnum
     def validate_country(self, country):
-        return self.__validate_string(country)
+        return self.validate_name(country)
 
-    def validate_city(self, city):  # <-------------------
-        return self.__validate_string(city)
+    def validate_city(self, city):
+        return self.validate_name(city)
 
-    def validate_airport(self, airport):  # <------------------
-        return self.__validate_string(airport)
+    def validate_airport(self, airport):
+        return self.validate_name(airport)
 
-    def validate_flight_time(self, time):  # <--------------
-        return self.__validate_int(time)
+    def validate_flight_time(self, time):
+        return self.validate_time(time)
 
-    def validate_distance(self, distance):  # <--------------
+    def validate_distance(self, distance):
         return self.__validate_int(distance)
 
-    def validate_contact_name(self, name):  # <-------------------
+    def validate_contact_name(self, name):
         return self.validate_name(name)
 
-    def validate_contact_number(self, number):  # <---------------
+    def validate_contact_number(self, number):
         return self.validate_phone_number(number)
