@@ -144,7 +144,7 @@ class Validator():
         return self.validate_name(airport)
 
     def validate_flight_time(self, time):
-        return self.validate_time(time)
+        return self.__validate_int(time)
 
     def validate_distance(self, distance):
         return self.__validate_int(distance)
