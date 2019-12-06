@@ -4,6 +4,8 @@ class Pilot(Employee):
     def __init__(self, licence=''):
         super().__init__(self)
         self.__licence = licence
+        self.__header_format_dict = {"default": self.get_model_header_aircraft_format}
+        self.__list_info_dict = {"default": self.get_model_list_aircraft_info }
 
     def get_licence(self):
         return self.__licence
@@ -19,3 +21,5 @@ class Pilot(Employee):
 
     def raw_info(self):
         return super().raw_info() + "," + self.__licence + "\n"
+
+    
