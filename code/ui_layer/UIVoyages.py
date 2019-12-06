@@ -85,7 +85,7 @@ class UIVoyages():
         print("Status:")
 
         print("Pilot: ")
-        print("Co-Pilot: ")
+        print("Copilot: ")
         print("Flight Service Manager: ")
         print("Cabin Crew: ")
 
@@ -137,7 +137,7 @@ class UIVoyages():
 
     def add_crew(self):
         pilot = input("Select pilot: ")
-        co_pilot = input("Select Co-Pilot: ")
+        co_pilot = input("Select Copilot: ")
         flight_service_management = ("Select flight service manager: ")
         add_crew = ("Select flight attendant (input 1 when done): ")
 

@@ -34,23 +34,23 @@ class UIAirplanes():
         ''' Create an airplane '''
         # 1
         # user input
-        existing_airplane_types = self.__ll_api.pull_airplane_types()
-        existing_airplane_types_list = [x.split(",") for x in existing_airplane_types]  
+        existing_airplane_types_list = self.__ll_api.pull_airplane_types()
+        print("the planes list is ", existing_airplane_types_list)
         print("Supported airplanes: ")
         for number, plane in enumerate(existing_airplane_types_list):
-            print(number + 1, plane[1] + plane[2])
+            print(number + 1, plane.get_make() + plane.get_model())
 
         
         picked_airplane = input("Pick a airplane type: ")
         if picked_airplane == "1":
-            make = existing_airplane_types_list[0][self.MAKE]
-            model = existing_airplane_types_list[0][self.MODEL]
+            make = existing_airplane_types_list[0].get_make()
+            model = existing_airplane_types_list[0].get_model()
         elif picked_airplane == "2":
-            make = existing_airplane_types_list[1][self.MAKE]
-            model = existing_airplane_types_list[1][self.MODEL]
+            make = existing_airplane_types_list[1].get_make()
+            model = existing_airplane_types_list[1].get_model()
         elif picked_airplane == "3":
-            make = existing_airplane_types_list[2][self.MAKE]
-            model = existing_airplane_types_list[2][self.MODEL]
+            make = existing_airplane_types_list[2].get_make()
+            model = existing_airplane_types_list[2].get_model()
         
         insignia = "TF-" + input("Insignia (must be 3 letters): TF-").upper()
         
@@ -59,10 +59,11 @@ class UIAirplanes():
         new_airplane.set_model(model)
         check = new_airplane.set_name(insignia)
         if check:
-            airplane = self.__ll_api.create_airplane(new_airplane, existing_airplane_types,insignia)
+            airplane = self.__ll_api.create_airplane(new_airplane, existing_airplane_types_list,insignia)
             print("\nAirplane created!\n{}".format(airplane))
         else:
             print("\nInvalid insignia {}\n".format(insignia))
+        self.__ll_api.clear_airplane_list()
 
     def display_all_airplanes(self):
         ''' Print all airplanes '''

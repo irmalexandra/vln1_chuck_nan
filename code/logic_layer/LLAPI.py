@@ -48,5 +48,8 @@ class LLAPI:
     def get_employees_filtered_by_name(self, search_string):
         return self.__ll_employees.get_employees_by_name(search_string)
 
+    def clear_airplane_list(self):
+        self.__DLAPI.clear_airplane_list()
+        
     def get_pilots_sorted_by_airplane_type(self):
         return self.__ll_employees.sort_pilots_by_airplane_type()
