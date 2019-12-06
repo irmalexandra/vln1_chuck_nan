@@ -10,7 +10,7 @@ class DLAirplanes():
         self.__modelAPI = modelAPI
 
     def pull_all_airplanes(self):
-    '''Opens csv files and returns a list of all the airplanes (type ID, name, type)'''
+        '''Opens csv files and returns a list of all the airplanes (type ID, name, type)'''
         aircraft_stream = open("./repo/Aircraft.csv", "r")
         type_stream = open("./repo/AircraftType.csv", "r")
 
