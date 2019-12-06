@@ -4,8 +4,8 @@ class LLEmployees:
         self.__modelAPI = modelAPI
         self.__all_employee_list = []
 
-    def validate_employee(self):
-        pass
+    def validate_employee(self, employee):
+        return self.__modelAPI.validate_model(employee)
 
     def get_all_employees(self):
         ''' pulls and returns a list of employee instances '''

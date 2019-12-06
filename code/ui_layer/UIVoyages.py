@@ -14,7 +14,7 @@ class UIVoyages():
 
             nav_dict = {1: self.create_voyage, 2: self.display_all_voyages, 3: self.voyages_search_menu,
                         9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
-            voyage_menu = "1. Create 2. All 3. Search"
+            voyage_menu = "1. Create 2. Display all 3. Search by"
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(voyage_menu, " "*(self.UI_DIVIDER_INT - len(voyage_menu) -
                                                       len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))

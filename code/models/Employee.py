@@ -2,6 +2,7 @@ from validation.validator import Validator
 
 
 class Employee():
+
     def __init__(self, name='', ssn='', address='', home_num=0, mobile_num=0, email='', title='', rank='', licence=''):
         self.__models_validation = Validator()
         self.__name = name
@@ -21,6 +22,12 @@ class Employee():
         self.__list_info_dict = {"default": self.get_model_list_default_info, 
                                  "date": self.get_model_list_date_info,
                                  "aircraft": self.get_model_list_aircraft_info}
+        
+        self.__validation_dict = {self.get_name:self.set_name, self.get_ssn:self.set_ssn, 
+                                    self.get_address:self.set_address, self.get_home_num:self.set_home_num, 
+                                    self.get_mobile_num:self.set_mobile_num, self.get_email:self.set_email}
+
+        self.__creation_order_list = ['name', 'ssn', 'home address', 'home number', 'mobile number', 'email']
 
     def raw_info(self):
         return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
@@ -160,3 +167,9 @@ class Employee():
                                                        self.get_title(),
                                                        self.get_licence())
         return returnObject
+
+    def get_validation_dict(self):
+        return self.__validation_dict
+
+    def get_creation_order_list(self):
+        return self.__creation_order_list
