@@ -22,7 +22,7 @@ class LLDestinations:
         set_contact_info_dict = {0:destination.set_contact_name, 1:destination.set_contact_number}
         success_check = set_contact_info_dict[input_tpl[0]](input_tpl[1])
         if success_check:
-            self.__dl_api.push_all_destinations(self.__all_destination_list)
+            self.push_all_destinations(self.__all_destination_list)
         return success_check
 
     def get_one_destination(self, airport):
