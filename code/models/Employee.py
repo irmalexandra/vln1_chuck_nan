@@ -18,16 +18,17 @@ class Employee():
         self.__header_format_dict = {"default": self.get_model_header_default_format,
                                      "date": self.get_model_header_date_format,
                                      "aircraft": self.get_model_header_aircraft_format}
-        
-        self.__list_info_dict = {"default": self.get_model_list_default_info, 
+
+        self.__list_info_dict = {"default": self.get_model_list_default_info,
                                  "date": self.get_model_list_date_info,
                                  "aircraft": self.get_model_list_aircraft_info}
-        
-        self.__validation_dict = {self.get_name:self.set_name, self.get_ssn:self.set_ssn, 
-                                    self.get_address:self.set_address, self.get_home_num:self.set_home_num, 
-                                    self.get_mobile_num:self.set_mobile_num, self.get_email:self.set_email}
 
-        self.__creation_order_list = ['name', 'ssn', 'home address', 'home number', 'mobile number', 'email']
+        self.__validation_dict = {self.get_name: self.set_name, self.get_ssn: self.set_ssn,
+                                  self.get_address: self.set_address, self.get_home_num: self.set_home_num,
+                                  self.get_mobile_num: self.set_mobile_num, self.get_email: self.set_email}
+
+        self.__creation_order_list = [
+            'name', 'ssn', 'home address', 'home number', 'mobile number', 'email']
 
     def raw_info(self):
         return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
@@ -48,11 +49,12 @@ class Employee():
     def get_ssn(self):
         return self.__ssn
 
-    def set_ssn(self, new_ssn, all_employee_list):
-        if self.__models_validation.validate_employee_ssn(new_ssn, all_employee_list):
+    def set_ssn(self, new_ssn):
+
+        if self.__models_validation.validate_employee_ssn(new_ssn):
             self.__ssn = new_ssn
             return True
-        
+
         return False
 
     def get_address(self):
@@ -61,8 +63,9 @@ class Employee():
     def set_address(self, new_address):
         if self.__models_validation.validate_employee_address(new_address):
             self.__address = new_address
+            return True
         else:
-            pass
+            return False
 
     def get_home_num(self):
         return self.__home_num
@@ -113,7 +116,7 @@ class Employee():
         # else:
         #     pass
         self.__licence = new_licence
-    
+
     def get_model_header_format(self, header_flag):
         return self.__header_format_dict[header_flag]()
 
@@ -121,7 +124,7 @@ class Employee():
         return "|{:20}{:15}{:20}{:20}{:10}|".format("Name:",
                                                     "SSN:",
                                                     "Mobile Number:",
-                                                    "Title:", 
+                                                    "Title:",
                                                     "Availability:")
 
     def get_model_header_default_format(self):
@@ -131,7 +134,7 @@ class Employee():
                                                           "Address:",
                                                           "Mobile Number:",
                                                           "Title:")
-        
+
     def get_model_header_aircraft_format(self):
         return "|{:20}{:15}{:20}{:20}{:10}{:10}|".format("Name:",
                                                          "SSN:",
@@ -145,30 +148,30 @@ class Employee():
 
     def get_model_list_date_info(self):
         returnObject = "|{:20}{:15}{:20}{:20}{:10}|\n".format(
-                                                     self.get_name(),
-                                                     self.get_ssn(),
-                                                     self.get_mobile_num(),
-                                                     self.get_title(),
-                                                     "Missing availability")
+            self.get_name(),
+            self.get_ssn(),
+            self.get_mobile_num(),
+            self.get_title(),
+            "Missing availability")
         return returnObject
 
     def get_model_list_default_info(self):
         returnObject = ("|{:20}{:15}{:20}{:20}{:10}|\n".format(
-                                                                      self.get_name(),
-                                                                      self.get_ssn(),
-                                                                      self.get_address(),
-                                                                      self.get_mobile_num(),
-                                                                      self.get_title()))
+            self.get_name(),
+            self.get_ssn(),
+            self.get_address(),
+            self.get_mobile_num(),
+            self.get_title()))
         return returnObject
 
     def get_model_list_aircraft_info(self):
         returnObject = "|{:20}{:15}{:20}{:20}{:10}{:10}|\n".format(
-                                                       self.get_name(),
-                                                       self.get_ssn(),
-                                                       self.get_address(),
-                                                       self.get_mobile_num(),
-                                                       self.get_title(),
-                                                       self.get_licence())
+            self.get_name(),
+            self.get_ssn(),
+            self.get_address(),
+            self.get_mobile_num(),
+            self.get_title(),
+            self.get_licence())
         return returnObject
 
     def get_validation_dict(self):
