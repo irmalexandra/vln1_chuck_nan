@@ -5,7 +5,11 @@ class LLEmployees:
         self.__all_employee_list = []
 
     def validate_employee(self, employee):
+        ''' Gets employee instance and returns a boolean '''
         return self.__modelAPI.validate_model(employee)
+
+    def create_employee(self, employee):
+        if self.validate_employee()
 
     def get_all_employees(self):
         ''' pulls and returns a list of employee instances '''
