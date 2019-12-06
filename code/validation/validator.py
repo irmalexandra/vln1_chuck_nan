@@ -19,7 +19,7 @@ class Validator():
 
     def validate_name(self, name):
         try:
-            name = name.strip()
+            name = name.replace(" ", "")
             if self.__validate_string(name):
                 return True
 
