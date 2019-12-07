@@ -23,6 +23,9 @@ class Airplane():
 
     def get_creation_order_list(self):
         return self.__creation_order_list
+    
+    def handle_key_value(self, key, value):
+        return value(key())
 
     def get_name(self):
         return self.__name
