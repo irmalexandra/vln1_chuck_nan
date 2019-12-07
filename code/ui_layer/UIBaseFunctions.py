@@ -18,14 +18,19 @@ class UIBaseFunctions():
     def exit_program(self):
         exit()
 
-    def display_menu(self, menu_str, nav_dict, return_menu_str = "9. Return 0. Home"):
+    def display_menu(self, menu_str, nav_dict, model = None, return_menu_str = "9. Return 0. Home"):
         while True:
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT -len(menu_str) -len(return_menu_str)- self.DEVIATION_INT), return_menu_str))
             print("-" * self.UI_DIVIDER_INT)
             return_bool = int(input("Input: "))
+            
             try:
-                return_bool = nav_dict[return_bool]()
+
+                if model != None:
+                    return_bool = nav_dict[return_bool](model)
+                else:
+                    return_bool = nav_dict[return_bool]()
                 if return_bool == 0:
                     return 0
                 if return_bool == 9:
@@ -36,6 +41,30 @@ class UIBaseFunctions():
                 model_index = int(input("Enter index: "))
                 model = self.print_model(nav_dict[return_bool][model_index-1])# -1 to account for human readability
                 return model
+
+    def display_model_edit_menu(self,menu_str, model, nav_dict, return_menu_str = "9. Return 0. Home"):
+        while True:
+            print("-" * self.UI_DIVIDER_INT)
+            print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT -len(menu_str) -len(return_menu_str)- self.DEVIATION_INT), return_menu_str))
+            print("-" * self.UI_DIVIDER_INT)
+            return_bool = int(input("Input: "))
+            edit_dict = model.get_edit_dict()
+            try:
+                return_bool = nav_dict[return_bool]()
+                if return_bool == 0:
+                    return 0
+                if return_bool == 9:
+                    return
+                
+            except KeyError:
+                print("Invalid input")
+            except TypeError:
+                attribute_key = nav_dict[return_bool]
+                changed_attribute_str = self.get_user_input(attribute_key)
+                edit_dict[attribute_key](changed_attribute_str)
+                self.print_model(model)
+                return 
+            
 
 
     def print_model_list(self, model_list, modelAPI, header_flag):

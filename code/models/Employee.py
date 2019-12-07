@@ -26,7 +26,15 @@ class Employee():
         self.__validation_dict = {self.get_name: self.set_name, self.get_ssn: self.set_ssn,
                                   self.get_address: self.set_address, self.get_home_num: self.set_home_num,
                                   self.get_mobile_num: self.set_mobile_num, self.get_email: self.set_email}
-
+        
+        self.__edit_dict = {"Address": self.set_address,
+                            "Home Number": self.set_home_num,
+                            "Mobile Number": self.set_mobile_num, 
+                            "Email": self.set_email, 
+                            "Title": self.set_title, 
+                            "Rank": self.set_rank, 
+                            "Licence": self.set_licence}
+        
         self.__creation_order_list = [
             'name', 'ssn', 'home address', 'home number', 'mobile number', 'email']
         
@@ -35,8 +43,14 @@ class Employee():
         return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
 
     def __str__(self):
-        return "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nHome number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)
-
+        return_str = "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nHome number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title,self.__rank)
+        if self.__title == "Pilot":
+            return_str += "\nLicence: {}".format(self.__licence)
+        return return_str
+    
+    def get_edit_dict(self):
+        return self.__edit_dict
+    
     def get_name(self):
         return self.__name
 

@@ -25,8 +25,7 @@ class UIEmployees():
         nav_dict = {1: self.get_employee_by_name, 2: self.display_all_employees_by_title, 3: self.display_all_employees_by_date,
                     4: self.display_pilots_by_airplane_type_sorted, 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
         employee_menu = "1. Name 2. Title 3. Date 4. Airplane"
-        return_object = self.__ui_base_functions.display_menu(
-            employee_menu, nav_dict)
+        return_object = self.__ui_base_functions.display_menu(employee_menu, nav_dict)
         if return_object == 0:
             return 0
         if return_object == 9:
@@ -42,12 +41,21 @@ class UIEmployees():
         employee = self.display_select_from_employee_list_menu(employee_list)
         return employee
 
+    def display_selected_employee_menu(self, employee):
+        nav_dict = {1: self.display_edit_employee_menu, 2: self.display_work_schedule , 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
+        employee_menu = "1. Edit Employee 2. See work schedule"
+        return_object = self.__ui_base_functions.display_menu(employee_menu, nav_dict, employee)
+        if return_object == 0:
+            return 0
+        if return_object == 9:
+            return
+
     def display_edit_employee_menu(self, employee):
-        nav_dict = {
+        nav_dict = {1: "Address", 2: "Home number", 3: "Mobile Number", 4: "Email", 5: "Title", 6: "Rank", 8: "Done",
                     9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
-        employee_menu = "Change: 1. Address \n 2. Home number \n 3.Mobile Number \n 4. Email \n 5. Title \n 6. Rank \n 8. Done"
-        return_object = self.__ui_base_functions.display_menu(
-            employee_menu, nav_dict)
+        
+        employee_menu = "Change: 1. Address 2. Home number 3.Mobile Number 4. Email 5. Title 6. Rank 8. Done"
+        return_object = self.__ui_base_functions.display_model_edit_menu(employee_menu, employee, nav_dict)
         if return_object == 0:
             return 0
         if return_object == 9:
@@ -119,7 +127,7 @@ class UIEmployees():
             name)
         employee = self.display_found_employees_by_name(found_employee_list, name)
         if employee != None:
-            self.display_edit_employee_menu(employee)
+            self.display_selected_employee_menu(employee)
 
     def create_employee(self):
         ''' Create an employee, if employee is a pilot licence and rank is input '''
@@ -142,9 +150,9 @@ class UIEmployees():
         new_emp.set_mobile_num(mobile_number)
         email = input("E-mail: ")
         new_emp.set_email(email)
-
-    def edit_employee(self):
-        pass
-
+        
     def change_airplane_type(self):
         pass
+    
+    def display_work_schedule(self, employee):
+        print("WORKSCHEDULE GOES HERE")
