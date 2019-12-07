@@ -33,38 +33,15 @@ class UIEmployees():
             employee_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def display_found_employees_by_name(self, employee_list, name):
-        ''' Display list of employees by input '''
-        nav_dict = {9: self.__ui_base_functions.back,
-                    0: self.__ui_base_functions.home}
-        while True:
-            print("There were more than one ""{}"" found.".format(name))
-            print("-" * self.UI_DIVIDER_INT)
-            print("|{:<10}{:20}{:15}|".format(
-                "Index: ", "Name:", "SSN:"))
-            for index, employee in enumerate(employee_list):
-                print("|{:02d}{:<8}{:20}{:15}|".format(index+1, "",
-                                                       employee.get_name(),
-                                                       employee.get_ssn()))
-            print("-" * self.UI_DIVIDER_INT)
-            choice = int(input("Input: "))
-            try:
-                choice = nav_dict[choice]()
-                if choice == 0:
-                    return 0
-                if choice == 9:
-                    return
-            except KeyError:
-                print("Invalid input! try again")
 
-    def display_edit_employee(self):
+    def display_edit_employee_menu(self):
         pass
 
     def display_one_employee(self, employee):
         print(employee)
 
     def display_select_from_employee_list_menu(self, employee_list):
-        nav_dict = {1: employee_list,
+        nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
         employee_menu = "1. Select employee"
@@ -73,7 +50,8 @@ class UIEmployees():
 
 
     def display_select_from_pilots_list_menu(self, employee_list):
-        nav_dict = {1: employee_list, 2: "",
+        nav_dict = {1:  self.__ui_base_functions.select_from_model_list,
+                    2: self.,
                     9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
         employee_menu = "1. Select employee 2. Filter by airplane type"
         return_value = self.__ui_base_functions.display_menu(employee_menu, nav_dict)
@@ -119,9 +97,16 @@ class UIEmployees():
         return_value = self.display_select_from_pilots_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
+    def display_pilots_filtered_by_airplane_type(self):
+        header_flag = "aircraft"
+        airplane = self.__ui_base_functions.get_user_input("airplane name")
+        employee_list = self.__ll_api.get_
+        self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
+        return_value = self.display_select_from_pilots_list_menu(employee_list)
+        return self.__ui_base_functions.check_return_value(return_value)
 
     def display_select_from_pilots_list_menu(self, employee_list):
-        nav_dict = {1: employee_list,
+        nav_dict = {1: "",
                     2: "",
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
@@ -130,14 +115,15 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
 
-    def get_employee_by_name(self, name):
+    def get_employee_by_name(self):
         ''' Search for employee instance and print out it's information '''
+        header_flag = "default"
         name = self.__ui_base_functions.get_user_input("name")
         found_employee_list = self.__ll_api.get_employees_filtered_by_name(
             name)
-        employee = self.display_found_employees_by_name(found_employee_list, name)
-        if employee != None:
-            return_value = self.display_selected_employee_menu(employee)
+        return_value = self.__ui_base_functions.print_model_list(found_employee_list, self.__modelAPI, header_flag)
+        if return_value != None:
+            return_value = self.display_selected_employee_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
 

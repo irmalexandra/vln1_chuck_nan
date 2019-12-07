@@ -91,8 +91,8 @@ class UIAirplanes():
                                                                         "Missing date_available"))
             
             airplane_menu = "1. Select airplane to edit"
-            return_object = self.__ui_base_functions.display_menu(airplane_menu,nav_dict)
-            print("returned b ",return_object)
+            return_value = self.__ui_base_functions.display_menu(airplane_menu,nav_dict)
+            print("returned b ",return_value)
 
             try:
                 choice =  nav_dict[choice]()
