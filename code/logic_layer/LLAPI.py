@@ -16,7 +16,7 @@ class LLAPI:
         self.__ll_airplanes = LLAirplanes(self.__DLAPI, self.__modelAPI)
 
     def get_all_employee_list(self):
-        return self.__ll_employees.get_all_employee_list
+        return self.__ll_employees.get_all_employee_list()
 
     def get_employee_list_by_name(self):
         return self.__ll_employees.sort_all_employees_by_name()
