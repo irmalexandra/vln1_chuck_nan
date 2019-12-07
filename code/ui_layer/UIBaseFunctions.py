@@ -30,30 +30,27 @@ class UIBaseFunctions():
                     return 0
                 if return_bool == 9:
                     return
-                if return_bool == 1:
-                    object_index = int(input("Enter index: "))
-                    self.print_object(nav_dict[return_bool][object_index])
-                    return
             except KeyError:
                 print("Invalid input! try again")
             except TypeError:
-                object_index = int(input("Enter index: "))
-                self.print_object(nav_dict[return_bool][object_index-1])# -1 to account for human readability
-                return
+                model_index = int(input("Enter index: "))
+                model = self.print_model(nav_dict[return_bool][model_index-1])# -1 to account for human readability
+                return model
 
 
-    def print_object_list(self, object_list, modelAPI, header_flag):
+    def print_model_list(self, model_list, modelAPI, header_flag):
         
         print("-" * self.UI_DIVIDER_INT)
-        print(modelAPI.get_model_header_format(object_list[0], header_flag))
-        print(modelAPI.get_model_list_info(object_list, header_flag))
+        print(modelAPI.get_model_header_format(model_list[0], header_flag))
+        print(modelAPI.get_model_list_info(model_list, header_flag))
         print("-" * self.UI_DIVIDER_INT)
         return
     
-    def print_object(self, object):
+    def print_model(self, model):
         print("-" * self.UI_DIVIDER_INT)
-        print(object)
+        print(model)
         print("-" * self.UI_DIVIDER_INT)
+        return model
 
     
     
