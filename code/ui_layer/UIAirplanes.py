@@ -91,13 +91,6 @@ class UIAirplanes():
                                                                         "Missing date_available"))
             choice = int(input("Input: "))
             
-<<<<<<< HEAD
-            airplane_menu = "1. Select airplane to edit"
-            return_value = self.__ui_base_functions.display_menu(airplane_menu,nav_dict)
-            print("returned b ",return_value)
-
-=======
->>>>>>> cb9e42fd513ea337f0e4cf15842e98835b551b80
             try:
                 choice =  nav_dict[choice]()
                 if choice == 0:
