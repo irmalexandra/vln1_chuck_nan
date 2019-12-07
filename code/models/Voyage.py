@@ -31,6 +31,11 @@ class Voyage():
 
         self.__creation_order_list = ["destination", "departure date"]
 
+        self.__voyage_employee_ssn_dict = {"Captain":self.get_captain_ssn, 
+                                  "Copilot":self.get_copilot_ssn, 
+                                  "Flight Service Manager":self.get_fsm_ssn, 
+                                  "Flight Attendant":self.get_fa_ssns}
+
     def __str__(self):
         return "{} {} {} {} {} {} {} {} {} {} {} {} {}".format(self.__departing_flight_num, self.__return_flight_num, self.__departing_flight_departing_from, self.__departing_flight_departure_date, self.__departing_flight_arrival_date, self.__return_flight_departing_from, self.__return_flight_departure_date, self.__return_flight_arrival_date, self.__airplane_insignia, self.__captain_ssn, self.__copilot_ssn, self.__fsm_ssn, ":".join(self.__fa_ssns))
 
@@ -164,3 +169,6 @@ class Voyage():
                 if self.__models_validation.validate_employee_ssn(emp_ssn):
                     valid_ssns.append(emp_ssn)
             self.__fa_ssns = valid_ssns
+
+    def get_voyage_employee_ssn(self, rank):
+        return self.__voyage_employee_ssn_dict[rank]()

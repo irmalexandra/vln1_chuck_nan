@@ -100,15 +100,18 @@ class LLEmployees:
         ''' Gets an instance and a tuple that holds a input flag and input string,
             calls a set function depending on flag and returns a boolean '''
 
-        set_employee_info_dict = {0:employee.set_home_address, 1:employee.set_home_number, 2:employee.set_mobile_number, 
-                                    3:employee.set_email, 4:employee.set_title, 5:employee.set_rank}
+        set_employee_info_dict = {0:employee.set_home_address, 
+                                  1:employee.set_home_number,
+                                  2:employee.set_mobile_number, 
+                                  3:employee.set_title, 
+                                  4:employee.set_rank}
         success_check = set_employee_info_dict[input_tpl[0]](input_tpl[1])
         if success_check:
             self.__dl_api.overwrite_all_employees(self.__all_employee_list)
         return success_check
 
-    def create_work_schedule(self, employee):
-
+    def get_work_schedule_list(self, employee):
+        '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''
         all_voyage_list = self.__dl_api.pull_all_voyages()
         upcoming_voyages = []
         current_date = datetime.now().replace(microsecond=0).isoformat()
