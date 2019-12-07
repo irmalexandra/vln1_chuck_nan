@@ -13,6 +13,7 @@ new_ui_emp = UIEmployees(new_llapi, new_modelapi, new_uibasefunctions)
 new_emp = new_ui_emp.get_employee_by_name("William")
 
 success = ModelAPI.validate_model(ModelAPI, new_emp)
+print(success)
 # new_emp.set_ssn("1234567890")
 # new_emp.set_email("hakon.stjani@nanair.is")
 # print("")
