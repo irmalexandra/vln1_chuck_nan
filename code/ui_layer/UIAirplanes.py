@@ -74,7 +74,7 @@ class UIAirplanes():
         ''' Print all airplanes '''
         # 2
         while True:
-            nav_dict = {9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home, 1:"Edits"}
+            nav_dict = {9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
             print("-" * self.UI_DIVIDER_INT)
             print("{:11}{:11}{:12}{:17}{:11}{:17}{:17}{:12}".format(
                 "ID:", "Make:", "Model:", "Total seats:", "Status:", "Destination:", "Flight number:", "Date available:"))
@@ -89,11 +89,15 @@ class UIAirplanes():
                                                                         "Missing destination",
                                                                         "Missing flight_number",
                                                                         "Missing date_available"))
+            choice = int(input("Input: "))
             
+<<<<<<< HEAD
             airplane_menu = "1. Select airplane to edit"
             return_value = self.__ui_base_functions.display_menu(airplane_menu,nav_dict)
             print("returned b ",return_value)
 
+=======
+>>>>>>> cb9e42fd513ea337f0e4cf15842e98835b551b80
             try:
                 choice =  nav_dict[choice]()
                 if choice == 0:

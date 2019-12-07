@@ -7,13 +7,20 @@ new_llapi = LLAPI()
 new_modelapi = ModelAPI()
 new_uibasefunctions = UIBaseFunctions()
 
+employee_list = LLAPI.get_all_employee_list(LLAPI)
 
-new_ui_emp = UIEmployees(new_llapi, new_modelapi, new_uibasefunctions)
-# new_ui_emp.display_employee_search_menu()
-#new_emp = new_ui_emp.get_employee_by_name("William")
-a_destination = new_llapi.get_one_destination("Reykjavik")
-destination_success = new_modelapi.validate_model(a_destination)
-print(destination_success)
+new_emp = employee_list[3]
+
+work_schedule = LLAPI.get_work_schedule_list(LLAPI, new_emp)
+
+print(new_emp)
+
+
+
+#new_ui_emp = UIEmployees(new_llapi, new_modelapi, new_uibasefunctions)
+#a_destination = new_llapi.get_one_destination("Reykjavik")
+#destination_success = new_modelapi.validate_model(a_destination)
+#print(destination_success)
 # new_emp.set_ssn("1234567890")
 # new_emp.set_email("hakon.stjani@nanair.is")
 # print("")

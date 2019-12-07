@@ -66,7 +66,7 @@ class UIBaseFunctions():
                 if return_value != None:
                     return return_value
 
-    def print_model_list(self, model_list, modelAPI, header_flag):
+    def print_object_list(self, object_list, modelAPI, header_flag):
 
         print("-" * self.UI_DIVIDER_INT)
         print(modelAPI.get_model_header_format(model_list[0], header_flag))
@@ -74,7 +74,7 @@ class UIBaseFunctions():
         print("-" * self.UI_DIVIDER_INT)
         return self.check_return_value(model_list)
 
-    def print_model(self, model):
+    def print_object(self, object):
         print("-" * self.UI_DIVIDER_INT)
         print(model)
         print("-" * self.UI_DIVIDER_INT)

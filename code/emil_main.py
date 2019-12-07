@@ -1,5 +1,5 @@
 from data_layer.DLAPI import DLAPI
-from datetime import date, timedelta
+
 
 stuff = DLAPI()
 
@@ -42,6 +42,9 @@ for thing in voyaes:
 
 #stuff.dl_voyages.append_voyage(voyaes[0])
 
+<<<<<<< HEAD
+#stuff.dl_voyages.push_all_voyages(voyaes)
+=======
 #stuff.dl_voyages.push_all_voyages(voyaes)
 
 work_year = 2018
@@ -70,4 +73,9 @@ range_future = date(2019,12,int(input("Day:")))
 
 print(range_future >= today >= range_past)
 
+<<<<<<< HEAD
 print(date(1,1,1) < date(1,1,2))
+>>>>>>> 78de09ddc1b78eb546d0af9e4b7904f76e0c177a
+=======
+print(date(1,1,1) < date(1,1,2))
+>>>>>>> 78de09ddc1b78eb546d0af9e4b7904f76e0c177a

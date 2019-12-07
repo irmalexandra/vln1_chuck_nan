@@ -1,6 +1,3 @@
-import os
-from os import path
-
 class DLAirplanes():
     PLANE_TYPE_ID = 0
     PLANE_NAME = 1
@@ -23,18 +20,7 @@ class DLAirplanes():
 
     def pull_all_airplanes(self):
         '''Opens csv files and returns a list of all the airplanes (type ID, name, type)'''
-
-        if path.exists('./repo/Airplane.csv') and path.exists('./repo/Airplane_temp.csv'):
-            airplane_stream = open("./repo/Airplane.csv", "r")
-            os.remove("./repo/Airplane_temp.csv")
-        elif path.exists('./repo/Airplane.csv') and path.exists('./repo/Airplane_temp.csv') == False:
-            airplane_stream = open("./repo/Airplane.csv", "r")
-        elif path.exists('./repo/Airplane.csv') == False and path.exists('./repo/Airplane_temp.csv'):
-            airplane_stream = open("./repo/Airplane_temp.csv", "r")
-        else:
-            print("Airplane data files not found")
-            return
-
+        airplane_stream = open("./repo/Airplane.csv", "r")
         type_stream = open("./repo/AirplaneType.csv", "r")
 
         type_stream_list = [line.strip().split(",") for line in type_stream]
@@ -67,11 +53,11 @@ class DLAirplanes():
 
     def pull_airplane_types_info(self):
         # Ath!!
-        airplane_stream = open("./repo/AirplaneType.csv", "r")
+        filestream = open("./repo/AirplaneType.csv", "r")
         self.airplanes_types_list = []
         new_airplane_type_list = []
         
-        for airplane in airplane_stream:
+        for airplane in filestream:
             check_list = []
             new_airplane_type = self.__modelAPI.get_model("AirplaneType")
             self.airplanes_types_list = airplane.strip().split(",")
@@ -81,6 +67,8 @@ class DLAirplanes():
             check_list.append(new_airplane_type.set_capacity(self.airplanes_types_list[self.PLANE_TYPE_CAPACITY]))      
             if False not in check_list:
                 new_airplane_type_list.append(new_airplane_type)
+<<<<<<< HEAD
+=======
         airplane_stream.close()
         return new_airplane_type_list
 
@@ -91,7 +79,6 @@ class DLAirplanes():
         filestream.write(HEADER)
         for airplane_info in airplane_list:
             filestream.write(airplane_info.raw_info())
+>>>>>>> 78de09ddc1b78eb546d0af9e4b7904f76e0c177a
         filestream.close()
-        os.remove("./repo/Airplane.csv")
-        os.rename("./repo/Airplane_temp.csv", "./repo/Airplane.csv")
-        return
+        return new_airplane_type_list

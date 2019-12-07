@@ -1,8 +1,12 @@
+from datetime import datetime
+
 class LLEmployees:
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
         self.__all_employee_list = []
+
+        
 
     def validate_employee(self, employee):
         ''' Gets employee instance and returns a boolean '''
@@ -16,11 +20,12 @@ class LLEmployees:
         return False
 
     def get_all_employees(self):
-        ''' pulls and returns a list of employee instances '''
+        ''' Pulls and returns a list of employee instances '''
         return self.__dl_api.pull_all_employees()
 
-    def push_all_employees(self, all_employees):
-        self.__dl_api.overwrite_all_employees(all_employees)
+    def push_all_employees(self, all_employee_list):
+        ''' Takes a list of employee instances and sends it to the DL '''
+        self.__dl_api.overwrite_all_employees(all_employee_list)
 
     def list_all_employees_by_name(self):
         all_employee_list = self.get_all_employees()
@@ -95,12 +100,23 @@ class LLEmployees:
         ''' Gets an instance and a tuple that holds a input flag and input string,
             calls a set function depending on flag and returns a boolean '''
 
-        set_employee_info_dict = {0:employee.set_home_address, 1:employee.set_home_number, 2:employee.set_mobile_number, 
-                                    3:employee.set_email, 4:employee.set_title, 5:employee.set_rank}
+        set_employee_info_dict = {0:employee.set_home_address, 
+                                  1:employee.set_home_number,
+                                  2:employee.set_mobile_number, 
+                                  3:employee.set_title, 
+                                  4:employee.set_rank}
         success_check = set_employee_info_dict[input_tpl[0]](input_tpl[1])
         if success_check:
             self.__dl_api.overwrite_all_employees(self.__all_employee_list)
         return success_check
 
-    def create_work_scedule(self):
-        pass
+    def get_work_schedule_list(self, employee):
+        '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''
+        all_voyage_list = self.__dl_api.pull_all_voyages()
+        upcoming_voyages = []
+        current_date = datetime.now().replace(microsecond=0).isoformat()
+        for voyage in all_voyage_list:
+            if (employee.get_ssn == voyage.get_voyage_employee_ssn(employee.get_rank())
+            and (voyage.get_departing_flight_departure_date() >= current_date)):
+                upcoming_voyages.append(voyage)
+        return upcoming_voyages 

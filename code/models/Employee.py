@@ -23,20 +23,21 @@ class Employee():
                                  "date": self.get_model_list_date_info,
                                  "aircraft": self.get_model_list_aircraft_info}
 
-        self.__validation_dict = {self.get_name: self.set_name, self.get_ssn: self.set_ssn,
-                                  self.get_address: self.set_address, self.get_home_num: self.set_home_num,
-                                  self.get_mobile_num: self.set_mobile_num, self.get_email: self.set_email}
+        self.__validation_dict = {self.get_name: self.set_name, 
+                                  self.get_ssn: self.set_ssn,
+                                  self.get_address: self.set_address, 
+                                  self.get_home_num: self.set_home_num,
+                                  self.get_mobile_num: self.set_mobile_num}
         
         self.__edit_dict = {"Address": self.set_address,
                             "Home Number": self.set_home_num,
                             "Mobile Number": self.set_mobile_num, 
-                            "Email": self.set_email, 
                             "Title": self.set_title, 
                             "Rank": self.set_rank, 
                             "Licence": self.set_licence}
         
         self.__creation_order_list = [
-            'name', 'ssn', 'home address', 'home number', 'mobile number', 'email']
+            'name', 'ssn', 'home address', 'home number', 'mobile number']
         
 
     def raw_info(self):

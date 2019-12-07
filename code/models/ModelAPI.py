@@ -6,7 +6,6 @@ from models.AirplaneType import AirplaneType
 
 
 
-
 class ModelAPI():
     def __init__(self):
         self.model_dict = {"Airplane": Airplane,\
