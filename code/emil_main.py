@@ -45,3 +45,6 @@ for thing in voyaes:
 #stuff.dl_voyages.push_all_voyages(voyaes)
 
 print(datetime.datetime(2012,4,2))
+print(datetime.date(2012,5,4))
+
+print(datetime.date.today() - datetime.date(2014,5,3))
