@@ -23,22 +23,32 @@ class Employee():
                                  "date": self.get_model_list_date_info,
                                  "aircraft": self.get_model_list_aircraft_info}
 
-        self.__validation_dict = {self.get_name: self.set_name, 
+        self.__create_validation_dict = {self.get_name: self.set_name, 
                                   self.get_ssn: self.set_ssn,
                                   self.get_address: self.set_address, 
                                   self.get_home_num: self.set_home_num,
-                                  self.get_mobile_num: self.set_mobile_num}
+                                  self.get_mobile_num: self.set_mobile_num,
+                                  self.get_title: self.set_title,
+                                  self.get_rank: self.set_rank}
         
+        self.__create_order_list = [
+            'name', 'ssn', 'home address', 'home number', 'mobile number', "title", "rank"]
+        
+        self.__edit_validation_dict = {self.get_address: self.set_address,
+                                       self.get_home_num: self.set_home_num,
+                                       self.get_mobile_num: self.set_mobile_num,
+                                       self.get_title: self.set_title,
+                                       self.get_rank: self.set_rank}
+
+        self.__edit_order_list = [
+            'home address', 'home number', 'mobile number', "title", "rank"]
+
         self.__edit_dict = {"Address": self.set_address,
                             "Home Number": self.set_home_num,
                             "Mobile Number": self.set_mobile_num, 
                             "Title": self.set_title, 
                             "Rank": self.set_rank, 
                             "Licence": self.set_licence}
-        
-        self.__creation_order_list = [
-            'name', 'ssn', 'home address', 'home number', 'mobile number']
-        
 
     def raw_info(self):
         return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
@@ -51,6 +61,18 @@ class Employee():
     
     def get_edit_dict(self):
         return self.__edit_dict
+
+    def get_create_validation_dict(self):
+        return self.__create_validation_dict
+
+    def get_create_order_list(self):
+        return self.__create_order_list
+
+    def get_edit_validation_dict(self):
+        return self.__edit_validation_dict
+
+    def get_edit_order_list(self):
+        return self.__edit_order_list
     
     def get_name(self):
         return self.__name
@@ -129,12 +151,6 @@ class Employee():
 
     def set_licence(self, new_licence):
         self.__licence = new_licence
-
-    def get_validation_dict(self):
-        return self.__validation_dict
-
-    def get_creation_order_list(self):
-        return self.__creation_order_list
 
     def handle_key_value(self, key, value):
         return value(key())

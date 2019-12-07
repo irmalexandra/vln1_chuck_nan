@@ -7,11 +7,13 @@ class LLEmployees:
         self.__modelAPI = modelAPI
         self.__all_employee_list = []
 
-        
+    def validate_new_employee(self, employee):
+        '''Gets employee instance and returns a boolean'''
+        return self.__modelAPI.validate_create_model(employee)
 
-    def validate_employee(self, employee):
-        ''' Gets employee instance and returns a boolean '''
-        return self.__modelAPI.validate_model(employee)
+    def validate_edited_employee(self, employee):
+        '''Gets employee instance and returns a boolean'''
+        return self.__modelAPI.validate_edit_model(employee)
 
     def email_generator(self,name):
         name = (name.replace(" ",".")).lower()
@@ -27,13 +29,13 @@ class LLEmployees:
 
 
     def create_employee(self, employee):
-        if self.validate_employee(employee):
+        if self.validate_new_employee(employee):
             self.__dl_api.append_employee(employee)
             return True
             
         return False
 
-    def get_all_employees(self):
+    def get_all_employee_list(self):
         ''' Pulls and returns a list of employee instances '''
         return self.__dl_api.pull_all_employees()
 
@@ -41,20 +43,20 @@ class LLEmployees:
         ''' Takes a list of employee instances and sends it to the DL '''
         self.__dl_api.overwrite_all_employees(all_employee_list)
 
-    def list_all_employees_by_name(self):
-        all_employee_list = self.get_all_employees()
+    def sort_all_employees_by_name(self):
+        all_employee_list = self.get_all_employee_list()
 
         return sorted(all_employee_list, key=lambda employee: employee.get_name())
 
     def get_name_dict(self):
         ''' Gets a list of employee instances and returns a dict where key is name and value is ssn '''
-        employee_list = self.get_all_employees()
+        employee_list = self.get_all_employee_list()
         name_dict = {}
         for employee in employee_list:
             name_dict[employee.get_name()] = employee.get_ssn()
         return name_dict
 
-    def get_employees_by_name(self, search_string):
+    def filter_employees_by_name(self, search_string):
         ''' Pulls a list of employee instances and returns a list of instances based on search_string '''
 
         name_dict = self.get_name_dict()
@@ -65,7 +67,7 @@ class LLEmployees:
             if search_string in name:
                 found_ssn_list.append(ssn)
 
-        self.__all_employee_list = self.get_all_employees()
+        self.__all_employee_list = self.get_all_employee_list()
 
         for employee in self.__all_employee_list:
             if employee.get_ssn() in found_ssn_list:
@@ -73,7 +75,7 @@ class LLEmployees:
         return found_employee_list
 
     def get_one_employee(self, ssn):
-        self.__all_employee_list = self.get_all_employees()
+        self.__all_employee_list = self.get_all_employee_list()
 
         for employee in self.__all_employee_list:
             if employee.get_ssn() == ssn:
@@ -130,7 +132,7 @@ class LLEmployees:
         upcoming_voyages = []
         current_date = datetime.now().replace(microsecond=0).isoformat()
         for voyage in all_voyage_list:
-            if (employee.get_ssn == voyage.get_voyage_employee_ssn(employee.get_rank())
+            if (employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())
             and (voyage.get_departing_flight_departure_date() >= current_date)):
                 upcoming_voyages.append(voyage)
         return upcoming_voyages 
