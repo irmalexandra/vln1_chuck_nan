@@ -28,22 +28,23 @@ class DLDestinations():
             return
 
         for line in filestream:
+            check_list = []
             line_list = line.strip().split(",")
             new_destination = self.__modelAPI.get_model('Destination')
 
-            new_destination.set_country(line_list[DLDestinations.COUNTRY])
-            new_destination.set_airport(line_list[DLDestinations.AIRPORT])
-            new_destination.set_flight_time(
-                line_list[DLDestinations.FLIGHT_TIME])
-            new_destination.set_distance(line_list[DLDestinations.DISTANCE])
-            new_destination.set_contact_name(
-                line_list[DLDestinations.CONTACT_NAME])
-            new_destination.set_contact_number(
-                line_list[DLDestinations.CONTACT_NUMBER])
-
-            self.all_destinations_list.append(new_destination)
+            check_list.append(new_destination.set_country(line_list[DLDestinations.COUNTRY]))
+            check_list.append(new_destination.set_airport(line_list[DLDestinations.AIRPORT]))
+            check_list.append(new_destination.set_flight_time(
+                line_list[DLDestinations.FLIGHT_TIME]))
+            check_list.append(new_destination.set_distance(line_list[DLDestinations.DISTANCE]))
+            check_list.append(new_destination.set_contact_name(
+                line_list[DLDestinations.CONTACT_NAME]))
+            check_list.append(new_destination.set_contact_number(
+                line_list[DLDestinations.CONTACT_NUMBER]))
+            if False not in check_list:
+                self.all_destinations_list.append(new_destination)
         filestream.closed
-        return self.all_destinations_list[1:]
+        return self.all_destinations_list
 
     def append_destination(self, new_destination):
         '''Opens a csv file and adds a new destination to the destination string'''
