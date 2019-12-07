@@ -68,7 +68,7 @@ class UIAirplanes():
                 print("\n{}\nAlready exists!".format(airplane.get_name()))
         else:
             print("\nInvalid insignia {}\n".format(insignia))
-        self.__ll_api.clear_airplane_list()
+        self.__ll_api.clear_airplane_lists()
 
     def display_all_airplanes(self):
         ''' Print all airplanes '''

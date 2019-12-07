@@ -13,8 +13,9 @@ class DLAirplanes():
         self.__modelAPI = modelAPI
         self.airplanes_types_list = []
 
-    def clear_airplane_list(self):
+    def clear_airplane_lists(self):
         self.all_airplanes_list.clear()
+        self.airplanes_types_list.clear()
 
 
     def pull_all_airplanes(self):
@@ -66,5 +67,18 @@ class DLAirplanes():
             check_list.append(new_airplane_type.set_capacity(self.airplanes_types_list[self.PLANE_TYPE_CAPACITY]))      
             if False not in check_list:
                 new_airplane_type_list.append(new_airplane_type)
+<<<<<<< HEAD
+=======
+        airplane_stream.close()
+        return new_airplane_type_list
+
+    def push_all_airplanes(self, airplane_list):
+
+        HEADER = "planeTypeId,planeInsignia\n"
+        filestream = open("./repo/Airplane_temp.csv", "a")
+        filestream.write(HEADER)
+        for airplane_info in airplane_list:
+            filestream.write(airplane_info.raw_info())
+>>>>>>> 78de09ddc1b78eb546d0af9e4b7904f76e0c177a
         filestream.close()
         return new_airplane_type_list

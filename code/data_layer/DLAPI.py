@@ -45,5 +45,5 @@ class DLAPI():
     def create_airplane(self, airplane):
         self.__dl_airplanes.append_airplane(airplane)
 
-    def clear_airplane_list(self):
-        self.__dl_airplanes.clear_airplane_list()
+    def clear_airplane_lists(self):
+        self.__dl_airplanes.clear_airplane_lists()
