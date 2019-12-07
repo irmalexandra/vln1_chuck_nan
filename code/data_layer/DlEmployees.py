@@ -30,23 +30,24 @@ class DLEmployees():
 
         self.all_crew_list = []
         for line in filestream:
+            check_list = []
             line_list = line.strip().split(",")
             new_emp = self.__modelAPI.get_model('Employee')
             
-            new_emp.set_ssn(line_list[DLEmployees.SSN])
-            new_emp.set_name(line_list[DLEmployees.NAME])
-            new_emp.set_address(line_list[DLEmployees.ADDRESS])
-            new_emp.set_home_num(line_list[DLEmployees.HOME_NUMBER])
-            new_emp.set_mobile_num(line_list[DLEmployees.MOBILE_NUBER])
-            new_emp.set_email(line_list[DLEmployees.EMAIL])
-            new_emp.set_rank(line_list[DLEmployees.RANK])
-            new_emp.set_title(line_list[DLEmployees.TITLE])
-            new_emp.set_licence(line_list[DLEmployees.LICENSE])
-
-            self.all_crew_list.append(new_emp)
+            check_list.append(new_emp.set_ssn(line_list[DLEmployees.SSN]))
+            check_list.append(new_emp.set_name(line_list[DLEmployees.NAME]))
+            check_list.append(new_emp.set_address(line_list[DLEmployees.ADDRESS]))
+            check_list.append(new_emp.set_home_num(line_list[DLEmployees.HOME_NUMBER]))
+            check_list.append(new_emp.set_mobile_num(line_list[DLEmployees.MOBILE_NUBER]))
+            check_list.append(new_emp.set_email(line_list[DLEmployees.EMAIL]))
+            check_list.append(new_emp.set_rank(line_list[DLEmployees.RANK]))
+            check_list.append(new_emp.set_title(line_list[DLEmployees.TITLE]))
+            check_list.append(new_emp.set_licence(line_list[DLEmployees.LICENSE]))
+            if False not in check_list:
+                self.all_crew_list.append(new_emp)
         filestream.close()
 
-        return self.all_crew_list[1:]
+        return self.all_crew_list
 
     def push_all_employees(self, emp_list):
         

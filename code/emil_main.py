@@ -62,5 +62,12 @@ print(timedelta(10))
 print(date.today())
 
 print(tomorrow - today)
-range_low = date(input("From: "))
-range_high = date(input("To: "))
+print("Date from:")
+#range_high = date(int(input("Year: ")),int(input("Month: ")),int(input("Day: ")))
+range_past= date(2019,12,int(input("Day:")))
+print("Date to:")
+range_future = date(2019,12,int(input("Day:")))
+
+print(range_future >= today >= range_past)
+
+print(date(1,1,1) < date(1,1,2))
