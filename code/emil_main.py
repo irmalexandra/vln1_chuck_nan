@@ -1,5 +1,5 @@
 from data_layer.DLAPI import DLAPI
-import datetime
+from datetime import date, timedelta
 
 stuff = DLAPI()
 
@@ -44,7 +44,23 @@ for thing in voyaes:
 
 #stuff.dl_voyages.push_all_voyages(voyaes)
 
-print(datetime.datetime(2012,4,2))
-print(datetime.date(2012,5,4))
+work_year = 2018
+work_day = 5
+work_month = 3
+work = date(work_year,work_month,work_day)
+employee = ["Derpster","Pilot","Divorced", work]
+print("---------------------------------")
+for info in employee:
+    print(info)
+print("----------------------------------")
+today = date.today()
+tomorrow = date(2019,12,8)
 
-print(datetime.date.today() - datetime.date(2014,5,3))
+print(today - date(2014,5,3))
+print(timedelta(10))
+
+print(date.today())
+
+print(tomorrow - today)
+range_low = date(input("From: "))
+range_high = date(input("To: "))
