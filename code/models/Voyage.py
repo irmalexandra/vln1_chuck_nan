@@ -79,7 +79,7 @@ class Voyage():
         return self.__departing_flight_departing_from
 
     def set_departing_flight_departing_from(self, new):
-        if self.__models_validation.validate_city(new):
+        if self.__models_validation.validate_name(new):
             self.__departing_flight_departing_from = new
         self.__departing_flight_departing_from = new
 
@@ -101,7 +101,7 @@ class Voyage():
         return self.__return_flight_departing_from
 
     def set_return_flight_departing_from(self, new):
-        if self.__models_validation.validate_city(new):
+        if self.__models_validation.validate_name(new):
             self.__return_flight_departing_from = new
         self.__return_flight_departing_from = new
 

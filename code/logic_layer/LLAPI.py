@@ -59,3 +59,4 @@ class LLAPI:
 
     def get_work_schedule_list(self, employee):
         return self.__ll_employees.get_work_schedule_list(employee)
+

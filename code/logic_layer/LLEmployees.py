@@ -1,6 +1,7 @@
 from datetime import datetime
 
 class LLEmployees:
+    DOMAIN = "@nanair.is"
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
@@ -11,6 +12,19 @@ class LLEmployees:
     def validate_employee(self, employee):
         ''' Gets employee instance and returns a boolean '''
         return self.__modelAPI.validate_model(employee)
+
+    def email_generator(self,name):
+        name = (name.replace(" ",".")).lower()
+        all_employees = self.__dl_api.pull_all_employees()
+        all_existing_emails = [x.get_email() for x in all_employees]
+        number = 0
+        temp_name  = name
+        while temp_name + self.DOMAIN in all_existing_emails:
+            number += 1
+            temp_name = name + str(number)
+            
+        return name + self.DOMAIN
+
 
     def create_employee(self, employee):
         if self.validate_employee(employee):
@@ -120,3 +134,4 @@ class LLEmployees:
             and (voyage.get_departing_flight_departure_date() >= current_date)):
                 upcoming_voyages.append(voyage)
         return upcoming_voyages 
+    
