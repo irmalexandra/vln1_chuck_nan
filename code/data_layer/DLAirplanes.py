@@ -67,9 +67,7 @@ class DLAirplanes():
             check_list.append(new_airplane_type.set_capacity(self.airplanes_types_list[self.PLANE_TYPE_CAPACITY]))      
             if False not in check_list:
                 new_airplane_type_list.append(new_airplane_type)
-<<<<<<< HEAD
-=======
-        airplane_stream.close()
+        filestream.close()
         return new_airplane_type_list
 
     def push_all_airplanes(self, airplane_list):
@@ -79,6 +77,5 @@ class DLAirplanes():
         filestream.write(HEADER)
         for airplane_info in airplane_list:
             filestream.write(airplane_info.raw_info())
->>>>>>> 78de09ddc1b78eb546d0af9e4b7904f76e0c177a
         filestream.close()
         return new_airplane_type_list
