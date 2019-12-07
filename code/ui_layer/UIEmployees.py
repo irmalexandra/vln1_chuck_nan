@@ -99,8 +99,11 @@ class UIEmployees():
 
     def display_all_employees_by_title(self):
         ''' Print a filtered list of all employees by title '''
-        header_flag = "default"
         title = self.__ui_base_functions.get_user_input("title")
+        if title == "Pilot":
+            header_flag = "aircraft"
+        else:
+            header_flag = "aircraft"
         employee_list = self.__ll_api.get_employee_list_by_title(title)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
         if title == "Pilot":
@@ -112,7 +115,7 @@ class UIEmployees():
     def display_pilots_by_airplane_type_sorted(self, employee_list = []):
         ''' Print a sorted list of pilots '''
         header_flag = "aircraft"
-        employee_list = self.__ll_api.get_pilots_sorted_by_airplane_type()
+        employee_list = self.__ll_api.get_pilot_list_sorted_by_airplane_type()
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
         return_value = self.display_select_from_pilots_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -120,7 +123,7 @@ class UIEmployees():
     def display_pilots_filtered_by_airplane_type(self, employee_list = []):
         header_flag = "aircraft"
         airplane = self.__ui_base_functions.get_user_input("airplane name")
-        employee_list = self.__ll_api.get_pilots_filtered_by_airplane_type(airplane)
+        employee_list = self.__ll_api.get_pilot_list_filtered_by_airplane_type(airplane)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
         return_value = self.display_select_from_pilots_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -129,7 +132,7 @@ class UIEmployees():
         ''' Search for employee instance and print out it's information '''
         header_flag = "default"
         name = self.__ui_base_functions.get_user_input("name")
-        found_employee_list = self.__ll_api.get_employees_filtered_by_name(
+        found_employee_list = self.__ll_api.get_employee_list_filtered_by_name(
             name)
         return_value = self.__ui_base_functions.print_model_list(found_employee_list, self.__modelAPI, header_flag)
         return_value = self.display_select_from_employee_list_menu(return_value)
