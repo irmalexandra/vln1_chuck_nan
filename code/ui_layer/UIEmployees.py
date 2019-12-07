@@ -10,62 +10,66 @@ class UIEmployees():
         self.__ui_base_functions = UIBaseFunctions
 
     def display_employee_sub_menu(self):
-        nav_dict = {1: self.create_employee, 2: self.display_all_employees, 3: self.display_employee_search_menu,
-                    9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
+        nav_dict = {1: self.create_employee,
+                    2: self.display_all_employees,
+                    3: self.display_employee_search_menu,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
         employee_menu = "1. Create 2. Display all 3. Search by"
-        return_object = self.__ui_base_functions.display_menu(
-            employee_menu, nav_dict)
-        if return_object == 0:
-            return 0
-        if return_object == 9:
-            return
+        return_bool = self.__ui_base_functions.display_menu(
+            employee_menu, nav_dict, None)
+        return self.__ui_base_functions.check_return_value(return_bool)
 
     def display_employee_search_menu(self):
         ''' Print the search menu of employee sub menu '''
-        nav_dict = {1: self.get_employee_by_name, 2: self.display_all_employees_by_title, 3: self.display_all_employees_by_date,
-                    4: self.display_pilots_by_airplane_type_sorted, 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
+        nav_dict = {1: self.get_employee_by_name,
+                    2: self.display_all_employees_by_title,
+                    3: self.display_all_employees_by_date,
+                    4: self.display_pilots_by_airplane_type_sorted,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
         employee_menu = "1. Name 2. Title 3. Date 4. Airplane"
-        return_object = self.__ui_base_functions.display_menu(employee_menu, nav_dict)
-        if return_object == 0:
-            return 0
-        if return_object == 9:
-            return
+        return_bool = self.__ui_base_functions.display_menu(
+            employee_menu, nav_dict)
+        return self.__ui_base_functions.check_return_value(return_bool)
 
     def display_found_employees_by_name(self, employee_list, name):
-        ''' display list of employees by input'''
-        
-        header_flag = "default"
-        employee_list = employee_list
-        self.__ui_base_functions.print_model_list(
-            employee_list, self.__modelAPI, header_flag)
-        employee = self.display_select_from_employee_list_menu(employee_list)
-        return employee
+        ''' Display list of employees by input '''
+        nav_dict = {9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        while True:
+            print("There were more than one ""{}"" found.".format(name))
+            print("-" * self.UI_DIVIDER_INT)
+            print("|{:<10}{:20}{:15}|".format(
+                "Index: ", "Name:", "SSN:"))
+            for index, employee in enumerate(employee_list):
+                print("|{:02d}{:<8}{:20}{:15}|".format(index+1, "",
+                                                       employee.get_name(),
+                                                       employee.get_ssn()))
+            print("-" * self.UI_DIVIDER_INT)
+            choice = int(input("Input: "))
+            try:
+                choice = nav_dict[choice]()
+                if choice == 0:
+                    return 0
+                if choice == 9:
+                    return
+            except KeyError:
+                print("Invalid input! try again")
 
-    def display_selected_employee_menu(self, employee):
-        nav_dict = {1: self.display_edit_employee_menu, 2: self.display_work_schedule , 9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
-        employee_menu = "1. Edit Employee 2. See work schedule"
-        return_object = self.__ui_base_functions.display_menu(employee_menu, nav_dict, employee)
-        if return_object == 0:
-            return 0
-        if return_object == 9:
-            return
+    def display_edit_employee(self):
+        pass
 
-    def display_edit_employee_menu(self, employee):
-        nav_dict = {1: "Address", 2: "Home number", 3: "Mobile Number", 4: "Email", 5: "Title", 6: "Rank", 8: "Done",
-                    9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
-        
-        employee_menu = "Change: 1. Address 2. Home number 3.Mobile Number 4. Email 5. Title 6. Rank 8. Done"
-        return_object = self.__ui_base_functions.display_model_edit_menu(employee_menu, employee, nav_dict)
-        if return_object == 0:
-            return 0
-        if return_object == 9:
-            return
+    def display_one_employee(self, employee):
+        print(employee)
 
     def display_select_from_employee_list_menu(self, employee_list):
         nav_dict = {1: employee_list,
-                    9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
         employee_menu = "1. Select employee:"
-        return_object = self.__ui_base_functions.display_menu(employee_menu, nav_dict)
+        return_object = self.__ui_base_functions.display_menu(
+            employee_menu, nav_dict)
         if return_object == 0:
             return 0
         if return_object == 9:
@@ -82,7 +86,7 @@ class UIEmployees():
             return 0
         if return_object == 9:
             return
-    
+
     def display_all_employees(self):
         ''' Print the given dictionary of employees '''
         header_flag = "default"
@@ -92,7 +96,7 @@ class UIEmployees():
         self.display_select_from_employee_list_menu(employee_list)
 
     def display_all_employees_by_date(self):
-        '''Displays all employees availability on a specific day'''
+        ''' Displays all employees availability on a specific day '''
         # needs input
         header_flag = "date"
         employee_list = self.__ll_api.get_all_employee_list()
@@ -113,19 +117,33 @@ class UIEmployees():
             self.display_select_from_employee_list_menu(employee_list)
 
     def display_pilots_by_airplane_type_sorted(self):
-        ''' print a sorted list of pilots '''
+        ''' Print a sorted list of pilots '''
         header_flag = "aircraft"
         employee_list = self.__ll_api.get_pilots_sorted_by_airplane_type()
         self.__ui_base_functions.print_model_list(
             employee_list, self.__modelAPI, header_flag)
         self.display_select_from_pilots_list_menu(employee_list)
-        
-    def get_employee_by_name(self):
+
+    def display_select_from_pilots_list_menu(self, employee_list):
+        nav_dict = {1: employee_list,
+                    2: "",
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        employee_menu = "1. Select employee 2. Filter by airplane type"
+        return_bool = self.__ui_base_functions.display_menu(
+            employee_menu, nav_dict)
+        if return_bool == 0:
+            return 0
+        if return_bool == 9:
+            return
+
+    def get_employee_by_name(self, name):
         ''' Search for employee instance and print out it's information '''
         name = self.__ui_base_functions.get_user_input("name")
         found_employee_list = self.__ll_api.get_employees_filtered_by_name(
             name)
-        employee = self.display_found_employees_by_name(found_employee_list, name)
+        employee = self.display_found_employees_by_name(
+            found_employee_list, name)
         if employee != None:
             self.display_selected_employee_menu(employee)
 
@@ -152,10 +170,8 @@ class UIEmployees():
         new_emp.set_mobile_num(mobile_number)
         email = input("E-mail: ")
         new_emp.set_email(email)
-        print(new_emp)
-        
     def change_airplane_type(self):
         pass
-    
+
     def display_work_schedule(self, employee):
         print("WORKSCHEDULE GOES HERE")
