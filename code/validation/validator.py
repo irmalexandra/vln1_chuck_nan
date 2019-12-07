@@ -1,3 +1,4 @@
+import datetime
 class Validator():
     TITLE_LIST = ["Pilot", "Cabin Crew"]
     PILOT_RANK_LIST = ["Captain", "Copilot"]
@@ -62,7 +63,7 @@ class Validator():
     def validate_home_number(self, number):
         return self.validate_phone_number(number)
 
-    def validate_email(self, email):
+    def validate_email(self, email): # <---- Useless?
         try:
             name, domain = email.split("@")
             if (domain == self.DOMAIN) and ("." in name):
@@ -88,32 +89,35 @@ class Validator():
 
         return False
 
-    def validate_date(self, date):
-        if (date[4] == "-") and (date[7] == "-"):
-            if len(date) == 10:
-                return self.__validate_int(date.replace("-", ""))
+    def validate_date(self, date_str):
+        try:
+            year, month, day = date_str.split("-")
+            datetime.date(int(year),int(month),int(day))
+            return True
+        except ValueError:
+            return False
 
-        return False
 
-    def validate_time(self, time):
-        if (time[2] == ":") and (time[5] == ":"):
-            if len(time) == 8:
-                return self.__validate_int(time.replace("-", ""))
-
-        return False
+    def validate_time(self, time_str):
+        try:
+            hour, minute, second = time_str.split(":")
+            datetime.time(int(hour),int(minute),int(second))
+            return True
+        except ValueError:
+            return False
 
     def validate_date_time(self, date_time):
-        if (date_time[4] == "-") and (date_time[7] == "-"):
-            if (date_time[13] == ":") and (date_time[16] == ":"):
-                if len(date_time) == 19:
-                    return True
+        try:
+            date, time = date_time.split("T")
+        except ValueError:
+            return False
+        return self.validate_date(date) and self.validate_time(time)
 
-        return False
 
     def validate_airplane_typeid(self, typeid):
         return typeid[:2] == "NA"
 
-    def validate_airplane_insignia(self, insignia, ):
+    def validate_airplane_insignia(self, insignia):
         if insignia[2] == "-":
             if len(insignia) == 6:
                 return self.__validate_string(insignia.replace("-", ""))
@@ -139,9 +143,6 @@ class Validator():
 
     def validate_country(self, country):
         return self.validate_name(country)
-
-    def validate_city(self, city):
-        return self.validate_name(city)
 
     def validate_airport(self, airport):
         return self.validate_name(airport)
