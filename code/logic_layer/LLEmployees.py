@@ -1,10 +1,12 @@
+from datetime import datetime
+
 class LLEmployees:
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
         self.__all_employee_list = []
 
-        self.__rank_dict = {"Captain":get_captain_ssn, "Copilot":get_copilot_ssn, "Flight Service Manager":get_fsm_ssn, "Flight Attendant":get_fa_ssns}
+        
 
     def validate_employee(self, employee):
         ''' Gets employee instance and returns a boolean '''
@@ -106,12 +108,12 @@ class LLEmployees:
         return success_check
 
     def create_work_schedule(self, employee):
+
         all_voyage_list = self.__dl_api.pull_all_voyages()
-
-        
-
-        requested_ssn = 
         upcoming_voyages = []
-        #current_date_time = get_current_date_time()
+        current_date = datetime.now().replace(microsecond=0).isoformat()
         for voyage in all_voyage_list:
-            if employee.get_ssn 
+            if (employee.get_ssn == voyage.get_voyage_employee_ssn(employee.get_rank())
+            and (voyage.get_departing_flight_departure_date() >= current_date)):
+                upcoming_voyages.append(voyage)
+        return upcoming_voyages 

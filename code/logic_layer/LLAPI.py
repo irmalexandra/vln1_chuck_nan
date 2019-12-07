@@ -53,3 +53,9 @@ class LLAPI:
         
     def get_pilots_sorted_by_airplane_type(self):
         return self.__ll_employees.sort_pilots_by_airplane_type()
+    
+    def get_pilots_filtered_by_airplane_type(self, airplane_type):
+        return self.__ll_employees.filter_pilots_by_airplane_type(airplane_type)
+
+    def get_work_schedule_list(self, employee):
+        return self.__ll_employees.get_work_schedule_list(employee)
