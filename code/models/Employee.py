@@ -63,7 +63,7 @@ class Employee():
 
     def get_ssn(self):
         return self.__ssn
-
+        
     def set_ssn(self, new_ssn):
         if self.__models_validation.validate_employee_ssn(new_ssn):
             self.__ssn = new_ssn
@@ -134,6 +134,9 @@ class Employee():
 
     def get_creation_order_list(self):
         return self.__creation_order_list
+
+    def handle_key_value(self, key, value):
+        return value(key())
 
     def get_model_header_format(self, header_flag):
         return self.__header_format_dict[header_flag]()

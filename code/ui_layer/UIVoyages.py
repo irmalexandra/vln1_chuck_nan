@@ -55,7 +55,7 @@ class UIVoyages():
             voyages_list = self.__ll_api.get_all_voyages_list()
             for voyages in voyages_list[1:]:
                 print("{:15}{:11}{:27}{:27}{:27}{:27}{:17}".format(voyages.get_return_flight_departing_from(),
-                                                                   voyages.get_airplane_id(),  # we should change this to airplane type
+                                                                   voyages.get_airplane_insignia(),  # we should change this to airplane type
                                                                    voyages.get_departing_flight_departure_date(),
                                                                    voyages.get_return_flight_arrival_date(),
                                                                    voyages.get_departing_flight_num(),
