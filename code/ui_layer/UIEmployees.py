@@ -132,12 +132,14 @@ class UIEmployees():
     def create_employee(self):
         ''' Create an employee, if employee is a pilot licence and rank is input '''
         title = input("Title: ")
-        new_emp = self.__modelAPI.get_model(title)
+        new_emp = self.__modelAPI.get_model("Employee")
         if title == "Pilot":
             licence = input("Licence: ")
             new_emp.set_licence(licence)
             rank = input("Rank: ")
             new_emp.set_rank(rank)
+        
+        
         name = input("Name: ")
         new_emp.set_name(name)
         ssn = input("SSN: ")
@@ -150,6 +152,7 @@ class UIEmployees():
         new_emp.set_mobile_num(mobile_number)
         email = input("E-mail: ")
         new_emp.set_email(email)
+        print(new_emp)
         
     def change_airplane_type(self):
         pass

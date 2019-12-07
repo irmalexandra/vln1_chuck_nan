@@ -1,5 +1,5 @@
 from data_layer.DLAPI import DLAPI
-
+import datetime
 
 stuff = DLAPI()
 
@@ -43,3 +43,5 @@ for thing in voyaes:
 #stuff.dl_voyages.append_voyage(voyaes[0])
 
 #stuff.dl_voyages.push_all_voyages(voyaes)
+
+print(datetime.datetime(2012,4,2))
