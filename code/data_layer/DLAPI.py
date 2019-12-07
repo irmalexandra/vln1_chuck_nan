@@ -31,8 +31,8 @@ class DLAPI():
         '''Gets a list of all destinations from the data layer and returns it'''
         return self.__dl_destinations.pull_all_destinations()
 
-    def overwrite_all_destinations(self, destination_list):
-        self.__dl_destinations.push_all_destinations(destination_list)
+    def overwrite_all_destinations(self, all_destination_list):
+        self.__dl_destinations.push_all_destinations(all_destination_list)
 
     def pull_all_airplanes(self):
         '''Gets a list of all airplanes from the data layer and returns it'''

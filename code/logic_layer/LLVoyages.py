@@ -3,8 +3,9 @@ class LLVoyages:
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
 
-    def validate_voyage(self):
-        pass
+    def validate_voyage(self, voyage):
+        ''' Gets voyage instance and returns a boolean '''
+        return self.__modelAPI.validate_model(voyage)
 
     def get_voyage(self, voyage_ID):
         pass

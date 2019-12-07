@@ -4,6 +4,8 @@ class LLEmployees:
         self.__modelAPI = modelAPI
         self.__all_employee_list = []
 
+        self.__rank_dict = {"Captain":get_captain_ssn, "Copilot":get_copilot_ssn, "Flight Service Manager":get_fsm_ssn, "Flight Attendant":get_fa_ssns}
+
     def validate_employee(self, employee):
         ''' Gets employee instance and returns a boolean '''
         return self.__modelAPI.validate_model(employee)
@@ -16,11 +18,12 @@ class LLEmployees:
         return False
 
     def get_all_employees(self):
-        ''' pulls and returns a list of employee instances '''
+        ''' Pulls and returns a list of employee instances '''
         return self.__dl_api.pull_all_employees()
 
-    def push_all_employees(self, all_employees):
-        self.__dl_api.overwrite_all_employees(all_employees)
+    def push_all_employees(self, all_employee_list):
+        ''' Takes a list of employee instances and sends it to the DL '''
+        self.__dl_api.overwrite_all_employees(all_employee_list)
 
     def list_all_employees_by_name(self):
         all_employee_list = self.get_all_employees()
@@ -102,5 +105,13 @@ class LLEmployees:
             self.__dl_api.overwrite_all_employees(self.__all_employee_list)
         return success_check
 
-    def create_work_scedule(self):
-        pass
+    def create_work_schedule(self, employee):
+        all_voyage_list = self.__dl_api.pull_all_voyages()
+
+        
+
+        requested_ssn = 
+        upcoming_voyages = []
+        #current_date_time = get_current_date_time()
+        for voyage in all_voyage_list:
+            if employee.get_ssn 
