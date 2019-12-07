@@ -9,8 +9,8 @@ import os
 
 import string
 
-
 class UIMain():
+    RETURN_MENU_STR = "0. Exit"
 
     def __init__(self):
         self.__LLAPI = LLAPI()
@@ -33,6 +33,6 @@ class UIMain():
                         4: self.__ui_airplanes.display_airplanes_sub_menu,
                         0: self.__ui_base_functions.exit_program}
             main_menu = "1. Employees 2. Voyages 3. Destinations 4. Airplanes"
-            return_bool = self.__ui_base_functions.display_menu(
-                main_menu, nav_dict, None, self.RETURN_MENU_STR)
+            return_bool = self.__ui_base_functions.display_menu(main_menu, nav_dict, None, self.RETURN_MENU_STR)
             return self.__ui_base_functions.check_return_value(return_bool)
+   
