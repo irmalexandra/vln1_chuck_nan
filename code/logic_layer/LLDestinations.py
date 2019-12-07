@@ -12,8 +12,8 @@ class LLDestinations:
     def push_all_destinations(self, all_destinations):
         self.__dl_api.overwrite_all_destinations(all_destinations)
 
-    def validate_destination(self):
-        pass
+    def validate_destination(self, destination):
+        return self.__modelAPI.validate_model(destination)
 
     def edit_destination(self, destination, input_tpl):
         ''' gets an instance and a tuple that holds a input flag and input string,
