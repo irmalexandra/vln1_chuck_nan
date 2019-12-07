@@ -26,15 +26,15 @@ class Voyage():
         self.__fsm_ssn = fsm_ssn
         self.__fa_ssns = fa_ssns
 
-        self.__validation_dict = {self.get_destination:self.set_destination, 
-                                self.get_departing_flight_departure_date:self.set_departing_flight_departure_date}
+        self.__create_validation_dict = {self.get_destination: self.set_destination, 
+                                         self.get_departing_flight_departure_date: self.set_departing_flight_departure_date}
 
-        self.__creation_order_list = ["destination", "departure date"]
+        self.__create_order_list = ["destination", "departure date"]
 
         self.__voyage_employee_ssn_dict = {"Captain":self.get_captain_ssn, 
-                                  "Copilot":self.get_copilot_ssn, 
-                                  "Flight Service Manager":self.get_fsm_ssn, 
-                                  "Flight Attendant":self.get_fa_ssns}
+                                           "Copilot":self.get_copilot_ssn, 
+                                           "Flight Service Manager":self.get_fsm_ssn, 
+                                           "Flight Attendant":self.get_fa_ssns}
 
     def __str__(self):
         return "{} {} {} {} {} {} {} {} {} {} {} {} {}".format(self.__departing_flight_num, self.__return_flight_num, self.__departing_flight_departing_from, self.__departing_flight_departure_date, self.__departing_flight_arrival_date, self.__return_flight_departing_from, self.__return_flight_departure_date, self.__return_flight_arrival_date, self.__airplane_insignia, self.__captain_ssn, self.__copilot_ssn, self.__fsm_ssn, ":".join(self.__fa_ssns))
@@ -43,11 +43,11 @@ class Voyage():
         true_employees = ":".join(self.__fa_ssns)
         return self.__departing_flight_num + "," + self.__return_flight_num + "," + self.__departing_flight_departing_from + "," + self.__departing_flight_departure_date + "," + self.__departing_flight_arrival_date + "," + self.__return_flight_departing_from + "," + self.__return_flight_departure_date + "," + self.__return_flight_arrival_date + "," + self.__airplane_insignia + "," + self.__captain_ssn + "," + self.__copilot_ssn + "," + self.__fsm_ssn + "," + true_employees + "\n"
 
-    def get_validation_dict(self):
-        return self.__validation_dict
+    def get_create_validation_dict(self):
+        return self.__create_validation_dict
 
-    def get_creation_order_list(self):
-        return self.__creation_order_list
+    def get_create_order_list(self):
+        return self.__create_order_list
 
     def handle_key_value(self, key, value):
         return value(key())

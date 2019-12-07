@@ -9,9 +9,20 @@ class Destination():
         self.__contact_name = contact_name
         self.__contact_number = contact_number
 
-        self.__validation_dict = {self.get_contact_name:self.set_contact_name, self.get_contact_number:self.set_contact_number}
+        self.__create_validation_dict = {self.get_country: self.set_country, 
+                                         self.get_airport: self.set_airport,
+                                         self.get_flight_time: self.set_flight_time,
+                                         self.get_distance: self.set_distance,
+                                         self.get_contact_name: self.get_contact_name,
+                                         self.get_contact_number: self.set_contact_number}
 
-        self.__creation_order_list = ["contact name", "contact number"]
+        self.__create_order_list = [
+            "country", "airport", "flight time", "distance", "contact name", "contact number"]
+
+        self.__edit_validation_dict = {self.get_contact_name: self.set_contact_name, 
+                                       self.get_contact_number: self.set_contact_number}
+
+        self.__edit_order_list = ["contact name", "contact number"]
 
     def __str__(self):
         return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact numberber: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
@@ -19,11 +30,17 @@ class Destination():
     def raw_info(self):
         return self.__country + "," + self.__airport + "," + self.__flight_time + "," + self.__distance + "," + self.__contact_name + "," + self.__contact_number + "\n"
 
-    def get_validation_dict(self):
-        return self.__validation_dict
+    def get_create_validation_dict(self):
+        return self.__create_validation_dict
 
-    def get_creation_order_list(self):
-        return self.__creation_order_list
+    def get_create_order_list(self):
+        return self.__create_order_list
+
+    def get_edit_validation_dict(self):
+        return self.__edit_validation_dict
+
+    def get_edit_order_list(self):
+        return self.__edit_order_list
 
     def handle_key_value(self, key, value):
         return value(key())    

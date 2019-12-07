@@ -13,16 +13,16 @@ new_emp = employee_list[1]
 
 work_schedule = new_llapi.get_work_schedule_list(new_emp)
 
-print(new_emp)
-for voyage in work_schedule:
-    print(voyage)
+#print(new_emp)
+#for voyage in work_schedule:
+    #print(voyage)
 
 
 
 #new_ui_emp = UIEmployees(new_llapi, new_modelapi, new_uibasefunctions)
-#a_destination = new_llapi.get_one_destination("Reykjavik")
-#destination_success = new_modelapi.validate_model(a_destination)
-#print(destination_success)
+a_destination = new_llapi.get_one_destination("Reykjavik")
+destination_success = new_modelapi.validate_model(a_destination)
+print(destination_success)
 # new_emp.set_ssn("1234567890")
 # new_emp.set_email("hakon.stjani@nanair.is")
 # print("")

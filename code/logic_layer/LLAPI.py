@@ -22,10 +22,10 @@ class LLAPI:
         return self.__ll_employees.list_all_employees_by_name()
 
     def get_all_destinations_list(self):
-        return self.__ll_destinations.get_all_destinations()
+        return self.__ll_destinations.pull_all_destinations()
 
     def get_all_airplanes_list(self):
-        return self.__ll_airplanes.get_all_airplanes()
+        return self.__ll_airplanes.pull_all_airplanes()
 
     def get_all_voyages_list(self):
         return self.__ll_voyages.get_all_voyages()
