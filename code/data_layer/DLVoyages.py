@@ -11,7 +11,7 @@ class DLVoyages():
     RETURNING_FLIGHT_DEPARTING_FROM = 5
     RETURNING_FLIGHT_DEPARTURE_DATE = 6
     RETURNING_FLIGHT_ARRIVAL_DATE = 7
-    AIRPLANE_ID = 8
+    airplane_insignia = 8
     CAPTAIN_SSN = 9
     COPILOT_SSN = 10
     FSM_SSN = 11
@@ -56,7 +56,7 @@ class DLVoyages():
                 line_list[DLVoyages.RETURNING_FLIGHT_DEPARTURE_DATE])
             new_voyage.set_return_flight_arrival_date(
                 line_list[DLVoyages.RETURNING_FLIGHT_ARRIVAL_DATE])
-            new_voyage.set_airplane_id(line_list[DLVoyages.airplane_ID])
+            new_voyage.set_airplane_insignia(line_list[DLVoyages.airplane_insignia])
             new_voyage.set_captain_ssn(line_list[DLVoyages.CAPTAIN_SSN])
             new_voyage.set_copilot_ssn(line_list[DLVoyages.COPILOT_SSN])
             new_voyage.set_fsm_ssn(line_list[DLVoyages.FSM_SSN])

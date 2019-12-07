@@ -78,12 +78,12 @@ class UIBaseFunctions():
     def print_object_list(self, object_list, modelAPI, header_flag):
 
         print("-" * self.UI_DIVIDER_INT)
-        print(modelAPI.get_model_header_format(object_list[0], header_flag))
-        print(modelAPI.get_model_list_info(object_list, header_flag))
+        print(modelAPI.get_model_header_format(model_list[0], header_flag))
+        print(modelAPI.get_model_list_info(model_list, header_flag))
         print("-" * self.UI_DIVIDER_INT)
         return
 
     def print_object(self, object):
         print("-" * self.UI_DIVIDER_INT)
-        print(object)
+        print(model)
         print("-" * self.UI_DIVIDER_INT)

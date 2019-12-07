@@ -7,12 +7,22 @@ class Airplane():
         self.__make = make
         self.__model = model
         self.__max_seats = max_seats
+        
+        self.__validation_dict = {self.get_name:self.set_name}
+
+        self.__creation_order_list = ["airplane insignia"]
 
     def __str__(self):
         return "ID: {:>2}\nMake: {:>2}\nModel: {:>2}\nMaximum seats: {:>2}".format(self.__name, self.__make, self.__model, self.__max_seats)
 
     def raw_info(self):
         return "NA" + self.__make + self.__model + "," + self.__name + "\n"
+
+    def get_validation_dict(self):
+        return self.__validation_dict
+
+    def get_creation_order_list(self):
+        return self.__creation_order_list
 
     def get_name(self):
         return self.__name
