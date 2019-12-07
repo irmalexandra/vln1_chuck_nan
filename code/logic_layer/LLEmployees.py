@@ -116,7 +116,7 @@ class LLEmployees:
         upcoming_voyages = []
         current_date = datetime.now().replace(microsecond=0).isoformat()
         for voyage in all_voyage_list:
-            if (employee.get_ssn == voyage.get_voyage_employee_ssn(employee.get_rank())
+            if (employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())
             and (voyage.get_departing_flight_departure_date() >= current_date)):
                 upcoming_voyages.append(voyage)
         return upcoming_voyages 

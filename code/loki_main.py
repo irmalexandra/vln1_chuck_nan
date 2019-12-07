@@ -7,13 +7,15 @@ new_llapi = LLAPI()
 new_modelapi = ModelAPI()
 new_uibasefunctions = UIBaseFunctions()
 
-employee_list = LLAPI.get_all_employee_list(LLAPI)
+employee_list = new_llapi.get_all_employee_list()
 
-new_emp = employee_list[3]
+new_emp = employee_list[1]
 
-work_schedule = LLAPI.get_work_schedule_list(LLAPI, new_emp)
+work_schedule = new_llapi.get_work_schedule_list(new_emp)
 
 print(new_emp)
+for voyage in work_schedule:
+    print(voyage)
 
 
 
