@@ -25,6 +25,9 @@ class Destination():
     def get_creation_order_list(self):
         return self.__creation_order_list
 
+    def handle_key_value(self, key, value):
+        return value(key())    
+
     def get_country(self):
         return self.__country
 
