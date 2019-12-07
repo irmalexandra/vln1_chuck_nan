@@ -55,26 +55,27 @@ class UIEmployees():
             return self.__ui_base_functions.check_return_value(return_value)
 
     def display_edit_employee_menu(self):
-        pass
+        print("EDIT GOES HERE")
 
     def display_select_from_employee_list_menu(self, employee_list):
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
         employee_menu = "1. Select employee:"
-        return_value = self.__ui_base_functions.display_menu(
-            employee_menu, nav_dict, employee_list)
-        return_value = self.display_selected_model_menu(return_value)
+        return_value = self.__ui_base_functions.display_menu(employee_menu, nav_dict, employee_list)
+        if return_value != None and return_value != 0:
+            return_value = self.display_selected_model_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def display_select_from_pilots_list_menu(self, employee_list):
-        nav_dict = {1:  self.__ui_base_functions.select_from_model_list,
+        nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     2: self.display_pilots_filtered_by_airplane_type,
                     9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
         employee_menu = "1. Select employee 2. Filter by airplane type"
         return_value = self.__ui_base_functions.display_menu(
-            employee_menu, nav_dict)
-        return_value = self.display_selected_model_menu(return_value)
+            employee_menu, nav_dict, employee_list)
+        if return_value != None and return_value != 0:
+            return_value = self.display_selected_model_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def display_all_employees(self):
@@ -108,7 +109,7 @@ class UIEmployees():
             return_value = self.display_select_from_employee_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def display_pilots_by_airplane_type_sorted(self):
+    def display_pilots_by_airplane_type_sorted(self, employee_list = []):
         ''' Print a sorted list of pilots '''
         header_flag = "aircraft"
         employee_list = self.__ll_api.get_pilots_sorted_by_airplane_type()
@@ -116,7 +117,7 @@ class UIEmployees():
         return_value = self.display_select_from_pilots_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def display_pilots_filtered_by_airplane_type(self):
+    def display_pilots_filtered_by_airplane_type(self, employee_list = []):
         header_flag = "aircraft"
         airplane = self.__ui_base_functions.get_user_input("airplane name")
         employee_list = self.__ll_api.get_pilots_filtered_by_airplane_type(airplane)

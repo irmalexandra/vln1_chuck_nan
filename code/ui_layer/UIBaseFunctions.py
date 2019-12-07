@@ -20,10 +20,10 @@ class UIBaseFunctions():
     def __init__(self):
         pass
 
-    def back(self, optional):
+    def back(self, optional = None):
         return 9
 
-    def home(self, optional):
+    def home(self, optional = None):
         return 0
 
     def exit_program(self):
@@ -88,7 +88,7 @@ class UIBaseFunctions():
 
     def select_from_model_list(self, model_list):
         return_value = self.get_user_selection(model_list, "index")
-        return_value = self.print_model(model_list[return_value])
+        return_value = self.print_model(model_list[return_value-1])#-1 for human readability
         return self.check_return_value(return_value)
 
 
