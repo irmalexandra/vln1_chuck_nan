@@ -13,7 +13,7 @@ class Airplane():
         self.__create_order_list = ["airplane insignia"]
 
     def __str__(self):
-        return "ID: {:>2}\nMake: {:>2}\nModel: {:>2}\nMaximum seats: {:>2}".format(self.__name, self.__make, self.__model, self.__max_seats)
+        return "Insignia {:>2}\nMake: {:>2}\nModel: {:>2}\nMaximum seats: {:>2}".format(self.__name, self.__make, self.__model, self.__max_seats)
 
     def raw_info(self):
         return "NA" + self.__make + self.__model + "," + self.__name + "\n"
