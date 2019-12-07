@@ -105,7 +105,7 @@ class UIEmployees():
     def display_pilots_filtered_by_airplane_type(self):
         header_flag = "aircraft"
         airplane = self.__ui_base_functions.get_user_input("airplane name")
-        employee_list = self.__ll_api.get_
+        employee_list = self.__ll_api.get_pilots_filtered_by_airplane_type(airplane)
         self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
         return_value = self.display_select_from_pilots_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)

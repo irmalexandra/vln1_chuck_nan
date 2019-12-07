@@ -39,11 +39,6 @@ class UIMain():
                         0: self.__ui_base_functions.exit_program}
             self.__ui_base_functions.print_nan_airlines()
             main_menu = "1. Employees 2. Voyages 3. Destinations 4. Airplanes"
-<<<<<<< HEAD
             return_value = self.__ui_base_functions.display_menu(main_menu, nav_dict, None, self.RETURN_MENU_STR)
 
-=======
-            return_bool = self.__ui_base_functions.display_menu(main_menu, nav_dict, None, self.RETURN_MENU_STR)
-            return self.__ui_base_functions.check_return_value(return_bool)
->>>>>>> cb9e42fd513ea337f0e4cf15842e98835b551b80
    
