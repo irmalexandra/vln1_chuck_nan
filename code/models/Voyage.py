@@ -197,12 +197,12 @@ class Voyage():
                                                             "Status")
 
     def get_model_list_default_info(self):
-        return "{:15}{:11}{:27}{:27}{:27}{:27}{:17}".format(voyages.get_return_flight_departing_from(),
-                                                                   voyages.get_airplane_insignia(),  # we should change this to airplane type
-                                                                   voyages.get_departing_flight_departure_date(),
-                                                                   voyages.get_return_flight_arrival_date(),
-                                                                   voyages.get_departing_flight_num(),
-                                                                   voyages.get_return_flight_num(),
+        return "{:15}{:11}{:27}{:27}{:27}{:27}{:17}".format(self.get_return_flight_departing_from(),
+                                                                   self.get_airplane_insignia(),  # we should change this to airplane type
+                                                                   self.get_departing_flight_departure_date(),
+                                                                   self.get_return_flight_arrival_date(),
+                                                                   self.get_departing_flight_num(),
+                                                                   self.get_return_flight_num(),
                                                                    "Missing staffed",
                                                                    "Missing status")
             
