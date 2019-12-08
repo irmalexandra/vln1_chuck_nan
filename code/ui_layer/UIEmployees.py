@@ -24,7 +24,7 @@ class UIEmployees():
 
     def get_employee_search_menu(self):
         ''' Print the search menu of employee sub menu '''
-        nav_dict = {1: self.gete_all_employees_by_name,
+        nav_dict = {1: self.get_all_employees_by_name,
                     2: self.get_all_employees_by_title,
                     3: self.get_all_employees_by_date,
                     4: self.get_pilots_by_airplane_type_sorted,
@@ -119,7 +119,7 @@ class UIEmployees():
             return_value = self.get_select_from_employee_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def gete_all_employees_by_name(self):
+    def get_all_employees_by_name(self):
         ''' Search for employee instance and print out it's information '''
         header_flag = "default"
         name = self.__ui_base_functions.get_user_input("name")

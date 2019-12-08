@@ -26,6 +26,11 @@ class Voyage():
         self.__fsm_ssn = fsm_ssn
         self.__fa_ssns = fa_ssns
 
+
+        self.__header_format_dict = {"default": self.get_model_header_default_format}
+
+        self.__list_info_dict = {"default": self.get_model_list_default_info}
+
         self.__create_validation_dict = {self.get_destination: self.set_destination, 
                                          self.get_departing_flight_departure_date: self.set_departing_flight_departure_date}
 
@@ -172,3 +177,32 @@ class Voyage():
 
     def get_voyage_employee_ssn(self, rank):
         return self.__voyage_employee_ssn_dict[rank]()
+
+    
+    def get_model_header_format(self, header_flag):
+        return self.__header_format_dict[header_flag]()
+
+    def get_model_list_info(self, header_flag):
+        return self.__list_info_dict[header_flag]()
+
+    
+    def get_model_header_default_format(self):
+        return "{:15}{:11}{:27}{:27}{:27}{:27}{:17}".format(
+                                                            "Destination:",
+                                                            "Airplane:",
+                                                            "Departure date and time:",
+                                                            "Return date and time:",
+                                                            "Departure flight number:",
+                                                            "Return flight number:", 
+                                                            "Status")
+
+    def get_model_list_default_info(self):
+        return "{:15}{:11}{:27}{:27}{:27}{:27}{:17}".format(voyages.get_return_flight_departing_from(),
+                                                                   voyages.get_airplane_insignia(),  # we should change this to airplane type
+                                                                   voyages.get_departing_flight_departure_date(),
+                                                                   voyages.get_return_flight_arrival_date(),
+                                                                   voyages.get_departing_flight_num(),
+                                                                   voyages.get_return_flight_num(),
+                                                                   "Missing staffed",
+                                                                   "Missing status")
+            
