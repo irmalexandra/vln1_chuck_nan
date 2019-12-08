@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class LLVoyages:
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
@@ -25,7 +27,7 @@ class LLVoyages:
         return empty_voyage_list
 
     def filter_all_voyages_by_period(self, start_date, end_date):
-        
+        pass
 
     def filter_all_voyages_by_destination(self):
         pass
