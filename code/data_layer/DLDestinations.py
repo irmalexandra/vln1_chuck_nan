@@ -11,7 +11,6 @@ class DLDestinations():
     CONTACT_NUMBER = 5
 
     def __init__(self, modelAPI):
-        
         self.__modelAPI = modelAPI
 
     def pull_all_destinations(self):
@@ -26,8 +25,9 @@ class DLDestinations():
         else:
             print("destination data files not found")
             return
+
+
         all_destinations_list = []
-        
         for line in filestream:
             check_list = []
             line_list = line.strip().split(",")
