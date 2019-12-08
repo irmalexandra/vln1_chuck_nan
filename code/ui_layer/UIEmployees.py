@@ -76,8 +76,10 @@ class UIEmployees():
         employee_menu = "1. Select employee 2. Filter by airplane type"
         return_value = self.__ui_base_functions.print_menu(
             employee_menu, nav_dict, employee_list)
-        if return_value != None and return_value != 0:
+        if return_value != None and return_value != 0 and return_value != 9:
             return_value = self.get_selected_employee_menu(return_value)
+        if return_value == None:
+            return_value = 9
         return self.__ui_base_functions.check_return_value(return_value)
 
     
