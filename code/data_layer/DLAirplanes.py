@@ -70,7 +70,7 @@ class DLAirplanes():
         filestream.close()
         return new_airplane_type_list
 
-    def push_all_airplanes(self, airplane_list):
+    def overwrite_all_airplanes(self, airplane_list):
 
         HEADER = "planeTypeId,planeInsignia\n"
         filestream = open("./repo/Airplane_temp.csv", "w")
