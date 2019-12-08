@@ -49,7 +49,7 @@ class DLEmployees():
 
         return all_crew_list
 
-    def push_all_employees(self, emp_list):
+    def overwrite_all_employees(self, emp_list):
         
         # employee_file.write(new_emp_str)
         HEADER = "id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"

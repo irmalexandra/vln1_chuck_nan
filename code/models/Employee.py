@@ -51,7 +51,7 @@ class Employee():
                             6: self.set_licence}
 
     def raw_info(self):
-        return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
+        return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "," + self.__licence + "\n"
 
     def __str__(self):
         return_str = "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nHome number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title,self.__rank)

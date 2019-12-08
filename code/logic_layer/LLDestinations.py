@@ -20,7 +20,7 @@ class LLDestinations:
         ''' Gets a list of destination instances and returns it '''
         return self.__dl_api.pull_all_destinations()
 
-    def push_all_destinations(self, all_destination_list):
+    def overwrite_all_destinations(self, all_destination_list):
         ''' Takes a list of destination instances and sends it to the DL ''' 
         self.__dl_api.overwrite_all_destinations(all_destination_list)
 
@@ -32,7 +32,7 @@ class LLDestinations:
         success_check = set_contact_info_dict[input_tpl[0]](input_tpl[1])
         if success_check:
             if self.validate_edited_destination(destination):
-                self.push_all_destinations(self.__all_destination_list)
+                self.overwrite_all_destinations(self.__all_destination_list)
         return success_check
 
     def validate_edited_destination(self, destination):
