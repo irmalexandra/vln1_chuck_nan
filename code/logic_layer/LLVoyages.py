@@ -5,6 +5,7 @@ class LLVoyages:
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
         self.__all_voyage_list = []
+
     def validate_voyage(self, voyage):
         ''' Gets voyage instance and returns a boolean '''
         return self.__modelAPI.validate_model(voyage)
@@ -27,16 +28,43 @@ class LLVoyages:
         return empty_voyage_list
 
     def filter_all_voyages_by_period(self, start_date, end_date):
-        pass
+        start_year, start_month, start_day = start_date.split("-")
+        end_year, end_month, end_day = end_date.split("-")
 
-    def filter_all_voyages_by_destination(self):
-        pass
+        start = datetime(start_year, start_month, start_day)
+        end = datetime(end_year, end_month, end_day)
 
-    def duplicate_voyages(self):
+        self.__all_voyage_list = self.get_all_voyage_list() 
+        period_voyage_list = []
+
+        for voyage in self.__all_voyage_list:
+            if start <= voyage.get_return_flight_arrival_date() or voyage.get_departing_flight_departing_date() <= end:
+                period_voyage_list.append(voyage)
+        return period_voyage_list
+        
+    def filter_all_voyages_by_destination(self, airport):
+
+        self.__all_voyage_list = self.get_all_voyage_list()
+        destination_voyage_list = []
+
+        for voyage in self.__all_voyage_list:
+            if voyage.get_return_flight_departing_from() == airport:
+                destination_voyage_list.append(voyage)
+
+        return destination_voyage_list
+
+
+    def duplicate_voyage(self, voyage, departure_date_time):
         pass
 
     def repeat_voyage(self):
         pass
 
-    def add_crew(self):
+    def populate_voyage(self):
+        pass
+
+    def generate_flight_numbers(self):
+        pass
+
+    def calculate_flight_times(self):
         pass
