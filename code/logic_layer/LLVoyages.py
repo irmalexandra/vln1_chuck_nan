@@ -56,17 +56,21 @@ class LLVoyages:
 
         return destination_voyage_list
 
-    def duplicate_voyage(self, voyage, date_time):
-        destination = voyage.get_destination()
+    def create_voyage(self, destination, date_time):
         new_voyage = self.__modelAPI.get_model("Voyage")
 
         new_voyage.set_destination(destination)
         new_voyage.set_departing_flight_departure_date(date_time)
 
-        voyage.set_flight_numbers(self.generate_flight_numbers())
-        voyage.set_flight_times(self.calculate_flight_times(voyage, date_time))
+        new_voyage.set_flight_numbers(self.generate_flight_numbers())
+        new_voyage.set_flight_times(self.calculate_flight_times(new_voyage, date_time))
 
-        return self.__dl_api.append_voyage(voyage)
+        return self.__dl_api.append_voyage(new_voyage)
+
+
+    def duplicate_voyage(self, voyage, date_time):
+        destination = voyage.get_destination()
+        return self.create_voyage(destination, date_time)
 
     def repeat_voyage(self, voyage, repeat_interval, end_date):
         date = voyage.get_departing_flight_departing_date()
@@ -114,9 +118,12 @@ class LLVoyages:
         return_flight_departure_date = departing_flight_arrival_date + datetime.timedelta(hours = 1)
         return_flight_arrival_date = return_flight_departure_date + datetime.timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
+<<<<<<< HEAD
     
     def calculate_flight_times(self):
         pass
+=======
+>>>>>>> 8fa1548a3dbaf7e748f998d79df0fcf85d8edeae
 
     def get_iso_format_date_time(self, date, time):
 
