@@ -8,6 +8,155 @@ class UIVoyages():
         self.__modelAPI = modelAPI
         self.__ui_base_functions = UIBaseFunctions
 
+    # All menu functions
+    
+    def get_voyage_sub_menu(self):
+        nav_dict = {1: self.create_voyage,
+                    2: self.get_all_voyages,
+                    3: self.get_voyage_search_menu,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        voyage_menu = "1. Create 2. get all 3. Search by"
+        return_value = self.__ui_base_functions.print_menu(
+            voyage_menu, nav_dict)
+        return self.__ui_base_functions.check_return_value(return_value)
+
+    def get_voyage_search_menu(self):
+        ''' Print the search menu of voyage sub menu '''
+        nav_dict = {1: self.get_all_voyages_by_destination,
+                    2: self.get_all_voyages_by_date,
+                    3: self.get_all_empty_voyages,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        voyage_menu = "Search: 1. By Destination 2. By Period 3. By Empty Voyages"
+        return_value = self.__ui_base_functions.print_menu(
+            voyage_menu, nav_dict)
+        return self.__ui_base_functions.check_return_value(return_value)
+
+    
+    # All list functions
+    
+    def get_all_voyages(self):
+        print("ALL voyages!")
+        pass
+
+    def get_all_voyages_by_destination(self):
+        print("ALL VOYAGES BY DESTINATION")
+        pass
+
+    def get_all_voyages_by_date(self):
+        print("ALL VOYAGES BY DATE")
+        pass
+
+    def get_all_empty_voyages(self):
+        print("ALL VOYAGES EMPTY VOYAGES")
+        pass
+    
+    
+    
+    
+    
+    
+    
+    # All Special functions
+
+    def create_voyage(self):
+        print("CREATE VOYAGE GOES HERE!")
+        return
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     def display_voyage_sub_menu(self):
         ''' Print the destination menu '''
         while True:
@@ -29,7 +178,7 @@ class UIVoyages():
             except KeyError:
                 print("Invalid input! try again")
 
-    def create_voyage(self):
+    def create_voyage1(self):
         ''' Create a voyage '''
         # 1
         destination = input("Destination: ")
