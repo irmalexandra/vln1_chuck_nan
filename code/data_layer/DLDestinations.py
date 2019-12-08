@@ -27,7 +27,7 @@ class DLDestinations():
             print("destination data files not found")
             return
         all_destinations_list = []
-        all_destinations_list.clear()
+        
         for line in filestream:
             check_list = []
             line_list = line.strip().split(",")
