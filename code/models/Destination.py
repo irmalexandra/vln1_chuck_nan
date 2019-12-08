@@ -9,6 +9,10 @@ class Destination():
         self.__contact_name = contact_name
         self.__contact_number = contact_number
 
+        self.__header_format_dict = {"default": self.get_model_header_default_format}
+
+        self.__list_info_dict = {"default": self.get_model_list_default_info}
+
         self.__create_validation_dict = {self.get_country: self.set_country, 
                                          self.get_airport: self.set_airport,
                                          self.get_flight_time: self.set_flight_time,
@@ -27,7 +31,14 @@ class Destination():
     def __str__(self):
         return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact numberber: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
 
-    def get_model_header_format(self):
+    def get_model_header_format(self, header_flag):
+        return self.__header_format_dict[header_flag]()
+
+    def get_model_list_info(self, header_flag):
+        return self.__list_info_dict[header_flag]()
+    
+    
+    def get_model_header_default_format(self):
         return "{:<10}{:20}{:15}{:20}{:20}{:20}{:20}".format("Index:",
                                                           "Country:",
                                                           "Airport:",
@@ -36,14 +47,13 @@ class Destination():
                                                           "Contact name:",
                                                           "Contact number:")
         
-    def get_model_list_info(self, header_flag):
-        returnObject = ("{:20}{:15}{:20}{:20}{:20}{:20}|\n".format(
-                                                                      self.get_country(),
-                                                                      self.get_airport(),
-                                                                      self.get_flight_time(),
-                                                                      self.get_distance(),
-                                                                      self.get_contact_name(),
-                                                                      self.get_contact_number))
+    def get_model_list_default_info(self):
+        returnObject = ("{:20}{:15}{:20}{:20}{:10}|\n".format(
+                                                                      self.get_countr(),
+                                                                      self.get_ssn(),
+                                                                      self.get_address(),
+                                                                      self.get_mobile_num(),
+                                                                      self.get_title()))
         return returnObject
 
     def raw_info(self):
