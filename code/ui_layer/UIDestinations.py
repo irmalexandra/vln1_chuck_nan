@@ -15,17 +15,17 @@ class UIDestinations():
                     3: self.get_destination_search_menu,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        destination_menu = "1. Create 2. get all 3. Search by"
+        destination_menu = "1. Create 2. Get all 3. Search by"
         return_value = self.__ui_base_functions.print_menu(
             destination_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_destination_search_menu(self):
         '''Print the search menu of employee sub menu'''
-        nav_dict = {1: self.get_destination_by_airport,
+        nav_dict = {1: self.get_all_destinations_by_country,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        destination_menu = "1. Airport name"
+        destination_menu = "1. Country name"
         return_value = self.__ui_base_functions.print_menu(
             destination_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -62,11 +62,21 @@ class UIDestinations():
         return_value = self.get_select_from_destination_list_menu(destination_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
+ 
+
     # Specific functions
 
-    def get_destination_by_airport(self):
-        pass
-    
+    def get_all_destinations_by_country(self):
+        '''Search for distination instance and returns a list'''
+        header_flag = "default"
+        country = self.__ui_base_functions.get_user_input("country")
+        found_destination_list = self.__ll_api.get_destination_list_by_country(
+            country)
+        return_value = self.__ui_base_functions.print_model_list(found_destination_list, self.__modelAPI, header_flag)
+        return_value = self.get_select_from_destination_list_menu(return_value)
+        return self.__ui_base_functions.check_return_value(return_value)
+
+
     def create_destination(self):
         pass
 
