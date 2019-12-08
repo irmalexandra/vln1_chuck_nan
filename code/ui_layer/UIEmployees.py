@@ -35,8 +35,8 @@ class UIEmployees():
             employee_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def get_selected_model_menu(self, employee):
-        if model.get_title() == "Pilot":
+    def get_selected_employee_menu(self, employee):
+        if employee.get_title() == "Pilot":
             nav_dict = {1: self.get_edit_employee_menu,
                         2: self.get_work_schedule,
                         3: self.change_pilot_licence,
@@ -53,7 +53,7 @@ class UIEmployees():
                         0: self.__ui_base_functions.home}
             employee_menu = "1. Edit Employee 2. Work Schedule"
             return_value = self.__ui_base_functions.print_menu(
-                employee_menu, nav_dict, model)
+                employee_menu, nav_dict, employee)
             return self.__ui_base_functions.check_return_value(return_value)
 
     def get_edit_employee_menu(self):
@@ -66,7 +66,7 @@ class UIEmployees():
         employee_menu = "1. Select employee:"
         return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, employee_list)
         if return_value != None and return_value != 0:
-            return_value = self.get_selected_model_menu(return_value)
+            return_value = self.get_selected_employee_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_pilots_list_menu(self, employee_list):
@@ -77,7 +77,7 @@ class UIEmployees():
         return_value = self.__ui_base_functions.print_menu(
             employee_menu, nav_dict, employee_list)
         if return_value != None and return_value != 0:
-            return_value = self.get_selected_model_menu(return_value)
+            return_value = self.get_selected_employee_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
     
