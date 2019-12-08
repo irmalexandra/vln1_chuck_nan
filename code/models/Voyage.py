@@ -71,12 +71,12 @@ class Voyage():
 
     def set_departing_flight_num(self, flight_number):
         if self.__models_validation.validate_flight_number(flight_number):
-            self.__departing_flight_num = new
+            self.__departing_flight_num = flight_number
 
     def get_returning_flight_num(self):
         return self.__return_flight_num
 
-    def set_return_flight_num(self, flight_number):
+    def set_returning_flight_num(self, flight_number):
         if self.__models_validation.validate_flight_number(flight_number):
             self.__departing_flight_num = flight_number       
 
@@ -89,20 +89,13 @@ class Voyage():
         self.set_return_flight_arrival_date(return_flight_arrival_date)
         pass
 
-    def get_return_flight_num(self):
-        return self.__return_flight_num
-
-    def set_return_flight_num(self, new):
-        if self.__models_validation.validate_flight_number(new):
-            self.__return_flight_num = new
-
     def get_departing_flight_departing_from(self):
         return self.__departing_flight_departing_from
 
-    def set_departing_flight_departing_from(self, new):
-        if self.__models_validation.validate_name(new):
-            self.__departing_flight_departing_from = new
-        self.__departing_flight_departing_from = new
+    def set_departing_flight_departing_from(self, flight_number):
+        if self.__models_validation.validate_name(flight_number):
+            self.__departing_flight_departing_from = flight_number
+        
 
     def get_departing_flight_departure_date(self):
         return self.__departing_flight_departure_date
@@ -213,12 +206,12 @@ class Voyage():
                                                             "Status")
 
     def get_model_list_default_info(self):
-        return "{:15}{:11}{:27}{:27}{:27}{:27}{:17}".format(self.get_return_flight_departing_from(),
+        return "{:15}{:11}{:27}{:27}{:27}{:27}{:17}{:10}".format(self.get_return_flight_departing_from(),
                                                                    self.get_airplane_insignia(),  # we should change this to airplane type
                                                                    self.get_departing_flight_departure_date(),
                                                                    self.get_return_flight_arrival_date(),
                                                                    self.get_departing_flight_num(),
-                                                                   self.get_return_flight_num(),
+                                                                   self.get_returning_flight_num(),
                                                                    "Missing staffed",
                                                                    "Missing status")
             
