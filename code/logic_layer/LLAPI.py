@@ -50,10 +50,7 @@ class LLAPI:
         
     def get_employee_list_filtered_by_name(self, search_string):
         return self.__ll_employees.filter_employees_by_name(search_string)
-
-    def clear_airplane_lists(self):
-        self.__DLAPI.clear_airplane_lists()
-        
+   
     def get_pilot_list_sorted_by_airplane_type(self):
         return self.__ll_employees.sort_pilots_by_airplane_type()
     
@@ -63,3 +60,13 @@ class LLAPI:
     def get_work_schedule_list(self, employee):
         return self.__ll_employees.get_work_schedule_list(employee)
 
+    def overwrite_all_models(self, model_list):
+        model = model_list[9]
+        if type(model).__name__ == "Employee":
+            self.__ll_employees.overwrite_all_employees(model_list)
+        if type(model).__name__ == "Airplane":
+            self.__ll_airplanes.overwrite_all_employees(model_list)
+        if type(model).__name__ == "Destination":
+            self.__ll_destinations.overwrite_all_destinations(model_list)
+        if type(model).__name__ == "Voyage":
+            self.__ll_voyages.overwrite_all_voyages(model_list)

@@ -62,10 +62,6 @@ class UIDestinations():
         return_value = self.get_select_from_destination_list_menu(destination_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
- 
-
-    # Specific functions
-
     def get_all_destinations_by_country(self):
         '''Search for distination instance and returns a list'''
         header_flag = "default"
@@ -76,8 +72,9 @@ class UIDestinations():
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_destination_list_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
-
-
+ 
+    # Specific functions
+    
     def create_destination(self):
         print("CREATE DESTINATION GOES HERE!")
     

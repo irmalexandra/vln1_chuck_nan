@@ -43,12 +43,12 @@ class Employee():
         self.__edit_order_list = [
             'home address', 'home number', 'mobile number', "title", "rank"]
 
-        self.__edit_dict = {"Address": self.set_address,
-                            "Home Number": self.set_home_num,
-                            "Mobile Number": self.set_mobile_num, 
-                            "Title": self.set_title, 
-                            "Rank": self.set_rank, 
-                            "Licence": self.set_licence}
+        self.__edit_dict = {1: self.set_address,
+                            2: self.set_home_num,
+                            3: self.set_mobile_num, 
+                            4: self.set_title, 
+                            5: self.set_rank, 
+                            6: self.set_licence}
 
     def raw_info(self):
         return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
@@ -139,12 +139,14 @@ class Employee():
 
     def set_title(self, new_title):
         self.__title = new_title
+        return True
 
     def get_rank(self):
         return self.__rank
 
     def set_rank(self, new_rank):
         self.__rank = new_rank
+        return True
 
     def get_licence(self):
         return self.__licence

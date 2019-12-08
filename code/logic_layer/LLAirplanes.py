@@ -34,5 +34,8 @@ class LLAirplanes:
                     return  airplane,True
         return airplane,False
 
+    def overwrite_all_airplanes(self, airplane_list):
+        return self.__dl_api.overwrite_all_airplanes(airplane_list)
+
 
         

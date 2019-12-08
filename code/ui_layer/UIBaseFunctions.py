@@ -58,7 +58,7 @@ class UIBaseFunctions():
             return 9
         return return_value
 
-    def print_menu(self, menu_str, nav_dict,model_list = None ,return_menu_str="9. Return 0. Home"):
+    def print_menu(self, menu_str, nav_dict,model_list = None ,model = None,return_menu_str="9. Return 0. Home"):
         while True:
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -
@@ -68,8 +68,11 @@ class UIBaseFunctions():
             if model_list == None:
                 return_value = nav_dict[return_value]()
                 return_value = self.check_return_value(return_value)
-            else:
+            elif model_list != None and model == None:
                 return_value = nav_dict[return_value](model_list)
+                return_value = self.check_return_value(return_value)
+            else:
+                return_value = nav_dict[return_value](model, model_list)
                 return_value = self.check_return_value(return_value)
             if return_value == 0:
                 return 0
@@ -100,5 +103,24 @@ class UIBaseFunctions():
         return_value = self.print_model(model_list[return_value-1])#-1 for human readability
         return self.check_return_value(return_value)
 
-
+    def print_edit_model_menu(self,menu_str, nav_dict, model, model_list, edit_order_list, llapi, return_menu_str="9. Return 0. Home"):
+        while True:
+            model1 = model
+            model_list1 = model_list
+            self.print_model(model)
+            print("-" * self.UI_DIVIDER_INT)
+            print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -
+                                                   len(return_menu_str) - self.DEVIATION_INT), return_menu_str))
+            print("-" * self.UI_DIVIDER_INT)
+            return_value = self.get_user_selection(nav_dict)
+            if return_value != 9 and return_value != 0:
+                value_to_edit = edit_order_list[return_value-1] # -1 for human readability
+                while True:
+                    new_value = self.get_user_input(value_to_edit)
+                    return_value = nav_dict[return_value](new_value)
+                    if return_value == True:
+                        break
+            else:
+                llapi.    
+                return self.check_return_value(return_value)
     

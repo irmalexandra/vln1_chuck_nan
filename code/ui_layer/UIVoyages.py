@@ -54,7 +54,6 @@ class UIVoyages():
             voyage_menu, nav_dict, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
 
-
     # All list functions
     
     def get_all_voyages(self):
