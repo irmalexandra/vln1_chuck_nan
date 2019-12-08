@@ -121,6 +121,6 @@ class UIBaseFunctions():
                     if return_value == True:
                         break
             else:
-                llapi.    
+                llapi.overwrite_all_models(model, model_list) 
                 return self.check_return_value(return_value)
     
