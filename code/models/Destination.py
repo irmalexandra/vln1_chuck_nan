@@ -27,6 +27,24 @@ class Destination():
     def __str__(self):
         return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact numberber: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
 
+    def get_model_header_format(self):
+        return "{:<10}{:20}{:15}{:20}{:20}{:20}{:20}".format("Index:",
+                                                          "Country:",
+                                                          "Airport:",
+                                                          "Flight time:",
+                                                          "Distance:",
+                                                          "Contact name:",
+                                                          "Contact number:")
+        
+    def get_model_list_info(self, header_flag):
+        returnObject = ("{:20}{:15}{:20}{:20}{:10}|\n".format(
+                                                                      self.get_countr(),
+                                                                      self.get_ssn(),
+                                                                      self.get_address(),
+                                                                      self.get_mobile_num(),
+                                                                      self.get_title()))
+        return returnObject
+
     def raw_info(self):
         return self.__country + "," + self.__airport + "," + self.__flight_time + "," + self.__distance + "," + self.__contact_name + "," + self.__contact_number + "\n"
 

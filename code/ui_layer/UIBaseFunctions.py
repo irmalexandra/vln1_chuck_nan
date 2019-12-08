@@ -68,7 +68,7 @@ class UIBaseFunctions():
             if return_value == 0:
                 return 0
             if return_value == 9:
-                return
+                return 
             if return_value != None:
                 return return_value
 
