@@ -113,10 +113,11 @@ class UIEmployees():
             header_flag = "aircraft"
         employee_list = self.__ll_api.get_employee_list_by_title(title)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
-        if title == "Pilot":
-            return_value = self.get_select_from_pilots_list_menu(employee_list)
-        else:
-            return_value = self.get_select_from_employee_list_menu(employee_list)
+        if type(return_value).__name__ == "list":
+            if title == "Pilot":
+                return_value = self.get_select_from_pilots_list_menu(employee_list)
+            else:
+                return_value = self.get_select_from_employee_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_employees_by_name(self):
@@ -126,7 +127,8 @@ class UIEmployees():
         found_employee_list = self.__ll_api.get_employee_list_filtered_by_name(
             name)
         return_value = self.__ui_base_functions.print_model_list(found_employee_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_employee_list_menu(return_value)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_employee_list_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_pilots_by_airplane_type_sorted(self, employee_list = []):
@@ -142,33 +144,15 @@ class UIEmployees():
         airplane = self.__ui_base_functions.get_user_input("airplane name")
         employee_list = self.__ll_api.get_pilot_list_filtered_by_airplane_type(airplane)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_pilots_list_menu(employee_list)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_pilots_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
 
     # Specific functions
 
     def create_employee(self):
-        ''' Create an employee, if employee is a pilot licence and rank is input '''
-        title = input("Title: ")
-        new_emp = self.__modelAPI.get_model(title)
-        if title == "Pilot":
-            licence = input("Licence: ")
-            new_emp.set_licence(licence)
-            rank = input("Rank: ")
-            new_emp.set_rank(rank)
-        name = input("Name: ")
-        new_emp.set_name(name)
-        ssn = input("SSN: ")
-        new_emp.set_ssn(ssn)
-        address = input("Address: ")
-        new_emp.set_address(address)
-        home_number = input("Home number: ")
-        new_emp.set_home_num(home_number)
-        mobile_number = input("Mobile number: ")
-        new_emp.set_mobile_num(mobile_number)
-        email = input("E-mail: ")
-        new_emp.set_email(email)
+        print("CREATE EMPLOYEE GOES HERE!")
 
     def change_pilot_licence(self, employee):
         print("CHANGE LICENCE GOES HERE!")

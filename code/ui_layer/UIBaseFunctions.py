@@ -36,10 +36,16 @@ class UIBaseFunctions():
         while True:
             try:
                 selection = int(input("Enter {}: ".format(key_word)))
-                if selection in collection:
-                    return selection
-                elif len(collection) >= selection:
-                    return selection
+                if type(collection).__name__ == "dict":
+                    if selection in collection.keys():
+                        return selection
+                    else:
+                        print("Invalid key")
+                elif type(collection).__name__ == "list":
+                    if len(collection) >= selection:
+                        return selection
+                    else:
+                        print("Invalid selection in list")
                 else:
                     print("Invalid {}".format(key_word))
             except ValueError:
@@ -73,12 +79,15 @@ class UIBaseFunctions():
                 return return_value
 
     def print_model_list(self, model_list, modelAPI, header_flag):
-
-        print("-" * self.UI_DIVIDER_INT)
-        print(modelAPI.get_model_header_format(model_list[0], header_flag))
-        print(modelAPI.get_model_list_info(model_list, header_flag))
-        print("-" * self.UI_DIVIDER_INT)
-        return self.check_return_value(model_list)
+        if len(model_list) > 0:
+            print("-" * self.UI_DIVIDER_INT)
+            print(modelAPI.get_model_header_format(model_list[0], header_flag))
+            print(modelAPI.get_model_list_info(model_list, header_flag))
+            print("-" * self.UI_DIVIDER_INT)
+            return self.check_return_value(model_list)
+        else:
+            print("No search results")
+            return 9
 
     def print_model(self, model):
         print("-" * self.UI_DIVIDER_INT)
