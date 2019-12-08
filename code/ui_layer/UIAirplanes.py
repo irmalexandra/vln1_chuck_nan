@@ -10,6 +10,35 @@ class UIAirplanes():
         self.__modelAPI = modelAPI
         self.__ui_base_functions = UIBaseFunctions
 
+    
+    
+    def get_airplanes_sub_menu(self):
+        pass
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     def display_airplanes_sub_menu(self):
         ''' Print the airplanes menu '''
         while True:
