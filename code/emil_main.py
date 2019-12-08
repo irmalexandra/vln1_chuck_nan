@@ -73,9 +73,16 @@ print("Date to:")
 range_future = date(2019,12, 11)
 
 print(range_future >= today >= range_past)
+print(range_past <= today <= range_future)
+
+print(date(1,1,1) < date(1,1,2))
 
 
 print(date(1,1,1) < date(1,1,2))
 
+from logic_layer.LLVoyages import LLVoyages
+from models.ModelAPI import ModelAPI
+modelAPI = ModelAPI()
+voyage = LLVoyages(stuff,modelAPI)  
 
-print(date(1,1,1) < date(1,1,2))
+print(voyage.calculate_flight_times("2019-12-27T23:40:00","Tingwall"))

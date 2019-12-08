@@ -92,3 +92,8 @@ def print_main_menu():
     print("|{}{}|".format(true_menu2," " * (TRUE_LEN - len(true_menu2)-1)))
 
 print_main_menu()
+print_chuck()
+
+string = "this" 
+
+print(string.find("k"))

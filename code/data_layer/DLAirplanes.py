@@ -54,7 +54,6 @@ class DLAirplanes():
     def pull_airplane_types_info(self):
         # Ath!!
         filestream = open("./repo/AirplaneType.csv", "r")
-        airplanes_types_list = []
         new_airplane_type_list = []
         
         for airplane in filestream:
