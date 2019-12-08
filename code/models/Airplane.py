@@ -1,7 +1,7 @@
 from validation.validator import Validator
 class Airplane():
 
-    def __init__(self, name='', make='', model='', max_seats=0):
+    def __init__(self, name='', make='', model='', max_seats=0, availability = "",current_destination = "", flight_number = "", date_available = ""):
         self.__models_validation = Validator()
         self.__name = name #insignia
         self.__make = make
@@ -12,6 +12,11 @@ class Airplane():
 
         self.__create_order_list = ["airplane insignia"]
 
+        self.__availability = availability
+        self.__current_destination = current_destination
+        self.__flight_number = flight_number
+        self.__date_available = date_available
+
 
 
     def __str__(self):
@@ -19,6 +24,35 @@ class Airplane():
 
     def raw_info(self):
         return "NA" + self.__make + self.__model + "," + self.__name + "\n"
+
+    def set_availability(self, availability):
+        self.__availability = availability
+    
+    def get_availability(self):
+        return self.__availability
+    
+    def set_current_destination(self, destination):
+        self.__current_destination = destination
+    
+    def get_current_destination(self):
+        return self.__current_destination
+
+    def set_flight_number(self,flight_number):
+        self.__flight_number = flight_number
+    def get_flight_number(self):
+        return self.__flight_number
+    
+    def set_date_available(self, date):
+        self.__date_available = date
+    
+    def get_date_available(self):
+        return self.__date_available
+
+
+
+
+
+
 
     def get_create_validation_dict(self):
         return self.__create_validation_dict

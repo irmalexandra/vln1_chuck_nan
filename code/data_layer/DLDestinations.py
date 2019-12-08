@@ -11,7 +11,7 @@ class DLDestinations():
     CONTACT_NUMBER = 5
 
     def __init__(self, modelAPI):
-        self.all_destinations_list = []
+        
         self.__modelAPI = modelAPI
 
     def pull_all_destinations(self):
@@ -26,7 +26,8 @@ class DLDestinations():
         else:
             print("destination data files not found")
             return
-
+        all_destinations_list = []
+        all_destinations_list.clear()
         for line in filestream:
             check_list = []
             line_list = line.strip().split(",")
@@ -42,9 +43,9 @@ class DLDestinations():
             check_list.append(new_destination.set_contact_number(
                 line_list[DLDestinations.CONTACT_NUMBER]))
             if False not in check_list:
-                self.all_destinations_list.append(new_destination)
+                all_destinations_list.append(new_destination)
         filestream.closed
-        return self.all_destinations_list
+        return all_destinations_list
 
     def append_destination(self, new_destination):
         '''Opens a csv file and adds a new destination to the destination string'''
