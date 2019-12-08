@@ -83,10 +83,10 @@ class Voyage():
     def get_flight_times(self):
         pass
 
-    def set_flight_times(self, departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date)
+    def set_flight_times(self, departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date):
         self.set_departing_flight_arrival_date(departing_flight_arrival_date)
         self.set_return_flight_departure_date(return_flight_departure_date)
-        self.set_return_flight_arrival_date(__return_flight_arrival_date)
+        self.set_return_flight_arrival_date(return_flight_arrival_date)
         pass
 
     def get_return_flight_num(self):
