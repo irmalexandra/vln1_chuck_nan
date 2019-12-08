@@ -33,6 +33,9 @@ class LLAPI:
     def get_all_empty_voyage_list(self):
         return self.__ll_voyages.filter_all_empty_voyages()
 
+    def get_all_voyage_list_by_period_list(self, start_date, end_date):
+        return self.__ll_voyages.filter_all_voyages_by_period(start_date, end_date)
+
     def get_employee_list_by_title(self, title):
         return self.__ll_employees.filter_all_employees_by_title(title)
 
