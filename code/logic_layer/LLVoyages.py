@@ -117,8 +117,6 @@ class LLVoyages:
         return_flight_departure_date = departing_flight_arrival_date + datetime.timedelta(hours = 1)
         return_flight_arrival_date = return_flight_departure_date + datetime.timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
-    def calculate_flight_times(self):
-        pass
 
     def get_iso_format_date_time(self, date, time):
 
