@@ -73,10 +73,10 @@ class Voyage():
         if self.__models_validation.validate_flight_number(flight_number):
             self.__departing_flight_num = flight_number
 
-    def get_returning_flight_num(self):
+    def get_return_flight_num(self):
         return self.__return_flight_num
 
-    def set_returning_flight_num(self, flight_number):
+    def set_return_flight_num(self, flight_number):
         if self.__models_validation.validate_flight_number(flight_number):
             self.__departing_flight_num = flight_number       
 
@@ -211,7 +211,7 @@ class Voyage():
                                                                    self.get_departing_flight_departure_date(),
                                                                    self.get_return_flight_arrival_date(),
                                                                    self.get_departing_flight_num(),
-                                                                   self.get_returning_flight_num(),
+                                                                   self.get_return_flight_num(),
                                                                    "Missing staffed",
                                                                    "Missing status")
             
