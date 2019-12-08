@@ -33,9 +33,9 @@ class UIMain():
         while True:
             clear()
             nav_dict = {1: self.__ui_employees.get_employee_sub_menu,
-                        2: self.__ui_voyages.get_voyage_sub_menu,
-                        3: self.__ui_destinations.get_destination_sub_menu,
-                        4: self.__ui_airplanes.get_airplanes_sub_menu,
+                        2: self.__ui_voyages.display_voyage_sub_menu,
+                        3: self.__ui_destinations.display_destination_sub_menu,
+                        4: self.__ui_airplanes.display_airplanes_sub_menu,
                         0: self.__ui_base_functions.exit_program}
             self.__ui_base_functions.print_nan_airlines()
             main_menu = "1. Employees 2. Voyages 3. Destinations 4. Airplanes"

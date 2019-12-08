@@ -12,6 +12,8 @@ class Airplane():
 
         self.__create_order_list = ["airplane insignia"]
 
+
+
     def __str__(self):
         return "Insignia {:>2}\nMake: {:>2}\nModel: {:>2}\nMaximum seats: {:>2}".format(self.__name, self.__make, self.__model, self.__max_seats)
 
@@ -66,3 +68,25 @@ class Airplane():
             return True
         else:
             return False
+
+
+    def get_model_header_format(self, header_flag):
+        return "{:<11}{:11}{:12}{:17}{:11}{:17}{:17}{:12}".format("ID: ",
+                                                          "Make:",
+                                                          "Model:",
+                                                          "Total seats::",
+                                                          "Status:",
+                                                          "Destination:",
+                                                          "Flight number:",
+                                                          "Date available:")
+    def get_model_list_info(self, header_flag):
+        returnObject = ("{:11}{:11}{:12}{:17}{:11}{:17}{:17}{:12}|\n".format(
+                                                                      self.get_name(),
+                                                                      self.get_make(),
+                                                                      self.get_model(),
+                                                                      self.get_max_seats(),
+                                                                      "Missing status",
+                                                                      "Missing destination",
+                                                                      "Missing flight_number",
+                                                                      "Missing date_available"))
+        return returnObject
