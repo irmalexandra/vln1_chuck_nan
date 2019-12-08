@@ -56,7 +56,7 @@ class UIEmployees():
                 employee_menu, nav_dict, employee)
             return self.__ui_base_functions.check_return_value(return_value)
 
-    def get_edit_employee_menu(self):
+    def get_edit_employee_menu(self, employee):
         print("EDIT GOES HERE")
 
     def get_select_from_employee_list_menu(self, employee_list):
