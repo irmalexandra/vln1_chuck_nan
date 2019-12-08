@@ -69,9 +69,25 @@ class Voyage():
     def get_departing_flight_num(self):
         return self.__departing_flight_num
 
-    def set_departing_flight_num(self, new):
-        if self.__models_validation.validate_flight_number(new):
+    def set_departing_flight_num(self, flight_number):
+        if self.__models_validation.validate_flight_number(flight_number):
             self.__departing_flight_num = new
+
+    def get_returning_flight_num(self):
+        return self.__return_flight_num
+
+    def set_return_flight_num(self, flight_number):
+        if self.__models_validation.validate_flight_number(flight_number):
+            self.__departing_flight_num = flight_number       
+
+    def get_flight_times(self):
+        pass
+
+    def set_flight_times(self, departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date):
+        self.set_departing_flight_arrival_date(departing_flight_arrival_date)
+        self.set_return_flight_departure_date(return_flight_departure_date)
+        self.set_return_flight_arrival_date(return_flight_arrival_date)
+        pass
 
     def get_return_flight_num(self):
         return self.__return_flight_num
