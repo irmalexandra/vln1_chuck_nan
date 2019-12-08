@@ -5,17 +5,17 @@ class UIBaseFunctions():
     WALL = "|"
     T_LEN = 18
     TRUE_LEN = LINE_LEN + 2 * T_LEN
-    distinguisher = "{}\n{}\n\n".format("_"*TRUE_LEN, "_"*TRUE_LEN)
+    DISTINGUISHER = "{}\n{}\n\n".format("_"*TRUE_LEN, "_"*TRUE_LEN)
 
     def print_nan_airlines(self):
-        print(self.distinguisher)
+        print(self.DISTINGUISHER)
         print(self.T_LEN*" " + "███╗   ██╗ █████╗ ███╗   ██╗     █████╗ ██╗██████╗ ██╗     ██╗███╗   ██╗███████╗███████╗")
         print(self.T_LEN*" " + "████╗  ██║██╔══██╗████╗  ██║    ██╔══██╗██║██╔══██╗██║     ██║████╗  ██║██╔════╝██╔════╝")
         print(self.T_LEN*" " + "██╔██╗ ██║███████║██╔██╗ ██║    ███████║██║██████╔╝██║     ██║██╔██╗ ██║█████╗  ███████╗")
         print(self.T_LEN*" " + "██║╚██╗██║██╔══██║██║╚██╗██║    ██╔══██║██║██╔══██╗██║     ██║██║╚██╗██║██╔══╝  ╚════██║")
         print(self.T_LEN*" " + "██║ ╚████║██║  ██║██║ ╚████║    ██║  ██║██║██║  ██║███████╗██║██║ ╚████║███████╗███████║")
         print(self.T_LEN*" " + "╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝    ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝")
-        print(self.distinguisher, end="")
+        print(self.DISTINGUISHER, end="")
 
     def __init__(self):
         pass
@@ -52,7 +52,7 @@ class UIBaseFunctions():
             return 9
         return return_value
 
-    def display_menu(self, menu_str, nav_dict,model_list = None ,return_menu_str="9. Return 0. Home"):
+    def print_menu(self, menu_str, nav_dict,model_list = None ,return_menu_str="9. Return 0. Home"):
         while True:
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -
