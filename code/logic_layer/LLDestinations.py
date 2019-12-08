@@ -38,12 +38,15 @@ class LLDestinations:
     def validate_edited_destination(self, destination):
         return self.__modelAPI.validate_edit_model(destination)
 
-    def get_one_destination(self, airport):
+    def get_destination_list_by_country(self, country):
         ''' Gets input from UI layer and returns an instance '''
+
         self.__all_destination_list = self.get_all_destination_list()
+        found_destination_list = []
 
         for destination in self.__all_destination_list:
-            if destination.get_airport() == airport:
-                return destination
-
+            if destination.get_country() == country:
+                found_destination_list.append(destination)
+        
+        return found_destination_list
 

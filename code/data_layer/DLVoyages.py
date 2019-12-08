@@ -18,7 +18,7 @@ class DLVoyages():
     FAS_SSN = 12
 
     def __init__(self, modelAPI):
-        self.all_voyages_list = []
+        
         self.__modelAPI = modelAPI
 
     def pull_all_voyages(self):
@@ -36,7 +36,7 @@ class DLVoyages():
         else:
             print("Voyage data files not found")
             return
-
+        all_voyages_list = []
         for line in filestream:
             check_list = []
             line_list = line.strip().split(",")
@@ -67,9 +67,9 @@ class DLVoyages():
 
             check_list.append(new_voyage.set_fa_ssns(flight_attendant_ssns_list))
             if False not in check_list:
-                self.all_voyages_list.append(new_voyage)
+                all_voyages_list.append(new_voyage)
         filestream.closed
-        return self.all_voyages_list[1:]
+        return all_voyages_list[1:]
 
     def append_voyage(self, new_voyage):
         voyage_stream = open('./repo/voyages.csv', 'a')

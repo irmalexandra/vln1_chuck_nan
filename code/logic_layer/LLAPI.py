@@ -33,8 +33,8 @@ class LLAPI:
     def get_employee_list_by_title(self, title):
         return self.__ll_employees.filter_all_employees_by_title(title)
 
-    def get_one_destination(self, airport):
-        return self.__ll_destinations.get_one_destination(airport)
+    def get_destination_list_by_country(self, country):
+        return self.__ll_destinations.get_destination_list_by_country(country)
 
     def edit_destination(self, destination, input_tpl):
         return self.__ll_destinations.edit_destination(destination, input_tpl)

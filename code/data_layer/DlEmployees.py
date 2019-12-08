@@ -28,7 +28,7 @@ class DLEmployees():
             print("employee data files not found")
             return
 
-        self.all_crew_list = []
+        all_crew_list = []
         for line in filestream:
             check_list = []
             line_list = line.strip().split(",")
@@ -44,10 +44,10 @@ class DLEmployees():
             check_list.append(new_emp.set_title(line_list[DLEmployees.TITLE]))
             check_list.append(new_emp.set_licence(line_list[DLEmployees.LICENSE]))
             if False not in check_list:
-                self.all_crew_list.append(new_emp)
+                all_crew_list.append(new_emp)
         filestream.close()
 
-        return self.all_crew_list
+        return all_crew_list
 
     def push_all_employees(self, emp_list):
         
