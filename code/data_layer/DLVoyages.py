@@ -18,7 +18,6 @@ class DLVoyages():
     FAS_SSN = 12
 
     def __init__(self, modelAPI):
-        
         self.__modelAPI = modelAPI
 
     def pull_all_voyages(self):

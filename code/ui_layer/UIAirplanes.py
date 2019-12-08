@@ -37,7 +37,8 @@ class UIAirplanes():
                     0: self.__ui_base_functions.home}
         airplane_menu = "1. Select airplane"
         return_value = self.__ui_base_functions.print_menu(airplane_menu,nav_dict,airplanes_list)
-        return_value = self.get_selected_airplane_menu(return_value)
+        if return_value != None and return_value != 0:
+            return_value = self.get_selected_airplane_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
 
@@ -88,7 +89,7 @@ class UIAirplanes():
                 print("\n{}\nAlready exists!".format(airplane.get_name()))
         else:
             print("\nInvalid insignia {}\n".format(insignia))
-        self.__ll_api.clear_airplane_lists()
+
 
     # def display_all_airplanes_old(self):
     #     ''' Print all airplanes '''
