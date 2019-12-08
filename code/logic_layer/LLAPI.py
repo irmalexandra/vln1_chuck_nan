@@ -30,6 +30,9 @@ class LLAPI:
     def get_all_voyage_list(self):
         return self.__ll_voyages.get_all_voyage_list()
 
+    def get_all_empty_voyage_list(self):
+        return self.__ll_voyages.filter_all_empty_voyages()
+
     def get_employee_list_by_title(self, title):
         return self.__ll_employees.filter_all_employees_by_title(title)
 
