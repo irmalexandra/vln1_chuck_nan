@@ -37,12 +37,13 @@ class Destination():
                                                           "Contact number:")
         
     def get_model_list_info(self, header_flag):
-        returnObject = ("{:20}{:15}{:20}{:20}{:10}|\n".format(
-                                                                      self.get_countr(),
-                                                                      self.get_ssn(),
-                                                                      self.get_address(),
-                                                                      self.get_mobile_num(),
-                                                                      self.get_title()))
+        returnObject = ("{:20}{:15}{:20}{:20}{:20}{:20}|\n".format(
+                                                                      self.get_country(),
+                                                                      self.get_airport(),
+                                                                      self.get_flight_time(),
+                                                                      self.get_distance(),
+                                                                      self.get_contact_name(),
+                                                                      self.get_contact_number))
         return returnObject
 
     def raw_info(self):
