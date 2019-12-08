@@ -105,8 +105,6 @@ class UIBaseFunctions():
 
     def print_edit_model_menu(self,menu_str, nav_dict, model, model_list, edit_order_list, llapi, return_menu_str="9. Return 0. Home"):
         while True:
-            model1 = model
-            model_list1 = model_list
             self.print_model(model)
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -

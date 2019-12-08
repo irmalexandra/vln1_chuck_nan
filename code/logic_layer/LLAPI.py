@@ -63,13 +63,12 @@ class LLAPI:
     def get_work_schedule_list(self, employee):
         return self.__ll_employees.get_work_schedule_list(employee)
 
-    def overwrite_all_models(self, model_list):
-        model = model_list[9]
+    def overwrite_all_models(self,model, model_list):
         if type(model).__name__ == "Employee":
-            self.__ll_employees.overwrite_all_employees(model_list)
+            return self.__ll_employees.overwrite_all_employees(model_list)
         if type(model).__name__ == "Airplane":
-            self.__ll_airplanes.overwrite_all_employees(model_list)
+            return self.__ll_airplanes.overwrite_all_employees(model_list)
         if type(model).__name__ == "Destination":
-            self.__ll_destinations.overwrite_all_destinations(model_list)
+            return self.__ll_destinations.overwrite_all_destinations(model_list)
         if type(model).__name__ == "Voyage":
-            self.__ll_voyages.overwrite_all_voyages(model_list)
+            return self.__ll_voyages.overwrite_all_voyages(model_list)
