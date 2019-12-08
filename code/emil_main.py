@@ -79,3 +79,10 @@ print(date(1,1,1) < date(1,1,2))
 
 
 print(date(1,1,1) < date(1,1,2))
+
+from logic_layer.LLVoyages import LLVoyages
+from models.ModelAPI import ModelAPI
+modelAPI = ModelAPI()
+voyage = LLVoyages(stuff,modelAPI)  
+
+print(voyage.calculate_flight_times("2019-12-27T23:40:00","Tingwall"))
