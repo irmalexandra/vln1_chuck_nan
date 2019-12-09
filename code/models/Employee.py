@@ -160,11 +160,11 @@ class Employee():
     def get_model_header_format(self, header_flag):
         return self.__header_format_dict[header_flag]()
 
+    def get_model_header_default_format(self):
+        return "{:10}{:22}{:15}{:19}{:15}{:17}{:27}{:2}".format("Index: ", "Name:", "SSN:", "Address:", "Home number:", "Mobile number:", "Email:", "Title:")
+
     def get_model_header_date_format(self):
         return "{:10}{:22}{:15}{:18}{:15}{:42}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Availability:")
-
-    def get_model_header_default_format(self):
-        return "{:8}{:20}{:13}{:18}{:13}{:15}{:25}{:34}".format("Index: ", "Name:", "SSN:", "Address:", "Home number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_aircraft_format(self):
         return "{:10}{:22}{:17}{:19}{:20}{:14}{:20}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
@@ -182,7 +182,7 @@ class Employee():
         return returnObject
 
     def get_model_list_default_info(self):
-        returnObject = ("   {:20}{:13}{:18}{:13}{:15}{:25}{:10}|\n".format(
+        returnObject = ("     {:22}{:15}{:19}{:15}{:17}{:27}{:2}|\n".format(
                                                             self.get_name(),
                                                             self.get_ssn(),
                                                             self.get_address(),
