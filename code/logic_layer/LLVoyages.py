@@ -15,7 +15,7 @@ class LLVoyages:
 
     def get_all_voyage_list(self):
         self.__all_voyage_list = self.__dl_api.pull_all_voyages()
-        self.check_status(self.__all_voyage_list)
+        #self.check_status(self.__all_voyage_list)
         return self.__all_voyage_list
 
     def overwrite_all_voyages(self, voyage_list):
@@ -134,16 +134,16 @@ class LLVoyages:
          
     def filter_available_employees(self, rank, voyage):
 
-        start_date = datetime.strptime(voyage.get_departing_flight_departing_date())
+        start_date = datetime.strptime(voyage.get_departing_flight_departure_date(), '%Y-%m-%dT%H:%M:%S')
         end_date = voyage.get_return_flight_arrival_date()
 
-        all_employee_list = self.__dl_api.pull_all_employees
+        all_employee_list = self.__dl_api.pull_all_employees()
         self.get_all_voyage_list()
         if rank == "Captain" or rank == "Copilot":
             all_airplane_list = self.__dl_api.pull_all_airplanes()
 
         filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
-        
+
         available_employee_list = []
         final_employee_list = []
 
@@ -170,14 +170,14 @@ class LLVoyages:
         return final_employee_list
             
 
-    def check_status(self, voyage_list):
-        current_date = datetime.now().replace(microsecond=0).isoformat()
-        current_voyages = []
+    #def check_status(self, voyage_list):
+        #current_date = datetime.now().replace(microsecond=0).isoformat()
+        #current_voyages = []
 
 
-        for voyage in self.get_all_voyage_list():
-            if current_date <= voyage.get_departing_flight_departure_date:
-                pass
+        #for voyage in self.get_all_voyage_list():
+            #if current_date <= voyage.get_departing_flight_departure_date:
+                #pass
         # for voyage in all_voyage_list:
         #     dep_flight_start = voyage.get_departing_flight_departure_date()
         #     ret_flight_end = voyage.get_return_flight_arrival_date()
