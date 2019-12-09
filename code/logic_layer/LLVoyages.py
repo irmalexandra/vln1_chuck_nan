@@ -74,7 +74,8 @@ class LLVoyages:
         return self.create_voyage(destination, date_time)
 
     def repeat_voyage(self, voyage, repeat_interval, end_date):
-        date = voyage.get_departing_flight_departing_date()
+        date = self.get_iso_format_date_time(voyage.get_departing_flight_departing_date())
+        end_date = self.get_iso_format_date_time(end_date)
         while date <= end_date:
             date =+ repeat_interval
             self.duplicate_voyage(voyage, date)
