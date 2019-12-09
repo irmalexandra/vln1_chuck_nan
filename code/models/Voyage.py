@@ -2,7 +2,7 @@ from validation.validator import Validator
 
 
 class Voyage():
-    def __init__(self, destination = "", departing_flight_num = "", return_flight_num = "", departing_flight_departing_from = "", 
+    def __init__(self , departing_flight_num = "", return_flight_num = "", departing_flight_departing_from = "", 
                 departing_flight_departure_date = "", departing_flight_arrival_date = "", return_flight_departing_from = "", 
                 return_flight_departure_date = "", return_flight_arrival_date = "", airplane_insignia = "", 
                 captain_ssn = "", copilot_ssn = "", fsm_ssn = "", fa_ssns=[]):
@@ -11,7 +11,6 @@ class Voyage():
         self.__departing_flight_num = departing_flight_num
         self.__return_flight_num = return_flight_num
 
-        self.__destination = destination
 
         self.__departing_flight_departing_from = departing_flight_departing_from
         self.__departing_flight_departure_date = departing_flight_departure_date
@@ -71,7 +70,7 @@ class Voyage():
         return value(key())
 
     def get_destination(self):
-        return self.__destination
+        return self.__return_flight_departing_from
     
     def set_destination(self, airport):
         if self.__models_validation.validate_airport(airport):
@@ -114,15 +113,13 @@ class Voyage():
         return self.__departing_flight_departure_date
 
     def set_departing_flight_departure_date(self, new_departure):
-        if self.__models_validation.validate_date_time(new_departure):
-            self.__departing_flight_departure_date = new_departure
+        self.__departing_flight_departure_date = new_departure
 
     def get_departing_flight_arrival_date(self):
         return self.__departing_flight_arrival_date
 
     def set_departing_flight_arrival_date(self, new):
-        if self.__models_validation.validate_date_time(new):
-            self.__departing_flight_arrival_date = new
+        self.__departing_flight_arrival_date = new
 
     def get_return_flight_departing_from(self):
         return self.__return_flight_departing_from

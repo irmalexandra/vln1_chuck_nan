@@ -1,9 +1,15 @@
-from models.Employee import Employee
-from models.Destination import Destination
+from logic_layer.LLAPI import LLAPI
+from logic_layer.LLVoyages import LLVoyages
+from models.Voyage import Voyage
+from models.ModelAPI import ModelAPI
+from data_layer.DLAPI import DLAPI
 
-newEmp = Employee()
-newDest = Destination()
+newDLAPI = DLAPI()
+newMODELAPI = ModelAPI()
 
-print(type(newDest).__name__)
+newDate = "20-12-2020"
+newVoyage = Voyage()
+newVoyage.set_destination("Nuuk")
+newLLVoy = LLVoyages(newDLAPI, newMODELAPI)
 
-print(type(newEmp).__name__)
+newLLVoy.duplicate_voyage(newVoyage,newDate)

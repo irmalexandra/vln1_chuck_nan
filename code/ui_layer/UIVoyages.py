@@ -184,7 +184,13 @@ class UIVoyages():
 
     
     def duplicate_voyage(self, voyage):
-        new_date = self.__ui_base_functions.get_user_input("new date DD-MM-YYYY")
+        new_day = self.__ui_base_functions.get_user_input("new day")
+        new_month = self.__ui_base_functions.get_user_input("new month")
+        new_year = self.__ui_base_functions.get_user_input("new year")
+        new_hour = self.__ui_base_functions.get_user_input("new hour")
+        new_minute = self.__ui_base_functions.get_user_input("new minute")
+        new_seconds = self.__ui_base_functions.get_user_input("new seconds")
+        new_date = new_year + "-" + new_month + "-" + new_day + "T" + new_hour + ":" + new_minute + ":" + new_seconds
         return_value = self.__ll_api.duplicate_voyage(voyage, new_date)
         if return_value == True:
             print("YAS QUEEN")
