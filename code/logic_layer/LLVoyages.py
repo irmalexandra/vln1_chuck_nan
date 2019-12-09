@@ -15,7 +15,7 @@ class LLVoyages:
 
     def get_all_voyage_list(self):
         self.__all_voyage_list = self.__dl_api.pull_all_voyages()
-        self.__all_voyage_list = self.check_status(self.__all_voyage_list)
+        self.check_status(self.__all_voyage_list)
         return self.__all_voyage_list
 
     def overwrite_all_voyages(self, voyage_list):
