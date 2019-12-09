@@ -196,22 +196,23 @@ class Voyage():
 
     
     def get_model_header_default_format(self):
-        return "{:15}{:11}{:27}{:27}{:27}{:27}{:17}".format(
+        return "{:7}{:14}{:10}{:17}{:17}{:20}{:20}{:10}{:7}".format("Index:",
                                                             "Destination:",
                                                             "Airplane:",
-                                                            "Departure date and time:",
-                                                            "Return date and time:",
-                                                            "Departure flight number:",
-                                                            "Return flight number:", 
-                                                            "Status")
+                                                            "Dep date/time:",
+                                                            "Ret date/time:",
+                                                            "Dep flight number:",
+                                                            "Ret flight number:",
+                                                            "Staffed:", 
+                                                            "Status:")
 
     def get_model_list_default_info(self):
-        return "{:15}{:11}{:27}{:27}{:27}{:27}{:17}{:10}".format(self.get_return_flight_departing_from(),
+        return "  {:14}{:10}{:17}{:17}{:20}{:20}{:10}{:7}|\n".format(self.get_return_flight_departing_from(),
                                                                    self.get_airplane_insignia(),  # we should change this to airplane type
                                                                    self.get_departing_flight_departure_date(),
                                                                    self.get_return_flight_arrival_date(),
                                                                    self.get_departing_flight_num(),
                                                                    self.get_return_flight_num(),
-                                                                   "Missing staffed",
-                                                                   "Missing status")
+                                                                   "staffed",
+                                                                   "status")
             
