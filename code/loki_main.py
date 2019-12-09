@@ -53,3 +53,7 @@ def get_iso_format_date_time(date='', time=''):
 datetime_date = get_iso_format_date_time("02-02-2002")
 
 print(datetime_date)
+
+date = datetime(2019,11,24,10,37,00)
+
+print(type(date).__name__)
