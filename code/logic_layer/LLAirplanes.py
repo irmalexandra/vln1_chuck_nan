@@ -65,7 +65,7 @@ class LLAirplanes:
                     airplane.set_date_available(ret_flight_end)
 
                     if dep_flight_start <= current_date <= dep_flight_end:
-                        airplane.set_flight_number(voyage.set_departing_flight_num())
+                        airplane.set_flight_number(voyage.get_departing_flight_num())
                         airplane.set_availability("In air, departing")
 
                     elif dep_flight_end <= current_date <= ret_flight_start:
