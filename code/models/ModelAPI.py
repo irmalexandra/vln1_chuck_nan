@@ -5,7 +5,6 @@ from models.Destination import Destination
 from models.AirplaneType import AirplaneType
 
 
-
 class ModelAPI():
     def __init__(self):
         self.model_dict = {"Airplane": Airplane,\
@@ -55,3 +54,5 @@ class ModelAPI():
             order_counter += 1
         
         return check       
+
+ 

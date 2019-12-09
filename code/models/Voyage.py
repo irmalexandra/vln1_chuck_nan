@@ -6,6 +6,7 @@ class Voyage():
                 departing_flight_departure_date = "", departing_flight_arrival_date = "", return_flight_departing_from = "", 
                 return_flight_departure_date = "", return_flight_arrival_date = "", airplane_insignia = "", 
                 captain_ssn = "", copilot_ssn = "", fsm_ssn = "", fa_ssns=[]):
+        
         self.__models_validation = Validator()
         self.__departing_flight_num = departing_flight_num
         self.__return_flight_num = return_flight_num
@@ -78,7 +79,7 @@ class Voyage():
 
     def set_return_flight_num(self, flight_number):
         if self.__models_validation.validate_flight_number(flight_number):
-            self.__departing_flight_num = flight_number       
+            self.__return_flight_num = flight_number       
 
     def get_flight_times(self):
         pass
@@ -194,23 +195,26 @@ class Voyage():
     def get_model_list_info(self, header_flag):
         return self.__list_info_dict[header_flag]()
 
-    
+    def change_date_time_format(self, date_string):
+        date_string = date_string[:-3].replace("T", " ")
+        return date_string
+
     def get_model_header_default_format(self):
-        return "{:7}{:14}{:10}{:17}{:17}{:20}{:20}{:10}{:7}".format("Index:",
+        return "{:7}{:15}{:11}{:20}{:20}{:16}{:16}{:10}{:7}".format("Index:",
                                                             "Destination:",
                                                             "Airplane:",
                                                             "Dep date/time:",
                                                             "Ret date/time:",
-                                                            "Dep flight number:",
-                                                            "Ret flight number:",
+                                                            "Dep flight no:",
+                                                            "Ret flight no:",
                                                             "Staffed:", 
                                                             "Status:")
 
     def get_model_list_default_info(self):
-        return "  {:14}{:10}{:17}{:17}{:20}{:20}{:10}{:7}|\n".format(self.get_return_flight_departing_from(),
+        return "  {:15}{:11}{:20}{:20}{:16}{:16}{:10}{:7}|\n".format(self.get_return_flight_departing_from(),
                                                                    self.get_airplane_insignia(),  # we should change this to airplane type
-                                                                   self.get_departing_flight_departure_date(),
-                                                                   self.get_return_flight_arrival_date(),
+                                                                   self.change_date_time_format(self.get_departing_flight_departure_date()),
+                                                                   self.change_date_time_format(self.get_return_flight_arrival_date()),
                                                                    self.get_departing_flight_num(),
                                                                    self.get_return_flight_num(),
                                                                    "staffed",
