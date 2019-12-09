@@ -145,23 +145,24 @@ class LLVoyages:
         filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
 
         available_employee_list = []
-        final_employee_list = []
 
-        
+        for voyage in voyages_in_date_range_list:   
+            voyage_ssn = voyage.get_voyage_employee_ssn(rank)
+            for employee in filter_rank_list:
+                if employee not in available_employee_list:
+                    employee_ssn = employee.get_ssn()
+                    if type(voyage_ssn).__name__ == "list":
+                        if employee_ssn not in voyage_ssn:
+                            available_employee_list.append(employee)
+                            
+                    else:
+                        if employee_ssn != voyage_ssn:
+                            available_employee_list.append(employee)
 
-        for employee in filter_rank_list:
-            employee_ssn = employee.get_ssn()
-            for voyage in voyages_in_date_range_list:   
-                voyage_ssn = voyage.get_voyage_employee_ssn(employee.get_rank())
-                if type(voyage_ssn).__name__ == "list":
-                    if employee_ssn not in voyage_ssn:
-                        available_employee_list.append(employee)
-                        
-                else:
-                    if employee_ssn != voyage_ssn:
-                        available_employee_list.append(employee)
+        final_employee_list = available_employee_list    
+
         if rank == "Captain" or rank == "Copilot":
-            
+            final_employee_list = []
             all_airplane_list = self.__dl_api.pull_all_airplanes()
 
             for employee in available_employee_list:
