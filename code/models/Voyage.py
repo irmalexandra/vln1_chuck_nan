@@ -5,7 +5,7 @@ class Voyage():
     def __init__(self, destination = "", departing_flight_num = "", return_flight_num = "", departing_flight_departing_from = "", 
                 departing_flight_departure_date = "", departing_flight_arrival_date = "", return_flight_departing_from = "", 
                 return_flight_departure_date = "", return_flight_arrival_date = "", airplane_insignia = "", 
-                captain_ssn = "", copilot_ssn = "", fsm_ssn = "", fa_ssns=[]):
+                captain_ssn = "", copilot_ssn = "", fsm_ssn = "", fa_ssns=[], status = ""):
         
         self.__models_validation = Validator()
         self.__departing_flight_num = departing_flight_num
