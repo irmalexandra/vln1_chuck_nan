@@ -132,7 +132,6 @@ class LLVoyages:
             new_date = datetime.strptime(date,'%d-%m-%Y')
         else:
             new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
-        print(new_date)
         return new_date
          
     def filter_available_employees(self, rank, voyage):
