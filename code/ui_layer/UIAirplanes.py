@@ -17,7 +17,7 @@ class UIAirplanes():
              2:self.display_all_airplanes,
               9:self.__ui_base_functions.back,
               0:self.__ui_base_functions.home}
-            airplane_menu = "1. Create 2. Display all"
+            airplane_menu = "1. Create 2. Get all"
             return_value = self.__ui_base_functions.print_menu(airplane_menu,nav_dict)
             return self.__ui_base_functions.check_return_value(return_value)
 
@@ -52,7 +52,7 @@ class UIAirplanes():
     
 
     def create_airplane(self):
-        ''' Create an airplane '''
+        '''Create an airplane'''
         # 1
         # user input
         existing_airplane_types_list = self.__ll_api.get_airplane_type_list()
@@ -61,7 +61,7 @@ class UIAirplanes():
             print(number + 1, plane.get_make() + plane.get_model())
 
         
-        picked_airplane = input("Pick a airplane type: ")
+        picked_airplane = input("Pick an airplane type: ")
         if picked_airplane == "1":
             make = existing_airplane_types_list[0].get_make()
             model = existing_airplane_types_list[0].get_model()
