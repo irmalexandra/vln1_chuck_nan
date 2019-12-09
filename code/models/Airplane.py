@@ -48,12 +48,6 @@ class Airplane():
     def get_date_available(self):
         return self.__date_available
 
-
-
-
-
-
-
     def get_create_validation_dict(self):
         return self.__create_validation_dict
 
@@ -105,22 +99,23 @@ class Airplane():
 
 
     def get_model_header_format(self, header_flag):
-        return "{:<11}{:11}{:12}{:17}{:11}{:17}{:17}{:12}".format("ID: ",
-                                                          "Make:",
-                                                          "Model:",
-                                                          "Total seats::",
-                                                          "Status:",
-                                                          "Destination:",
-                                                          "Flight number:",
-                                                          "Date available:")
+        return "{:10}{:11}{:11}{:11}{:15}{:12}{:17}{:17}{:18}".format("Index: ",
+                                                                    "Name:",
+                                                                    "Make:",
+                                                                    "Model:",
+                                                                    "Total seats:",
+                                                                    "Status:",
+                                                                    "Destination:",
+                                                                    "Flight number:",
+                                                                    "Date available:")
     def get_model_list_info(self, header_flag):
-        returnObject = ("{:11}{:11}{:12}{:17}{:11}{:17}{:17}{:12}|\n".format(
+        returnObject = ("     {:11}{:11}{:11}{:15}{:12}{:17}{:17}{:18}|\n".format(
                                                                       self.get_name(),
                                                                       self.get_make(),
                                                                       self.get_model(),
                                                                       self.get_max_seats(),
-                                                                      "Missing status",
-                                                                      "Missing destination",
-                                                                      "Missing flight_number",
-                                                                      "Missing date_available"))
+                                                                      "status",
+                                                                      "destination",
+                                                                      "flight_num",
+                                                                      "date_avail"))
         return returnObject
