@@ -164,7 +164,7 @@ class Employee():
         return "{:10}{:22}{:15}{:18}{:15}{:42}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Availability:")
 
     def get_model_header_default_format(self):
-        return "{:10}{:22}{:17}{:19}{:20}{:34}".format("Index: ", "Name:", "SSN:", "Address:", "Mobile number:", "Title:")
+        return "{:8}{:20}{:13}{:18}{:13}{:15}{:25}{:34}".format("Index: ", "Name:", "SSN:", "Address:", "Home number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_aircraft_format(self):
         return "{:10}{:22}{:17}{:19}{:20}{:14}{:20}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
@@ -182,11 +182,13 @@ class Employee():
         return returnObject
 
     def get_model_list_default_info(self):
-        returnObject = ("     {:22}{:17}{:19}{:20}{:34}|\n".format(
+        returnObject = ("   {:20}{:13}{:18}{:13}{:15}{:25}{:10}|\n".format(
                                                             self.get_name(),
                                                             self.get_ssn(),
                                                             self.get_address(),
                                                             self.get_mobile_num(),
+                                                            self.get_home_num(),
+                                                            self.get_email(),
                                                             self.get_title()))
         return returnObject
 
