@@ -12,16 +12,17 @@ class LLVoyages:
 
     def get_voyage(self, voyage_ID):
         pass
-
+    
     def get_all_voyage_list(self):
-        return self.__dl_api.pull_all_voyages()
+        self.__all_voyage_list = self.__dl_api.pull_all_voyages()
+        return self.__all_voyage_list
 
     def overwrite_all_voyages(self, voyage_list):
         return self.__dl_api.overwrite_all_voyages(voyage_list)
 
     def filter_all_empty_voyages(self):
         '''Takes a list of all voyage instances and returns a list of filtered voyage instances'''
-        self.__all_voyage_list = self.get_all_voyage_list() 
+        self.get_all_voyage_list() 
         empty_voyage_list = []
 
         for voyage in self.__all_voyage_list:
@@ -127,3 +128,12 @@ class LLVoyages:
         date = datetime.strptime(date,'%d-%m-%Y').date()
 
         return datetime.combine(date, time)
+         
+    def filter_available_employees(self, rank, start_date, end_date):
+        all_employee_list = self.__dl_api.pull_all_employees
+        self.get_all_voyage_list()
+        filter_rank_list = []
+        voyages_in_date_range_list = 
+        for employee in all_employee_list:
+            if employee.get_rank() == rank:
+                filter_rank_list.append(employee)
