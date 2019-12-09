@@ -27,7 +27,6 @@ Verkefni dagsins:
 		Fínpússun
 
 
-
 Captains Log, Stardate 26.11.2019
 
 Yfirferð gærdags.
@@ -49,7 +48,8 @@ Verkefni dagsins:
 	Fínpússa kröfulista
 	Notkunartilvik
 	Klasarit
-		
+
+
 Captains Log, Stardate 27.11.2019
 
 Yfirferð gærdags. 
@@ -69,6 +69,7 @@ Verkefni dagsins:
 	Class Diagram
 	State Diagram
 
+
 Captains Log, Stardate 28.11.2019
 
 Yfirferð gærdags. 
@@ -83,6 +84,7 @@ Yfirferð gærdags.
 		Tengja Use Cases við Wireframe/Happy Path
 		Class Diagram
 		State Diagram
+
 
 Captains Log, Stardate 29.11.2019
 
@@ -140,6 +142,7 @@ Verkefni dagsisns:
 	Byrja á logic layer virkni
 	Finna útur Back og Home
 
+
 Captains Log, Stardate 05.12.2019
 
 Yfirferð Miðvikudags:
@@ -151,6 +154,7 @@ Verkefni dagsins:
 	Vinna að Logic layer í leið
 	kroppa aðeins í validatorinn 
 
+
 Captains Log, Stardate 06.12.2019
 
 Yfirferð Fimmtudags:
@@ -159,3 +163,13 @@ Yfirferð Fimmtudags:
 Verkefni dagsins:
 	Áframhaldandi vinna í UI og logic layernum 
 	Vinna í validatornum
+
+
+Captains Log, Stardate 09.12.2019
+
+Yfirferð Föstudags:
+	Unnið frekar í UI, logic layernum og validator
+
+Verkefni dagsins:
+	Áframhaldandi vinna í UI og logic layernum
+	Búa til beinagrind af lokaskýrslu 
