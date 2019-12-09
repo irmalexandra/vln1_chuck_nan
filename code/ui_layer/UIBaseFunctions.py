@@ -83,7 +83,7 @@ class UIBaseFunctions():
             print("-" * self.UI_DIVIDER_INT)
             print(modelAPI.get_model_header_format(model_list[0], header_flag))
             print(modelAPI.get_model_list_info(model_list, header_flag))
-            print("-" * self.UI_DIVIDER_INT)
+            # print("-" * self.UI_DIVIDER_INT)
             return self.check_return_value(model_list)
         else:
             print("No search results")

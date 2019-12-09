@@ -161,24 +161,24 @@ class Employee():
         return self.__header_format_dict[header_flag]()
 
     def get_model_header_date_format(self):
-        return "{:10}{:22}{:20}{:20}{:10}".format("Name:","SSN:", "Mobile Number:", "Title:", "Availability:")
+        return "{:10}{:22}{:15}{:18}{:15}{:42}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Availability:")
 
     def get_model_header_default_format(self):
-        return "{:10}{:22}{:17}{:19}{:20}{:34}".format("Index: ", "Name:", "SSN:", "Address:", "Mobile Number:", "Title:")
+        return "{:10}{:22}{:17}{:19}{:20}{:34}".format("Index: ", "Name:", "SSN:", "Address:", "Mobile number:", "Title:")
 
     def get_model_header_aircraft_format(self):
-        return "{:10}{:22}{:17}{:19}{:20}{:20}{:12}".format("Index:", "Name:", "SSN:", "Address:", "Mobile Number:", "Title:", "Licence:")
+        return "{:10}{:22}{:17}{:19}{:20}{:14}{:20}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
 
     def get_model_list_info(self, header_flag):
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-        returnObject = "     {:22}{:15}{:15}{:20}{:10}|\n".format(
+        returnObject = ("     {:22}{:15}{:18}{:15}{:42}|\n".format(
                                                      self.get_name(),
                                                      self.get_ssn(),
                                                      self.get_mobile_num(),
                                                      self.get_title(),
-                                                     "availability")
+                                                     "availability"))
         return returnObject
 
     def get_model_list_default_info(self):
@@ -191,11 +191,11 @@ class Employee():
         return returnObject
 
     def get_model_list_aircraft_info(self):
-        returnObject = "     {:22}{:17}{:19}{:20}{:17}{:12}|\n".format(
+        returnObject = ("     {:22}{:17}{:19}{:20}{:14}{:20}|\n".format(
                                                        self.get_name(),
                                                        self.get_ssn(),
                                                        self.get_address(),
                                                        self.get_mobile_num(),
                                                        self.get_title(),
-                                                       self.get_licence())
+                                                       self.get_licence()))
         return returnObject
