@@ -41,3 +41,15 @@ time = "23:59:33"
 
 
 # new_ui_emp.display_all_employees()
+def get_iso_format_date_time(date='', time=''):
+
+    if time != "":
+        time = datetime.strptime(time,'%H:%M:%S').time()
+    if date != "":
+        date = datetime.strptime(date,'%d-%m-%Y').date()
+
+    return date, time
+
+datetime_date = get_iso_format_date_time("02-02-2002")
+
+print(datetime_date)
