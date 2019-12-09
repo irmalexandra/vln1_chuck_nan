@@ -96,7 +96,6 @@ class UIVoyages():
     
     def get_all_voyages(self):
         '''Print the given dictionary of voyages'''
-        print("ALL VOYAGES")
         header_flag = "default"
         voyage_list = self.__ll_api.get_all_voyage_list()
         return_value = self.__ui_base_functions.print_model_list(
@@ -115,7 +114,6 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_voyages_by_date(self):
-        print("ALL VOYAGES BY DATE")
         start_date = self.__ui_base_functions.get_user_input("start date DD-MM-YYYY")
         end_date = self.__ui_base_functions.get_user_input("end date DD-MM-YYYY")
         header_flag = "default"
@@ -127,7 +125,6 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_empty_voyages(self):
-        print("ALL VOYAGES EMPTY VOYAGES")
         header_flag = "default"
         voyage_list = self.__ll_api.get_all_empty_voyage_list()
         return_value = self.__ui_base_functions.print_model_list(
@@ -184,15 +181,18 @@ class UIVoyages():
     def create_voyage(self):
         print("CREATE VOYAGE GOES HERE!")
         return
-    
-    def add_crew(self, voyage):
-        print("ADD CREW GOES HERE")
-        return
+
     
     def duplicate_voyage(self, voyage):
-        print("DUPLICATE VOYAGE GOES HERE")
-        return
-
+        new_date = self.__ui_base_functions.get_user_input("new date DD-MM-YYYY")
+        return_value = self.__ll_api.duplicate_voyage(voyage, new_date)
+        if return_value == True:
+            print("YAS QUEEN")
+        else:
+            print("NAH QUEEN")
+        return self.__ui_base_functions.check_return_value(return_value)
+    
+    
     def repeat_voyage(self, voyage):
         print("REPEATE VOYAGE GOES HERE")
         return

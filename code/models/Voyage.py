@@ -232,4 +232,8 @@ class Voyage():
                                                                    self.get_return_flight_num(),
                                                                    "staffed",
                                                                    "status")
-            
+    
+    def set_flight_numbers(self, flight_number_tpl):
+        self.__departing_flight_num = flight_number_tpl[0]
+        self.__return_flight_num = flight_number_tpl[1]
+        return True
