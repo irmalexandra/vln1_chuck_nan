@@ -71,6 +71,7 @@ class LLVoyages:
     def duplicate_voyage(self, voyage, date_time):
         '''Copies a voyage to another date'''
         destination = voyage.get_destination()
+        date_time = self.get_iso_format_date_time(date_time)
         return self.create_voyage(destination, date_time)
 
     def repeat_voyage(self, voyage, repeat_interval, end_date):
@@ -158,3 +159,4 @@ class LLVoyages:
                 else:
                     if employee_ssn != voyage_ssn:
                         available_employee_list.append(employee)
+        if rank 
