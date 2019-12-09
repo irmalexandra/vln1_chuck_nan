@@ -11,8 +11,10 @@ class LLAirplanes:
         return self.__modelAPI.validate_model(airplane)
 
     def get_all_airplane_list(self):
+        self.__all_airplane_list = self.__dl_api.pull_all_airplanes()
+        self.get_airplane_status()
         '''Gets a list of instances of airplanes and returns it'''
-        return self.__dl_api.pull_all_airplanes()
+        return self.__all_airplane_list
 
     def get_airplane_type_list(self):
         '''Gets a list of instances of airplane types and returns it'''
@@ -38,27 +40,40 @@ class LLAirplanes:
     def overwrite_all_airplanes(self, airplane_list):
         return self.__dl_api.overwrite_all_airplanes(airplane_list)
 
-    def get_airplane_status(self, all_airplane_list):
+    def get_airplane_status(self):
 
         all_voyage_list = self.__dl_api.pull_all_voyages()
         current_date = datetime.now().replace(microsecond=0).isoformat()
         current_voyages = []
 
         for voyage in all_voyage_list:
-            first_flight_start = voyage.get_departing_flight_departure_date()
-            second_flight_end = voyage.get_return_flight_arrival_date()
+            dep_flight_start = voyage.get_departing_flight_departure_date()
+            ret_flight_end = voyage.get_return_flight_arrival_date()
 
-            if first_flight_start <= current_date <= second_flight_end:
+            if dep_flight_start <= current_date <= ret_flight_end:
                 current_voyages.append(voyage)
                 
-        for airplane in all_airplane_list:
+        for airplane in self.__all_airplane_list:
             for voyage in current_voyages:
+                dep_flight_start = voyage.get_departing_flight_departure_date()
+                dep_flight_end = voyage.get_departing_flight_arrival_date()
+                ret_flight_start = voyage.get_return_flight_departure_date()
+                ret_flight_end = voyage.get_return_flight_arrival_date()
 
-                if voyage.get_departing_flight_departure_date() <= current_date <= voyage.get_departing_flight_arrival_date():
-                    airplane.set_status("In air, departing")
-                elif voyage.get_departing_flight_arrival_date() <= current_date <= voyage.get_return_flight_departure_date():
-                    airplane.set_status("At destination")
-                elif voyage.get_return_flight_departure_date() <= current_date <= voyage.get_return_flight_arrival_date():
-                    airplane.set_status("In air, returning")
+                if airplane.get_insignia() == voyage.get_airplane_insignia():
+                    airplane.set_current_destination(voyage.get_return_flight_departing_from())
+                    airplane.set_date_available(ret_flight_end)
+
+                    if dep_flight_start <= current_date <= dep_flight_end:
+                        airplane.set_flight_number(voyage.set_departing_flight_num())
+                        airplane.set_availability("In air, departing")
+
+                    elif dep_flight_end <= current_date <= ret_flight_start:
+                        airplane.set_flight_number("N/A")
+                        airplane.set_availability("At destination")
+
+                    elif ret_flight_start <= current_date <= ret_flight_end:
+                        airplane.set_flight_number(voyage.set_returning_flight_num())
+                        airplane.set_availability("In air, returning")
 
         

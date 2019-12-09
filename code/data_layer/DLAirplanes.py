@@ -3,7 +3,7 @@ from os import path
 
 class DLAirplanes():
     PLANE_TYPE_ID = 0
-    PLANE_NAME = 1
+    PLANE_INSIGNIA = 1
     AIRPLANE_DICT_PLANE_TYPE = 0
     AIRPLANE_DICT_MODEL = 1
     AIRPLANE_DICT_CAPACITY = 2
@@ -19,7 +19,7 @@ class DLAirplanes():
 
 
     def pull_all_airplanes(self):
-        '''Opens csv files and returns a list of all the airplanes (type ID, name, type)'''
+        '''Opens csv files and returns a list of all the airplanes (type ID, insignia, type)'''
         airplane_stream = open("./repo/Airplane.csv", "r")
         type_stream = open("./repo/AirplaneType.csv", "r")
         all_airplanes_list = []
@@ -32,11 +32,11 @@ class DLAirplanes():
             line_list = line.strip().split(",")
             new_airplane = self.__modelAPI.get_model('Airplane')
             plane_type = line_list[DLAirplanes.PLANE_TYPE_ID]
-            new_airplane.set_name(line_list[DLAirplanes.PLANE_NAME]) #Insignia
+            new_airplane.set_insignia(line_list[DLAirplanes.PLANE_INSIGNIA])
             airplane_info_list = type_dict[plane_type]
             new_airplane.set_make(airplane_info_list[self.AIRPLANE_DICT_PLANE_TYPE])   #planeType
             new_airplane.set_model(airplane_info_list[self.AIRPLANE_DICT_MODEL])    #Model
-            new_airplane.set_max_seats(airplane_info_list[self.AIRPLANE_DICT_CAPACITY])    #Capacity
+            new_airplane.set_capacity(airplane_info_list[self.AIRPLANE_DICT_CAPACITY])    #Capacity
 
             all_airplanes_list.append(new_airplane)
         airplane_stream.close()

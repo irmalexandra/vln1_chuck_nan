@@ -83,11 +83,11 @@ class UIBaseFunctions():
             print("-" * self.UI_DIVIDER_INT)
             print(modelAPI.get_model_header_format(model_list[0], header_flag))
             print(modelAPI.get_model_list_info(model_list, header_flag))
-            print("-" * self.UI_DIVIDER_INT)
+            # print("-" * self.UI_DIVIDER_INT)
             return self.check_return_value(model_list)
         else:
             print("No search results")
-            return 9
+            return 
 
     def print_model(self, model):
         print("-" * self.UI_DIVIDER_INT)
@@ -112,10 +112,17 @@ class UIBaseFunctions():
                 value_to_edit = edit_order_list[return_value-1] # -1 for human readability
                 while True:
                     new_value = self.get_user_input(value_to_edit)
-                    return_value = nav_dict[return_value](new_value)
-                    if return_value == True:
+                    check = nav_dict[return_value](new_value)
+                    if check == True:
+                        return_value = check
                         break
+                    else:
+                        print("Invalid {}".format(edit_order_list[return_value-1])) # for -1 human readability
             else:
-                llapi.overwrite_all_models(model) 
-                return self.check_return_value(return_value)
+                check = llapi.overwrite_all_models(model)
+                if type(check).__name__ != "str": 
+                    return self.check_return_value(return_value)
+                else:
+                    print("Error, {} invalid!".format(check))
+                    return 
     

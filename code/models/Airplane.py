@@ -1,29 +1,28 @@
 from validation.validator import Validator
 class Airplane():
 
-    def __init__(self, name='', make='', model='', max_seats=0, availability = "",current_destination = "", flight_number = "", date_available = ""):
+    def __init__(self, insignia='', make='', model='', capacity=0):
         self.__models_validation = Validator()
-        self.__name = name #insignia
+        self.__insignia = insignia
         self.__make = make
         self.__model = model
-        self.__max_seats = max_seats
+        self.__capacity = capacity
         
-        self.__create_validation_dict = {self.get_name:self.set_name}
+        self.__create_validation_dict = {self.get_insignia:self.set_insignia}
 
         self.__create_order_list = ["airplane insignia"]
 
-        self.__availability = availability
-        self.__current_destination = current_destination
-        self.__flight_number = flight_number
-        self.__date_available = date_available
-
+        self.__availability = "Not in use"
+        self.__current_destination = "Reykjavik"
+        self.__flight_number = "N/A"
+        self.__date_available = "N/A"
 
 
     def __str__(self):
-        return "Insignia {:>2}\nMake: {:>2}\nModel: {:>2}\nMaximum seats: {:>2}".format(self.__name, self.__make, self.__model, self.__max_seats)
+        return "Insignia {:>2}\nMake: {:>2}\nModel: {:>2}\nMaximum seats: {:>2}".format(self.__insignia, self.__make, self.__model, self.__capacity)
 
     def raw_info(self):
-        return "NA" + self.__make + self.__model + "," + self.__name + "\n"
+        return "NA" + self.__make + self.__model + "," + self.__insignia + "\n"
 
     def set_availability(self, availability):
         self.__availability = availability
@@ -39,6 +38,7 @@ class Airplane():
 
     def set_flight_number(self,flight_number):
         self.__flight_number = flight_number
+
     def get_flight_number(self):
         return self.__flight_number
     
@@ -57,12 +57,12 @@ class Airplane():
     def handle_key_value(self, key, value):
         return value(key())
 
-    def get_name(self):
-        return self.__name
+    def get_insignia(self):
+        return self.__insignia
 
-    def set_name(self, new_name):
-        if self.__models_validation.validate_airplane_insignia(new_name):
-            self.__name = new_name
+    def set_insignia(self, new_insignia):
+        if self.__models_validation.validate_airplane_insignia(new_insignia):
+            self.__insignia = new_insignia
             return True
         else:
             return False
@@ -87,35 +87,36 @@ class Airplane():
         else:
             return False
 
-    def get_max_seats(self):
-        return self.__max_seats
+    def get_capacity(self):
+        return self.__capacity
 
-    def set_max_seats(self, new_max_seats):
-        if self.__models_validation.validate_airplane_capacity(new_max_seats):
-            self.__max_seats = new_max_seats
+    def set_capacity(self, new_capacity):
+        if self.__models_validation.validate_airplane_capacity(new_capacity):
+            self.__capacity = new_capacity
             return True
         else:
             return False
 
 
     def get_model_header_format(self, header_flag):
-        return "{:10}{:11}{:11}{:11}{:15}{:12}{:17}{:17}{:18}".format("Index: ",
-                                                                    "Name:",
+        return "{:10}{:12}{:10}{:10}{:12}{:18}{:16}{:17}{:18}".format("Index: ",
+                                                                    "Insignia:",
                                                                     "Make:",
                                                                     "Model:",
-                                                                    "Total seats:",
+                                                                    "Capacity:",
                                                                     "Status:",
                                                                     "Destination:",
                                                                     "Flight number:",
                                                                     "Date available:")
     def get_model_list_info(self, header_flag):
-        returnObject = ("     {:11}{:11}{:11}{:15}{:12}{:17}{:17}{:18}|\n".format(
-                                                                      self.get_name(),
+        returnObject = ("     {:12}{:10}{:10}{:12}{:18}{:16}{:17}{:18}|\n".format(
+                                                                      self.get_insignia(),
                                                                       self.get_make(),
                                                                       self.get_model(),
-                                                                      self.get_max_seats(),
-                                                                      "status",
-                                                                      "destination",
-                                                                      "flight_num",
-                                                                      "date_avail"))
+                                                                      self.get_capacity(),
+                                                                      self.get_availability(),
+                                                                      self.get_current_destination(),
+                                                                      self.get_flight_number(),
+                                                                      self.get_date_available()))
         return returnObject
+
