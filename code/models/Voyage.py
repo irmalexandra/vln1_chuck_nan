@@ -2,7 +2,7 @@ from validation.validator import Validator
 
 
 class Voyage():
-    def __init__(self , departing_flight_num = "", return_flight_num = "", departing_flight_departing_from = "", 
+    def __init__(self , departing_flight_num = "", return_flight_num = "", departing_flight_departing_from = "Reykjavik", 
                 departing_flight_departure_date = "", departing_flight_arrival_date = "", return_flight_departing_from = "", 
                 return_flight_departure_date = "", return_flight_arrival_date = "", airplane_insignia = "", 
                 captain_ssn = "", copilot_ssn = "", fsm_ssn = "", fa_ssns=[], status = ""):
@@ -20,7 +20,7 @@ class Voyage():
         self.__return_flight_departure_date = return_flight_departure_date
         self.__return_flight_arrival_date = return_flight_arrival_date
 
-        self.__airplane_ssn = airplane_insignia
+        self.__airplane_insignia = airplane_insignia
         self.__captain_ssn = captain_ssn
         self.__copilot_ssn = copilot_ssn
         self.__fsm_ssn = fsm_ssn
@@ -74,7 +74,7 @@ class Voyage():
     
     def set_destination(self, airport):
         if self.__models_validation.validate_airport(airport):
-            self.__destination = airport
+            self.__return_flight_departing_from = airport
             return True
         return False
 
@@ -113,6 +113,7 @@ class Voyage():
         return self.__departing_flight_departure_date
 
     def set_departing_flight_departure_date(self, new_departure):
+
         self.__departing_flight_departure_date = new_departure
 
     def get_departing_flight_arrival_date(self):
@@ -188,12 +189,14 @@ class Voyage():
         return self.__fa_ssns
 
     def set_fa_ssns(self, new):
-        if new != ".":
-            valid_ssns = []
-            for ssn in new:
-                if self.__models_validation.validate_employee_ssn(ssn):
-                    valid_ssns.append(ssn)
-            self.__fa_ssns = valid_ssns
+        valid_ssns = []
+        for ssn in new:
+            if self.__models_validation.validate_employee_ssn(ssn):
+                valid_ssns.append(ssn)
+            else:
+                valid_ssns.append(ssn)
+        self.__fa_ssns = valid_ssns
+        return self.__models_validation.validate_employee_ssn(ssn)
 
     def get_voyage_employee_ssn(self, rank):
         return self.__voyage_employee_ssn_dict[rank]()

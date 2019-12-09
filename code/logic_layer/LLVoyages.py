@@ -61,7 +61,12 @@ class LLVoyages:
         new_voyage = self.__modelAPI.get_model("Voyage")
 
         new_voyage.set_destination(destination)
-        new_voyage.set_departing_flight_departure_date(date_time)
+        new_voyage.set_departing_flight_departure_date(str(date_time))
+        new_voyage.set_airplane_insignia(".")
+        new_voyage.set_captain_ssn(".")
+        new_voyage.set_copilot_ssn(".")
+        new_voyage.set_fsm_ssn(".")
+        new_voyage.set_fa_ssns([".", "."])
 
         new_voyage.set_flight_numbers(self.generate_flight_numbers())
         departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date = self.calculate_flight_times(date_time,destination)
