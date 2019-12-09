@@ -18,21 +18,20 @@ class DLAPI():
         return self.__dl_employees.pull_all_employees()
 
     def overwrite_all_employees(self, employee_list):
-        self.__dl_employees.overwrite_all_employees(employee_list)
+        return self.__dl_employees.overwrite_all_employees(employee_list)
 
     def append_employee(self, employee):
-        self.__dl_employees.append_employee(employee)
+        return self.__dl_employees.append_employee(employee)
 
     def pull_all_voyages(self):
         '''Gets a list of all voyages from the data layer and returns it'''
         return self.__dl_voyages.pull_all_voyages()
 
     def overwrite_all_voyages(self, voyage_list):
-        self.__dl_voyages.overwrite_all_voyages(voyage_list)
+        return self.__dl_voyages.overwrite_all_voyages(voyage_list)
 
     def append_voyage(self, voyage):
-        '''Adds a new voyage to the list of voyages'''
-        self.__dl_voyages.append_voyage(voyage)
+        return self.__dl_voyages.append_voyage(voyage)
 
     def pull_all_destinations(self):
         '''Gets a list of all destinations from the data layer and returns it'''
@@ -57,8 +56,12 @@ class DLAPI():
         return self.__dl_airplanes.pull_airplane_types_info()
 
     def create_airplane(self, airplane):
+<<<<<<< HEAD
+        return self.__dl_airplanes.append_airplane(airplane)
+=======
         '''Adds a new airplane to the list of airplanes'''
         self.__dl_airplanes.append_airplane(airplane)
+>>>>>>> 9fa8134a5257d955a7d541c8f6a16f4d11099e8f
 
     def clear_airplane_lists(self):
-        self.__dl_airplanes.clear_airplane_lists()
+        return self.__dl_airplanes.clear_airplane_lists()

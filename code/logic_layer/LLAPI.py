@@ -4,6 +4,7 @@ from logic_layer.LLVoyages import LLVoyages
 from logic_layer.LLDestinations import LLDestinations
 from logic_layer.LLAirplanes import LLAirplanes
 from models.ModelAPI import ModelAPI
+from models.Employee import Employee
 
 
 class LLAPI:
@@ -36,6 +37,9 @@ class LLAPI:
     def get_all_voyage_list_by_period_list(self, start_date, end_date):
         return self.__ll_voyages.filter_all_voyages_by_period(start_date, end_date)
 
+    def get_all_voyage_list_by_airport(self, airport):
+        return self.__ll_voyages.filter_all_voyages_by_airport(airport)
+
     def get_employee_list_by_title(self, title):
         return self.__ll_employees.filter_all_employees_by_title(title)
 
@@ -65,7 +69,7 @@ class LLAPI:
 
     def overwrite_all_models(self,model):
         check = self.__modelAPI.validate_edit_model(model)
-        if check:
+        if type(check).__name__ != "str":
             if type(model).__name__ == "Employee":
                 return self.__ll_employees.overwrite_all_employees()
             if type(model).__name__ == "Airplane":
