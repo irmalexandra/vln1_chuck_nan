@@ -26,7 +26,7 @@ class LLVoyages:
         empty_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if voyage.get_airplane_insignia == ".":
+            if voyage.get_airplane_insignia() == ".":
                 empty_voyage_list.append(voyage)
 
         return empty_voyage_list
