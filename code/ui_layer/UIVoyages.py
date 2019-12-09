@@ -40,7 +40,10 @@ class UIVoyages():
         voyage_menu = "1. Select voyage"
         return_value = self.__ui_base_functions.print_menu(voyage_menu, nav_dict, voyage_list)
         if return_value != None and return_value != 0:
-            return_value = self.get_selected_voyage_menu(return_value)
+            if return_value.get_airplane_insignia() == ".":
+                return_value = self.get_selected_voyage_empty_menu(return_value)
+            else:
+                return_value = self.get_selected_voyage_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_selected_voyage_menu(self, voyage):
