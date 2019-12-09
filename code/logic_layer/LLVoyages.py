@@ -167,11 +167,12 @@ class LLVoyages:
             final_employee_list = []
             all_airplane_list = self.__dl_api.pull_all_airplanes()
 
-            for employee in available_employee_list:
+            for employee in available_employee_list: 
                 for airplane in all_airplane_list:
-                    airplane_type = "NA" + airplane.get_make() + airplane.get_model()
-                    if employee.get_licence() == airplane_type:
-                        final_employee_list.append(employee)
+                    if employee not in final_employee_list:
+                        airplane_type = "NA" + airplane.get_make() + airplane.get_model()
+                        if employee.get_licence() == airplane_type:
+                            final_employee_list.append(employee)
 
         return final_employee_list
             

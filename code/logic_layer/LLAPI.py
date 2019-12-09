@@ -54,6 +54,9 @@ class LLAPI:
 
     def get_airplane_type_list(self):
         return self.__ll_airplanes.get_airplane_type_list()
+        
+    def get_all_available_airplane_list(self, voyage):
+        return self.__ll_airplanes.filter_available_airplanes(voyage)
 
     def create_airplane(self, airplane, airplane_types, insignia):
         return self.__ll_airplanes.create_airplane(airplane, airplane_types, insignia)
