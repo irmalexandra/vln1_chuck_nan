@@ -98,7 +98,8 @@ class Airplane():
             return False
 
     def change_date_time_format(self, date_string):
-        date_string = date_string[:-3].replace("T", " ")
+        if date_string != "N/A":
+            date_string = date_string[:-3].replace("T", " ")
         return date_string
 
     def get_model_header_format(self, header_flag):
