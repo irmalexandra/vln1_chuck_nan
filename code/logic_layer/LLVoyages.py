@@ -125,9 +125,9 @@ class LLVoyages:
 
     def get_iso_format_date_time(self, date='', time=''):
                         #2019-05-08T09:00:40
-        date_now = date.split("T")
-        year,month,day = date_now[0].split("-")
-        date(year,month,day)
+        # date_now = date.split("T")
+        # year,month,day = date_now[0].split("-")
+        # date(year,month,day)
         if time != "":
             time = datetime.strptime(time,'%H:%M:%S').time()
         if date != "":
@@ -137,7 +137,7 @@ class LLVoyages:
          
     def filter_available_employees(self, rank, voyage):
 
-        start_date = datime.strptime(voyage.get_departing_flight_departing_date())
+        start_date = datetime.strptime(voyage.get_departing_flight_departing_date())
         end_date = voyage.get_return_flight_arrival_date()
 
         all_employee_list = self.__dl_api.pull_all_employees
