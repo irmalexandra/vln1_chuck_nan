@@ -16,6 +16,7 @@ class LLEmployees:
         return self.__modelAPI.validate_edit_model(employee)
 
     def email_generator(self,name):
+        '''Makes a new e-mail address for a new employee'''
         name = (name.replace(" ",".")).lower()
         all_employees = self.__dl_api.pull_all_employees()
         all_existing_emails = [x.get_email() for x in all_employees]
@@ -72,7 +73,7 @@ class LLEmployees:
         return found_employee_list
 
     def get_one_employee(self, ssn):
-       
+       '''Shows information about one employee'''
         for employee in self.get_all_employee_list():
             if employee.get_ssn() == ssn:
                 return employee
@@ -80,11 +81,12 @@ class LLEmployees:
     def list_all_employees_by_date(self):
         pass
 
-    def filter_all_employees_by_availability(self):
+    def filter_all_employees_by_availability(self):        
+        '''Gets a list of all employees and returns a list of employees filtered by availability'''
         pass
 
     def filter_all_employees_by_title(self, title):
-        ''' Takes list of all employees and returns list of employees filtered by title from input '''
+        '''Gets a list of all employees and returns a list of employees filtered by title from input'''
 
         filter_list = []
         for employee in self.get_all_employee_list():
@@ -93,6 +95,7 @@ class LLEmployees:
         return filter_list
 
     def filter_pilots_by_airplane_type(self, airplane_type):
+        '''Gets a list of all pilots and returns a list of pilots filtered by airplane type'''
         pilot_list = self.sort_pilots_by_airplane_type()
         
         filter_list = []
@@ -102,7 +105,7 @@ class LLEmployees:
         return filter_list
 
     def sort_pilots_by_airplane_type(self):
-        ''' Gets a list of pilots and returns it sorted '''
+        '''Gets a list of pilots and returns it sorted'''
         title = "Pilot"
         pilot_list = self.filter_all_employees_by_title(title)
         return sorted(pilot_list, key=lambda employee: employee.get_licence())

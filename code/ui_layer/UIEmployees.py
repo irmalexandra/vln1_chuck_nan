@@ -17,13 +17,13 @@ class UIEmployees():
                     3: self.get_employee_search_menu,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        employee_menu = "1. Create 2. get all 3. Search by"
+        employee_menu = "1. Create 2. Get all 3. Search by"
         return_value = self.__ui_base_functions.print_menu(
             employee_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_employee_search_menu(self):
-        ''' Print the search menu of employee sub menu '''
+        '''Print the search menu of employee sub menu'''
         nav_dict = {1: self.get_all_employees_by_name,
                     2: self.get_all_employees_by_title,
                     3: self.get_all_employees_by_date,
@@ -61,7 +61,7 @@ class UIEmployees():
         nav_dict[9] = self.__ui_base_functions.back
         nav_dict[0] = self.__ui_base_functions.home
         edit_order_list = employee.get_edit_order_list()
-        edit_menu = "Change: 1. Address 2. Home Number 3. Mobile Number 4. Title 5. Rank "
+        edit_menu = "Change: 1. Address 2. Home Number 3. Mobile Number 4. Title 5. Rank"
         return_value = self.__ui_base_functions.print_edit_model_menu(
             edit_menu, nav_dict, employee, edit_order_list, self.__ll_api)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -70,7 +70,7 @@ class UIEmployees():
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        employee_menu = "1. Select employee:"
+        employee_menu = "1. Select employee"
         return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, employee_list)
         if return_value != None and return_value != 0:
             return_value = self.get_selected_employee_menu(return_value)
@@ -92,7 +92,7 @@ class UIEmployees():
     # All list functions
 
     def get_all_employees(self):
-        ''' Print the given dictionary of employees '''
+        '''Print the given dictionary of employees'''
         header_flag = "default"
         employee_list = self.__ll_api.get_employee_list_by_name()
         return_value = self.__ui_base_functions.print_model_list(
@@ -101,7 +101,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_employees_by_date(self):
-        ''' gets all employees availability on a specific day '''
+        '''Gets all employees availability on a specific day'''
         # needs input
         header_flag = "date"
         employee_list = self.__ll_api.get_all_employee_list()
@@ -111,7 +111,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_employees_by_title(self):
-        ''' Print a filtered list of all employees by title '''
+        '''Print a filtered list of all employees by title'''
         title = self.__ui_base_functions.get_user_input("title")
         if title == "Pilot":
             header_flag = "aircraft"
@@ -127,7 +127,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_employees_by_name(self):
-        ''' Search for employee instance and print out it's information '''
+        '''Search for employee instance and print out it's information'''
         header_flag = "default"
         name = self.__ui_base_functions.get_user_input("name")
         found_employee_list = self.__ll_api.get_employee_list_filtered_by_name(
@@ -138,7 +138,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_pilots_by_airplane_type_sorted(self, employee_list = []):
-        ''' Print a sorted list of pilots '''
+        '''Print a sorted list of pilots'''
         header_flag = "aircraft"
         employee_list = self.__ll_api.get_pilot_list_sorted_by_airplane_type()
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)

@@ -25,7 +25,7 @@ class LLDestinations:
         self.__dl_api.overwrite_all_destinations(all_destination_list)
 
     def edit_destination(self, destination, input_tpl):
-        '''Gets an instance and a tuple that holds a input flag and input string,
+        '''Gets an instance and a tuple that holds an input flag and input string,
             calls a set function depending on flag and returns a boolean'''
 
         set_contact_info_dict = {0:destination.set_contact_name, 1:destination.set_contact_number}
