@@ -134,7 +134,7 @@ class LLVoyages:
          
     def filter_available_employees(self, rank, voyage):
 
-        start_date = voyage.get_departing_flight_departing_date()
+        start_date = datime.strptime(voyage.get_departing_flight_departing_date())
         end_date = voyage.get_return_flight_arrival_date()
 
         all_employee_list = self.__dl_api.pull_all_employees
@@ -148,6 +148,6 @@ class LLVoyages:
             if employee.get_rank() == rank:
                 filter_rank_list.append(employee)
 
-        for employee in filter_rank_list:
-            for voyage in voyages_in_date_range_list:    
-                if employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())
+        #for employee in filter_rank_list:
+            #for voyage in voyages_in_date_range_list:    
+                #if employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())
