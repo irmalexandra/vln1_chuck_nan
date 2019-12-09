@@ -40,7 +40,7 @@ class LLVoyages:
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if start <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()) or self.get_iso_format_date_time(voyage.get_departing_flight_departing_date()) <= end:
+            if start <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()) or self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= end:
                 period_voyage_list.append(voyage)
         return period_voyage_list
         
