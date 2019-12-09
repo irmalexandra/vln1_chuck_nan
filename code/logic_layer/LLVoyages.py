@@ -184,11 +184,11 @@ class LLVoyages:
             if current_date <= self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()):
                 voyage.set_status("Not started")
             elif self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date()):
-                voyage.set_status("Flying to outlands")
+                voyage.set_status("Flying to {}".format(voyage.get_return_flight_departing_from()))
             elif self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_return_flight_departure_date()):
-                voyage.set_status("Currently in outlands")
+                voyage.set_status("Currently in {}".format(voyage.get_return_flight_departing_from()))
             elif self.get_iso_format_date_time(voyage.get_return_flight_departure_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()):
-                voyage.set_status("Flying home")
+                voyage.set_status("Flying to {}".format(voyage.get_departing_flight_departing_from()))
             else:
                 voyage.set_status("Voyage completed")
     
