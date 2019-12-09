@@ -41,9 +41,13 @@ class LLAirplanes:
         return self.__dl_api.overwrite_all_airplanes(airplane_list)
 
     def filter_available_airplanes(self, voyage):
+
         all_airplane_list = self.get_all_airplane_list()
+        
         start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
         end_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+
+        self.get_airplane_status(start_date)
 
         available_airplane_list = []
         all_voyage_list = self.__dl_api.pull_all_voyages()
@@ -61,10 +65,10 @@ class LLAirplanes:
 
         return available_airplane_list
 
-    def get_airplane_status(self):
+    def get_airplane_status(self, current_date = datetime.now().replace(microsecond=0).isoformat()):
 
         all_voyage_list = self.__dl_api.pull_all_voyages()
-        current_date = datetime.now().replace(microsecond=0).isoformat()
+        
         current_voyages = []
 
         for voyage in all_voyage_list:
