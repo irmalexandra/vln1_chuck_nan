@@ -1,9 +1,9 @@
 class UIBaseFunctions():
-    UI_DIVIDER_INT = 134
+    UI_DIVIDER_INT = 140
     DEVIATION_INT = 2
     LINE_LEN = 88
     WALL = "|"
-    T_LEN = 18
+    T_LEN = 26
     TRUE_LEN = LINE_LEN + 2 * T_LEN
     DISTINGUISHER = "{}\n{}\n\n".format("_"*TRUE_LEN, "_"*TRUE_LEN)
 

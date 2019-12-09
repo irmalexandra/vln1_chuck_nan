@@ -102,7 +102,7 @@ class Airplane():
         return date_string
 
     def get_model_header_format(self, header_flag):
-        return "{:10}{:12}{:10}{:10}{:12}{:19}{:16}{:16}{:17}".format("Index: ",
+        return "{:10}{:14}{:12}{:12}{:14}{:21}{:18}{:18}{:19}".format("Index: ",
                                                                     "Insignia:",
                                                                     "Make:",
                                                                     "Model:",
@@ -112,7 +112,7 @@ class Airplane():
                                                                     "Flight number:",
                                                                     "Date available:")
     def get_model_list_info(self, header_flag):
-        returnObject = ("     {:12}{:10}{:10}{:12}{:19}{:16}{:16}{:17}|\n".format(
+        returnObject = ("     {:14}{:12}{:12}{:14}{:21}{:18}{:18}{:19}|\n".format(
                                                                       self.get_insignia(),
                                                                       self.get_make(),
                                                                       self.get_model(),
