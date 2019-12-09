@@ -125,7 +125,7 @@ class UIVoyages():
 
     def get_all_airplanes(self, voyage):
         header_flag = "default"
-        airplane_list = self.__ll_api.get_all_airplane_list()
+        airplane_list = self.__ll_api.get_all_available_airplane_list(voyage)
         return_value = self.__ui_base_functions.print_model_list(
             airplane_list, self.__modelAPI, header_flag)
         return_value = self.get_select_from_airplane_list_menu(airplane_list, voyage)
