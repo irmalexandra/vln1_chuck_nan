@@ -65,29 +65,29 @@ class LLAirplanes:
 
         return available_airplane_list
 
-    def get_airplane_status(self, current_date = datetime.now().replace(microsecond=0).isoformat()):
+    def get_airplane_status(self, current_date = datetime.now().replace(microsecond=0)):
 
         all_voyage_list = self.__dl_api.pull_all_voyages()
         
         current_voyages = []
 
         for voyage in all_voyage_list:
-            dep_flight_start = voyage.get_departing_flight_departure_date()
-            ret_flight_end = voyage.get_return_flight_arrival_date()
+            dep_flight_start = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+            ret_flight_end = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
 
             if dep_flight_start <= current_date <= ret_flight_end:
                 current_voyages.append(voyage)
                 
         for airplane in self.__all_airplane_list:
             for voyage in current_voyages:
-                dep_flight_start = voyage.get_departing_flight_departure_date()
-                dep_flight_end = voyage.get_departing_flight_arrival_date()
-                ret_flight_start = voyage.get_return_flight_departure_date()
-                ret_flight_end = voyage.get_return_flight_arrival_date()
+                dep_flight_start = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+                dep_flight_end = self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date())
+                ret_flight_start = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
+                ret_flight_end = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
 
                 if airplane.get_insignia() == voyage.get_airplane_insignia():
                     airplane.set_current_destination(voyage.get_return_flight_departing_from())
-                    airplane.set_date_available(ret_flight_end)
+                    airplane.set_date_available(ret_flight_end.isoformat())
 
                     if dep_flight_start <= current_date <= dep_flight_end:
                         airplane.set_flight_number(voyage.get_departing_flight_num())
