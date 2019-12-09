@@ -86,3 +86,5 @@ modelAPI = ModelAPI()
 voyage = LLVoyages(stuff,modelAPI)  
 
 print(voyage.calculate_flight_times("2019-12-27T23:40:00","Tingwall"))
+print("----------------------------------------------------------------------")
+voyage.get_all_voyage_list()
