@@ -16,7 +16,7 @@ class UIVoyages():
                     3: self.get_voyage_search_menu,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        voyage_menu = "1. Create 2. get all 3. Search by"
+        voyage_menu = "1. Create 2. Get all 3. Search by"
         return_value = self.__ui_base_functions.print_menu(
             voyage_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -37,7 +37,7 @@ class UIVoyages():
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        voyage_menu = "1. Select voyage:"
+        voyage_menu = "1. Select voyage"
         return_value = self.__ui_base_functions.print_menu(voyage_menu, nav_dict, voyage_list)
         if return_value != None and return_value != 0:
             return_value = self.get_selected_voyage_menu(return_value)
@@ -49,7 +49,7 @@ class UIVoyages():
                     3: self.repeat_voyage,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        voyage_menu = "1. Add Crew 2. Duplicate 3. Repeat"
+        voyage_menu = "1. Add crew 2. Duplicate 3. Repeat"
         return_value = self.__ui_base_functions.print_menu(
             voyage_menu, nav_dict, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -57,7 +57,7 @@ class UIVoyages():
     # All list functions
     
     def get_all_voyages(self):
-        ''' Print the given dictionary of voyages '''
+        '''Print the given dictionary of voyages'''
         print("ALL VOYAGES")
         header_flag = "default"
         voyage_list = self.__ll_api.get_all_voyage_list()

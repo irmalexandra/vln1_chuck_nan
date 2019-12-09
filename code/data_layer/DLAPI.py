@@ -41,6 +41,7 @@ class DLAPI():
         self.__dl_destinations.overwrite_all_destinations(all_destination_list)
     
     def append_destination(self, destination):
+        '''Adds a new destination to the list of destinations'''
         return self.__dl_destinations.append_destination(destination)
 
     def pull_all_airplanes(self):
@@ -55,7 +56,12 @@ class DLAPI():
         return self.__dl_airplanes.pull_airplane_types_info()
 
     def create_airplane(self, airplane):
+<<<<<<< HEAD
         return self.__dl_airplanes.append_airplane(airplane)
+=======
+        '''Adds a new airplane to the list of airplanes'''
+        self.__dl_airplanes.append_airplane(airplane)
+>>>>>>> 9fa8134a5257d955a7d541c8f6a16f4d11099e8f
 
     def clear_airplane_lists(self):
         return self.__dl_airplanes.clear_airplane_lists()

@@ -36,7 +36,7 @@ class UIDestinations():
                     2: self.change_contact_number,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        destination_menu = "1. Change Name 2. Change Phone Number"
+        destination_menu = "1. Change contact name 2. Change phone number"
         return_value = self.__ui_base_functions.print_menu(
             destination_menu, nav_dict, employee)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -45,7 +45,7 @@ class UIDestinations():
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        destination_menu = "1. Select destination:"
+        destination_menu = "1. Select destination"
         return_value = self.__ui_base_functions.print_menu(destination_menu, nav_dict, employee_list)
         if return_value != None and return_value != 0:
             return_value = self.get_selected_destination_menu(return_value)
@@ -63,7 +63,7 @@ class UIDestinations():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_destinations_by_country(self):
-        '''Search for distination instance and returns a list'''
+        '''Search for destination instance and returns a list'''
         header_flag = "default"
         country = self.__ui_base_functions.get_user_input("country")
         found_destination_list = self.__ll_api.get_destination_list_by_country(

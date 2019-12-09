@@ -23,10 +23,6 @@ time = "23:59:33"
 #iso_time = datetime.time(hour, minute, second)
 
 
-time = datetime.strptime(time,'%H:%M:%S').time()
-date = datetime.strptime(date,'%d-%m-%Y').date()
-date_time = datetime.combine(mydate, mytime)
-print(date_time)
 
 #print(new_emp)
 #for voyage in work_schedule:
