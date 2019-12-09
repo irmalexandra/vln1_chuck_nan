@@ -43,7 +43,19 @@ class Voyage():
                                            "Flight Attendant":self.get_fa_ssns}
 
     def __str__(self):
-        return "{}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n {}".format(self.__departing_flight_num, self.__return_flight_num, self.__departing_flight_departing_from, self.__departing_flight_departure_date, self.__departing_flight_arrival_date, self.__return_flight_departing_from, self.__return_flight_departure_date, self.__return_flight_arrival_date, self.__airplane_insignia, self.__captain_ssn, self.__copilot_ssn, self.__fsm_ssn, ":".join(self.__fa_ssns))
+        return "Departing flight no: {}\nReturning flight no: {}\nDeparting from: {}\nDeparting date/time: {}\nReturning date/time: {}\nDestination: {}\nDeparting date/time: {}\nReturning date/time: {}\nAirplane type: {}\nCaptain SSN: {}\nCo-Pilot SSN: {}\nFlight service manager SSN: {}\nCabin crew: {}".format(self.__departing_flight_num,
+        self.__return_flight_num,
+        self.__departing_flight_departing_from, 
+        self.change_date_time_format(self.__departing_flight_departure_date), 
+        self.change_date_time_format(self.__departing_flight_arrival_date), 
+        self.__return_flight_departing_from, 
+        self.change_date_time_format(self.__return_flight_departure_date), 
+        self.change_date_time_format(self.__return_flight_arrival_date), 
+        self.__airplane_insignia, 
+        self.__captain_ssn, 
+        self.__copilot_ssn, 
+        self.__fsm_ssn, 
+        ":".join(self.__fa_ssns))
 
     def raw_info(self):
         true_employees = ":".join(self.__fa_ssns)
@@ -168,6 +180,7 @@ class Voyage():
         return self.__fsm_ssn
 
     def set_fsm_ssn(self, new):
+        new_ssns = new.split(":")
         if new != ".":
             if self.__models_validation.validate_employee_ssn(new):
                 self.__fsm_ssn = new
@@ -179,10 +192,11 @@ class Voyage():
 
     def set_fa_ssns(self, new):
         if new != ".":
+            ssns = new.split(":")
             valid_ssns = []
-            for emp_ssn in new:
-                if self.__models_validation.validate_employee_ssn(emp_ssn):
-                    valid_ssns.append(emp_ssn)
+            for ssn in ssns:
+                if self.__models_validation.validate_employee_ssn(ssn):
+                    valid_ssns.append(ssn)
             self.__fa_ssns = valid_ssns
 
     def get_voyage_employee_ssn(self, rank):
@@ -200,22 +214,22 @@ class Voyage():
         return date_string
 
     def get_model_header_default_format(self):
-        return "{:7}{:15}{:11}{:20}{:20}{:16}{:16}{:10}{:7}".format("Index:",
+        return "{:7}{:14}{:12}{:22}{:18}{:22}{:18}{:11}{:14}".format("Index:",
                                                             "Destination:",
                                                             "Airplane:",
-                                                            "Dep date/time:",
-                                                            "Ret date/time:",
-                                                            "Dep flight no:",
-                                                            "Ret flight no:",
+                                                            "Departing date/time:",
+                                                            "Flight number: ",
+                                                            "Returning date/time:",
+                                                            "Flight number: ",
                                                             "Staffed:", 
                                                             "Status:")
 
     def get_model_list_default_info(self):
-        return "  {:15}{:11}{:20}{:20}{:16}{:16}{:10}{:7}|\n".format(self.get_return_flight_departing_from(),
+        return "  {:14}{:12}{:22}{:18}{:22}{:18}{:11}{:14}|\n".format(self.get_return_flight_departing_from(),
                                                                    self.get_airplane_insignia(),  # we should change this to airplane type
                                                                    self.change_date_time_format(self.get_departing_flight_departure_date()),
-                                                                   self.change_date_time_format(self.get_return_flight_arrival_date()),
                                                                    self.get_departing_flight_num(),
+                                                                   self.change_date_time_format(self.get_return_flight_arrival_date()),
                                                                    self.get_return_flight_num(),
                                                                    "staffed",
                                                                    "status")
