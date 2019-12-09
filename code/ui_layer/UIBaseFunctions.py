@@ -1,5 +1,5 @@
 class UIBaseFunctions():
-    UI_DIVIDER_INT = 124
+    UI_DIVIDER_INT = 134
     DEVIATION_INT = 2
     LINE_LEN = 88
     WALL = "|"
