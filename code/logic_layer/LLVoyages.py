@@ -194,8 +194,6 @@ class LLVoyages:
             else:
                 voyage.set_status("Voyage completed")
         
-        for thing in voyage_list:
-            print(thing.get_status())
         # for voyage in all_voyage_list:
         #     dep_flight_start = voyage.get_departing_flight_departure_date()
         #     ret_flight_end = voyage.get_return_flight_arrival_date()
