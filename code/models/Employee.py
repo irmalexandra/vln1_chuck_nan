@@ -161,19 +161,19 @@ class Employee():
         return self.__header_format_dict[header_flag]()
 
     def get_model_header_default_format(self):
-        return "{:10}{:22}{:15}{:19}{:15}{:17}{:27}{:2}".format("Index: ", "Name:", "SSN:", "Address:", "Home number:", "Mobile number:", "Email:", "Title:")
+        return "{:9}{:22}{:15}{:19}{:15}{:17}{:31}{:10}".format("Index: ", "Name:", "SSN:", "Address:", "Home number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_date_format(self):
-        return "{:10}{:22}{:15}{:18}{:15}{:42}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Availability:")
+        return "{:10}{:22}{:15}{:18}{:15}{:58}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Availability:")
 
     def get_model_header_aircraft_format(self):
-        return "{:10}{:22}{:17}{:19}{:20}{:14}{:20}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
+        return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
 
     def get_model_list_info(self, header_flag):
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-        returnObject = ("     {:22}{:15}{:18}{:15}{:42}|\n".format(
+        returnObject = ("     {:22}{:15}{:18}{:15}{:58}|\n".format(
                                                      self.get_name(),
                                                      self.get_ssn(),
                                                      self.get_mobile_num(),
@@ -182,7 +182,7 @@ class Employee():
         return returnObject
 
     def get_model_list_default_info(self):
-        returnObject = ("     {:22}{:15}{:19}{:15}{:17}{:27}{:2}|\n".format(
+        returnObject = ("    {:22}{:15}{:19}{:15}{:17}{:31}{:10}|\n".format(
                                                             self.get_name(),
                                                             self.get_ssn(),
                                                             self.get_address(),
@@ -193,7 +193,7 @@ class Employee():
         return returnObject
 
     def get_model_list_aircraft_info(self):
-        returnObject = ("     {:22}{:17}{:19}{:20}{:14}{:20}|\n".format(
+        returnObject = ("     {:22}{:17}{:19}{:20}{:14}{:36}|\n".format(
                                                        self.get_name(),
                                                        self.get_ssn(),
                                                        self.get_address(),
