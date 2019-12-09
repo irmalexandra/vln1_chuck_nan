@@ -158,37 +158,40 @@ class LLVoyages:
 
 
     def check_status(self, voyage_list):
-        all_voyage_list = self.get_all_voyage_list
         current_date = datetime.now().replace(microsecond=0).isoformat()
         current_voyages = []
 
+
+        for voyage in self.get_all_voyage_list():
+            if current_date <= voyage.get_departing_flight_departure_date:
+                pass
         # for voyage in all_voyage_list:
         #     dep_flight_start = voyage.get_departing_flight_departure_date()
         #     ret_flight_end = voyage.get_return_flight_arrival_date()
 
         #     if dep_flight_start <= current_date <= ret_flight_end:
         #         current_voyages.append(voyage)
-                
-        for airplane in all_voyage_list:
-            for voyage in current_voyages:
-                dep_flight_start = voyage.get_departing_flight_departure_date()
-                dep_flight_end = voyage.get_departing_flight_arrival_date()
-                ret_flight_start = voyage.get_return_flight_departure_date()
-                ret_flight_end = voyage.get_return_flight_arrival_date()
+        
+        # for airplane in all_voyage_list:
+        #     for voyage in current_voyages:
+        #         dep_flight_start = voyage.get_departing_flight_departure_date()
+        #         dep_flight_end = voyage.get_departing_flight_arrival_date()
+        #         ret_flight_start = voyage.get_return_flight_departure_date()
+        #         ret_flight_end = voyage.get_return_flight_arrival_date()
 
-                if airplane.get_insignia() == voyage.get_airplane_insignia():
-                    airplane.set_current_destination(voyage.get_return_flight_departing_from())
-                    airplane.set_date_available(ret_flight_end)
+        #         if airplane.get_insignia() == voyage.get_airplane_insignia():
+        #             airplane.set_current_destination(voyage.get_return_flight_departing_from())
+        #             airplane.set_date_available(ret_flight_end)
 
-                    if dep_flight_start <= current_date <= dep_flight_end:
-                        airplane.set_flight_number(voyage.set_departing_flight_num())
-                        airplane.set_availability("In air, departing")
+        #             if dep_flight_start <= current_date <= dep_flight_end:
+        #                 airplane.set_flight_number(voyage.set_departing_flight_num())
+        #                 airplane.set_availability("In air, departing")
 
-                    elif dep_flight_end <= current_date <= ret_flight_start:
-                        airplane.set_flight_number("N/A")
-                        airplane.set_availability("At destination")
+        #             elif dep_flight_end <= current_date <= ret_flight_start:
+        #                 airplane.set_flight_number("N/A")
+        #                 airplane.set_availability("At destination")
 
-                    elif ret_flight_start <= current_date <= ret_flight_end:
-                        airplane.set_flight_number(voyage.get_return_flight_num())
-                        airplane.set_availability("In air, returning")
+        #             elif ret_flight_start <= current_date <= ret_flight_end:
+        #                 airplane.set_flight_number(voyage.get_return_flight_num())
+        #                 airplane.set_availability("In air, returning")
 
