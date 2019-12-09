@@ -12,7 +12,7 @@ class LLVoyages:
 
     def get_voyage(self, voyage_ID):
         pass
-    
+
     def get_all_voyage_list(self):
         self.__all_voyage_list = self.__dl_api.pull_all_voyages()
         return self.__all_voyage_list
@@ -133,7 +133,7 @@ class LLVoyages:
         all_employee_list = self.__dl_api.pull_all_employees
         self.get_all_voyage_list()
         filter_rank_list = []
-        voyages_in_date_range_list = 
+        #voyages_in_date_range_list =
         for employee in all_employee_list:
             if employee.get_rank() == rank:
                 filter_rank_list.append(employee)
