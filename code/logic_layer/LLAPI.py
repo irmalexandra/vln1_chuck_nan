@@ -40,6 +40,9 @@ class LLAPI:
     def get_all_voyage_list_by_airport(self, airport):
         return self.__ll_voyages.filter_all_voyages_by_airport(airport)
 
+    def get_filtered_employee_list_for_voyage(self, rank, voyage):
+        return self.__ll_voyages.filter_available_employees(rank, voyage)
+
     def get_employee_list_by_title(self, title):
         return self.__ll_employees.filter_all_employees_by_title(title)
 
