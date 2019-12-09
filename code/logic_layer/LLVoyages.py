@@ -15,7 +15,7 @@ class LLVoyages:
 
     def get_all_voyage_list(self):
         self.__all_voyage_list = self.__dl_api.pull_all_voyages()
-        #self.check_status(self.__all_voyage_list)
+        self.__all_voyage_list = self.check_status(self.__all_voyage_list)
         return self.__all_voyage_list
 
     def overwrite_all_voyages(self, voyage_list):
@@ -61,7 +61,7 @@ class LLVoyages:
         new_voyage = self.__modelAPI.get_model("Voyage")
 
         new_voyage.set_destination(destination)
-        new_voyage.set_departing_flight_departure_date(str(date_time))
+        new_voyage.set_departing_flight_departure_date(date_time.isoformat())
         new_voyage.set_airplane_insignia(".")
         new_voyage.set_captain_ssn(".")
         new_voyage.set_copilot_ssn(".")
@@ -129,11 +129,11 @@ class LLVoyages:
     def get_iso_format_date_time(self, date=''):
 
         if date.find("T") == -1:
-            date = datetime.strptime(date,'%d-%m-%Y')
+            new_date = datetime.strptime(date,'%d-%m-%Y')
         else:
-            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
-
-        return date
+            new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+        print(new_date)
+        return new_date
          
     def filter_available_employees(self, rank, voyage):
 
@@ -177,14 +177,25 @@ class LLVoyages:
         return final_employee_list
             
 
-    #def check_status(self, voyage_list):
-        #current_date = datetime.now().replace(microsecond=0).isoformat()
-        #current_voyages = []
+    def check_status(self, voyage_list):
+        current_date = datetime.today()
+        
 
+        for voyage in voyage_list:
 
-        #for voyage in self.get_all_voyage_list():
-            #if current_date <= voyage.get_departing_flight_departure_date:
-                #pass
+            if current_date <= self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()):
+                voyage.set_status("Not started")
+            elif self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date()):
+                voyage.set_status("Flying to outlands")
+            elif self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_return_flight_departure_date()):
+                voyage.set_status("Currently in outlands")
+            elif self.get_iso_format_date_time(voyage.get_return_flight_departure_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()):
+                voyage.set_status("Flying home")
+            else:
+                voyage.set_status("Voyage completed")
+        
+        for thing in voyage_list:
+            print(thing.get_status())
         # for voyage in all_voyage_list:
         #     dep_flight_start = voyage.get_departing_flight_departure_date()
         #     ret_flight_end = voyage.get_return_flight_arrival_date()

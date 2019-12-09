@@ -67,7 +67,7 @@ class DLVoyages():
             if False not in check_list:
                 all_voyages_list.append(new_voyage)
         filestream.closed
-        return all_voyages_list
+        return all_voyages_list[1:]
 
     def append_voyage(self, new_voyage):
         '''Adds a new voyage to the voyage string'''
