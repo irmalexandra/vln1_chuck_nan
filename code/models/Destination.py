@@ -39,7 +39,7 @@ class Destination():
     
     
     def get_model_header_default_format(self):
-        return "{:10}{:20}{:15}{:20}{:15}{:22}{:20}".format("Index:",
+        return "{:10}{:20}{:17}{:20}{:15}{:22}{:34}".format("Index:",
                                                           "Country:",
                                                           "Airport:",
                                                           "Flight time:",
@@ -48,7 +48,7 @@ class Destination():
                                                           "Contact number:")
         
     def get_model_list_default_info(self):
-        returnObject = ("     {:20}{:15}{:20}{:15}{:22}{:20}|\n".format(
+        returnObject = ("     {:20}{:17}{:20}{:15}{:22}{:34}|\n".format(
                                                                       self.get_country(),
                                                                       self.get_airport(),
                                                                       self.get_flight_time(),
