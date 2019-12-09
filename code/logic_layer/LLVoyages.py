@@ -40,7 +40,7 @@ class LLVoyages:
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if start <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()) or self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= end:
+            if start <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()) and self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= end:
                 period_voyage_list.append(voyage)
         return period_voyage_list
         
@@ -137,6 +137,7 @@ class LLVoyages:
         self.get_all_voyage_list()
         filter_rank_list = []
         available_employee_list = []
+        available_pilot_list = []
 
         voyages_in_date_range_list = self.filter_all_voyages_by_period(start_date, end_date)
 
@@ -144,6 +145,14 @@ class LLVoyages:
             if employee.get_rank() == rank:
                 filter_rank_list.append(employee)
 
-        #for employee in filter_rank_list:
-            #for voyage in voyages_in_date_range_list:    
-                #if employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())
+        for employee in filter_rank_list:
+            employee_ssn = employee.get_ssn()
+            for voyage in voyages_in_date_range_list:   
+                voyage_ssn = voyage.get_voyage_employee_ssn(employee.get_rank())
+                if type(voyage_ssn).__name__ == "list":
+                    if employee_ssn not in voyage_ssn:
+                        available_employee_list.append(employee)
+                        
+                else:
+                    if employee_ssn != voyage_ssn:
+                        available_employee_list.append(employee)
