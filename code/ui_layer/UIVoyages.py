@@ -137,8 +137,8 @@ class UIVoyages():
     def get_all_captains_by_airplane_and_availability(self, voyage):
         '''Print the given dictionary of voyages'''
         header_flag = "aircraft"
-        title = "Pilot"
-        crew_list = self.__ll_api.get_employee_list_by_title(title)
+        rank = "Captain"
+        crew_list = self.__ll_api.get_filtered_employee_list_for_voyage(rank,voyage)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
         return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
@@ -147,8 +147,8 @@ class UIVoyages():
     def get_all_copilots_by_airplane_and_availability(self, voyage):
         '''Print the given dictionary of voyages'''
         header_flag = "aircraft"
-        title = "Pilot"
-        crew_list = self.__ll_api.get_employee_list_by_title(title)
+        title = "Copilot"
+        crew_list = self.__ll_api.get_filtered_employee_list_for_voyage(rank,voyage)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
         return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
@@ -157,8 +157,8 @@ class UIVoyages():
     def get_all_fsm_by_availability(self, voyage):
         '''Print the given dictionary of voyages'''
         header_flag = "default"
-        title = "Cabincrew"
-        crew_list = self.__ll_api.get_employee_list_by_title(title)
+        rank = "Flight Service Manager"
+        crew_list = self.__ll_api.get_filtered_employee_list_for_voyage(rank,voyage)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
         return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
@@ -167,8 +167,8 @@ class UIVoyages():
     def get_all_flight_attendants_by_availability(self, voyage):
         '''Print the given dictionary of voyages'''
         header_flag = "default"
-        title = "Cabincrew"
-        crew_list = self.__ll_api.get_employee_list_by_title(title)
+        title = "Flight Attendant"
+        crew_list = self.__ll_api.get_filtered_employee_list_for_voyage(rank,voyage)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
         return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
