@@ -4,6 +4,7 @@ from logic_layer.LLVoyages import LLVoyages
 from logic_layer.LLDestinations import LLDestinations
 from logic_layer.LLAirplanes import LLAirplanes
 from models.ModelAPI import ModelAPI
+from models.Employee import Employee
 
 
 class LLAPI:
@@ -36,6 +37,9 @@ class LLAPI:
     def get_all_voyage_list_by_period_list(self, start_date, end_date):
         return self.__ll_voyages.filter_all_voyages_by_period(start_date, end_date)
 
+    def get_all_voyage_list_by_airport(self, airport):
+        return self.__ll_voyages.filter_all_voyages_by_airport(airport)
+
     def get_employee_list_by_title(self, title):
         return self.__ll_employees.filter_all_employees_by_title(title)
 
@@ -53,10 +57,7 @@ class LLAPI:
         
     def get_employee_list_filtered_by_name(self, search_string):
         return self.__ll_employees.filter_employees_by_name(search_string)
-
-    def clear_airplane_lists(self):
-        self.__DLAPI.clear_airplane_lists()
-        
+   
     def get_pilot_list_sorted_by_airplane_type(self):
         return self.__ll_employees.sort_pilots_by_airplane_type()
     
@@ -66,3 +67,16 @@ class LLAPI:
     def get_work_schedule_list(self, employee):
         return self.__ll_employees.get_work_schedule_list(employee)
 
+    def overwrite_all_models(self,model):
+        check = self.__modelAPI.validate_edit_model(model)
+        if type(check).__name__ != "str":
+            if type(model).__name__ == "Employee":
+                return self.__ll_employees.overwrite_all_employees()
+            if type(model).__name__ == "Airplane":
+                return self.__ll_airplanes.overwrite_all_employees()
+            if type(model).__name__ == "Destination":
+                return self.__ll_destinations.overwrite_all_destinations()
+            if type(model).__name__ == "Voyage":
+                return self.__ll_voyages.overwrite_all_voyages()
+        else:
+            return check

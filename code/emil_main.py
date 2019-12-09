@@ -42,9 +42,9 @@ for thing in voyaes:
 
 #stuff.dl_voyages.append_voyage(voyaes[0])
 
-#stuff.dl_voyages.push_all_voyages(voyaes)
+#stuff.dl_voyages.overwrite_all_voyages(voyaes)
 
-#stuff.dl_voyages.push_all_voyages(voyaes)
+#stuff.dl_voyages.overwrite_all_voyages(voyaes)
 
 from datetime import date
 

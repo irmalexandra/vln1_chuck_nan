@@ -5,7 +5,6 @@ from models.Destination import Destination
 from models.AirplaneType import AirplaneType
 
 
-
 class ModelAPI():
     def __init__(self):
         self.model_dict = {"Airplane": Airplane,\
@@ -37,7 +36,7 @@ class ModelAPI():
         for key, value in validation_dict.items():
             check = model.handle_key_value(key, value)
             if not check:
-                return (edit_order_list[order_counter], check)
+                return edit_order_list[order_counter]
             order_counter += 1
         
         return check
@@ -51,7 +50,9 @@ class ModelAPI():
         for key, value in validation_dict.items():
             check = model.handle_key_value(key, value)
             if not check:
-                return (create_order_list[order_counter], check)
+                return create_order_list[order_counter]
             order_counter += 1
         
         return check       
+
+ 

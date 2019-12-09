@@ -55,7 +55,7 @@ class DLDestinations():
         destination_stream.close()
         return
 
-    def push_all_destinations(self, destination_list):
+    def overwrite_all_destinations(self, destination_list):
         # employee_file.write(new_emp_str)
         HEADER = "country,airport,flight time,distance,contact name,contact number\n"
         filestream = open("./repo/destinations_temp.csv", "w")

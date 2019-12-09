@@ -49,7 +49,7 @@ class DLEmployees():
 
         return all_crew_list
 
-    def push_all_employees(self, emp_list):
+    def overwrite_all_employees(self, emp_list):
         
         # employee_file.write(new_emp_str)
         HEADER = "id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"
@@ -60,9 +60,10 @@ class DLEmployees():
         filestream2.close()
         os.remove("./repo/employees.csv")
         os.rename("./repo/employees_temp.csv", "./repo/employees.csv")
-        return
+        return True
         
     def append_employee(self,employee):
+        '''Adds a new employee to the employee string'''
         employee_stream = open('./repo/employees.csv', 'a')
         emp_str = employee.raw_info()
         employee_stream.write(emp_str)

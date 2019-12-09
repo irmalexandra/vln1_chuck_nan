@@ -1,5 +1,9 @@
-from ui_layer.UIMain import UIMain
-newUI = UIMain()
+from models.Employee import Employee
+from models.Destination import Destination
 
-newUI.display_main_menu()
+newEmp = Employee()
+newDest = Destination()
 
+print(type(newDest).__name__)
+
+print(type(newEmp).__name__)

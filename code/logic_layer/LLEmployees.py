@@ -16,6 +16,7 @@ class LLEmployees:
         return self.__modelAPI.validate_edit_model(employee)
 
     def email_generator(self,name):
+        '''Makes a new e-mail address for a new employee'''
         name = (name.replace(" ",".")).lower()
         all_employees = self.__dl_api.pull_all_employees()
         all_existing_emails = [x.get_email() for x in all_employees]
@@ -37,16 +38,15 @@ class LLEmployees:
 
     def get_all_employee_list(self):
         ''' Pulls and returns a list of employee instances '''
-        return self.__dl_api.pull_all_employees()
+        self.__all_employee_list = self.__dl_api.pull_all_employees()
+        return self.__all_employee_list
 
-    def push_all_employees(self, all_employee_list):
+    def overwrite_all_employees(self):
         ''' Takes a list of employee instances and sends it to the DL '''
-        self.__dl_api.overwrite_all_employees(all_employee_list)
+        return self.__dl_api.overwrite_all_employees(self.__all_employee_list)
 
     def sort_all_employees_by_name(self):
-        all_employee_list = self.get_all_employee_list()
-
-        return sorted(all_employee_list, key=lambda employee: employee.get_name())
+        return sorted(self.get_all_employee_list(), key=lambda employee: employee.get_name())
 
     def get_name_dict(self):
         ''' Gets a list of employee instances and returns a dict where key is name and value is ssn '''
@@ -67,37 +67,35 @@ class LLEmployees:
             if search_string in name:
                 found_ssn_list.append(ssn)
 
-        self.__all_employee_list = self.get_all_employee_list()
-
-        for employee in self.__all_employee_list:
+        for employee in self.get_all_employee_list():
             if employee.get_ssn() in found_ssn_list:
                 found_employee_list.append(employee)
         return found_employee_list
 
     def get_one_employee(self, ssn):
-        self.__all_employee_list = self.get_all_employee_list()
-
-        for employee in self.__all_employee_list:
+        '''Shows information about one employee'''
+        for employee in self.get_all_employee_list():
             if employee.get_ssn() == ssn:
                 return employee
 
     def list_all_employees_by_date(self):
         pass
 
-    def filter_all_employees_by_availability(self):
+    def filter_all_employees_by_availability(self):        
+        '''Gets a list of all employees and returns a list of employees filtered by availability'''
         pass
 
     def filter_all_employees_by_title(self, title):
-        ''' Takes list of all employees and returns list of employees filtered by title from input '''
+        '''Gets a list of all employees and returns a list of employees filtered by title from input'''
 
         filter_list = []
-        employee_list = self.__dl_api.pull_all_employees()
-        for employee in employee_list:
+        for employee in self.get_all_employee_list():
             if employee.get_title() == title:
                 filter_list.append(employee)
         return filter_list
 
     def filter_pilots_by_airplane_type(self, airplane_type):
+        '''Gets a list of all pilots and returns a list of pilots filtered by airplane type'''
         pilot_list = self.sort_pilots_by_airplane_type()
         
         filter_list = []
@@ -107,24 +105,10 @@ class LLEmployees:
         return filter_list
 
     def sort_pilots_by_airplane_type(self):
-        ''' Gets a list of pilots and returns it sorted '''
+        '''Gets a list of pilots and returns it sorted'''
         title = "Pilot"
         pilot_list = self.filter_all_employees_by_title(title)
         return sorted(pilot_list, key=lambda employee: employee.get_licence())
-
-    def edit_employee(self, employee, input_tpl):
-        ''' Gets an instance and a tuple that holds a input flag and input string,
-            calls a set function depending on flag and returns a boolean '''
-
-        set_employee_info_dict = {0:employee.set_home_address, 
-                                  1:employee.set_home_number,
-                                  2:employee.set_mobile_number, 
-                                  3:employee.set_title, 
-                                  4:employee.set_rank}
-        success_check = set_employee_info_dict[input_tpl[0]](input_tpl[1])
-        if success_check:
-            self.__dl_api.overwrite_all_employees(self.__all_employee_list)
-        return success_check
 
     def get_work_schedule_list(self, employee):
         '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''

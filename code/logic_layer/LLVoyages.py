@@ -14,28 +14,31 @@ class LLVoyages:
         pass
 
     def get_all_voyage_list(self):
-        return self.__dl_api.pull_all_voyages()
+        self.__all_voyage_list = self.__dl_api.pull_all_voyages()
+        return self.__all_voyage_list
 
     def overwrite_all_voyages(self, voyage_list):
         return self.__dl_api.overwrite_all_voyages(voyage_list)
 
     def filter_all_empty_voyages(self):
         '''Takes a list of all voyage instances and returns a list of filtered voyage instances'''
-        self.__all_voyage_list = self.get_all_voyage_list() 
+        self.get_all_voyage_list() 
         empty_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if voyage.get_airplane_insignia == ".":
+            if voyage.get_airplane_insignia() == ".":
                 empty_voyage_list.append(voyage)
 
         return empty_voyage_list
 
     def filter_all_voyages_by_period(self, start_date, end_date):
-        start_year, start_month, start_day = start_date.split("-")
-        end_year, end_month, end_day = end_date.split("-")
-
-        start = datetime(start_year, start_month, start_day)
-        end = datetime(end_year, end_month, end_day)
+        '''Takes a list of all voyage instances and returns a list of voyages filteres by period'''
+        #start_day, start_month, start_year = start_date.split("-")
+        #end_day, end_month, end_year = end_date.split("-")
+        start = datetime.strptime(start_date,'%d-%m-%Y').date()
+        end = datetime.strptime(end_date,'%d-%m-%Y').date()
+        #start = datetime(start_year, start_month, start_day)
+        #end = datetime(end_year, end_month, end_day)
 
         self.__all_voyage_list = self.get_all_voyage_list() 
         period_voyage_list = []
@@ -45,28 +48,33 @@ class LLVoyages:
                 period_voyage_list.append(voyage)
         return period_voyage_list
         
-    def filter_all_voyages_by_destination(self, airport):
+    def filter_all_voyages_by_airport(self, airport):
 
         self.__all_voyage_list = self.get_all_voyage_list()
-        destination_voyage_list = []
+        airport_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if voyage.get_destination() == airport:
-                destination_voyage_list.append(voyage)
+            if voyage.get_return_flight_departing_from() == airport:
+                airport_voyage_list.append(voyage)
 
-        return destination_voyage_list
+        return airport_voyage_list
 
-    def duplicate_voyage(self, voyage, date_time):
-        destination = voyage.get_destination()
+    def create_voyage(self, destination, date_time):
         new_voyage = self.__modelAPI.get_model("Voyage")
 
         new_voyage.set_destination(destination)
         new_voyage.set_departing_flight_departure_date(date_time)
 
-        voyage.set_flight_numbers(self.generate_flight_numbers())
-        voyage.set_flight_times(self.calculate_flight_times(voyage, date_time))
+        new_voyage.set_flight_numbers(self.generate_flight_numbers())
+        new_voyage.set_flight_times(self.calculate_flight_times(new_voyage, date_time))
 
-        return self.__dl_api.append_voyage(voyage)
+        return self.__dl_api.append_voyage(new_voyage)
+
+
+    def duplicate_voyage(self, voyage, date_time):
+        '''Copies a voyage to another date'''
+        destination = voyage.get_destination()
+        return self.create_voyage(destination, date_time)
 
     def repeat_voyage(self, voyage, repeat_interval, end_date):
         date = voyage.get_departing_flight_departing_date()
@@ -78,7 +86,6 @@ class LLVoyages:
         pass
 
     def generate_flight_numbers(self):
-        from random import randint
         self.__all_voyage_list = self.get_all_voyage_list()
         existing_numbers = []
         for voyage in self.__all_voyage_list:
@@ -86,8 +93,7 @@ class LLVoyages:
             existing_numbers.append(int(voyage.get_return_flight_num().replace("NA","")))
 
         departing_number_int = max(existing_numbers)+ 1
-        existing_numbers.append(departing_number_int)
-        arriving_number_int = max(existing_numbers) + 1
+        arriving_number_int = max(existing_numbers) + 2
         arriving_number_str = str(arriving_number_int)
         departing_number_str = str(departing_number_int)
 
@@ -100,7 +106,6 @@ class LLVoyages:
 
 
     def calculate_flight_times(self,date,airport):
-        import datetime
         self.__all_voyage_list = self.get_all_voyage_list()
         destinations_list = self.__dl_api.pull_all_destinations()
         destinations_dict = dict()
@@ -117,8 +122,6 @@ class LLVoyages:
         return_flight_departure_date = departing_flight_arrival_date + datetime.timedelta(hours = 1)
         return_flight_arrival_date = return_flight_departure_date + datetime.timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
-    def calculate_flight_times(self):
-        pass
 
     def get_iso_format_date_time(self, date, time):
 
@@ -126,3 +129,23 @@ class LLVoyages:
         date = datetime.strptime(date,'%d-%m-%Y').date()
 
         return datetime.combine(date, time)
+         
+    def filter_available_employees(self, rank, voyage):
+
+        start_date = voyage.get_departing_flight_departing_date()
+        end_date = voyage.get_return_flight_arrival_date()
+
+        all_employee_list = self.__dl_api.pull_all_employees
+        self.get_all_voyage_list()
+        filter_rank_list = []
+        available_employee_list = []
+
+        voyages_in_date_range_list = self.filter_all_voyages_by_period(start_date, end_date)
+
+        for employee in all_employee_list:
+            if employee.get_rank() == rank:
+                filter_rank_list.append(employee)
+
+        #for employee in filter_rank_list:
+            #for voyage in voyages_in_date_range_list:    
+                #if employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())

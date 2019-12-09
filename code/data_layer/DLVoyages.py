@@ -71,13 +71,14 @@ class DLVoyages():
         return all_voyages_list[1:]
 
     def append_voyage(self, new_voyage):
+        '''Adds a new voyage to the voyage string'''
         voyage_stream = open('./repo/voyages.csv', 'a')
         voyage_str = new_voyage.raw_info()
         voyage_stream.write(voyage_str)
         voyage_stream.close()
         return
 
-    def push_all_voyages(self, voyage_list):
+    def overwrite_all_voyages(self, voyage_list):
         # employee_file.write(new_emp_str)
         HEADER = "departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,airplanessn,captainssn,copilotssn,fsmssn,fassns\n"
         filestream = open("./repo/voyages_temp.csv", "w")

@@ -60,7 +60,7 @@ class DLEmployees():
         
         return self.all_crew_list[1:]
 
-    def push_all_employees(self, emp_list):
+    def overwrite_all_employees(self, emp_list):
         #employee_file.write(new_emp_str)
         header = self.all_crew_list[0]
         raw_output = ""
@@ -84,7 +84,7 @@ class DLVoyages():
         filestream.closed
         return all_voyages_list[1:]
 
-    def push_all_voyages(self):
+    def overwrite_all_voyages(self):
         pass
 
 
@@ -100,7 +100,7 @@ class DLDestinations():
         filestream.closed
         return all_destinations_list[1:]
 
-    def push_all_destinations(self):
+    def overwrite_all_destinations(self):
         pass
 
 
@@ -116,7 +116,7 @@ class DLAirplanes():
         filestream.closed
         return all_airplanes_list[1:]
 
-    def push_all_airplanes(self):
+    def overwrite_all_airplanes(self):
         pass
 
 

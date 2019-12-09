@@ -43,15 +43,15 @@ class Employee():
         self.__edit_order_list = [
             'home address', 'home number', 'mobile number', "title", "rank"]
 
-        self.__edit_dict = {"Address": self.set_address,
-                            "Home Number": self.set_home_num,
-                            "Mobile Number": self.set_mobile_num, 
-                            "Title": self.set_title, 
-                            "Rank": self.set_rank, 
-                            "Licence": self.set_licence}
+        self.__edit_dict = {1: self.set_address,
+                            2: self.set_home_num,
+                            3: self.set_mobile_num, 
+                            4: self.set_title, 
+                            5: self.set_rank, 
+                            6: self.set_licence}
 
     def raw_info(self):
-        return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "\n"
+        return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "," + self.__licence + "\n"
 
     def __str__(self):
         return_str = "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nHome number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title,self.__rank)
@@ -139,12 +139,14 @@ class Employee():
 
     def set_title(self, new_title):
         self.__title = new_title
+        return True
 
     def get_rank(self):
         return self.__rank
 
     def set_rank(self, new_rank):
         self.__rank = new_rank
+        return True
 
     def get_licence(self):
         return self.__licence
@@ -159,55 +161,41 @@ class Employee():
         return self.__header_format_dict[header_flag]()
 
     def get_model_header_date_format(self):
-        return "{:20}{:15}{:20}{:20}{:10}".format("Name:",
-                                                    "SSN:",
-                                                    "Mobile Number:",
-                                                    "Title:",
-                                                    "Availability:")
+        return "{:10}{:22}{:15}{:18}{:15}{:42}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Availability:")
 
     def get_model_header_default_format(self):
-        return "{:<10}{:20}{:15}{:20}{:20}{:10}".format("Index: ",
-                                                          "Name:",
-                                                          "SSN:",
-                                                          "Address:",
-                                                          "Mobile Number:",
-                                                          "Title:")
+        return "{:10}{:22}{:17}{:19}{:20}{:34}".format("Index: ", "Name:", "SSN:", "Address:", "Mobile number:", "Title:")
 
     def get_model_header_aircraft_format(self):
-        return "{:20}{:15}{:20}{:20}{:10}{:10}".format("Name:",
-                                                         "SSN:",
-                                                         "Address:",
-                                                         "Mobile Number:",
-                                                         "Title:",
-                                                         "Licence:")
+        return "{:10}{:22}{:17}{:19}{:20}{:14}{:20}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
 
     def get_model_list_info(self, header_flag):
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-        returnObject = "{:20}{:15}{:20}{:20}{:10}                                        |\n".format(
+        returnObject = ("     {:22}{:15}{:18}{:15}{:42}|\n".format(
                                                      self.get_name(),
                                                      self.get_ssn(),
                                                      self.get_mobile_num(),
                                                      self.get_title(),
-                                                     "Missing availability")
+                                                     "availability"))
         return returnObject
 
     def get_model_list_default_info(self):
-        returnObject = ("{:20}{:15}{:20}{:20}{:10}|\n".format(
-                                                                      self.get_name(),
-                                                                      self.get_ssn(),
-                                                                      self.get_address(),
-                                                                      self.get_mobile_num(),
-                                                                      self.get_title()))
+        returnObject = ("     {:22}{:17}{:19}{:20}{:34}|\n".format(
+                                                            self.get_name(),
+                                                            self.get_ssn(),
+                                                            self.get_address(),
+                                                            self.get_mobile_num(),
+                                                            self.get_title()))
         return returnObject
 
     def get_model_list_aircraft_info(self):
-        returnObject = "{:20}{:15}{:20}{:20}{:10}{:10}|\n".format(
+        returnObject = ("     {:22}{:17}{:19}{:20}{:14}{:20}|\n".format(
                                                        self.get_name(),
                                                        self.get_ssn(),
                                                        self.get_address(),
                                                        self.get_mobile_num(),
                                                        self.get_title(),
-                                                       self.get_licence())
+                                                       self.get_licence()))
         return returnObject
