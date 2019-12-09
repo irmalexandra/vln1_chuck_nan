@@ -63,6 +63,7 @@ class DLEmployees():
         return
         
     def append_employee(self,employee):
+        '''Adds a new employee to the employee string'''
         employee_stream = open('./repo/employees.csv', 'a')
         emp_str = employee.raw_info()
         employee_stream.write(emp_str)

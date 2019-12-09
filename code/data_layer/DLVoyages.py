@@ -71,6 +71,7 @@ class DLVoyages():
         return all_voyages_list[1:]
 
     def append_voyage(self, new_voyage):
+        '''Adds a new voyage to the voyage string'''
         voyage_stream = open('./repo/voyages.csv', 'a')
         voyage_str = new_voyage.raw_info()
         voyage_stream.write(voyage_str)
