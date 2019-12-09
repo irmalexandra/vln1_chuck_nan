@@ -25,6 +25,7 @@ class Voyage():
         self.__copilot_ssn = copilot_ssn
         self.__fsm_ssn = fsm_ssn
         self.__fa_ssns = fa_ssns
+        self.__status = status
 
 
         self.__header_format_dict = {"default": self.get_model_header_default_format}
@@ -62,6 +63,12 @@ class Voyage():
 
     def get_create_validation_dict(self):
         return self.__create_validation_dict
+
+    def set_status(self, status):
+        self.__status = status
+
+    def get_status(self):
+        return self.__status
 
     def get_create_order_list(self):
         return self.__create_order_list
@@ -231,7 +238,7 @@ class Voyage():
                                                                    self.change_date_time_format(self.get_return_flight_arrival_date()),
                                                                    self.get_return_flight_num(),
                                                                    "staffed",
-                                                                   "status")
+                                                                   self.get_status())
     
     def set_flight_numbers(self, flight_number_tpl):
         self.__departing_flight_num = flight_number_tpl[0]
