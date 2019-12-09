@@ -92,7 +92,7 @@ class UIBaseFunctions():
     def print_model(self, model):
         print("-" * self.UI_DIVIDER_INT)
         print(model)
-        print("-" * self.UI_DIVIDER_INT)
+        # print("-" * self.UI_DIVIDER_INT)
         return self.check_return_value(model)
 
     def select_from_model_list(self, model_list):
@@ -100,13 +100,18 @@ class UIBaseFunctions():
         return_value = self.print_model(model_list[return_value-1])#-1 for human readability
         return self.check_return_value(return_value)
 
+    def select_from_crew_list(self, crew_list):
+        return_value = self.get_user_selection(crew_list, "index")
+        return_value = crew_list[return_value-1] # -1 for human readability
+        return (self.check_return_value(return_value))
+
     def print_edit_model_menu(self,menu_str, nav_dict, model, edit_order_list, llapi, return_menu_str="9. Return 0. Home"):
         while True:
             self.print_model(model)
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -
                                                    len(return_menu_str) - self.DEVIATION_INT), return_menu_str))
-            print("-" * self.UI_DIVIDER_INT)
+            # print("-" * self.UI_DIVIDER_INT)
             return_value = self.get_user_selection(nav_dict)
             if return_value != 9 and return_value != 0:
                 value_to_edit = edit_order_list[return_value-1] # -1 for human readability
@@ -126,3 +131,6 @@ class UIBaseFunctions():
                     print("Error, {} invalid!".format(check))
                     return 
     
+
+    def print_add_crew_results(self, employee):
+        print("Name: {}\nRank: {} \nAdded successfully to voyage".format(employee.get_name(), employee.get_rank()))

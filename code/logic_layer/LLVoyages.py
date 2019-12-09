@@ -44,7 +44,7 @@ class LLVoyages:
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if start <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()) or self.get_iso_format_date_time(voyage.get_departing_flight_departing_date()) <= end:
+            if start <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()) or self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= end:
                 period_voyage_list.append(voyage)
         return period_voyage_list
         
@@ -124,7 +124,10 @@ class LLVoyages:
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
     def get_iso_format_date_time(self, date='', time=''):
-
+                        #2019-05-08T09:00:40
+        # date_now = date.split("T")
+        # year,month,day = date_now[0].split("-")
+        # date(year,month,day)
         if time != "":
             time = datetime.strptime(time,'%H:%M:%S').time()
         if date != "":
@@ -134,7 +137,7 @@ class LLVoyages:
          
     def filter_available_employees(self, rank, voyage):
 
-        start_date = datime.strptime(voyage.get_departing_flight_departing_date())
+        start_date = datetime.strptime(voyage.get_departing_flight_departing_date())
         end_date = voyage.get_return_flight_arrival_date()
 
         all_employee_list = self.__dl_api.pull_all_employees

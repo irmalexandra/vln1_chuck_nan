@@ -23,15 +23,15 @@ class LLAirplanes:
     def create_airplane(self, airplane, airplane_types,insignia):
         '''Gets a list of airplane instances, checks if user created instance exists in list, returns boolean and instance'''
         self.__all_airplane_list = self.get_all_airplane_list()
-        existing_airplanes_list = [x.get_name() for x in self.__all_airplane_list]
-        if airplane.get_name() not in existing_airplanes_list:
+        existing_airplanes_list = [x.get_insignia() for x in self.__all_airplane_list]
+        if airplane.get_insignia() not in existing_airplanes_list:
             existing_airplane_types = airplane_types
             airplane_make = airplane.get_make()
             airplane_model = airplane.get_model()
             
             for info in existing_airplane_types:
                 if info.get_make() == airplane_make and info.get_model() == airplane_model:
-                    airplane.set_max_seats(info.get_capacity())
+                    airplane.set_capacity(info.get_capacity())
                     self.__dl_api.create_airplane(airplane)
 
                     return  airplane,True
