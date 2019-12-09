@@ -80,3 +80,6 @@ class LLAPI:
                 return self.__ll_voyages.overwrite_all_voyages()
         else:
             return check
+
+    def add_crew_member_to_voyage(self):
+        return 

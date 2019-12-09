@@ -44,12 +44,22 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_selected_voyage_menu(self, voyage):
-        nav_dict = {1: self.get_add_crew_voyage_menu,
-                    2: self.duplicate_voyage,
-                    3: self.repeat_voyage,
+        nav_dict = {1: self.duplicate_voyage,
+                    2: self.repeat_voyage,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        voyage_menu = "1. Add crew 2. Duplicate 3. Repeat"
+        voyage_menu = "1. Duplicate 2. Repeat"
+        return_value = self.__ui_base_functions.print_menu(
+            voyage_menu, nav_dict, voyage)
+        return self.__ui_base_functions.check_return_value(return_value)
+
+    def get_selected_voyage_empty_menu(self, voyage):
+        nav_dict = {1: self.duplicate_voyage,
+                    2: self.repeat_voyage,
+                    3: self.get_add_crew_voyage_menu,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        voyage_menu = "1. Duplicate 2. Repeat 3. Add Crew"
         return_value = self.__ui_base_functions.print_menu(
             voyage_menu, nav_dict, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -58,7 +68,7 @@ class UIVoyages():
         nav_dict = {1: self.get_all_pilots_by_airplane,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        edit_menu = "Add: 1. Pilot 2. Co-Pilot 3. Flight Service Manager 4. Flight Attendant"
+        edit_menu = "Add: 1. Captain 2. Co-Pilot 3. Flight Service Manager 4. Flight Attendant"
         return_value = self.__ui_base_functions.print_menu(
             edit_menu, nav_dict, voyage)
         if return_value != None and return_value != 0:
@@ -72,8 +82,8 @@ class UIVoyages():
         voyage_menu = "1. Select crew member"
         return_value = self.__ui_base_functions.print_menu(voyage_menu, nav_dict, crew_list)
         if return_value != None and return_value != 0:
-            print("SUCCESS!")
-            return_value = self.__ll_api.add_crew_member_to_voyage(return_value, voyage)
+            self.__ui_base_functions.print_add_crew_results(return_value)
+            return_value = self.__ll_api.add_crew_member_to_voyage()# MUNA AÐ ADD CREW SEINNA
         return self.__ui_base_functions.check_return_value(return_value)
 
     # All list functions
@@ -89,7 +99,6 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_voyages_by_airport(self):
-        print("ALL VOYAGES BY AIRPORT")
         airport = self.__ui_base_functions.get_user_input("airport")
         header_flag = "default"
         voyage_list = self.__ll_api.get_all_voyage_list_by_airport(airport)
@@ -101,9 +110,10 @@ class UIVoyages():
 
     def get_all_voyages_by_date(self):
         print("ALL VOYAGES BY DATE")
-        date = self.__ui_base_functions.get_user_input("date")
+        start_date = self.__ui_base_functions.get_user_input("start date DD-MM-YYYY")
+        end_date = self.__ui_base_functions.get_user_input("end date DD-MM-YYYY")
         header_flag = "default"
-        voyage_list = self.__ll_api.get_all_voyage_list()
+        voyage_list = self.__ll_api.get_all_voyage_list_by_period_list(start_date, end_date)
         return_value = self.__ui_base_functions.print_model_list(
             voyage_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
@@ -113,11 +123,11 @@ class UIVoyages():
     def get_all_empty_voyages(self):
         print("ALL VOYAGES EMPTY VOYAGES")
         header_flag = "default"
-        voyage_list = self.__ll_api.get_all_voyage_list()
+        voyage_list = self.__ll_api.get_all_empty_voyage_list()
         return_value = self.__ui_base_functions.print_model_list(
             voyage_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
-            return_value = self.get_select_from_voyage_list_menu(voyage_list)
+            return_value = self.get_selected_voyage_empty_menu(voyage_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
 
@@ -128,7 +138,7 @@ class UIVoyages():
         crew_list = self.__ll_api.get_employee_list_by_title(title)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_add_crew_list_menu(crew_list, voyage)
+        return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
     
     # All Special functions

@@ -57,9 +57,12 @@ class DLAPI():
 
     def create_airplane(self, airplane):
 <<<<<<< HEAD
+<<<<<<< HEAD
         '''Adds a new airplane to the list of airplanes'''
         self.__dl_airplanes.append_airplane(airplane)
 =======
+=======
+>>>>>>> yay
         return self.__dl_airplanes.append_airplane(airplane)
 >>>>>>> oi
 
