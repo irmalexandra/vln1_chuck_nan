@@ -37,35 +37,36 @@ class DLVoyages():
             return
         all_voyages_list = []
         for line in filestream:
-            check_list = []
             line_list = line.strip().split(",")
-            new_voyage = self.__modelAPI.get_model('Voyage')
-            check_list.append(new_voyage.set_departing_flight_num(
-                line_list[DLVoyages.DEPARTING_FLIGHT_NUM]))
-            check_list.append(new_voyage.set_return_flight_num(
-                line_list[DLVoyages.RETURNING_FLIGHT_NUM]))
-            check_list.append(new_voyage.set_departing_flight_departing_from(
-                line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_FROM]))
-            check_list.append(new_voyage.set_departing_flight_departure_date(
-                line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_DATE]))
-            check_list.append(new_voyage.set_departing_flight_arrival_date(
-                line_list[DLVoyages.DEPARTING_FLIGHT_ARRIVAL_DATE]))
-            check_list.append(new_voyage.set_return_flight_departing_from(
-                line_list[DLVoyages.RETURNING_FLIGHT_DEPARTING_FROM]))
-            check_list.append(new_voyage.set_return_flight_departure_date(
-                line_list[DLVoyages.RETURNING_FLIGHT_DEPARTURE_DATE]))
-            check_list.append(new_voyage.set_return_flight_arrival_date(
-                line_list[DLVoyages.RETURNING_FLIGHT_ARRIVAL_DATE]))
-            check_list.append(new_voyage.set_airplane_insignia(line_list[DLVoyages.airplane_insignia]))
-            check_list.append(new_voyage.set_captain_ssn(line_list[DLVoyages.CAPTAIN_SSN]))
-            check_list.append(new_voyage.set_copilot_ssn(line_list[DLVoyages.COPILOT_SSN]))
-            check_list.append(new_voyage.set_fsm_ssn(line_list[DLVoyages.FSM_SSN]))
+            if len(line_list) == 13:
+                check_list = []
+                new_voyage = self.__modelAPI.get_model('Voyage')
+                check_list.append(new_voyage.set_departing_flight_num(
+                    line_list[DLVoyages.DEPARTING_FLIGHT_NUM]))
+                check_list.append(new_voyage.set_return_flight_num(
+                    line_list[DLVoyages.RETURNING_FLIGHT_NUM]))
+                check_list.append(new_voyage.set_departing_flight_departing_from(
+                    line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_FROM]))
+                check_list.append(new_voyage.set_departing_flight_departure_date(
+                    line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_DATE]))
+                check_list.append(new_voyage.set_departing_flight_arrival_date(
+                    line_list[DLVoyages.DEPARTING_FLIGHT_ARRIVAL_DATE]))
+                check_list.append(new_voyage.set_return_flight_departing_from(
+                    line_list[DLVoyages.RETURNING_FLIGHT_DEPARTING_FROM]))
+                check_list.append(new_voyage.set_return_flight_departure_date(
+                    line_list[DLVoyages.RETURNING_FLIGHT_DEPARTURE_DATE]))
+                check_list.append(new_voyage.set_return_flight_arrival_date(
+                    line_list[DLVoyages.RETURNING_FLIGHT_ARRIVAL_DATE]))
+                check_list.append(new_voyage.set_airplane_insignia(line_list[DLVoyages.airplane_insignia]))
+                check_list.append(new_voyage.set_captain_ssn(line_list[DLVoyages.CAPTAIN_SSN]))
+                check_list.append(new_voyage.set_copilot_ssn(line_list[DLVoyages.COPILOT_SSN]))
+                check_list.append(new_voyage.set_fsm_ssn(line_list[DLVoyages.FSM_SSN]))
 
-            flight_attendant_ssns_list = line_list[DLVoyages.FAS_SSN].split(":")
+                flight_attendant_ssns_list = line_list[DLVoyages.FAS_SSN].split(":")
 
-            check_list.append(new_voyage.set_fa_ssns(flight_attendant_ssns_list))
-            if False not in check_list:
-                all_voyages_list.append(new_voyage)
+                check_list.append(new_voyage.set_fa_ssns(flight_attendant_ssns_list))
+                if False not in check_list:
+                    all_voyages_list.append(new_voyage)
         filestream.closed
         return all_voyages_list[1:]
 
