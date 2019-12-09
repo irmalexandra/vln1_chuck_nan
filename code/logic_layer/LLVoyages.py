@@ -123,17 +123,14 @@ class LLVoyages:
         return_flight_arrival_date = return_flight_departure_date + datetime .timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
-    def get_iso_format_date_time(self, date='', time=''):
-                        #2019-05-08T09:00:40
-        # date_now = date.split("T")
-        # year,month,day = date_now[0].split("-")
-        # date(year,month,day)
-        if time != "":
-            time = datetime.strptime(time,'%H:%M:%S').time()
-        if date != "":
-            date = datetime.strptime(date,'%d-%m-%Y').date()
+    def get_iso_format_date_time(self, date=''):
 
-        return date, time
+        if date.find("T") == -1:
+            date = datetime.strptime(date,'%d-%m-%Y')
+        else:
+            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+
+        return date
          
     def filter_available_employees(self, rank, voyage):
 
