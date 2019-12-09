@@ -61,8 +61,7 @@ class DLVoyages():
             check_list.append(new_voyage.set_copilot_ssn(line_list[DLVoyages.COPILOT_SSN]))
             check_list.append(new_voyage.set_fsm_ssn(line_list[DLVoyages.FSM_SSN]))
 
-            flight_attendant_ssns_list = line_list[DLVoyages.FAS_SSN].split(
-                "-")
+            flight_attendant_ssns_list = line_list[DLVoyages.FAS_SSN].split(":")
 
             check_list.append(new_voyage.set_fa_ssns(flight_attendant_ssns_list))
             if False not in check_list:
