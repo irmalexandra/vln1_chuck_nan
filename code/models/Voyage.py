@@ -196,7 +196,11 @@ class Voyage():
             else:
                 valid_ssns.append(ssn)
         self.__fa_ssns = valid_ssns
+<<<<<<< HEAD
+        
+=======
         #return self.__models_validation.validate_employee_ssn(ssn)
+>>>>>>> edab2dcf6f01fa2a169fc022b7d036cd23a58ea2
 
     def get_voyage_employee_ssn(self, rank):
         return self.__voyage_employee_ssn_dict[rank]()
