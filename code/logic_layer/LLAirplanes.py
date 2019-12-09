@@ -73,7 +73,7 @@ class LLAirplanes:
                         airplane.set_availability("At destination")
 
                     elif ret_flight_start <= current_date <= ret_flight_end:
-                        airplane.set_flight_number(voyage.set_return_flight_num())
+                        airplane.set_flight_number(voyage.get_return_flight_num())
                         airplane.set_availability("In air, returning")
 
         
