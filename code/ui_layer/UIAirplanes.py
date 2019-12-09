@@ -14,9 +14,9 @@ class UIAirplanes():
     
     def get_airplanes_sub_menu(self):
             nav_dict = {1:self.create_airplane,
-             2:self.display_all_airplanes,
-              9:self.__ui_base_functions.back,
-              0:self.__ui_base_functions.home}
+                        2:self.display_all_airplanes,
+                        9:self.__ui_base_functions.back,
+                        0:self.__ui_base_functions.home}
             airplane_menu = "1. Create 2. Get all"
             return_value = self.__ui_base_functions.print_menu(airplane_menu,nav_dict)
             return self.__ui_base_functions.check_return_value(return_value)
