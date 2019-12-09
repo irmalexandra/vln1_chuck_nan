@@ -238,7 +238,7 @@ class Voyage():
                                                                    self.change_date_time_format(self.get_return_flight_arrival_date()),
                                                                    self.get_return_flight_num(),
                                                                    "staffed",
-                                                                   "status")
+                                                                   self.get_status())
     
     def set_flight_numbers(self, flight_number_tpl):
         self.__departing_flight_num = flight_number_tpl[0]
