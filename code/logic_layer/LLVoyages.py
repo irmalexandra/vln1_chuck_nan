@@ -44,7 +44,7 @@ class LLVoyages:
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if start <= voyage.get_return_flight_arrival_date() or voyage.get_departing_flight_departing_date() <= end:
+            if start <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()) or self.get_iso_format_date_time(voyage.get_departing_flight_departing_date()) <= end:
                 period_voyage_list.append(voyage)
         return period_voyage_list
         
@@ -120,15 +120,17 @@ class LLVoyages:
         flight_time = destinations_dict[airport]
         departing_flight_arrival_date = current_time + datetime.timedelta(hours =flight_time)
         return_flight_departure_date = departing_flight_arrival_date + datetime.timedelta(hours = 1)
-        return_flight_arrival_date = return_flight_departure_date + datetime.timedelta(hours = flight_time)
+        return_flight_arrival_date = return_flight_departure_date + datetime .timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
-    def get_iso_format_date_time(self, date, time):
+    def get_iso_format_date_time(self, date='', time=''):
 
-        time = datetime.strptime(time,'%H:%M:%S').time()
-        date = datetime.strptime(date,'%d-%m-%Y').date()
+        if time != "":
+            time = datetime.strptime(time,'%H:%M:%S').time()
+        if date != "":
+            date = datetime.strptime(date,'%d-%m-%Y').date()
 
-        return datetime.combine(date, time)
+        return date, time
          
     def filter_available_employees(self, rank, voyage):
 
@@ -146,6 +148,6 @@ class LLVoyages:
             if employee.get_rank() == rank:
                 filter_rank_list.append(employee)
 
-        #for employee in filter_rank_list:
-            #for voyage in voyages_in_date_range_list:    
-                #if employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())
+        for employee in filter_rank_list:
+            for voyage in voyages_in_date_range_list:    
+                if employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())
