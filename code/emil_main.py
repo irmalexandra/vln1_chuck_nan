@@ -84,10 +84,13 @@ modelAPI = ModelAPI()
 voyage = LLVoyages(stuff,modelAPI)  
 
 #print(voyage.calculate_flight_times("2019-12-27T23:40:00","Tingwall"))
-print("----------------------------------------------------------------------")
+
 voyage.get_all_voyage_list()
 
-
+other_thing = LLVoyages(stuff,modelAPI)
+real_voyages = other_thing.get_all_voyage_list()
+print("----------------------------------------------------------------------")
+for thing in real_voyages:
+    print(thing.get_status())
 voyaes = stuff.pull_all_voyages()
-for thing in voyaes:
-    print(thing.raw_info())
+
