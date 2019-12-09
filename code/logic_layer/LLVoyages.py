@@ -139,9 +139,13 @@ class LLVoyages:
 
         all_employee_list = self.__dl_api.pull_all_employees
         self.get_all_voyage_list()
-        filter_rank_list = []
+        if rank == "Captain" or rank == "Copilot":
+            all_airplane_list = self.__dl_api.pull_all_airplanes()
+
+        filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
+        
         available_employee_list = []
-        available_pilot_list = []
+        final_employee_list = []
 
         voyages_in_date_range_list = self.filter_all_voyages_by_period(start_date, end_date)
 
@@ -156,14 +160,15 @@ class LLVoyages:
                 else:
                     if employee_ssn != voyage_ssn:
                         available_employee_list.append(employee)
-        if rank:
-            pass
+        
+        for employee in available_employee_list:
+            for airplane in all_airplane_list:
+                airplane_type = "NA" + airplane.get_make() + airplane.get_model()
+                if employee.get_licence() == airplane_type:
+                    final_employee_list.append(employee)
 
-
-        #for employee in filter_rank_list:
-            #for voyage in voyages_in_date_range_list:    
-                #if employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())
-
+        return final_employee_list
+            
 
     def check_status(self, voyage_list):
         current_date = datetime.now().replace(microsecond=0).isoformat()
