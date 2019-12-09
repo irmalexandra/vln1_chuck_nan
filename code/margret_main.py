@@ -67,12 +67,3 @@
 
 
 ###################################################################
-
-# ssn = '0510922799'
-# if ssn[6] == '-':
-#     ssn = ssn.strip(ssn[6])
-#     print(ssn)
-
-name = 'Faroe Islands'
-name = name.strip(" ")
-print(name)

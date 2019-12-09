@@ -16,7 +16,7 @@ LETTERS = string.ascii_letters
 ID = 0
 
 
-crew_stream = open("crew.csv", "r", encoding="UTF-8")
+crew_stream = open("Crew.csv", "r", encoding="UTF-8")
 employee_file = open ("employees_temp.csv", "a", encoding="UTF-8")
 
 def generate_address():

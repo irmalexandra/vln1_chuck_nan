@@ -1,24 +1,20 @@
+import os
+clear = lambda: os.system('cls') #on Windows System
+
+
 from logic_layer.LLAPI import LLAPI
 from models.ModelAPI import ModelAPI
-from ui_layer import UIBaseFunctions
 from ui_layer.UIBaseFunctions import UIBaseFunctions
 from ui_layer.UIEmployees import UIEmployees
 from ui_layer.UIVoyages import UIVoyages
 from ui_layer.UIDestinations import UIDestinations
 from ui_layer.UIAirplanes import UIAirplanes
+import os
 
 import string
 
-
 class UIMain():
-
-    LINE_LEN = 88
-    T_LEN = 18
-    TRUE_LEN = LINE_LEN + 2 * T_LEN
-    UI_DIVIDER_INT = TRUE_LEN
-    distinguisher = "{}\n{}\n\n".format("_"*TRUE_LEN, "_"*TRUE_LEN)
     RETURN_MENU_STR = "0. Exit"
-    DEVIATION_INT = 2
 
     def __init__(self):
         self.__LLAPI = LLAPI()
@@ -33,30 +29,16 @@ class UIMain():
         self.__ui_airplanes = UIAirplanes(
             self.__LLAPI, self.__modelAPI, self.__ui_base_functions)
 
-    def print_nan_airlines(self):
-        print(UIMain.distinguisher)
-        print(self.T_LEN*" " + "███╗   ██╗ █████╗ ███╗   ██╗     █████╗ ██╗██████╗ ██╗     ██╗███╗   ██╗███████╗███████╗")
-        print(self.T_LEN*" " + "████╗  ██║██╔══██╗████╗  ██║    ██╔══██╗██║██╔══██╗██║     ██║████╗  ██║██╔════╝██╔════╝")
-        print(self.T_LEN*" " + "██╔██╗ ██║███████║██╔██╗ ██║    ███████║██║██████╔╝██║     ██║██╔██╗ ██║█████╗  ███████╗")
-        print(self.T_LEN*" " + "██║╚██╗██║██╔══██║██║╚██╗██║    ██╔══██║██║██╔══██╗██║     ██║██║╚██╗██║██╔══╝  ╚════██║")
-        print(self.T_LEN*" " + "██║ ╚████║██║  ██║██║ ╚████║    ██║  ██║██║██║  ██║███████╗██║██║ ╚████║███████╗███████║")
-        print(self.T_LEN*" " + "╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝    ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝")
-        print(UIMain.distinguisher, end="")
-
     def display_main_menu(self):
         while True:
-            nav_dict = {1: self.__ui_employees.display_employee_sub_menu, 2: self.__ui_voyages.display_voyage_sub_menu,
-                        3: self.__ui_destinations.display_destination_sub_menu, 4: self.__ui_airplanes.display_airplanes_sub_menu, 0: self.__ui_base_functions.exit_program}
-            self.print_nan_airlines()
+            clear()
+            nav_dict = {1: self.__ui_employees.get_employee_sub_menu,
+                        2: self.__ui_voyages.get_voyage_sub_menu,
+                        3: self.__ui_destinations.get_destination_sub_menu,
+                        4: self.__ui_airplanes.get_airplanes_sub_menu,
+                        0: self.__ui_base_functions.exit_program}
+            self.__ui_base_functions.print_nan_airlines()
             main_menu = "1. Employees 2. Voyages 3. Destinations 4. Airplanes"
-            #print("{}{}".format(true_menu, " " * (UIMain.TRUE_LEN - len(true_menu)-1)))
-            print("-"*self.UI_DIVIDER_INT)
-            print("|{}{}{}|".format(main_menu, " "*(self.UI_DIVIDER_INT -
-                                                    len(main_menu)-len(self.RETURN_MENU_STR)-self.DEVIATION_INT), self.RETURN_MENU_STR))
-            print("-"*self.UI_DIVIDER_INT)
-            choice = int(input("Input: "))
-            try:
-                choice = nav_dict[choice]()
+            return_value = self.__ui_base_functions.print_menu(main_menu, nav_dict, None, self.RETURN_MENU_STR)
 
-            except KeyError:
-                print("Invalid input! try again")
+   

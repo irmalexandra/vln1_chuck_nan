@@ -1,39 +1,41 @@
 
 class LLAirplanes:
-    MAKE = 1
-    MODEL = 2
-    CAPACITY = 3
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
-        self.__existing_airplanes = []
+        self.__all_airplane_list = []
 
-    def validate_airplane(self):
-        pass
+    def validate_airplane(self, airplane):
+        ''' Gets airplane instance and returns a boolean '''
+        return self.__modelAPI.validate_model(airplane)
 
-    def get_all_airplanes(self):
+    def get_all_airplane_list(self):
+        ''' Gets a list of instances of airplanes and returns it '''
         return self.__dl_api.pull_all_airplanes()
 
-    def pull_airplane_types(self):
+    def get_airplane_type_list(self):
+        ''' Gets a list of instances of airplane types and returns it '''
         return self.__dl_api.pull_all_airplane_types()
     
     def create_airplane(self, airplane, airplane_types,insignia):
+        ''' Gets a list of airplane instances, checks if user created instance exists in list, returns boolean and instance '''
+        self.__all_airplane_list = self.get_all_airplane_list()
+        existing_airplanes_list = [x.get_name() for x in self.__all_airplane_list]
+        if airplane.get_name() not in existing_airplanes_list:
+            existing_airplane_types = airplane_types
+            airplane_make = airplane.get_make()
+            airplane_model = airplane.get_model()
+            
+            for info in existing_airplane_types:
+                if info.get_make() == airplane_make and info.get_model() == airplane_model:
+                    airplane.set_max_seats(info.get_capacity())
+                    self.__dl_api.create_airplane(airplane)
 
-        self.__existing_airplanes = self.get_all_airplanes()
-        print("idk fam ", self.__existing_airplanes,"<-------")
-        existing_airplanes_list = [x.get_name() for x in self.__existing_airplanes]
-        existing_airplane_types = airplane_types
-        airplane_make = airplane.get_make()
-        airplane_model = airplane.get_model()
-        #need to see if plane already exist or na!
-        for info in existing_airplane_types:
-            info_list = info.split(",")
+                    return  airplane,True
+        return airplane,False
 
-            if info_list[self.MAKE] == airplane_make and info_list[self.MODEL] == airplane_model:
-                airplane.set_max_seats(info_list[self.CAPACITY])
-                self.__dl_api.create_airplane(airplane)
-
-                return  airplane
+    def overwrite_all_airplanes(self, airplane_list):
+        return self.__dl_api.overwrite_all_airplanes(airplane_list)
 
 
         

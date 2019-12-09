@@ -278,8 +278,8 @@ class Airplane{
   
 }
 
-Employee -up-|> FlightAttendant
-Employee -up-|> Pilot
+FlightAttendant -down-|> Employee
+Pilot -down-|> Employee
 FlightAttendant -up- Voyage
 Pilot -up- Voyage
 Destination *-left- Voyage

@@ -28,30 +28,28 @@ class DLEmployees():
             print("employee data files not found")
             return
 
-        self.all_crew_list = []
+        all_crew_list = []
         for line in filestream:
+            check_list = []
             line_list = line.strip().split(",")
-            if line_list[DLEmployees.TITLE] == 'Pilot':
-                new_emp = self.__modelAPI.get_model('Pilot')
-                new_emp.set_licence(line_list[DLEmployees.LICENSE])
-            else:
-                new_emp = self.__modelAPI.get_model('FlightAttendant')
-
-            new_emp.set_ssn(line_list[DLEmployees.SSN])
-            new_emp.set_name(line_list[DLEmployees.NAME])
-            new_emp.set_address(line_list[DLEmployees.ADDRESS])
-            new_emp.set_home_num(line_list[DLEmployees.HOME_NUMBER])
-            new_emp.set_mobile_num(line_list[DLEmployees.MOBILE_NUBER])
-            new_emp.set_email(line_list[DLEmployees.EMAIL])
-            new_emp.set_rank(line_list[DLEmployees.RANK])
-            new_emp.set_title(line_list[DLEmployees.TITLE])
-
-            self.all_crew_list.append(new_emp)
+            new_emp = self.__modelAPI.get_model('Employee')
+            
+            check_list.append(new_emp.set_ssn(line_list[DLEmployees.SSN]))
+            check_list.append(new_emp.set_name(line_list[DLEmployees.NAME]))
+            check_list.append(new_emp.set_address(line_list[DLEmployees.ADDRESS]))
+            check_list.append(new_emp.set_home_num(line_list[DLEmployees.HOME_NUMBER]))
+            check_list.append(new_emp.set_mobile_num(line_list[DLEmployees.MOBILE_NUBER]))
+            check_list.append(new_emp.set_email(line_list[DLEmployees.EMAIL]))
+            check_list.append(new_emp.set_rank(line_list[DLEmployees.RANK]))
+            check_list.append(new_emp.set_title(line_list[DLEmployees.TITLE]))
+            check_list.append(new_emp.set_licence(line_list[DLEmployees.LICENSE]))
+            if False not in check_list:
+                all_crew_list.append(new_emp)
         filestream.close()
 
-        return self.all_crew_list[1:]
+        return all_crew_list
 
-    def push_all_employees(self, emp_list):
+    def overwrite_all_employees(self, emp_list):
         
         # employee_file.write(new_emp_str)
         HEADER = "id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"

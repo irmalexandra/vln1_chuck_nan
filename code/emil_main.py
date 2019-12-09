@@ -42,4 +42,47 @@ for thing in voyaes:
 
 #stuff.dl_voyages.append_voyage(voyaes[0])
 
-#stuff.dl_voyages.push_all_voyages(voyaes)
+#stuff.dl_voyages.overwrite_all_voyages(voyaes)
+
+#stuff.dl_voyages.overwrite_all_voyages(voyaes)
+
+from datetime import date
+
+work_year = 2018
+work_day = 5
+work_month = 3
+work = date(work_year,work_month,work_day)
+employee = ["Derpster","Pilot","Divorced", work]
+print("---------------------------------")
+for info in employee:
+    print(info)
+print("----------------------------------")
+today = date.today()
+tomorrow = date(2019,12,8)
+
+print(today - date(2014,5,3))
+
+
+print(date.today())
+
+print(tomorrow - today)
+print("Date from:")
+#range_high = date(int(input("Year: ")),int(input("Month: ")),int(input("Day: ")))
+range_past= date(2019,12,1)
+print("Date to:")
+range_future = date(2019,12, 11)
+
+print(range_future >= today >= range_past)
+print(range_past <= today <= range_future)
+
+print(date(1,1,1) < date(1,1,2))
+
+
+print(date(1,1,1) < date(1,1,2))
+
+from logic_layer.LLVoyages import LLVoyages
+from models.ModelAPI import ModelAPI
+modelAPI = ModelAPI()
+voyage = LLVoyages(stuff,modelAPI)  
+
+print(voyage.calculate_flight_times("2019-12-27T23:40:00","Tingwall"))
