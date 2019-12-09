@@ -44,7 +44,7 @@ class LLVoyages:
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if start <= voyage.get_return_flight_arrival_date() or voyage.get_departing_flight_departing_date() <= end:
+            if start <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()) or self.get_iso_format_date_time(voyage.get_departing_flight_departing_date()) <= end:
                 period_voyage_list.append(voyage)
         return period_voyage_list
         
@@ -120,19 +120,21 @@ class LLVoyages:
         flight_time = destinations_dict[airport]
         departing_flight_arrival_date = current_time + datetime.timedelta(hours =flight_time)
         return_flight_departure_date = departing_flight_arrival_date + datetime.timedelta(hours = 1)
-        return_flight_arrival_date = return_flight_departure_date + datetime.timedelta(hours = flight_time)
+        return_flight_arrival_date = return_flight_departure_date + datetime .timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
-    def get_iso_format_date_time(self, date, time):
+    def get_iso_format_date_time(self, date='', time=''):
 
-        time = datetime.strptime(time,'%H:%M:%S').time()
-        date = datetime.strptime(date,'%d-%m-%Y').date()
+        if time != "":
+            time = datetime.strptime(time,'%H:%M:%S').time()
+        if date != "":
+            date = datetime.strptime(date,'%d-%m-%Y').date()
 
-        return datetime.combine(date, time)
+        return date, time
          
     def filter_available_employees(self, rank, voyage):
 
-        start_date = voyage.get_departing_flight_departing_date()
+        start_date = datime.strptime(voyage.get_departing_flight_departing_date())
         end_date = voyage.get_return_flight_arrival_date()
 
         all_employee_list = self.__dl_api.pull_all_employees
