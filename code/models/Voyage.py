@@ -192,9 +192,8 @@ class Voyage():
 
     def set_fa_ssns(self, new):
         if new != ".":
-            ssns = new.split(":")
             valid_ssns = []
-            for ssn in ssns:
+            for ssn in new:
                 if self.__models_validation.validate_employee_ssn(ssn):
                     valid_ssns.append(ssn)
             self.__fa_ssns = valid_ssns
