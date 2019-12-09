@@ -168,6 +168,7 @@ class Voyage():
         return self.__fsm_ssn
 
     def set_fsm_ssn(self, new):
+        new_ssns = new.split(":")
         if new != ".":
             if self.__models_validation.validate_employee_ssn(new):
                 self.__fsm_ssn = new
@@ -179,10 +180,11 @@ class Voyage():
 
     def set_fa_ssns(self, new):
         if new != ".":
+            ssns = new.split(":")
             valid_ssns = []
-            for emp_ssn in new:
-                if self.__models_validation.validate_employee_ssn(emp_ssn):
-                    valid_ssns.append(emp_ssn)
+            for ssn in ssns:
+                if self.__models_validation.validate_employee_ssn(ssn):
+                    valid_ssns.append(ssn)
             self.__fa_ssns = valid_ssns
 
     def get_voyage_employee_ssn(self, rank):
