@@ -60,7 +60,7 @@ class DLEmployees():
         filestream2.close()
         os.remove("./repo/employees.csv")
         os.rename("./repo/employees_temp.csv", "./repo/employees.csv")
-        return
+        return True
         
     def append_employee(self,employee):
         employee_stream = open('./repo/employees.csv', 'a')

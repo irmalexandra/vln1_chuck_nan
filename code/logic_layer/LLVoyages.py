@@ -45,16 +45,16 @@ class LLVoyages:
                 period_voyage_list.append(voyage)
         return period_voyage_list
         
-    def filter_all_voyages_by_destination(self, airport):
+    def filter_all_voyages_by_airport(self, airport):
 
         self.__all_voyage_list = self.get_all_voyage_list()
-        destination_voyage_list = []
+        airport_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if voyage.get_destination() == airport:
-                destination_voyage_list.append(voyage)
+            if voyage.get_return_flight_departing_from() == airport:
+                airport_voyage_list.append(voyage)
 
-        return destination_voyage_list
+        return airport_voyage_list
 
     def create_voyage(self, destination, date_time):
         new_voyage = self.__modelAPI.get_model("Voyage")

@@ -23,12 +23,12 @@ class UIVoyages():
 
     def get_voyage_search_menu(self):
         ''' Print the search menu of voyage sub menu '''
-        nav_dict = {1: self.get_all_voyages_by_destination,
+        nav_dict = {1: self.get_all_voyages_by_airport,
                     2: self.get_all_voyages_by_date,
                     3: self.get_all_empty_voyages,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        voyage_menu = "Search: 1. By Destination 2. By Period 3. By Empty Voyages"
+        voyage_menu = "Search: 1. By Airport 2. By Period 3. By Empty Voyages"
         return_value = self.__ui_base_functions.print_menu(
             voyage_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -66,11 +66,11 @@ class UIVoyages():
         return_value = self.get_select_from_voyage_list_menu(voyage_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def get_all_voyages_by_destination(self):
-        print("ALL VOYAGES BY DESTINATION")
-        destination = self.__ui_base_functions.get_user_input("destination")
+    def get_all_voyages_by_airport(self):
+        print("ALL VOYAGES BY AIRPORT")
+        airport = self.__ui_base_functions.get_user_input("airport")
         header_flag = "default"
-        voyage_list = self.__ll_api.get_all_voyage_list()
+        voyage_list = self.__ll_api.get_all_voyage_list_by_airport(airport)
         return_value = self.__ui_base_functions.print_model_list(
             voyage_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
