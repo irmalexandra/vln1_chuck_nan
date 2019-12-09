@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from datetime import timedelta
 class LLVoyages:
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
@@ -15,6 +15,7 @@ class LLVoyages:
 
     def get_all_voyage_list(self):
         self.__all_voyage_list = self.__dl_api.pull_all_voyages()
+        self.check_status(self.__all_voyage_list)
         return self.__all_voyage_list
 
     def overwrite_all_voyages(self, voyage_list):
@@ -112,15 +113,15 @@ class LLVoyages:
         date, time = date.split("T")
         hour, minute, second = time.split(":")
         year, month, day = date.split("-")
-        current_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), int(second))
+        current_time = datetime(int(year), int(month), int(day), int(hour), int(minute), int(second))
 
         for destination in destinations_list:
             destinations_dict[destination.get_airport()] = int(destination.get_flight_time())
         
         flight_time = destinations_dict[airport]
-        departing_flight_arrival_date = current_time + datetime.timedelta(hours =flight_time)
-        return_flight_departure_date = departing_flight_arrival_date + datetime.timedelta(hours = 1)
-        return_flight_arrival_date = return_flight_departure_date + datetime .timedelta(hours = flight_time)
+        departing_flight_arrival_date = current_time + timedelta(hours =flight_time)
+        return_flight_departure_date = departing_flight_arrival_date + timedelta(hours = 1)
+        return_flight_arrival_date = return_flight_departure_date + timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
     def get_iso_format_date_time(self, date='', time=''):
@@ -154,3 +155,8 @@ class LLVoyages:
         #for employee in filter_rank_list:
             #for voyage in voyages_in_date_range_list:    
                 #if employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())
+
+
+    def check_status(self, voyage_list):
+        current_date_time = datetime.today()
+        
