@@ -114,10 +114,26 @@ class LLEmployees:
         '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''
         all_voyage_list = self.__dl_api.pull_all_voyages()
         upcoming_voyages = []
-        current_date = datetime.now().replace(microsecond=0).isoformat()
+        current_date = datetime.now().replace(microsecond=0)
+
         for voyage in all_voyage_list:
-            if (employee.get_ssn() == voyage.get_voyage_employee_ssn(employee.get_rank())
-            and (voyage.get_departing_flight_departure_date() >= current_date)):
+            voyage_ssn = voyage.get_voyage_employee_ssn(employee.get_rank())
+            start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+
+            if type(voyage_ssn).__name__ == "list":
+                if employee.get_ssn() in voyage_ssn and start_date >= current_date:
+                    upcoming_voyages.append(voyage)
+
+            elif employee.get_ssn() == voyage_ssn and start_date >= current_date:
                 upcoming_voyages.append(voyage)
+
         return upcoming_voyages 
     
+    def get_iso_format_date_time(self, date=''):
+
+        if date.find("T") == -1:
+            date = datetime.strptime(date,'%d-%m-%Y')
+        else:
+            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+
+        return date
