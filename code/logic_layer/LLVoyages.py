@@ -124,7 +124,7 @@ class LLVoyages:
         if date.find("T") == -1:
             date = datetime.strptime(date,'%d-%m-%Y')
         else:
-            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S%')
+            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
 
         return date
          
