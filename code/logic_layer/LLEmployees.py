@@ -40,7 +40,7 @@ class LLEmployees:
         self.__all_employee_list = self.__dl_api.pull_all_employees()
         return self.__all_employee_list
 
-    def overwrite_all_employees(self, all_employee_list):
+    def overwrite_all_employees(self):
         ''' Takes a list of employee instances and sends it to the DL '''
         return self.__dl_api.overwrite_all_employees(self.__all_employee_list)
 

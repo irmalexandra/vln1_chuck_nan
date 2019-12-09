@@ -58,7 +58,7 @@ class UIBaseFunctions():
             return 9
         return return_value
 
-    def print_menu(self, menu_str, nav_dict,model_list = None ,model = None,return_menu_str="9. Return 0. Home"):
+    def print_menu(self, menu_str, nav_dict, model_list = None ,return_menu_str="9. Return 0. Home"):
         while True:
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -
@@ -68,11 +68,8 @@ class UIBaseFunctions():
             if model_list == None:
                 return_value = nav_dict[return_value]()
                 return_value = self.check_return_value(return_value)
-            elif model_list != None and model == None:
+            elif model_list != None:
                 return_value = nav_dict[return_value](model_list)
-                return_value = self.check_return_value(return_value)
-            else:
-                return_value = nav_dict[return_value](model, model_list)
                 return_value = self.check_return_value(return_value)
             if return_value == 0:
                 return 0
@@ -103,7 +100,7 @@ class UIBaseFunctions():
         return_value = self.print_model(model_list[return_value-1])#-1 for human readability
         return self.check_return_value(return_value)
 
-    def print_edit_model_menu(self,menu_str, nav_dict, model, model_list, edit_order_list, llapi, return_menu_str="9. Return 0. Home"):
+    def print_edit_model_menu(self,menu_str, nav_dict, model, edit_order_list, llapi, return_menu_str="9. Return 0. Home"):
         while True:
             self.print_model(model)
             print("-" * self.UI_DIVIDER_INT)
@@ -119,6 +116,6 @@ class UIBaseFunctions():
                     if return_value == True:
                         break
             else:
-                llapi.overwrite_all_models(model, model_list) 
+                llapi.overwrite_all_models(model) 
                 return self.check_return_value(return_value)
     
