@@ -75,7 +75,7 @@ class DLVoyages():
         voyage_str = new_voyage.raw_info()
         voyage_stream.write(voyage_str)
         voyage_stream.close()
-        return
+        return True
 
     def overwrite_all_voyages(self, voyage_list):
         # employee_file.write(new_emp_str)

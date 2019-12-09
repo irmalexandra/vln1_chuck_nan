@@ -61,10 +61,17 @@ class LLVoyages:
         new_voyage = self.__modelAPI.get_model("Voyage")
 
         new_voyage.set_destination(destination)
-        new_voyage.set_departing_flight_departure_date(date_time)
+        new_voyage.set_departing_flight_departure_date(str(date_time))
+        new_voyage.set_airplane_insignia(".")
+        new_voyage.set_captain_ssn(".")
+        new_voyage.set_copilot_ssn(".")
+        new_voyage.set_fsm_ssn(".")
+        new_voyage.set_fa_ssns([".", "."])
 
         new_voyage.set_flight_numbers(self.generate_flight_numbers())
-        new_voyage.set_flight_times(self.calculate_flight_times(new_voyage, date_time))
+        departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date = self.calculate_flight_times(date_time,destination)
+        departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str = str(departing_flight_arrival_date), str(return_flight_departure_date), str(return_flight_arrival_date)
+        new_voyage.set_flight_times(departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str)
 
         return self.__dl_api.append_voyage(new_voyage)
 
@@ -109,16 +116,12 @@ class LLVoyages:
         self.__all_voyage_list = self.get_all_voyage_list()
         destinations_list = self.__dl_api.pull_all_destinations()
         destinations_dict = dict()
-        date, time = date.split("T")
-        hour, minute, second = time.split(":")
-        year, month, day = date.split("-")
-        current_time = datetime(int(year), int(month), int(day), int(hour), int(minute), int(second))
-
+        
         for destination in destinations_list:
             destinations_dict[destination.get_airport()] = int(destination.get_flight_time())
         
         flight_time = destinations_dict[airport]
-        departing_flight_arrival_date = current_time + timedelta(hours =flight_time)
+        departing_flight_arrival_date = date + timedelta(hours =flight_time)
         return_flight_departure_date = departing_flight_arrival_date + timedelta(hours = 1)
         return_flight_arrival_date = return_flight_departure_date + timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
