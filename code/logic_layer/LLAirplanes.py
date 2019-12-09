@@ -40,6 +40,22 @@ class LLAirplanes:
     def overwrite_all_airplanes(self, airplane_list):
         return self.__dl_api.overwrite_all_airplanes(airplane_list)
 
+    def filter_available_airplanes(self, voyage):
+        all_available_airplane_list = self.get_all_airplane_list()
+        start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+        end_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+
+        all_voyage_list = self.__dl_api.pull_all_voyages()
+
+        for voyage in all_voyage_list:
+            other_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+            other_end_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+
+            if start_date < other_end_date or end_date > other_start_date:
+                all_available_airplane_list.remove(voyage.get_airplane_insignia())
+
+        return all_available_airplane_list
+
     def get_airplane_status(self):
 
         all_voyage_list = self.__dl_api.pull_all_voyages()
@@ -77,3 +93,11 @@ class LLAirplanes:
                         airplane.set_availability("In air, returning")
 
         
+    def get_iso_format_date_time(self, date=''):
+
+        if date.find("T") == -1:
+            date = datetime.strptime(date,'%d-%m-%Y')
+        else:
+            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+
+        return date
