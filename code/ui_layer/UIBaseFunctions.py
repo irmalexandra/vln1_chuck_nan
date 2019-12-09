@@ -92,7 +92,7 @@ class UIBaseFunctions():
     def print_model(self, model):
         print("-" * self.UI_DIVIDER_INT)
         print(model)
-        print("-" * self.UI_DIVIDER_INT)
+        # print("-" * self.UI_DIVIDER_INT)
         return self.check_return_value(model)
 
     def select_from_model_list(self, model_list):
@@ -106,7 +106,7 @@ class UIBaseFunctions():
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -
                                                    len(return_menu_str) - self.DEVIATION_INT), return_menu_str))
-            print("-" * self.UI_DIVIDER_INT)
+            # print("-" * self.UI_DIVIDER_INT)
             return_value = self.get_user_selection(nav_dict)
             if return_value != 9 and return_value != 0:
                 value_to_edit = edit_order_list[return_value-1] # -1 for human readability
