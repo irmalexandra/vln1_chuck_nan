@@ -100,6 +100,11 @@ class UIBaseFunctions():
         return_value = self.print_model(model_list[return_value-1])#-1 for human readability
         return self.check_return_value(return_value)
 
+    def select_from_crew_list(self, crew_list, voyage):
+        return_value = self.get_user_selection(crew_list, "index")
+        return_value = crew_list[return_value]-1 # -1 for human readability
+        return (self.check_return_value(return_value))
+
     def print_edit_model_menu(self,menu_str, nav_dict, model, edit_order_list, llapi, return_menu_str="9. Return 0. Home"):
         while True:
             self.print_model(model)

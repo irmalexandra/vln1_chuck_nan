@@ -56,8 +56,12 @@ class DLAPI():
         return self.__dl_airplanes.pull_airplane_types_info()
 
     def create_airplane(self, airplane):
+<<<<<<< HEAD
         '''Adds a new airplane to the list of airplanes'''
         self.__dl_airplanes.append_airplane(airplane)
+=======
+        return self.__dl_airplanes.append_airplane(airplane)
+>>>>>>> oi
 
     def clear_airplane_lists(self):
         return self.__dl_airplanes.clear_airplane_lists()
