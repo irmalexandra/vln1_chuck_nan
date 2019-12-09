@@ -31,6 +31,7 @@ class LLVoyages:
         return empty_voyage_list
 
     def filter_all_voyages_by_period(self, start_date, end_date):
+        '''Takes a list of all voyage instances and returns a list of voyages filteres by period'''
         start_year, start_month, start_day = start_date.split("-")
         end_year, end_month, end_day = end_date.split("-")
 
@@ -46,7 +47,7 @@ class LLVoyages:
         return period_voyage_list
         
     def filter_all_voyages_by_destination(self, airport):
-
+        '''Takes a list of all voyage instances and returns a list of voyages filteres by destination'''
         self.__all_voyage_list = self.get_all_voyage_list()
         destination_voyage_list = []
 
@@ -69,6 +70,7 @@ class LLVoyages:
 
 
     def duplicate_voyage(self, voyage, date_time):
+        '''Copies a voyage to another date'''
         destination = voyage.get_destination()
         return self.create_voyage(destination, date_time)
 
