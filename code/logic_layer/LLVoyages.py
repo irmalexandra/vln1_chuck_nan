@@ -33,14 +33,10 @@ class LLVoyages:
 
     def filter_all_voyages_by_period(self, start_date, end_date):
         '''Takes a list of all voyage instances and returns a list of voyages filteres by period'''
-        #start_day, start_month, start_year = start_date.split("-")
-        #end_day, end_month, end_year = end_date.split("-")
-        start = datetime.strptime(start_date,'%d-%m-%Y').date()
-        end = datetime.strptime(end_date,'%d-%m-%Y').date()
-        #start = datetime(start_year, start_month, start_day)
-        #end = datetime(end_year, end_month, end_day)
+        self.get_all_voyage_list() 
+        start = self.get_iso_format_date_time(start_date)
+        end = self.get_iso_format_date_time(end_date)
 
-        self.__all_voyage_list = self.get_all_voyage_list() 
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
@@ -123,14 +119,14 @@ class LLVoyages:
         return_flight_arrival_date = return_flight_departure_date + datetime .timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
-    def get_iso_format_date_time(self, date='', time=''):
+    def get_iso_format_date_time(self, date=''):
 
-        if time != "":
-            time = datetime.strptime(time,'%H:%M:%S').time()
-        if date != "":
-            date = datetime.strptime(date,'%d-%m-%Y').date()
+        if date.find("T") == -1:
+            date = datetime.strptime(date,'%d-%m-%Y')
+        else:
+            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S%')
 
-        return date, time
+        return date
          
     def filter_available_employees(self, rank, voyage):
 
