@@ -134,8 +134,8 @@ class LLVoyages:
          
     def filter_available_employees(self, rank, voyage):
 
-        start_date = datime.strptime(voyage.get_departing_flight_departing_date())
-        end_date = voyage.get_return_flight_arrival_date()
+        start_date = datetime.strptime(voyage.get_departing_flight_departing_date()).date()
+        end_date = datetime.strptime(voyage.get_return_flight_arrival_date()).date()
 
         all_employee_list = self.__dl_api.pull_all_employees
         self.get_all_voyage_list()
