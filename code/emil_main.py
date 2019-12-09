@@ -36,9 +36,7 @@ print(raw_info)
 #stuff.dl_airplanes.append_airplane(airplane_list[8])
 
 print("------------------------------------------------plz send help")
-voyaes = stuff.pull_all_voyages()
-for thing in voyaes:
-    print(thing)
+
 
 #stuff.dl_voyages.append_voyage(voyaes[0])
 
@@ -85,6 +83,11 @@ from models.ModelAPI import ModelAPI
 modelAPI = ModelAPI()
 voyage = LLVoyages(stuff,modelAPI)  
 
-print(voyage.calculate_flight_times("2019-12-27T23:40:00","Tingwall"))
+#print(voyage.calculate_flight_times("2019-12-27T23:40:00","Tingwall"))
 print("----------------------------------------------------------------------")
 voyage.get_all_voyage_list()
+
+
+voyaes = stuff.pull_all_voyages()
+for thing in voyaes:
+    print(thing.raw_info())
