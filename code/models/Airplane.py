@@ -97,6 +97,9 @@ class Airplane():
         else:
             return False
 
+    def change_date_time_format(self, date_string):
+        date_string = date_string[:-3].replace("T", " ")
+        return date_string
 
     def get_model_header_format(self, header_flag):
         return "{:10}{:12}{:10}{:10}{:12}{:18}{:16}{:17}{:18}".format("Index: ",
@@ -117,6 +120,6 @@ class Airplane():
                                                                       self.get_availability(),
                                                                       self.get_current_destination(),
                                                                       self.get_flight_number(),
-                                                                      self.get_date_available()))
+                                                                      self.change_date_time_format(self.get_date_available())))
         return returnObject
 
