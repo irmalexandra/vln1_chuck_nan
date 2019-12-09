@@ -43,7 +43,7 @@ class Voyage():
                                            "Flight Attendant":self.get_fa_ssns}
 
     def __str__(self):
-        return "Departing flight no: {}\nReturning flight no: {}\nDeparting from: {}\nDeparting date/time: {}\nReturning date/time: {}\nDestination: {}\nDeparting date/time: {}\nReturning date/time: {}\nAirplane type: {}\nCaptain SSN: {}\nCo-Pilot SSN: {}\nFlight service manager SSN: {}\nCabin crew: {}".format(self.__departing_flight_num,
+        return "Departing flight no: {}\nReturning flight no: {}\nDeparting from: {}\nDeparting date/time: {}\nReturning date/time: {}\nDestination: {}\nDeparting date/time: {}\nReturning date/time: {}\nAirplane insignia: {}\nCaptain SSN: {}\nCo-Pilot SSN: {}\nFlight service manager SSN: {}\nCabin crew SSN: {}".format(self.__departing_flight_num,
         self.__return_flight_num,
         self.__departing_flight_departing_from, 
         self.change_date_time_format(self.__departing_flight_departure_date), 
@@ -55,7 +55,7 @@ class Voyage():
         self.__captain_ssn, 
         self.__copilot_ssn, 
         self.__fsm_ssn, 
-        ":".join(self.__fa_ssns))
+        ", ".join(self.__fa_ssns))
 
     def raw_info(self):
         true_employees = ":".join(self.__fa_ssns)
