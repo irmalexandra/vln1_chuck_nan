@@ -87,6 +87,17 @@ class UIEmployees():
             return_value = self.get_selected_employee_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
+    def get_select_from_airplane_type_list_menu(self, employee_list):
+        nav_dict = {1: self.__ui_base_functions.select_from_model_list,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        employee_menu = "1. Select Airplane Type"
+        return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, employee_list)
+        if return_value != None and return_value != 0:
+            # CHANGE LICENCE ON PILOT!    
+            return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
+        return self.__ui_base_functions.check_return_value(return_value)
+
     def get_select_from_pilots_list_menu(self, employee_list):
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     2: self.get_pilots_filtered_by_airplane_type,
@@ -197,7 +208,13 @@ class UIEmployees():
 
 
     def change_pilot_licence(self, employee):
-        print("CHANGE LICENCE GOES HERE!")
+        header_flag = "default"
+        airplane_type_list = self.__ll_api.get_airplane_type_list(
+            name)
+        return_value = self.__ui_base_functions.print_model_list(airplane_type_list, self.__modelAPI, header_flag)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_airplane_type_list_menu(return_value)
+        return self.__ui_base_functions.check_return_value(return_value)
     
     def get_work_schedule(self, employee):
         employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)

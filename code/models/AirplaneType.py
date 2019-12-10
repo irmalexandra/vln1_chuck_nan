@@ -8,6 +8,36 @@ class AirplaneType():
         self.__model = model
         self.__capacity = capacity
 
+        self.__header_format_dict = {"default": self.get_model_header_default_format}
+
+        self.__list_info_dict = {"default": self.get_model_list_default_info}
+
+
+
+    def get_model_header_format(self, header_flag):
+        return self.__header_format_dict[header_flag]()
+
+    def get_model_list_info(self, header_flag):
+        return self.__list_info_dict[header_flag]()
+    
+    
+    def get_model_header_default_format(self):
+        return "{:10}{:20}{:17}{:20}{:15}".format("Index:",
+                                             "Plane Type ID:",
+                                             "Make:",
+                                             "Model:",
+                                             "Capacity:")
+                                            
+        
+    def get_model_list_default_info(self):
+        returnObject = ("     {:20}{:17}{:20}{:15}|\n".format(self.get_plane_type_id(),
+                                                              self.get_make(),
+                                                              self.get_model(),
+                                                              self.get_capacity()))
+        return returnObject
+    
+    
+    
     def raw_info(self):
         return str(self.__plane_type_id) + "," + str(self.__make) + "," + str(self.__model) + "," + str(self.__capacity)
 
