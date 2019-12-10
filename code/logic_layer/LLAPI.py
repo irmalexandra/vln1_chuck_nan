@@ -95,3 +95,6 @@ class LLAPI:
 
     def repeat_voyage(self, voyage, repeat_interval, end_date):
         return self.__ll_voyages.duplicate_voyage(voyage, repeat_interval, end_date)
+    
+    def create_voyage(self, airport, date):
+        return self.__ll_voyages.create_voyage(airport, date)

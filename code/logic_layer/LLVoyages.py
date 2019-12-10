@@ -59,6 +59,7 @@ class LLVoyages:
         return airport_voyage_list
 
     def create_voyage(self, destination, date_time):
+        date_time = self.get_iso_format_date_time(date_time)
         new_voyage = self.__modelAPI.get_model("Voyage")
 
         new_voyage.set_destination(destination)

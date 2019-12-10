@@ -11,6 +11,7 @@ class DLAirplanes():
     PLANE_TYPE_MAKE = 1
     PLANE_TYPE_MODEL = 2
     PLANE_TYPE_CAPACITY = 3
+    CSV_ROWS = 2
     def __init__(self, modelAPI):
         
         self.__modelAPI = modelAPI
@@ -30,15 +31,16 @@ class DLAirplanes():
 
         for line in airplane_stream:
             line_list = line.strip().split(",")
-            new_airplane = self.__modelAPI.get_model('Airplane')
-            plane_type = line_list[DLAirplanes.PLANE_TYPE_ID]
-            new_airplane.set_insignia(line_list[DLAirplanes.PLANE_INSIGNIA])
-            airplane_info_list = type_dict[plane_type]
-            new_airplane.set_make(airplane_info_list[self.AIRPLANE_DICT_PLANE_TYPE])   #planeType
-            new_airplane.set_model(airplane_info_list[self.AIRPLANE_DICT_MODEL])    #Model
-            new_airplane.set_capacity(airplane_info_list[self.AIRPLANE_DICT_CAPACITY])    #Capacity
+            if len(line_list) == self.CSV_ROWS:
+                new_airplane = self.__modelAPI.get_model('Airplane')
+                plane_type = line_list[DLAirplanes.PLANE_TYPE_ID]
+                new_airplane.set_insignia(line_list[DLAirplanes.PLANE_INSIGNIA])
+                airplane_info_list = type_dict[plane_type]
+                new_airplane.set_make(airplane_info_list[self.AIRPLANE_DICT_PLANE_TYPE])   #planeType
+                new_airplane.set_model(airplane_info_list[self.AIRPLANE_DICT_MODEL])    #Model
+                new_airplane.set_capacity(airplane_info_list[self.AIRPLANE_DICT_CAPACITY])    #Capacity
 
-            all_airplanes_list.append(new_airplane)
+                all_airplanes_list.append(new_airplane)
         airplane_stream.close()
         type_stream.close()
         return all_airplanes_list[1:]
@@ -72,7 +74,7 @@ class DLAirplanes():
     def overwrite_all_airplanes(self, airplane_list):
 
         HEADER = "planeTypeId,planeInsignia\n"
-        filestream = open("./repo/Airplane_temp.csv", "w")
+        filestream = open("./repo/Airplane_temp.csv", "a")
         filestream.write(HEADER)
         for airplane_info in airplane_list:
             filestream.write(airplane_info.raw_info())
