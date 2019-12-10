@@ -117,8 +117,10 @@ class UIVoyages():
         voyage_menu = "1. Select crew member"
         return_value = self.__ui_base_functions.print_menu(voyage_menu, nav_dict, crew_list)
         if return_value != None and return_value != 0:
-            self.__ui_base_functions.print_add_crew_results(return_value)
-            return_value = self.__ll_api.add_crew_member_to_voyage()# MUNA AÐ ADD CREW SEINNA
+            if self.__ll_api.add_employee_to_voyage():
+                self.__ui_base_functions.print_create_voyage_results(return_value)
+            else:
+                self.__ui_base_functions.print_generic_error_message()
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_destination_list_menu(self, employee_list):
