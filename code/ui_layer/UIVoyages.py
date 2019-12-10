@@ -58,7 +58,6 @@ class UIVoyages():
             voyage.set_airplane_insignia(return_value.get_insignia())
             self.__ui_base_functions.print_airplane_added_results(return_value)
             
-            #return_value = self.__ll_api.add_crew_member_to_voyage()
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_selected_voyage_no_airplane_menu(self, voyage):
@@ -128,7 +127,8 @@ class UIVoyages():
         airplane_list = self.__ll_api.get_all_available_airplane_list(voyage)
         return_value = self.__ui_base_functions.print_model_list(
             airplane_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_airplane_list_menu(airplane_list, voyage)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_airplane_list_menu(airplane_list, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
     
     def get_all_voyages(self):
@@ -137,7 +137,8 @@ class UIVoyages():
         voyage_list = self.__ll_api.get_all_voyage_list()
         return_value = self.__ui_base_functions.print_model_list(
             voyage_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_voyage_list_menu(voyage_list)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_voyage_list_menu(voyage_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_voyages_by_airport(self):
@@ -177,7 +178,8 @@ class UIVoyages():
         crew_list = self.__ll_api.get_filtered_employee_list_for_voyage(rank,voyage)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
     
     def get_all_copilots_by_airplane_and_availability(self, voyage):
@@ -187,7 +189,8 @@ class UIVoyages():
         crew_list = self.__ll_api.get_filtered_employee_list_for_voyage(rank,voyage)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
     
     def get_all_fsm_by_availability(self, voyage):
@@ -197,7 +200,8 @@ class UIVoyages():
         crew_list = self.__ll_api.get_filtered_employee_list_for_voyage(rank,voyage)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_flight_attendants_by_availability(self, voyage):
@@ -207,7 +211,8 @@ class UIVoyages():
         crew_list = self.__ll_api.get_filtered_employee_list_for_voyage(rank,voyage)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
     
     # All Special functions

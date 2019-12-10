@@ -90,11 +90,12 @@ class LLAPI:
     def add_crew_member_to_voyage(self):
         return 
 
+    def create_employee(self,employee):
+        return self.__ll_employees.create_employee(employee)
+    
     def duplicate_voyage(self, voyage, new_date, new_time):
         return self.__ll_voyages.duplicate_voyage(voyage, new_date, new_time)
 
     def repeat_voyage(self, voyage, repeat_interval, end_date):
         return self.__ll_voyages.duplicate_voyage(voyage, repeat_interval, end_date)
     
-    def create_voyage(self, airport, date):
-        return self.__ll_voyages.create_voyage(airport, date)
