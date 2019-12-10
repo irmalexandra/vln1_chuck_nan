@@ -41,17 +41,24 @@ class UIVoyages():
         return_value = self.__ui_base_functions.print_menu(voyage_menu, nav_dict, voyage_list)
         if return_value != None and return_value != 0:
             if return_value.get_airplane_insignia() == ".":
+                return_value = self.get_selected_voyage_no_airplane_menu(return_value)
+            elif return_value.get_captain_ssn() == ".":
                 return_value = self.get_selected_voyage_empty_menu(return_value)
             else:
                 return_value = self.get_selected_voyage_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def get_select_from_airplane_list_menu(self, voyage_list):
+    def get_select_from_airplane_list_menu(self, airplane_list, voyage):
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
         voyage_menu = "1. Select airplane"
-        return_value = self.__ui_base_functions.print_menu(voyage_menu, nav_dict, voyage_list)
+        return_value = self.__ui_base_functions.print_menu(voyage_menu, nav_dict, airplane_list)
+        if return_value != None and return_value != 0:
+            voyage.set_airplane_insignia(return_value.get_insignia())
+            self.__ui_base_functions.print_airplane_added_results(return_value)
+            
+            #return_value = self.__ll_api.add_crew_member_to_voyage()
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_selected_voyage_no_airplane_menu(self, voyage):
@@ -63,6 +70,9 @@ class UIVoyages():
         voyage_menu = "1. Duplicate 2. Repeat 3. Add Airplane"
         return_value = self.__ui_base_functions.print_menu(
             voyage_menu, nav_dict, voyage)
+        if return_value != None and return_value != 0:
+            if voyage.get_airplane_insignia() != ".":
+                return_value = self.get_selected_voyage_empty_menu(voyage)
         return self.__ui_base_functions.check_return_value(return_value)
     
     def get_selected_voyage_menu(self, voyage):
@@ -113,12 +123,12 @@ class UIVoyages():
 
     # All list functions
 
-    def get_all_airplanes(self):
+    def get_all_airplanes(self, voyage):
         header_flag = "default"
-        airplane_list = self.__ll_api.get_all_voyage_list()
+        airplane_list = self.__ll_api.get_all_available_airplane_list(voyage)
         return_value = self.__ui_base_functions.print_model_list(
             airplane_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_airplane_list_menu(airplane_list)
+        return_value = self.get_select_from_airplane_list_menu(airplane_list, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
     
     def get_all_voyages(self):

@@ -32,7 +32,15 @@ class Employee():
                                   self.get_rank: self.set_rank}
         
         self.__create_order_list = [
-            'name', 'ssn', 'home address', 'home number', 'mobile number', "title", "rank"]
+            'name', 'ssn', 'home address', 'home number', 'mobile number', "rank"]
+
+        self.__creation_dict = {"name": self.set_name,
+                                "ssn": self.set_ssn,
+                                "home address": self.set_address,
+                                "home number": self.set_home_num,
+                                "mobile number": self.set_mobile_num,
+                                "rank": self.set_rank
+        }
         
         self.__edit_validation_dict = {self.get_address: self.set_address,
                                        self.get_home_num: self.set_home_num,
@@ -58,6 +66,9 @@ class Employee():
         if self.__title == "Pilot":
             return_str += "\nLicence: {}".format(self.__licence)
         return return_str
+    
+    def get_creation_process(self):
+        return self.__create_order_list, self.__creation_dict
     
     def get_edit_dict(self):
         return self.__edit_dict

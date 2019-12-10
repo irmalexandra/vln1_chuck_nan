@@ -12,7 +12,7 @@ class UIEmployees():
     #All menu functions
     
     def get_employee_sub_menu(self):
-        nav_dict = {1: self.create_employee,
+        nav_dict = {1: self.create_employee_sub_menu,
                     2: self.get_all_employees,
                     3: self.get_employee_search_menu,
                     9: self.__ui_base_functions.back,
@@ -31,6 +31,17 @@ class UIEmployees():
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
         employee_menu = "1. Name 2. Title 3. Date 4. Airplane"
+        return_value = self.__ui_base_functions.print_menu(
+            employee_menu, nav_dict)
+        return self.__ui_base_functions.check_return_value(return_value)
+
+    def create_employee_sub_menu(self):
+        nav_dict = {1: self.create_pilot,
+                    2: self.create_cabin_crew,
+                    3: self.get_employee_search_menu,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        employee_menu = "1. Pilot 2. Cabin Crew"
         return_value = self.__ui_base_functions.print_menu(
             employee_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -74,6 +85,14 @@ class UIEmployees():
         return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, employee_list)
         if return_value != None and return_value != 0:
             return_value = self.get_selected_employee_menu(return_value)
+        return self.__ui_base_functions.check_return_value(return_value)
+
+    def get_select_from_airplane_type_list_menu(self, airplane_type_list):
+        nav_dict = {1: self.__ui_base_functions.select_from_model_list,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        employee_menu = "1. Select Airplane Type"
+        return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, airplane_type_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_pilots_list_menu(self, employee_list):
@@ -156,11 +175,49 @@ class UIEmployees():
 
     # Specific functions
 
-    def create_employee(self):
-        print("CREATE EMPLOYEE GOES HERE!")
-
+    def create_pilot(self):
+        new_emp = self.__modelAPI.get_model("Employee")
+        new_emp.set_title("Pilot")
+        self.change_pilot_licence(new_emp)
+        create_order_list, creation_dict = new_emp.get_creation_process()
+        for attribute in create_order_list:
+            while True:
+                new_attribute = self.__ui_base_functions.get_user_input(attribute)
+            
+                if creation_dict[attribute](new_attribute):
+                    break
+        #SAVE EMPLOYEE TO DATABASE
+        self.__ui_base_functions.print_model(new_emp)
+    
+    def create_cabin_crew(self):
+        new_emp = self.__modelAPI.get_model("Employee")
+        new_emp.set_title("Cabincrew")
+        create_order_list, creation_dict = new_emp.get_creation_process()
+        for attribute in create_order_list:
+            while True:
+                new_attribute = self.__ui_base_functions.get_user_input(attribute)
+            
+                if creation_dict[attribute](new_attribute):
+                    break
+                else:
+                    print("Error, {} invalid!".format(attribute))
+        #SAVE EMPLOYEE TO DATABASE
+        self.__ui_base_functions.print_model(new_emp)
+        
     def change_pilot_licence(self, employee):
-        print("CHANGE LICENCE GOES HERE!")
+        header_flag = "default"
+        airplane_type_list = self.__ll_api.get_airplane_type_list()
+        return_value = self.__ui_base_functions.print_model_list(airplane_type_list, self.__modelAPI, header_flag)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_airplane_type_list_menu(return_value)
+        if return_value != None and return_value != 0:
+            return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
+            employee.set_licence(return_value.get_plane_type_id())   
+            #WRITE TO DATABASE!         
+        return self.__ui_base_functions.check_return_value(return_value)
     
     def get_work_schedule(self, employee):
-        print("WORKSCHEDULE GOES HERE")
+        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)
+        header_flag = "default"
+        return_value = self.__ui_base_functions.print_model_list(employee_work_schedule, self.__modelAPI, header_flag)
+        return_value = self.__ui_base_functions.check_return_value(return_value)

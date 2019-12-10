@@ -55,7 +55,7 @@ class DLEmployees():
         HEADER = "id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"
         filestream2 = open("./repo/employees_temp.csv", "a")
         filestream2.write(HEADER)
-        for emp_info in emp_list:
+        for emp_info in emp_list: 
             filestream2.write(emp_info.raw_info())
         filestream2.close()
         os.remove("./repo/employees.csv")
