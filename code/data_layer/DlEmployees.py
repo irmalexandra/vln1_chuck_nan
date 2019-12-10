@@ -31,9 +31,9 @@ class DLEmployees():
 
         all_crew_list = []
         for line in filestream:
-            check_list = []
             line_list = line.strip().split(",")
             if len(line_list) == self.CSV_ROWS:
+                check_list = []
                 new_emp = self.__modelAPI.get_model('Employee')
                 
                 check_list.append(new_emp.set_ssn(line_list[DLEmployees.SSN]))
