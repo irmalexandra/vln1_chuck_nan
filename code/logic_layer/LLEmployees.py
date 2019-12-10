@@ -32,6 +32,7 @@ class LLEmployees:
     def get_all_employee_list(self):
         ''' Pulls and returns a list of employee instances '''
         self.__all_employee_list = self.__dl_api.pull_all_employees()
+        self.set_availability(self.__all_employee_list)
         return self.__all_employee_list
 
     def overwrite_all_employees(self):
@@ -71,12 +72,7 @@ class LLEmployees:
             if employee.get_ssn() == ssn:
                 return employee
 
-    def list_all_employees_by_date(self):
-        pass
 
-    def filter_all_employees_by_availability(self):        
-        '''Gets a list of all employees and returns a list of employees filtered by availability'''
-        pass
 
     def filter_all_employees_by_title(self, title):
         '''Gets a list of all employees and returns a list of employees filtered by title from input'''
@@ -122,9 +118,23 @@ class LLEmployees:
 
         return upcoming_voyages 
 
-    def get_working_or_not(self, date, flag):
+    def set_availability(self, all_employee_list):
+        current_day = datetime.today().isoformat()
+        working_list = self.get_working_or_not(current_day,"working", all_employee_list)
+        not_working_list = self.get_working_or_not(current_day,"not working", all_employee_list)
+        for employee in working_list:
+            employee.set_availability("Not available")
+        for employee in not_working_list:
+            employee.set_availability("Available")
+
+    def get_working_or_not(self, date, flag, all_employee_list = None):
+        if all_employee_list == None:
+            all_employee_list = self.get_all_employee_list()
+        else:
+            all_employee_list = all_employee_list
+
         all_voyage_list = self.__dl_api.pull_all_voyages()
-        all_employee_list = self.get_all_employee_list()
+        
         working = []
         not_working = []
         start_range = self.get_iso_format_date_time(date)
