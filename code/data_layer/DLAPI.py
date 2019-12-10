@@ -38,7 +38,7 @@ class DLAPI():
         return self.__dl_destinations.pull_all_destinations()
 
     def overwrite_all_destinations(self, all_destination_list):
-        self.__dl_destinations.overwrite_all_destinations(all_destination_list)
+        return self.__dl_destinations.overwrite_all_destinations(all_destination_list)
     
     def append_destination(self, destination):
         '''Adds a new destination to the list of destinations'''
@@ -55,7 +55,7 @@ class DLAPI():
         '''Gets a list of all airplane types from the data layer and returns it'''
         return self.__dl_airplanes.pull_airplane_types_info()
 
-    def create_airplane(self, airplane):
+    def append_airplane(self, airplane):
         return self.__dl_airplanes.append_airplane(airplane)
     
     def clear_airplane_lists(self):

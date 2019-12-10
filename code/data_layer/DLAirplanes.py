@@ -11,6 +11,7 @@ class DLAirplanes():
     PLANE_TYPE_MAKE = 1
     PLANE_TYPE_MODEL = 2
     PLANE_TYPE_CAPACITY = 3
+    CSV_ROWS = 2
     def __init__(self, modelAPI):
         
         self.__modelAPI = modelAPI
@@ -30,18 +31,21 @@ class DLAirplanes():
 
         for line in airplane_stream:
             line_list = line.strip().split(",")
-            new_airplane = self.__modelAPI.get_model('Airplane')
-            plane_type = line_list[DLAirplanes.PLANE_TYPE_ID]
-            new_airplane.set_insignia(line_list[DLAirplanes.PLANE_INSIGNIA])
-            airplane_info_list = type_dict[plane_type]
-            new_airplane.set_make(airplane_info_list[self.AIRPLANE_DICT_PLANE_TYPE])   #planeType
-            new_airplane.set_model(airplane_info_list[self.AIRPLANE_DICT_MODEL])    #Model
-            new_airplane.set_capacity(airplane_info_list[self.AIRPLANE_DICT_CAPACITY])    #Capacity
-
-            all_airplanes_list.append(new_airplane)
+            
+            if len(line_list) == self.CSV_ROWS:
+                check_list = []
+                new_airplane = self.__modelAPI.get_model('Airplane')
+                plane_type = line_list[DLAirplanes.PLANE_TYPE_ID]
+                check_list.append(new_airplane.set_insignia(line_list[DLAirplanes.PLANE_INSIGNIA]))
+                airplane_info_list = type_dict[plane_type]
+                check_list.append(new_airplane.set_make(airplane_info_list[self.AIRPLANE_DICT_PLANE_TYPE]))   #planeType
+                check_list.append(new_airplane.set_model(airplane_info_list[self.AIRPLANE_DICT_MODEL]))    #Model
+                check_list.append(new_airplane.set_capacity(airplane_info_list[self.AIRPLANE_DICT_CAPACITY]))    #Capacity
+                if False not in check_list:
+                    all_airplanes_list.append(new_airplane)
         airplane_stream.close()
         type_stream.close()
-        return all_airplanes_list[1:]
+        return all_airplanes_list
         
     def append_airplane(self, airplane):
         '''Adds a new airplane to the airplane string'''
@@ -49,7 +53,7 @@ class DLAirplanes():
         airplane_str = airplane.raw_info()
         airplane_stream.write(airplane_str)
         airplane_stream.close()
-        return    
+        return True
 
     def pull_airplane_types_info(self):
         # Ath!!
@@ -72,11 +76,11 @@ class DLAirplanes():
     def overwrite_all_airplanes(self, airplane_list):
 
         HEADER = "planeTypeId,planeInsignia\n"
-        filestream = open("./repo/Airplane_temp.csv", "w")
+        filestream = open("./repo/Airplane_temp.csv", "a")
         filestream.write(HEADER)
         for airplane_info in airplane_list:
             filestream.write(airplane_info.raw_info())
         filestream.close()
         os.remove("./repo/Airplane.csv")
         os.rename("./repo/Airplane_temp.csv", "./repo/Airplane.csv")
-        return 
+        return True

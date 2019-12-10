@@ -16,6 +16,7 @@ class DLVoyages():
     COPILOT_SSN = 10
     FSM_SSN = 11
     FAS_SSN = 12
+    CSV_ROWS = 13
 
     def __init__(self, modelAPI):
         self.__modelAPI = modelAPI
@@ -37,37 +38,38 @@ class DLVoyages():
             return
         all_voyages_list = []
         for line in filestream:
-            check_list = []
             line_list = line.strip().split(",")
-            new_voyage = self.__modelAPI.get_model('Voyage')
-            check_list.append(new_voyage.set_departing_flight_num(
-                line_list[DLVoyages.DEPARTING_FLIGHT_NUM]))
-            check_list.append(new_voyage.set_return_flight_num(
-                line_list[DLVoyages.RETURNING_FLIGHT_NUM]))
-            check_list.append(new_voyage.set_departing_flight_departing_from(
-                line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_FROM]))
-            check_list.append(new_voyage.set_departing_flight_departure_date(
-                line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_DATE]))
-            check_list.append(new_voyage.set_departing_flight_arrival_date(
-                line_list[DLVoyages.DEPARTING_FLIGHT_ARRIVAL_DATE]))
-            check_list.append(new_voyage.set_return_flight_departing_from(
-                line_list[DLVoyages.RETURNING_FLIGHT_DEPARTING_FROM]))
-            check_list.append(new_voyage.set_return_flight_departure_date(
-                line_list[DLVoyages.RETURNING_FLIGHT_DEPARTURE_DATE]))
-            check_list.append(new_voyage.set_return_flight_arrival_date(
-                line_list[DLVoyages.RETURNING_FLIGHT_ARRIVAL_DATE]))
-            check_list.append(new_voyage.set_airplane_insignia(line_list[DLVoyages.airplane_insignia]))
-            check_list.append(new_voyage.set_captain_ssn(line_list[DLVoyages.CAPTAIN_SSN]))
-            check_list.append(new_voyage.set_copilot_ssn(line_list[DLVoyages.COPILOT_SSN]))
-            check_list.append(new_voyage.set_fsm_ssn(line_list[DLVoyages.FSM_SSN]))
+            if len(line_list) == self.CSV_ROWS:
+                check_list = []
+                new_voyage = self.__modelAPI.get_model('Voyage')
+                check_list.append(new_voyage.set_departing_flight_num(
+                    line_list[DLVoyages.DEPARTING_FLIGHT_NUM]))
+                check_list.append(new_voyage.set_return_flight_num(
+                    line_list[DLVoyages.RETURNING_FLIGHT_NUM]))
+                check_list.append(new_voyage.set_departing_flight_departing_from(
+                    line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_FROM]))
+                check_list.append(new_voyage.set_departing_flight_departure_date(
+                    line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_DATE]))
+                check_list.append(new_voyage.set_departing_flight_arrival_date(
+                    line_list[DLVoyages.DEPARTING_FLIGHT_ARRIVAL_DATE]))
+                check_list.append(new_voyage.set_return_flight_departing_from(
+                    line_list[DLVoyages.RETURNING_FLIGHT_DEPARTING_FROM]))
+                check_list.append(new_voyage.set_return_flight_departure_date(
+                    line_list[DLVoyages.RETURNING_FLIGHT_DEPARTURE_DATE]))
+                check_list.append(new_voyage.set_return_flight_arrival_date(
+                    line_list[DLVoyages.RETURNING_FLIGHT_ARRIVAL_DATE]))
+                check_list.append(new_voyage.set_airplane_insignia(line_list[DLVoyages.airplane_insignia]))
+                check_list.append(new_voyage.set_captain_ssn(line_list[DLVoyages.CAPTAIN_SSN]))
+                check_list.append(new_voyage.set_copilot_ssn(line_list[DLVoyages.COPILOT_SSN]))
+                check_list.append(new_voyage.set_fsm_ssn(line_list[DLVoyages.FSM_SSN]))
 
-            flight_attendant_ssns_list = line_list[DLVoyages.FAS_SSN].split(":")
+                flight_attendant_ssns_list = line_list[DLVoyages.FAS_SSN].split(":")
 
-            check_list.append(new_voyage.set_fa_ssns(flight_attendant_ssns_list))
-            if False not in check_list:
-                all_voyages_list.append(new_voyage)
+                check_list.append(new_voyage.set_fa_ssns(flight_attendant_ssns_list))
+                if False not in check_list:
+                    all_voyages_list.append(new_voyage)
         filestream.closed
-        return all_voyages_list[1:]
+        return all_voyages_list
 
     def append_voyage(self, new_voyage):
         '''Adds a new voyage to the voyage string'''
@@ -75,16 +77,16 @@ class DLVoyages():
         voyage_str = new_voyage.raw_info()
         voyage_stream.write(voyage_str)
         voyage_stream.close()
-        return
+        return True
 
     def overwrite_all_voyages(self, voyage_list):
         # employee_file.write(new_emp_str)
         HEADER = "departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,airplanessn,captainssn,copilotssn,fsmssn,fassns\n"
-        filestream = open("./repo/voyages_temp.csv", "w")
+        filestream = open("./repo/voyages_temp.csv", "a")
         filestream.write(HEADER)
         for voyage_info in voyage_list:
             filestream.write(voyage_info.raw_info())
         filestream.close()
         os.remove("./repo/voyages.csv")
         os.rename("./repo/voyages_temp.csv", "./repo/voyages.csv")
-        return
+        return True

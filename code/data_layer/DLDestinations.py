@@ -9,6 +9,7 @@ class DLDestinations():
     DISTANCE = 3
     CONTACT_NAME = 4
     CONTACT_NUMBER = 5
+    CSV_ROWS = 6
 
     def __init__(self, modelAPI):
         self.__modelAPI = modelAPI
@@ -29,21 +30,22 @@ class DLDestinations():
 
         all_destinations_list = []
         for line in filestream:
-            check_list = []
             line_list = line.strip().split(",")
-            new_destination = self.__modelAPI.get_model('Destination')
+            if len(line_list) == self.CSV_ROWS:
+                check_list = []
+                new_destination = self.__modelAPI.get_model('Destination')
 
-            check_list.append(new_destination.set_country(line_list[DLDestinations.COUNTRY]))
-            check_list.append(new_destination.set_airport(line_list[DLDestinations.AIRPORT]))
-            check_list.append(new_destination.set_flight_time(
-                line_list[DLDestinations.FLIGHT_TIME]))
-            check_list.append(new_destination.set_distance(line_list[DLDestinations.DISTANCE]))
-            check_list.append(new_destination.set_contact_name(
-                line_list[DLDestinations.CONTACT_NAME]))
-            check_list.append(new_destination.set_contact_number(
-                line_list[DLDestinations.CONTACT_NUMBER]))
-            if False not in check_list:
-                all_destinations_list.append(new_destination)
+                check_list.append(new_destination.set_country(line_list[DLDestinations.COUNTRY]))
+                check_list.append(new_destination.set_airport(line_list[DLDestinations.AIRPORT]))
+                check_list.append(new_destination.set_flight_time(
+                    line_list[DLDestinations.FLIGHT_TIME]))
+                check_list.append(new_destination.set_distance(line_list[DLDestinations.DISTANCE]))
+                check_list.append(new_destination.set_contact_name(
+                    line_list[DLDestinations.CONTACT_NAME]))
+                check_list.append(new_destination.set_contact_number(
+                    line_list[DLDestinations.CONTACT_NUMBER]))
+                if False not in check_list:
+                    all_destinations_list.append(new_destination)
         filestream.closed
         return all_destinations_list
 
@@ -53,16 +55,16 @@ class DLDestinations():
         destination_str = new_destination.raw_info()
         destination_stream.write(destination_str)
         destination_stream.close()
-        return
+        return True
 
     def overwrite_all_destinations(self, destination_list):
         # employee_file.write(new_emp_str)
         HEADER = "country,airport,flight time,distance,contact name,contact number\n"
-        filestream = open("./repo/destinations_temp.csv", "w")
+        filestream = open("./repo/destinations_temp.csv", "a")
         filestream.write(HEADER)
         for destination_info in destination_list:
             filestream.write(destination_info.raw_info())
         filestream.close()
         os.remove("./repo/destination.csv")
         os.rename("./repo/destinations_temp.csv", "./repo/destination.csv")
-        return
+        return True

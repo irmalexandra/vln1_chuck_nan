@@ -1,9 +1,11 @@
-from models.Employee import Employee
-from models.Destination import Destination
+from logic_layer.LLAPI import LLAPI
 
-newEmp = Employee()
-newDest = Destination()
+newLLAPI = LLAPI()
+all_licences = newLLAPI.get_all_licences()
+licence_list = []
+    
+for airplane in all_licences:
+    licence_list.append(airplane.get_plane_type_id())
 
-print(type(newDest).__name__)
-
-print(type(newEmp).__name__)
+for licence in licence_list:
+    print(licence)

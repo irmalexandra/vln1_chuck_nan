@@ -1,11 +1,16 @@
 from data_layer.DLAPI import DLAPI
+from logic_layer.LLEmployees import LLEmployees
 
 
+from logic_layer.LLVoyages import LLVoyages
+from models.ModelAPI import ModelAPI
 stuff = DLAPI()
+modelAPI = ModelAPI()
+voyage = LLVoyages(stuff,modelAPI)  
+print("lol".find("k"))
 
-destination_list = stuff.pull_all_destinations()
-for destination in destination_list:
-    print(destination)
+
+
 
 #stuff.dl_destinations.appent_destination(destination_list[5])
 
@@ -36,9 +41,7 @@ print(raw_info)
 #stuff.dl_airplanes.append_airplane(airplane_list[8])
 
 print("------------------------------------------------plz send help")
-voyaes = stuff.pull_all_voyages()
-for thing in voyaes:
-    print(thing)
+
 
 #stuff.dl_voyages.append_voyage(voyaes[0])
 
@@ -62,6 +65,9 @@ tomorrow = date(2019,12,8)
 
 print(today - date(2014,5,3))
 
+llemployee = LLEmployees(stuff,ModelAPI)
+
+
 
 print(date.today())
 
@@ -80,11 +86,32 @@ print(date(1,1,1) < date(1,1,2))
 
 print(date(1,1,1) < date(1,1,2))
 
-from logic_layer.LLVoyages import LLVoyages
-from models.ModelAPI import ModelAPI
-modelAPI = ModelAPI()
-voyage = LLVoyages(stuff,modelAPI)  
 
-print(voyage.calculate_flight_times("2019-12-27T23:40:00","Tingwall"))
-print("----------------------------------------------------------------------")
+
+#print(voyage.calculate_flight_times("2019-12-27T23:40:00","Tingwall"))
+
 voyage.get_all_voyage_list()
+
+other_thing = LLVoyages(stuff,modelAPI)
+real_voyages = other_thing.get_all_voyage_list()
+print("----------------------------------------------------------------------")
+for thing in real_voyages:
+    print(thing.get_status())
+voyaes = stuff.pull_all_voyages()
+
+date_thing = "2-11-2019"
+working= llemployee.get_working_or_not(date_thing,"working")
+not_working = llemployee.get_working_or_not(date_thing,"ds")
+print("idk".replace(" ","y"))
+destination_list = stuff.pull_all_destinations()
+for destination in destination_list:
+    print(destination)
+
+print("------------------------------working -----------------------------------")
+for number,work in enumerate(working):
+    print(work.get_name())
+    print(number +1)
+print("------------------------------not working -----------------------------------")
+for number, work in enumerate(not_working):
+    print(work.get_name())
+    print(number+1)

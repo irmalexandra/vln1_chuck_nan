@@ -27,32 +27,14 @@ class ModelAPI():
             returnObject += "| {:02d}. {}".format(index+1, model.get_model_list_info(header_flag))
         return returnObject
 
-    def validate_edit_model(self, model):
+    def validate_model(self, model):
         ''' Gets a object instance from the logic layer and returns a tuple '''
-        validation_dict = model.get_edit_validation_dict()
-        edit_order_list = model.get_edit_order_list()
-        order_counter = 0
+        validation_dict = model.get_validation_dict()
 
         for key, value in validation_dict.items():
             check = model.handle_key_value(key, value)
             if not check:
-                return edit_order_list[order_counter]
-            order_counter += 1
-        
-        return check
-
-    def validate_create_model(self, model):
-        ''' Gets a object instance from the logic layer and returns a tuple '''
-        validation_dict = model.get_create_validation_dict()
-        create_order_list = model.get_create_order_list()
-        order_counter = 0
-
-        for key, value in validation_dict.items():
-            check = model.handle_key_value(key, value)
-            if not check:
-                return create_order_list[order_counter]
-            order_counter += 1
-        
-        return check       
+                return False    
+        return True       
 
  

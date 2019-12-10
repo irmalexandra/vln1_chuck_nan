@@ -1,19 +1,11 @@
 from datetime import datetime
-
+from datetime import timedelta
 class LLEmployees:
     DOMAIN = "@nanair.is"
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
         self.__all_employee_list = []
-
-    def validate_new_employee(self, employee):
-        '''Gets employee instance and returns a boolean'''
-        return self.__modelAPI.validate_create_model(employee)
-
-    def validate_edited_employee(self, employee):
-        '''Gets employee instance and returns a boolean'''
-        return self.__modelAPI.validate_edit_model(employee)
 
     def email_generator(self,name):
         '''Makes a new e-mail address for a new employee'''
@@ -30,7 +22,8 @@ class LLEmployees:
 
 
     def create_employee(self, employee):
-        if self.validate_new_employee(employee):
+        employee.set_email(self.email_generator(employee.get_name()))
+        if self.__modelAPI.validate_model(employee):
             self.__dl_api.append_employee(employee)
             return True
             
@@ -39,6 +32,7 @@ class LLEmployees:
     def get_all_employee_list(self):
         ''' Pulls and returns a list of employee instances '''
         self.__all_employee_list = self.__dl_api.pull_all_employees()
+        self.set_availability(self.__all_employee_list)
         return self.__all_employee_list
 
     def overwrite_all_employees(self):
@@ -78,12 +72,7 @@ class LLEmployees:
             if employee.get_ssn() == ssn:
                 return employee
 
-    def list_all_employees_by_date(self):
-        pass
 
-    def filter_all_employees_by_availability(self):        
-        '''Gets a list of all employees and returns a list of employees filtered by availability'''
-        pass
 
     def filter_all_employees_by_title(self, title):
         '''Gets a list of all employees and returns a list of employees filtered by title from input'''
@@ -128,12 +117,62 @@ class LLEmployees:
                 upcoming_voyages.append(voyage)
 
         return upcoming_voyages 
-    
-    def get_iso_format_date_time(self, date=''):
 
-        if date.find("T") == -1:
-            date = datetime.strptime(date,'%d-%m-%Y')
+    def set_availability(self, all_employee_list):
+        current_day = datetime.today().replace(microsecond=0).isoformat()
+        self.get_working_or_not(current_day,"Default" , all_employee_list)
+
+    def get_working_or_not(self, date, flag = "", all_employee_list = None):
+        if all_employee_list == None:
+            all_employee_list = self.get_all_employee_list()
         else:
-            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+            all_employee_list = all_employee_list
 
-        return date
+        all_voyage_list = self.__dl_api.pull_all_voyages()
+        
+        working = []
+        not_working = []
+        start_range = self.get_iso_format_date_time(date)
+        end_range = self.get_iso_format_date_time(date) + timedelta(hours = 23, minutes=59, seconds=59)
+
+        for employee in all_employee_list:
+            employee_ssn = employee.get_ssn()
+            for voyage in all_voyage_list:
+                departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+                return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+                fa_ssns = voyage.get_fa_ssns()
+                captain_ssn = voyage.get_captain_ssn()
+                co_pilot_ssn = voyage.get_copilot_ssn()
+                fsm_ssn = voyage.get_fsm_ssn()
+                if start_range <= departing_flight_departure_date <= end_range or start_range <= return_flight_arrival_date <= end_range:
+                    if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
+                        if employee not in working:
+                            working.append(employee)
+                            employee.set_availability("Not available")
+
+            if employee not in not_working  and employee not in working:
+                not_working.append(employee)
+                employee.set_availability("Available")
+
+        if flag.lower() == "working":
+
+            return working
+        else:
+            return not_working
+
+    def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
+        if type(date).__name__ != 'datetime':
+            try:
+                if date.find("T") == -1:
+                    new_date = datetime.strptime(date,'%d-%m-%Y')
+                    new_time = datetime.strptime(time, '%H:%M:%S').time()
+                    new_date = datetime.combine(new_date, new_time)
+                else:
+                    new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+            except ValueError:
+                return False
+                
+        return new_date
+
+    def get_all_licences(self):
+        return self.__dl_api.pull_all_airplane_types()
