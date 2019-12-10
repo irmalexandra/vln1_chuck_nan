@@ -16,6 +16,7 @@ class DLVoyages():
     COPILOT_SSN = 10
     FSM_SSN = 11
     FAS_SSN = 12
+    CSV_ROWS = 13
 
     def __init__(self, modelAPI):
         self.__modelAPI = modelAPI
@@ -38,7 +39,7 @@ class DLVoyages():
         all_voyages_list = []
         for line in filestream:
             line_list = line.strip().split(",")
-            if len(line_list) == 13:
+            if len(line_list) == self.CSV_ROWS:
                 check_list = []
                 new_voyage = self.__modelAPI.get_model('Voyage')
                 check_list.append(new_voyage.set_departing_flight_num(
