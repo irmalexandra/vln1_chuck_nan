@@ -101,3 +101,6 @@ class LLAPI:
 
     def create_employee(self, employee):
         return self.__ll_employees.create_employee(employee)
+    
+    def get_working_or_not(self, date, flag):
+        return self.__ll_employees.get_working_or_not(date, flag)

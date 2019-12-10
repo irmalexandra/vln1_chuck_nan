@@ -99,6 +99,12 @@ from logic_layer.LLEmployees import LLEmployees
 
 llemployee = LLEmployees(stuff,ModelAPI)
 
-print(llemployee.get_free_or_not("2019-11-22T10:23:00"))
+working= llemployee.get_working_or_not("2019-11-22T10:23:00","working")
+print("------------------------------working -----------------------------------")
+for work in working:
+    print(work)
+    print()
+print("------------------------------not working -----------------------------------")
+
 
 print("idk".replace(" ","y"))
