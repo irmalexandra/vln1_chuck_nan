@@ -89,4 +89,4 @@ class DLVoyages():
         filestream.close()
         os.remove("./repo/voyages.csv")
         os.rename("./repo/voyages_temp.csv", "./repo/voyages.csv")
-        return
+        return True

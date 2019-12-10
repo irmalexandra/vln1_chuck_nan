@@ -6,13 +6,6 @@ class LLVoyages:
         self.__modelAPI = modelAPI
         self.__all_voyage_list = []
 
-    def validate_voyage(self, voyage):
-        ''' Gets voyage instance and returns a boolean '''
-        return self.__modelAPI.validate_model(voyage)
-
-    def get_voyage(self, voyage_ID):
-        pass
-
     def get_all_voyage_list(self):
         self.__all_voyage_list = self.__dl_api.pull_all_voyages()
         self.check_status(self.__all_voyage_list)
@@ -58,7 +51,10 @@ class LLVoyages:
 
         return airport_voyage_list
 
-    def create_voyage(self, destination, start_date, start_time =  "00:00:00"):
+    def create_voyage(self, destination, start_date, start_time = "00:00:00"):
+
+        self.get_all_voyage_list()
+
         try:
             fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
             fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
@@ -68,7 +64,7 @@ class LLVoyages:
         fixed_date_time = datetime.combine(fixed_date, fixed_time)
         new_voyage = self.__modelAPI.get_model("Voyage")
 
-        new_voyage.set_return_flight_departing_from(destination.get_airport)
+        new_voyage.set_return_flight_departing_from(destination.get_airport())
         new_voyage.set_departing_flight_departure_date(fixed_date_time.isoformat())
         new_voyage.set_airplane_insignia(".")
         new_voyage.set_captain_ssn(".")
@@ -76,12 +72,30 @@ class LLVoyages:
         new_voyage.set_fsm_ssn(".")
         new_voyage.set_fa_ssns([".", "."])
 
-        new_voyage.set_flight_numbers(self.generate_flight_numbers())
-        departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date = self.calculate_flight_times(date_time,destination)
-        departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str = str(departing_flight_arrival_date), str(return_flight_departure_date), str(return_flight_arrival_date)
-        new_voyage.set_flight_times(departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str)
+        dep_flight_num, ret_flight_num = self.generate_flight_numbers() 
+        new_voyage.set_flight_numbers(dep_flight_num, ret_flight_num)
 
-        if self.__modelAPI.validate_create_model(new_voyage):
+        departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date \
+            = self.calculate_flight_times(fixed_date_time, destination.get_airport())
+        
+        departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str \
+            = str(departing_flight_arrival_date), str(return_flight_departure_date), str(return_flight_arrival_date)
+        
+        new_voyage.set_flight_times(departing_flight_arrival_date_str, \
+            return_flight_departure_date_str, return_flight_arrival_date_str)
+
+        start_date = fixed_date_time.isoformat()
+        end_date = new_voyage.get_return_flight_arrival_date()
+
+        for voyage in self.__all_voyage_list:
+            other_start_date = voyage.get_departing_flight_departure_date()
+            other_end_date = voyage.get_return_flight_arrival_date()
+            
+            if other_start_date == start_date or other_start_date == end_date or\
+                other_end_date == start_date or other_end_date == end_date:
+                return False
+
+        if self.__modelAPI.validate_model(new_voyage):
             return self.__dl_api.append_voyage(new_voyage)
 
         return False
@@ -97,7 +111,8 @@ class LLVoyages:
         end_date = self.get_iso_format_date_time(end_date)
         while date <= end_date:
             date =+ repeat_interval
-            self.duplicate_voyage(voyage, date)
+            success = self.duplicate_voyage(voyage, date)
+        return success
 
     def populate_voyage(self):
         pass

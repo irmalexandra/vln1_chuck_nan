@@ -33,10 +33,8 @@ class Voyage():
 
         self.__list_info_dict = {"default": self.get_model_list_default_info}
 
-        self.__create_validation_dict = {self.get_destination: self.set_departing_flight_departing_from, 
+        self.__validation_dict = {self.get_destination: self.set_departing_flight_departing_from, 
                                          self.get_departing_flight_departure_date: self.set_departing_flight_departure_date}
-
-        self.__create_order_list = ["destination", "departure date"]
 
         self.__voyage_employee_ssn_dict = {"Captain":self.get_captain_ssn, 
                                            "Copilot":self.get_copilot_ssn, 
@@ -62,11 +60,8 @@ class Voyage():
         true_employees = ":".join(self.__fa_ssns)
         return self.__departing_flight_num + "," + self.__return_flight_num + "," + self.__departing_flight_departing_from + "," + self.__departing_flight_departure_date + "," + self.__departing_flight_arrival_date + "," + self.__return_flight_departing_from + "," + self.__return_flight_departure_date + "," + self.__return_flight_arrival_date + "," + self.__airplane_insignia + "," + self.__captain_ssn + "," + self.__copilot_ssn + "," + self.__fsm_ssn + "," + true_employees + "\n"
 
-    def get_create_validation_dict(self):
-        return self.__create_validation_dict
-
-    def get_create_order_list(self):
-        return self.__create_order_list
+    def get_validation_dict(self):
+        return self.__validation_dict
 
     def get_departing_flight_num(self):
         return self.__departing_flight_num
@@ -113,7 +108,7 @@ class Voyage():
         return False
 
     def get_destination(self):
-        return self.__return_flight_departing_from()
+        return self.__return_flight_departing_from
 
     def get_departing_flight_departure_date(self):
         return self.__departing_flight_departure_date
@@ -179,9 +174,11 @@ class Voyage():
         if new_insignia != ".":
             if self.__models_validation.validate_airplane_insignia(new_insignia):
                 self.__airplane_insignia = new_insignia
-                 
+                return True
+            return False   
         else:
             self.__airplane_insignia = new_insignia
+            return True
 
     def get_captain_ssn(self):
         return self.__captain_ssn
@@ -190,8 +187,11 @@ class Voyage():
         if new_ssn != ".":
             if self.__models_validation.validate_employee_ssn(new_ssn):
                 self.__captain_ssn = new_ssn
+                return True
+            return False
         else:
             self.__captain_ssn = new_ssn
+            return True
 
     def get_copilot_ssn(self):
         return self.__copilot_ssn
@@ -200,8 +200,11 @@ class Voyage():
         if new_ssn != ".":
             if self.__models_validation.validate_employee_ssn(new_ssn):
                 self.__copilot_ssn = new_ssn
+                return True
+            return False
         else:
             self.__copilot_ssn = new_ssn
+            return True
 
     def get_fsm_ssn(self):
         return self.__fsm_ssn
@@ -210,24 +213,28 @@ class Voyage():
         if new_ssn != ".":
             if self.__models_validation.validate_employee_ssn(new_ssn):
                 self.__fsm_ssn = new_ssn
+                return True
+            return False
         else:
             self.__fsm_ssn = new_ssn
+            return True
 
     def get_fa_ssns(self):
         return self.__fa_ssns
 
     def set_fa_ssns(self, new_ssn_list):
-
-        for ssn in new_ssn_list:
-            if not self.__models_validation.validate_employee_ssn(ssn):
-                return False
-
+        new_ssn_set = set(new_ssn_list)
+        if len(new_ssn_set) != 1:
+            for ssn in new_ssn_list:
+                if not self.__models_validation.validate_employee_ssn(ssn):
+                    return False
+        
         self.__fa_ssns = new_ssn_list
+        return True
 
     def get_voyage_employee_ssn(self, rank):
         return self.__voyage_employee_ssn_dict[rank]()
 
-    
     def get_model_header_format(self, header_flag):
         return self.__header_format_dict[header_flag]()
 

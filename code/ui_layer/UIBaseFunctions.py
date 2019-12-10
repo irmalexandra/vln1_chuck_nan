@@ -150,3 +150,9 @@ class UIBaseFunctions():
 
     def print_create_destination_results(self, destination):
         print("Destination, Country: {} Airport: {} successfully created".format(destination.get_country(), destination.get_airport()))
+
+    def print_edit_destination_number_results(self, destination):
+        print("Destination contact info updated successfully! New number {}".format(destination.get_contact_number))
+
+    def print_edit_destination_contact_results(self, destination):
+        print("Destination contact info updated successfully! New contact {}".format(destination.get_contact_name()))

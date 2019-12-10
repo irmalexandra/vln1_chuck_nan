@@ -23,7 +23,7 @@ class Employee():
                                  "date": self.get_model_list_date_info,
                                  "aircraft": self.get_model_list_aircraft_info}
 
-        self.__create_validation_dict = {self.get_name: self.set_name, 
+        self.__validation_dict = {self.get_name: self.set_name, 
                                   self.get_ssn: self.set_ssn,
                                   self.get_address: self.set_address, 
                                   self.get_home_num: self.set_home_num,
@@ -41,12 +41,6 @@ class Employee():
                                 "mobile number": self.set_mobile_num,
                                 "rank": self.set_rank
         }
-        
-        self.__edit_validation_dict = {self.get_address: self.set_address,
-                                       self.get_home_num: self.set_home_num,
-                                       self.get_mobile_num: self.set_mobile_num,
-                                       self.get_title: self.set_title,
-                                       self.get_rank: self.set_rank}
 
         self.__edit_order_list = [
             'home address', 'home number', 'mobile number', "title", "rank"]
@@ -73,14 +67,11 @@ class Employee():
     def get_edit_dict(self):
         return self.__edit_dict
 
-    def get_create_validation_dict(self):
-        return self.__create_validation_dict
+    def get_validation_dict(self):
+        return self.__validation_dict
 
     def get_create_order_list(self):
         return self.__create_order_list
-
-    def get_edit_validation_dict(self):
-        return self.__edit_validation_dict
 
     def get_edit_order_list(self):
         return self.__edit_order_list

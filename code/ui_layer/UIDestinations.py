@@ -88,12 +88,21 @@ class UIDestinations():
         self.__ui_base_functions.print_create_destination_results(new_destination)
     
     def change_contact_name(self, destination):
-        print("CHANGE NAME GOES HERE!")
-        string = self.__ui_base_functions.get_user_input("contact name")
+        new_name = self.__ui_base_functions.get_user_input("contact name")
+        if destination.set_contact_name(new_name):
+            if self.__ll_api.overwrite_all_models(destination):
+                self.__ui_base_functions.print_edit_destination_contact_results(destination)
+        else:
+            pass
+            
 
     def change_contact_number(self, destination):
-        print("CHANGE CONTACT NUMBER GOES HERE!")
-        number = self.__ui_base_functions.get_user_input("contact name")
+        new_number = self.__ui_base_functions.get_user_input("number")
+        if destination.set_contact_number(new_number):
+            if self.__ll_api.overwrite_all_models(destination):
+                self.__ui_base_functions.print_edit_destination_number_results(destination)
+        else:
+            pass
     
     
         

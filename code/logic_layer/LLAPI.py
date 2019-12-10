@@ -49,8 +49,6 @@ class LLAPI:
     def get_destination_list_by_country(self, country):
         return self.__ll_destinations.get_destination_list_by_country(country)
 
-    def edit_destination(self, destination, input_tpl):
-        return self.__ll_destinations.edit_destination(destination, input_tpl)
 
     def get_airplane_type_list(self):
         return self.__ll_airplanes.get_airplane_type_list()
@@ -74,8 +72,7 @@ class LLAPI:
         return self.__ll_employees.get_work_schedule_list(employee)
 
     def overwrite_all_models(self, model):
-        check = self.__modelAPI.validate_edit_model(model)
-        if type(check).__name__ != "str":
+        if self.__modelAPI.validate_model(model):
             if type(model).__name__ == "Employee":
                 return self.__ll_employees.overwrite_all_employees()
             if type(model).__name__ == "Airplane":
@@ -85,7 +82,7 @@ class LLAPI:
             if type(model).__name__ == "Voyage":
                 return self.__ll_voyages.overwrite_all_voyages()
         else:
-            return check
+            return False
 
     def add_crew_member_to_voyage(self):
         return 
