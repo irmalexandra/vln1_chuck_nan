@@ -33,7 +33,7 @@ class Voyage():
 
         self.__list_info_dict = {"default": self.get_model_list_default_info}
 
-        self.__create_validation_dict = {self.get_destination: self.set_destination, 
+        self.__create_validation_dict = {self.get_destination: self.set_departing_flight_departing_from, 
                                          self.get_departing_flight_departure_date: self.set_departing_flight_departure_date}
 
         self.__create_order_list = ["destination", "departure date"]
@@ -65,19 +65,33 @@ class Voyage():
     def get_create_validation_dict(self):
         return self.__create_validation_dict
 
+    def get_create_order_list(self):
+        return self.__create_order_list
+
     def get_departing_flight_num(self):
         return self.__departing_flight_num
 
     def set_departing_flight_num(self, flight_number):
         if self.__models_validation.validate_flight_number(flight_number):
             self.__departing_flight_num = flight_number
+            return True
+        return False
 
     def get_return_flight_num(self):
         return self.__return_flight_num
 
     def set_return_flight_num(self, flight_number):
         if self.__models_validation.validate_flight_number(flight_number):
-            self.__return_flight_num = flight_number       
+            self.__return_flight_num = flight_number
+            return True    
+        return False
+
+    def set_flight_numbers(self, departing_flight_num, return_flight_num):
+        dep_success = self.set_departing_flight_num(departing_flight_num)
+        ret_success = self.set_return_flight_num(return_flight_num)
+        if dep_success and ret_success:
+            return True
+        return False
 
     def get_departing_flight_departing_from(self):
         return self.__departing_flight_departing_from
@@ -85,44 +99,20 @@ class Voyage():
     def set_departing_flight_departing_from(self, airport):
         if self.__models_validation.validate_name(airport):
             self.__departing_flight_departing_from = airport
-
-    def set_status(self, status):
-        self.__status = status
-
-    def get_status(self):
-        return self.__status
-
-    def set_staffed(self, staffed):
-        self.__staffed = staffed
-    
-    def get_staffed(self):
-        return self.__staffed
-
-    def get_create_order_list(self):
-        return self.__create_order_list
-
-    def handle_key_value(self, key, value):
-        return value(key())
-
-    def get_destination(self):
-        return self.__return_flight_departing_from
-    
-    def set_destination(self, airport):
-        if self.__models_validation.validate_airport(airport):
-            self.__return_flight_departing_from = airport
             return True
         return False
 
-    def get_flight_times(self):
-        pass
+    def get_return_flight_departing_from(self):
+        return self.__return_flight_departing_from
 
-    def set_flight_times(self, departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date):
-        self.set_departing_flight_arrival_date(departing_flight_arrival_date)
-        self.set_return_flight_departure_date(return_flight_departure_date)
-        self.set_return_flight_arrival_date(return_flight_arrival_date)
-        pass
+    def set_return_flight_departing_from(self, airport):
+        if self.__models_validation.validate_airport(airport):
+            self.__return_flight_departing_from = airport
 
+        return self.__models_validation.validate_name(airport)
 
+    def get_destination(self):
+        return self.__return_flight_departing_from()
 
     def get_departing_flight_departure_date(self):
         return self.__departing_flight_departure_date
@@ -136,81 +126,95 @@ class Voyage():
     def set_departing_flight_arrival_date(self, new_destination_arrival):
         self.__departing_flight_arrival_date = new_destination_arrival
 
-    def get_return_flight_departing_from(self):
-        return self.__return_flight_departing_from
-
-    def set_return_flight_departing_from(self, new_destination):
-        if self.__models_validation.validate_name(new_destination):
-            self.__return_flight_departing_from = new_destination
-
-        return self.__models_validation.validate_name(new_destination)
-
     def get_return_flight_departure_date(self):
         return self.__return_flight_departure_date
 
-    def set_return_flight_departure_date(self, new):
-        if self.__models_validation.validate_date_time(new):
-            self.__return_flight_departure_date = new
+    def set_return_flight_departure_date(self, new_departure_date):
+        if self.__models_validation.validate_date_time(new_departure_date):
+            self.__return_flight_departure_date = new_departure_date
 
     def get_return_flight_arrival_date(self):
         return self.__return_flight_arrival_date
 
-    def set_return_flight_arrival_date(self, new):
-        if self.__models_validation.validate_date_time(new):
-            self.__return_flight_arrival_date = new
+    def set_return_flight_arrival_date(self, new_arrival_date):
+        if self.__models_validation.validate_date_time(new_arrival_date):
+            self.__return_flight_arrival_date = new_arrival_date
+
+    def get_status(self):
+        return self.__status
+
+    def set_status(self, status):
+        self.__status = status
+
+    def get_staffed(self):
+        return self.__staffed
+
+    def set_staffed(self, staffed):
+        self.__staffed = staffed
+
+    def handle_key_value(self, key, value):
+        return value(key())
+
+
+    def get_flight_times(self):
+        pass
+
+    def set_flight_times(self, departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date):
+        self.set_departing_flight_arrival_date(departing_flight_arrival_date)
+        self.set_return_flight_departure_date(return_flight_departure_date)
+        self.set_return_flight_arrival_date(return_flight_arrival_date)
+        pass
 
     def get_airplane_insignia(self):
         return self.__airplane_insignia
 
-    def set_airplane_insignia(self, new):
-        if new != ".":
-            if self.__models_validation.validate_airplane_insignia(new):
-                self.__airplane_insignia = new
+    def set_airplane_insignia(self, new_insignia):
+        if new_insignia != ".":
+            if self.__models_validation.validate_airplane_insignia(new_insignia):
+                self.__airplane_insignia = new_insignia
         else:
-            self.__airplane_insignia = new
+            self.__airplane_insignia = new_insignia
 
     def get_captain_ssn(self):
         return self.__captain_ssn
 
-    def set_captain_ssn(self, new):
-        if new != ".":
-            if self.__models_validation.validate_employee_ssn(new):
-                self.__captain_ssn = new
+    def set_captain_ssn(self, new_ssn):
+        if new_ssn != ".":
+            if self.__models_validation.validate_employee_ssn(new_ssn):
+                self.__captain_ssn = new_ssn
         else:
-            self.__captain_ssn = new
+            self.__captain_ssn = new_ssn
 
     def get_copilot_ssn(self):
         return self.__copilot_ssn
 
-    def set_copilot_ssn(self, new):
-        if new != ".":
-            if self.__models_validation.validate_employee_ssn(new):
-                self.__copilot_ssn = new
+    def set_copilot_ssn(self, new_ssn):
+        if new_ssn != ".":
+            if self.__models_validation.validate_employee_ssn(new_ssn):
+                self.__copilot_ssn = new_ssn
         else:
-            self.__copilot_ssn = new
+            self.__copilot_ssn = new_ssn
 
     def get_fsm_ssn(self):
         return self.__fsm_ssn
 
-    def set_fsm_ssn(self, new):
-        if new != ".":
-            if self.__models_validation.validate_employee_ssn(new):
-                self.__fsm_ssn = new
+    def set_fsm_ssn(self, new_ssn):
+        if new_ssn != ".":
+            if self.__models_validation.validate_employee_ssn(new_ssn):
+                self.__fsm_ssn = new_ssn
         else:
-            self.__fsm_ssn = new
+            self.__fsm_ssn = new_ssn
 
     def get_fa_ssns(self):
         return self.__fa_ssns
 
-    def set_fa_ssns(self, new):
-        valid_ssns = []
-        for ssn in new:
-            if self.__models_validation.validate_employee_ssn(ssn):
-                valid_ssns.append(ssn)
-            else:
-                valid_ssns.append(ssn)
-        self.__fa_ssns = valid_ssns
-        #return self.__models_validation.validate_employee_ssn(ssn)
+    def set_fa_ssns(self, new_ssn_list):
+
+        for ssn in new_ssn_list:
+            if not self.__models_validation.validate_employee_ssn(ssn):
+                return False
+
+        self.__fa_ssns = new_ssn_list
 
     def get_voyage_employee_ssn(self, rank):
         return self.__voyage_employee_ssn_dict[rank]()
@@ -221,10 +225,6 @@ class Voyage():
 
     def get_model_list_info(self, header_flag):
         return self.__list_info_dict[header_flag]()
-
-    def change_date_time_format(self, date_string):
-        date_string = date_string[:-3].replace("T", " ")
-        return date_string
 
     def get_model_header_default_format(self):
         return "{:7}{:14}{:10}{:22}{:16}{:22}{:16}{:14}{:17}".format("Index:",
@@ -246,8 +246,7 @@ class Voyage():
                                                                    self.get_return_flight_num(),
                                                                    self.get_staffed(),
                                                                    self.get_status())
-    
-    def set_flight_numbers(self, flight_number_tpl):
-        self.__departing_flight_num = flight_number_tpl[0]
-        self.__return_flight_num = flight_number_tpl[1]
-        return True
+
+    def change_date_time_format(self, date_string):
+        date_string = date_string[:-3].replace("T", " ")
+        return date_string

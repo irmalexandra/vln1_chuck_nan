@@ -10,7 +10,7 @@ class DLEmployees():
     TITLE = 6
     RANK = 7
     LICENSE = 8
-    CSV_ROWS = 9
+    CSV_ROWS = 10
 
     def __init__(self, modelAPI):
         
@@ -54,7 +54,7 @@ class DLEmployees():
     def overwrite_all_employees(self, emp_list):
         
         # employee_file.write(new_emp_str)
-        HEADER = "ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"
+        HEADER = "id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"
         filestream2 = open("./repo/employees_temp.csv", "a")
         filestream2.write(HEADER)
         for emp_info in emp_list: 

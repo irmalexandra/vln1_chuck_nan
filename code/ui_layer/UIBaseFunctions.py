@@ -141,3 +141,6 @@ class UIBaseFunctions():
     def print_airplane_licence_results(self, airplane):
         print("Licnece changed to {} successfully".format(airplane.get_plane_type_id()))
         return airplane
+
+    def print_create_voyage_results(self, destination, date, time):
+        print("Voyage to {} departing on {} at {} created successfully".format(destination, date, time))
