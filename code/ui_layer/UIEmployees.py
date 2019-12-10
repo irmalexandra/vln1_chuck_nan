@@ -12,7 +12,7 @@ class UIEmployees():
     #All menu functions
     
     def get_employee_sub_menu(self):
-        nav_dict = {1: self.create_employee,
+        nav_dict = {1: self.create_employee_sub_menu,
                     2: self.get_all_employees,
                     3: self.get_employee_search_menu,
                     9: self.__ui_base_functions.back,
@@ -31,6 +31,17 @@ class UIEmployees():
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
         employee_menu = "1. Name 2. Title 3. Date 4. Airplane"
+        return_value = self.__ui_base_functions.print_menu(
+            employee_menu, nav_dict)
+        return self.__ui_base_functions.check_return_value(return_value)
+
+    def create_employee_sub_menu(self):
+        nav_dict = {1: self.create_pilot,
+                    2: self.create_cabin_crew,
+                    3: self.get_employee_search_menu,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        employee_menu = "1. Pilot 2. Cabin Crew"
         return_value = self.__ui_base_functions.print_menu(
             employee_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -156,11 +167,40 @@ class UIEmployees():
 
     # Specific functions
 
-    def create_employee(self):
-        print("CREATE EMPLOYEE GOES HERE!")
+    def create_pilot(self):
+        new_emp = self.__modelAPI.get_model("Employee")
+        new_emp.set_title("Pilot")
+        create_order_list, creation_dict = new_emp.get_creation_process()
+        for attribute in create_order_list:
+            while True:
+                new_attribute = self.__ui_base_functions.get_user_input(attribute)
+            
+                if creation_dict[attribute](new_attribute):
+                    break
+        #SAVE EMPLOYEE TO DATABASE
+        return_value = self.__ui_base_functions.print_model(new_emp)
+        return self.__ui_base_functions.check_return_value(return_value)
+    
+    def create_cabin_crew(self):
+        new_emp = self.__modelAPI.get_model("Employee")
+        new_emp.set_title("Cabincrew")
+        create_order_list, creation_dict = new_emp.get_creation_process()
+        for attribute in create_order_list:
+            while True:
+                new_attribute = self.__ui_base_functions.get_user_input(attribute)
+            
+                if creation_dict[attribute](new_attribute):
+                    break
+        #SAVE EMPLOYEE TO DATABASE
+        return_value = self.__ui_base_functions.print_model(new_emp)
+        return self.__ui_base_functions.check_return_value(return_value)
+
 
     def change_pilot_licence(self, employee):
         print("CHANGE LICENCE GOES HERE!")
     
     def get_work_schedule(self, employee):
-        print("WORKSCHEDULE GOES HERE")
+        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)
+        header_flag = "default"
+        return_value = self.__ui_base_functions.print_model_list(employee_work_schedule, self.__modelAPI, header_flag)
+        return_value = self.__ui_base_functions.check_return_value(return_value)
