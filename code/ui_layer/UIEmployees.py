@@ -134,7 +134,7 @@ class UIEmployees():
         '''Gets all employees availability on a specific day'''
         # needs input
         header_flag = "date"
-        sort_flag = "working"
+        sort_flag = "not working"
         date = self.__ui_base_functions.get_user_input("date DD-MM-YYYY")
         employee_list = self.__ll_api.get_working_or_not(date, sort_flag)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
@@ -146,7 +146,7 @@ class UIEmployees():
         '''Gets all employees availability on a specific day'''
         # needs input
         header_flag = "date"
-        sort_flag = "not working"
+        sort_flag = "working"
         date = self.__ui_base_functions.get_user_input("date DD-MM-YYYY")
         employee_list = self.__ll_api.get_working_or_not(date, sort_flag)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
@@ -217,6 +217,8 @@ class UIEmployees():
             
                 if creation_dict[attribute](new_attribute):
                     break
+                else:
+                    print("Error, {} invalid!".format(attribute))
         if self.__ll_api.create_employee(new_emp):
             self.__ui_base_functions.print_model(new_emp)
             self.__ui_base_functions.print_create_employee_results(new_emp)
