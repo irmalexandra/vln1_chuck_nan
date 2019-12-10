@@ -61,7 +61,7 @@ class DLDestinations():
     def overwrite_all_destinations(self, destination_list):
         # employee_file.write(new_emp_str)
         HEADER = "country,airport,flight time,distance,contact name,contact number\n"
-        filestream = open("./repo/destinations_temp.csv", "w")
+        filestream = open("./repo/destinations_temp.csv", "a")
         filestream.write(HEADER)
         for destination_info in destination_list:
             filestream.write(destination_info.raw_info())

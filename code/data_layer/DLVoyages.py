@@ -82,7 +82,7 @@ class DLVoyages():
     def overwrite_all_voyages(self, voyage_list):
         # employee_file.write(new_emp_str)
         HEADER = "departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,airplanessn,captainssn,copilotssn,fsmssn,fassns\n"
-        filestream = open("./repo/voyages_temp.csv", "w")
+        filestream = open("./repo/voyages_temp.csv", "a")
         filestream.write(HEADER)
         for voyage_info in voyage_list:
             filestream.write(voyage_info.raw_info())

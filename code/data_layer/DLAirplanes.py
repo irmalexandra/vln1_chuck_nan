@@ -74,7 +74,7 @@ class DLAirplanes():
     def overwrite_all_airplanes(self, airplane_list):
 
         HEADER = "planeTypeId,planeInsignia\n"
-        filestream = open("./repo/Airplane_temp.csv", "w")
+        filestream = open("./repo/Airplane_temp.csv", "a")
         filestream.write(HEADER)
         for airplane_info in airplane_list:
             filestream.write(airplane_info.raw_info())
