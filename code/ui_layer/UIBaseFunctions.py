@@ -134,3 +134,6 @@ class UIBaseFunctions():
 
     def print_add_crew_results(self, employee):
         print("Name: {}\nRank: {} \nAdded successfully to voyage".format(employee.get_name(), employee.get_rank()))
+
+    def print_airplane_added_results(self, airplane):
+        print("Insignia: {} Added to voyage successfully".format(airplane.get_insignia()))

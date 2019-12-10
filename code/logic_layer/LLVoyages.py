@@ -15,7 +15,8 @@ class LLVoyages:
 
     def get_all_voyage_list(self):
         self.__all_voyage_list = self.__dl_api.pull_all_voyages()
-        #self.check_status(self.__all_voyage_list)
+        self.check_status(self.__all_voyage_list)
+        self.check_staffed(self.__all_voyage_list)
         return self.__all_voyage_list
 
     def overwrite_all_voyages(self, voyage_list):
@@ -61,7 +62,7 @@ class LLVoyages:
         new_voyage = self.__modelAPI.get_model("Voyage")
 
         new_voyage.set_destination(destination)
-        new_voyage.set_departing_flight_departure_date(str(date_time))
+        new_voyage.set_departing_flight_departure_date(date_time.isoformat())
         new_voyage.set_airplane_insignia(".")
         new_voyage.set_captain_ssn(".")
         new_voyage.set_copilot_ssn(".")
@@ -129,11 +130,10 @@ class LLVoyages:
     def get_iso_format_date_time(self, date=''):
 
         if date.find("T") == -1:
-            date = datetime.strptime(date,'%d-%m-%Y')
+            new_date = datetime.strptime(date,'%d-%m-%Y')
         else:
-            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
-
-        return date
+            new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+        return new_date
          
     def filter_available_employees(self, rank, voyage):
 
@@ -142,75 +142,59 @@ class LLVoyages:
         voyages_in_date_range_list = self.filter_all_voyages_by_period(start_date, end_date)
 
         all_employee_list = self.__dl_api.pull_all_employees()
-        self.get_all_voyage_list()
-        
 
         filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
 
         available_employee_list = []
-        final_employee_list = []
 
+        for other_voyage in voyages_in_date_range_list:   
+            voyage_ssn = other_voyage.get_voyage_employee_ssn(rank)
+            for employee in filter_rank_list:
+                if employee not in available_employee_list:
+                    employee_ssn = employee.get_ssn()
+                    if type(voyage_ssn).__name__ == "list":
+                        if employee_ssn not in voyage_ssn:
+                            available_employee_list.append(employee)
+                            
+                    else:
+                        if employee_ssn != voyage_ssn:
+                            available_employee_list.append(employee)
+
+        final_employee_list = available_employee_list    
         
-
-        for employee in filter_rank_list:
-            employee_ssn = employee.get_ssn()
-            for voyage in voyages_in_date_range_list:   
-                voyage_ssn = voyage.get_voyage_employee_ssn(employee.get_rank())
-                if type(voyage_ssn).__name__ == "list":
-                    if employee_ssn not in voyage_ssn:
-                        available_employee_list.append(employee)
-                        
-                else:
-                    if employee_ssn != voyage_ssn:
-                        available_employee_list.append(employee)
         if rank == "Captain" or rank == "Copilot":
-            
-            all_airplane_list = self.__dl_api.pull_all_airplanes()
+            final_employee_list = []
+            for airplane in self.__dl_api.pull_all_airplanes():
+                if airplane.get_insignia() == voyage.get_airplane_insignia():
+                    selected_airplane = airplane
+                    break
 
-            for employee in available_employee_list:
-                for airplane in all_airplane_list:
-                    airplane_type = "NA" + airplane.get_make() + airplane.get_model()
-                    if employee.get_licence() == airplane_type:
-                        final_employee_list.append(employee)
+            airplane_type = "NA" + selected_airplane.get_make() + selected_airplane.get_model()
+
+            for employee in available_employee_list: 
+                if employee.get_licence() == airplane_type:
+                    final_employee_list.append(employee)
 
         return final_employee_list
             
 
-    #def check_status(self, voyage_list):
-        #current_date = datetime.now().replace(microsecond=0).isoformat()
-        #current_voyages = []
-
-
-        #for voyage in self.get_all_voyage_list():
-            #if current_date <= voyage.get_departing_flight_departure_date:
-                #pass
-        # for voyage in all_voyage_list:
-        #     dep_flight_start = voyage.get_departing_flight_departure_date()
-        #     ret_flight_end = voyage.get_return_flight_arrival_date()
-
-        #     if dep_flight_start <= current_date <= ret_flight_end:
-        #         current_voyages.append(voyage)
-        
-        # for airplane in all_voyage_list:
-        #     for voyage in current_voyages:
-        #         dep_flight_start = voyage.get_departing_flight_departure_date()
-        #         dep_flight_end = voyage.get_departing_flight_arrival_date()
-        #         ret_flight_start = voyage.get_return_flight_departure_date()
-        #         ret_flight_end = voyage.get_return_flight_arrival_date()
-
-        #         if airplane.get_insignia() == voyage.get_airplane_insignia():
-        #             airplane.set_current_destination(voyage.get_return_flight_departing_from())
-        #             airplane.set_date_available(ret_flight_end)
-
-        #             if dep_flight_start <= current_date <= dep_flight_end:
-        #                 airplane.set_flight_number(voyage.set_departing_flight_num())
-        #                 airplane.set_availability("In air, departing")
-
-        #             elif dep_flight_end <= current_date <= ret_flight_start:
-        #                 airplane.set_flight_number("N/A")
-        #                 airplane.set_availability("At destination")
-
-        #             elif ret_flight_start <= current_date <= ret_flight_end:
-        #                 airplane.set_flight_number(voyage.get_return_flight_num())
-        #                 airplane.set_availability("In air, returning")
-
+    def check_status(self, voyage_list):
+        current_date = datetime.today()
+        for voyage in voyage_list:
+            if current_date <= self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()):
+                voyage.set_status("Not started")
+            elif self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date()):
+                voyage.set_status("Flying to {}".format(voyage.get_return_flight_departing_from()))
+            elif self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_return_flight_departure_date()):
+                voyage.set_status("Currently in {}".format(voyage.get_return_flight_departing_from()))
+            elif self.get_iso_format_date_time(voyage.get_return_flight_departure_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()):
+                voyage.set_status("Flying to {}".format(voyage.get_departing_flight_departing_from()))
+            else:
+                voyage.set_status("Voyage completed")
+    
+    def check_staffed(self, voyage_list):
+        for voyage in voyage_list:
+            if voyage.get_airplane_insignia() != "." and voyage.get_captain_ssn() != "." and voyage.get_copilot_ssn() != "." and voyage.get_fsm_ssn() != "." and voyage.get_fa_ssns() != ".:.":
+                voyage.set_staffed("Staffed")
+            else:
+                voyage.set_staffed("Not staffed")

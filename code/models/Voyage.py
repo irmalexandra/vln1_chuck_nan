@@ -5,7 +5,7 @@ class Voyage():
     def __init__(self , departing_flight_num = "", return_flight_num = "", departing_flight_departing_from = "Reykjavik", 
                 departing_flight_departure_date = "", departing_flight_arrival_date = "", return_flight_departing_from = "", 
                 return_flight_departure_date = "", return_flight_arrival_date = "", airplane_insignia = "", 
-                captain_ssn = "", copilot_ssn = "", fsm_ssn = "", fa_ssns=[], status = ""):
+                captain_ssn = "", copilot_ssn = "", fsm_ssn = "", fa_ssns=[], status = "", staffed = ""):
         
         self.__models_validation = Validator()
         self.__departing_flight_num = departing_flight_num
@@ -25,6 +25,8 @@ class Voyage():
         self.__copilot_ssn = copilot_ssn
         self.__fsm_ssn = fsm_ssn
         self.__fa_ssns = fa_ssns
+        self.__status = status
+        self.__staffed = staffed
 
 
         self.__header_format_dict = {"default": self.get_model_header_default_format}
@@ -62,6 +64,18 @@ class Voyage():
 
     def get_create_validation_dict(self):
         return self.__create_validation_dict
+
+    def set_status(self, status):
+        self.__status = status
+
+    def get_status(self):
+        return self.__status
+
+    def set_staffed(self, staffed):
+        self.__staffed = staffed
+    
+    def get_staffed(self):
+        return self.__staffed
 
     def get_create_order_list(self):
         return self.__create_order_list
@@ -196,7 +210,7 @@ class Voyage():
             else:
                 valid_ssns.append(ssn)
         self.__fa_ssns = valid_ssns
-        return self.__models_validation.validate_employee_ssn(ssn)
+        #return self.__models_validation.validate_employee_ssn(ssn)
 
     def get_voyage_employee_ssn(self, rank):
         return self.__voyage_employee_ssn_dict[rank]()
@@ -224,14 +238,14 @@ class Voyage():
                                                             "Status:")
 
     def get_model_list_default_info(self):
-        return "  {:14}{:12}{:22}{:18}{:22}{:18}{:11}{:14}|\n".format(self.get_return_flight_departing_from(),
+        return "  {:14}{:12}{:22}{:18}{:22}{:18}{:14}{:14}|\n".format(self.get_return_flight_departing_from(),
                                                                    self.get_airplane_insignia(),  # we should change this to airplane type
                                                                    self.change_date_time_format(self.get_departing_flight_departure_date()),
                                                                    self.get_departing_flight_num(),
                                                                    self.change_date_time_format(self.get_return_flight_arrival_date()),
                                                                    self.get_return_flight_num(),
-                                                                   "staffed",
-                                                                   "status")
+                                                                   self.get_staffed(),
+                                                                   self.get_status())
     
     def set_flight_numbers(self, flight_number_tpl):
         self.__departing_flight_num = flight_number_tpl[0]

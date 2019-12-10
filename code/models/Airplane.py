@@ -12,10 +12,10 @@ class Airplane():
 
         self.__create_order_list = ["airplane insignia"]
 
-        self.__availability = "Not in use"
+        self.__status = "Not in use"
         self.__current_destination = "N/A"
         self.__flight_number = "N/A"
-        self.__date_available = "N/A"
+        self.__date_available = "Now"
 
 
     def __str__(self):
@@ -24,11 +24,11 @@ class Airplane():
     def raw_info(self):
         return "NA" + self.__make + self.__model + "," + self.__insignia + "\n"
 
-    def set_availability(self, availability):
-        self.__availability = availability
+    def set_status(self, status):
+        self.__status = status
     
-    def get_availability(self):
-        return self.__availability
+    def get_status(self):
+        return self.__status
     
     def set_current_destination(self, destination):
         self.__current_destination = destination
@@ -118,7 +118,7 @@ class Airplane():
                                                                       self.get_make(),
                                                                       self.get_model(),
                                                                       self.get_capacity(),
-                                                                      self.get_availability(),
+                                                                      self.get_status(),
                                                                       self.get_current_destination(),
                                                                       self.get_flight_number(),
                                                                       self.change_date_time_format(self.get_date_available())))
