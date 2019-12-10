@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from datetime import timedelta
 class LLEmployees:
     DOMAIN = "@nanair.is"
     def __init__(self, DLAPI, modelAPI):
@@ -127,33 +127,45 @@ class LLEmployees:
         all_employee_list = self.get_all_employee_list()
         working = []
         not_working = []
-        date_instance = self.get_iso_format_date_time(date)
-        for voyage in all_voyage_list:
-            if self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= date_instance <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()):
+        start_range = self.get_iso_format_date_time(date)
+        end_range = self.get_iso_format_date_time(date) + timedelta(hours = 23, minutes=59, seconds=59)
+
+        for employee in all_employee_list:
+            employee_ssn = employee.get_ssn()
+            for voyage in all_voyage_list:
+                departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+                return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
                 fa_ssns = voyage.get_fa_ssns()
                 captain_ssn = voyage.get_captain_ssn()
                 co_pilot_ssn = voyage.get_copilot_ssn()
                 fsm_ssn = voyage.get_fsm_ssn()
-
-                for employee in all_employee_list:
-                    employee_ssn = employee.get_ssn()
+                if start_range <= departing_flight_departure_date <= end_range or start_range <= return_flight_arrival_date <= end_range:
                     if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
-                        working.append(employee)
-                    else:
-                        not_working.append(employee)
+                        if employee not in working:
+                            working.append(employee)
+
+            if employee not in not_working  and employee not in working:
+                not_working.append(employee)
 
         if flag.lower() == "working":
+
             return working
         else:
             return not_working
 
+    def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
+        if type(date).__name__ != datetime:
+            try:
+                if date.find("T") == -1:
+                    new_date = datetime.strptime(date,'%d-%m-%Y')
+                    new_time = datetime.strptime(time, '%H:%M:%S').time()
+                    new_date = datetime.combine(new_date, new_time)
+                else:
+                    new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+            except ValueError:
+                return False
+                
+        return new_date
 
-    
-    def get_iso_format_date_time(self, date=''):
-
-        if date.find("T") == -1:
-            date = datetime.strptime(date,'%d-%m-%Y')
-        else:
-            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
-
-        return date
+    def get_all_licences(self):
+        return self.__dl_api.pull_all_airplane_types()

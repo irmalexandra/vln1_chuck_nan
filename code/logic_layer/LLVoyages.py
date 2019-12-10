@@ -51,7 +51,7 @@ class LLVoyages:
 
         return airport_voyage_list
 
-    def create_voyage(self, destination, start_date, start_time = "00:00:00"):
+    def create_voyage(self, destination, start_date = "00-00-0000", start_time = "00:00:00"):
 
         self.get_all_voyage_list()
 
@@ -100,13 +100,13 @@ class LLVoyages:
 
         return False
 
-    def duplicate_voyage(self, voyage, start_date, start_time = "00:00:00"):
+    def duplicate_voyage(self, voyage, start_date = "00-00-0000", start_time = "00:00:00"):
         '''Copies a voyage to another date'''
 
         destination = voyage.get_destination()
         return self.create_voyage(destination, start_date, start_time)
 
-    def repeat_voyage(self, voyage, repeat_interval, end_date):
+    def repeat_voyage(self, voyage, repeat_interval, end_date = "00-00-0000"):
         date = self.get_iso_format_date_time(voyage.get_departing_flight_departing_date())
         end_date = self.get_iso_format_date_time(end_date)
         while date <= end_date:
@@ -195,13 +195,18 @@ class LLVoyages:
     def check_status(self, voyage_list):
         current_date = datetime.today()
         for voyage in voyage_list:
-            if current_date <= self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()):
+            departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+            departing_flight_arrival_date = self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date())
+            return_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
+            return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+
+            if current_date <= departing_flight_departure_date:
                 voyage.set_status("Not started")
-            elif self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date()):
+            elif departing_flight_departure_date <= current_date <= departing_flight_arrival_date:
                 voyage.set_status("Flying to {}".format(voyage.get_return_flight_departing_from()))
-            elif self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_return_flight_departure_date()):
+            elif departing_flight_arrival_date <= current_date <= return_flight_departure_date:
                 voyage.set_status("Currently in {}".format(voyage.get_return_flight_departing_from()))
-            elif self.get_iso_format_date_time(voyage.get_return_flight_departure_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()):
+            elif return_flight_departure_date <= current_date <= return_flight_arrival_date:
                 voyage.set_status("Flying to {}".format(voyage.get_departing_flight_departing_from()))
             else:
                 voyage.set_status("Voyage completed")
@@ -213,10 +218,16 @@ class LLVoyages:
             else:
                 voyage.set_staffed("Not staffed")
 
-    def get_iso_format_date_time(self, date=''):
+    def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
+        if type(date).__name__ != datetime:
+            try:
+                if date.find("T") == -1:
+                    new_date = datetime.strptime(date,'%d-%m-%Y')
+                    new_time = datetime.strptime(time, '%H:%M:%S').time()
+                    new_date = datetime.combine(new_date, new_time)
+                else:
+                    new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+            except ValueError:
+                return False
 
-        if date.find("T") == -1:
-            new_date = datetime.strptime(date,'%d-%m-%Y')
-        else:
-            new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
         return new_date
