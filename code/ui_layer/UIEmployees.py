@@ -176,6 +176,12 @@ class UIEmployees():
             return_value = self.get_select_from_pilots_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
+    def get_work_schedule(self, employee):
+        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)
+        header_flag = "default"
+        return_value = self.__ui_base_functions.print_model_list(employee_work_schedule, self.__modelAPI, header_flag)
+        return_value = self.__ui_base_functions.check_return_value(return_value)
+
     # Specific functions
 
     def create_pilot(self):
@@ -222,8 +228,4 @@ class UIEmployees():
             if employee.get_name() != "":
                 self.__ll_api.overwrite_all_models(employee)     
         
-    def get_work_schedule(self, employee):
-        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)
-        header_flag = "default"
-        return_value = self.__ui_base_functions.print_model_list(employee_work_schedule, self.__modelAPI, header_flag)
-        return_value = self.__ui_base_functions.check_return_value(return_value)
+    
