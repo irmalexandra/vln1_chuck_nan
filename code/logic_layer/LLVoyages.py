@@ -83,7 +83,7 @@ class LLVoyages:
         
         new_voyage.set_flight_times(departing_flight_arrival_date_str, \
             return_flight_departure_date_str, return_flight_arrival_date_str)
-        
+        #hmm
         start_date = fixed_date_time.isoformat()
         end_date = new_voyage.get_return_flight_arrival_date()
 
