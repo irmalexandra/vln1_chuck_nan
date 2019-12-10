@@ -162,6 +162,7 @@ class Employee():
 
     def set_licence(self, new_licence):
         self.__licence = new_licence
+        return True
 
     def handle_key_value(self, key, value):
         return value(key())
