@@ -58,7 +58,7 @@ class LLVoyages:
 
         return airport_voyage_list
 
-    def create_voyage(self, destination, start_date, start_time):
+    def create_voyage(self, airport, start_date, start_time):
         try:
             fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
             fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
@@ -67,7 +67,7 @@ class LLVoyages:
         fixed_date_time = datetime.combine(fixed_date, fixed_time)
         new_voyage = self.__modelAPI.get_model("Voyage")
 
-        new_voyage.set_return_flight_departing_from(destination)
+        new_voyage.set_return_flight_departing_from(airport)
         new_voyage.set_departing_flight_departure_date(fixed_date_time.isoformat())
         new_voyage.set_airplane_insignia(".")
         new_voyage.set_captain_ssn(".")
