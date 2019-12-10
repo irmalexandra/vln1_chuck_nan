@@ -85,4 +85,6 @@ class UIDestinations():
     def change_contact_number(self, destination):
         print("CHANGE CONTACT NUMBER GOES HERE!")
         number = self.__ui_base_functions.get_user_input("contact name")
+    
+    
         

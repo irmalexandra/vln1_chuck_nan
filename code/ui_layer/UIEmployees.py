@@ -173,6 +173,12 @@ class UIEmployees():
             return_value = self.get_select_from_pilots_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
+    def get_work_schedule(self, employee):
+        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)
+        header_flag = "default"
+        return_value = self.__ui_base_functions.print_model_list(employee_work_schedule, self.__modelAPI, header_flag)
+        return_value = self.__ui_base_functions.check_return_value(return_value)
+
     # Specific functions
 
     def create_pilot(self):
@@ -213,11 +219,7 @@ class UIEmployees():
         if return_value != None and return_value != 0:
             return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
             employee.set_licence(return_value.get_plane_type_id())   
-            #WRITE TO DATABASE!         
-        return self.__ui_base_functions.check_return_value(return_value)
+            if employee.get_name() != "":
+                self.__ll_api.overwrite_all_models(employee)     
+        
     
-    def get_work_schedule(self, employee):
-        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)
-        header_flag = "default"
-        return_value = self.__ui_base_functions.print_model_list(employee_work_schedule, self.__modelAPI, header_flag)
-        return_value = self.__ui_base_functions.check_return_value(return_value)

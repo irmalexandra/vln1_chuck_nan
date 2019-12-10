@@ -1,4 +1,4 @@
-id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
+ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 3009907461,William Carillo,Menntavegur 1,4640161,6507678,william.carillo@nanair.is,Pilot,Captain,NAFokkerF100
 2910858778,Virginia Ho,Laugarvegur 12,6337442,7603419,virginia.ho@nanair.is,Pilot,Captain,NABAE146
 2706838569,Gerard Nelson,Menntavegur 1,7449780,0860066,gerard.nelson@nanair.is,Pilot,Captain,NAFokkerF100
@@ -34,3 +34,5 @@ id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 1110732819,Arthur Karr,Menntavegur 1,0200077,3837344,arthur.karr@nanair.is,Cabincrew,Flight Attendant,N/A
 2602806942,Teresa Thruman,Menntavegur 1,3341427,6470574,teresa.thruman@nanair.is,Cabincrew,Flight Attendant,N/A
 1107951952,Elizabeth Mcfadden,Menntavegur 1,2957609,6902831,elizabeth.mcfadden@nanair.is,Cabincrew,Flight Attendant,N/A
+1234567890,Rikki Besti,Bgata 12,1234567,7654321,rikki.besti@nanair.is,Pilot,Captain,NAFokkerF28
+2222222222,Em�l �rn,k 2,2222222,2222222,em�l.�rn@nanair.is,Pilot,Captain,NABAE146

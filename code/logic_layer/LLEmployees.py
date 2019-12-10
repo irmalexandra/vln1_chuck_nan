@@ -128,6 +128,28 @@ class LLEmployees:
                 upcoming_voyages.append(voyage)
 
         return upcoming_voyages 
+
+    def get_free_or_not(self, date):
+        all_voyage_list = self.__dl_api.pull_all_voyages()
+        all_employee_list = self.get_all_employee_list()
+        working = []
+        not_working = []
+        for voyage in all_voyage_list:
+            if self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= self.get_iso_format_date_time(date) <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()):
+                fa_ssns = voyage.get_fa_ssns()
+                captain_ssn = voyage.get_captain_ssn()
+                co_pilot_ssn = voyage.get_copilot_ssn()
+                fsm_ssn = voyage.get_fsm_ssn()
+
+                for employee in all_employee_list:
+                    employee_ssn = employee.get_ssn()
+                    if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
+                        working.append(employee)
+                    else:
+                        not_working.append(employee)
+        return working, not_working
+
+
     
     def get_iso_format_date_time(self, date=''):
 
