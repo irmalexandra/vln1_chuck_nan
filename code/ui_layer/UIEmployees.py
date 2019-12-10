@@ -209,8 +209,7 @@ class UIEmployees():
 
     def change_pilot_licence(self, employee):
         header_flag = "default"
-        airplane_type_list = self.__ll_api.get_airplane_type_list(
-            name)
+        airplane_type_list = self.__ll_api.get_airplane_type_list()
         return_value = self.__ui_base_functions.print_model_list(airplane_type_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_airplane_type_list_menu(return_value)

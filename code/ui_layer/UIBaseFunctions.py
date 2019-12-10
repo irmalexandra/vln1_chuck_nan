@@ -139,4 +139,4 @@ class UIBaseFunctions():
         print("Insignia: {} Added to voyage successfully".format(airplane.get_insignia()))
 
     def print_airplane_licence_results(self, airplane):
-        print("Licnece changed to {} successfully".format(airplane.get_plane_type_id))
+        print("Licnece changed to {} successfully".format(airplane.get_plane_type_id()))
