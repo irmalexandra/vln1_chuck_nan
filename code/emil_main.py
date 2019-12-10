@@ -94,3 +94,9 @@ for thing in real_voyages:
     print(thing.get_status())
 voyaes = stuff.pull_all_voyages()
 
+#2019-11-18T09:25:00
+from logic_layer.LLEmployees import LLEmployees
+
+llemployee = LLEmployees(stuff,ModelAPI)
+
+print(llemployee.get_free_or_not("2019-11-22T10:23:00"))
