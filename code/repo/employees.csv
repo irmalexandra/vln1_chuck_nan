@@ -1,4 +1,4 @@
-id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
+ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 3009907461,William Carillo,Menntavegur 1,4640161,6507678,william.carillo@nanair.is,Pilot,Captain,NAFokkerF100
 2910858778,Virginia Ho,Laugarvegur 12,6337442,7603419,virginia.ho@nanair.is,Pilot,Captain,NABAE146
 2706838569,Gerard Nelson,Menntavegur 1,7449780,0860066,gerard.nelson@nanair.is,Pilot,Captain,NAFokkerF100
