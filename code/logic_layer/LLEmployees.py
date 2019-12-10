@@ -120,7 +120,7 @@ class LLEmployees:
 
     def set_availability(self, all_employee_list):
         current_day = datetime.today().replace(microsecond=0).isoformat()
-        self.get_working_or_not(current_day)
+        self.get_working_or_not(current_day,"Idk dude just leave me alone" , all_employee_list)
 
     def get_working_or_not(self, date, flag = "", all_employee_list = None):
         if all_employee_list == None:
