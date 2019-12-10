@@ -230,19 +230,14 @@ class UIVoyages():
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_destination_list_menu(return_value)
         if return_value != None and return_value != 0:
-            new_date = self.__ui_base_functions.get_user_input("new date ""(dd-mm-yyyy)"": ")
-            new_time = self.__ui_base_functions.get_user_input("new time ""(hh:mm:ss)"": ")
+            new_date = self.__ui_base_functions.get_user_input("new date ""(dd-mm-yyyy)"" ")
+            new_time = self.__ui_base_functions.get_user_input("new time ""(hh:mm:ss)"" ")
             if self.__ll_api.create_voyage(return_value, new_date, new_time):
                 self.__ui_base_functions.print_create_voyage_results(return_value, new_date, new_time)
             else:
-                print("no bueno")
+                self.__ui_base_functions.print_generic_error_message()
                 
 
-        
-        
-       
-
-    
     def duplicate_voyage(self, voyage):
 
         new_date = self.__ui_base_functions.get_user_input("new date ""(dd-mm-yyyy)"": ")

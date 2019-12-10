@@ -12,8 +12,8 @@ class LLVoyages:
         self.check_staffed(self.__all_voyage_list)
         return self.__all_voyage_list
 
-    def overwrite_all_voyages(self, voyage_list):
-        return self.__dl_api.overwrite_all_voyages(voyage_list)
+    def overwrite_all_voyages(self):
+        return self.__dl_api.overwrite_all_voyages(self.__all_voyage_list)
 
     def filter_all_empty_voyages(self):
         '''Takes a list of all voyage instances and returns a list of filtered voyage instances'''

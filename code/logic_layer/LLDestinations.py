@@ -23,7 +23,7 @@ class LLDestinations:
 
     def overwrite_all_destinations(self):
         ''' Takes a list of destination instances and sends it to the DL ''' 
-        return self.__dl_api.overwrite_all_destinations()
+        return self.__dl_api.overwrite_all_destinations(self.__all_destination_list)
 
     def get_destination_list_by_country(self, country):
         ''' Gets input from UI layer and returns an instance '''

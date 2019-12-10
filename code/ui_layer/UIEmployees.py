@@ -134,7 +134,7 @@ class UIEmployees():
         '''Gets all employees availability on a specific day'''
         # needs input
         header_flag = "date"
-        sort_flag = "working"
+        sort_flag = "not working"
         date = self.__ui_base_functions.get_user_input("date DD-MM-YYYY")
         employee_list = self.__ll_api.get_working_or_not(date, sort_flag)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
@@ -146,7 +146,7 @@ class UIEmployees():
         '''Gets all employees availability on a specific day'''
         # needs input
         header_flag = "date"
-        sort_flag = "not working"
+        sort_flag = "working"
         date = self.__ui_base_functions.get_user_input("date DD-MM-YYYY")
         employee_list = self.__ll_api.get_working_or_not(date, sort_flag)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
@@ -217,9 +217,13 @@ class UIEmployees():
             
                 if creation_dict[attribute](new_attribute):
                     break
-        self.__ll_api.create_employee(new_emp)
-        self.__ui_base_functions.print_model(new_emp)
-        self.__ui_base_functions.print_create_employee_results(new_emp)
+                else:
+                    print("Error, {} invalid!".format(attribute))
+        if self.__ll_api.create_employee(new_emp):
+            self.__ui_base_functions.print_model(new_emp)
+            self.__ui_base_functions.print_create_employee_results(new_emp)
+        else:
+            self.__ui_base_functions.print_generic_error_message()
     
     def create_cabin_crew(self):
         new_emp = self.__modelAPI.get_model("Employee")
@@ -233,9 +237,11 @@ class UIEmployees():
                     break
                 else:
                     print("Error, {} invalid!".format(attribute))
-        self.__ll_api.create_employee(new_emp)
-        self.__ui_base_functions.print_model(new_emp)
-        self.__ui_base_functions.print_create_employee_results(new_emp)
+        if self.__ll_api.create_employee(new_emp):
+            self.__ui_base_functions.print_model(new_emp)
+            self.__ui_base_functions.print_create_employee_results(new_emp)
+        else:
+            self.__ui_base_functions.print_generic_error_message()
    
     def change_pilot_licence(self, employee):
         header_flag = "default"
@@ -244,9 +250,13 @@ class UIEmployees():
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_airplane_type_list_menu(return_value)
         if return_value != None and return_value != 0:
-            return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
-            employee.set_licence(return_value.get_plane_type_id())   
+            if employee.set_licence(return_value.get_plane_type_id()):   
+                return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
             if employee.get_name() != "":
-                self.__ll_api.overwrite_all_models(employee)     
+                if self.__ll_api.overwrite_all_models(employee):
+                    pass
+                else:
+                    self.__ui_base_functions.print_generic_error_message()
+
         
     

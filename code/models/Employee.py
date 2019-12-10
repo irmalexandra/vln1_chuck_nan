@@ -14,6 +14,7 @@ class Employee():
         self.__title = title
         self.__rank = rank
         self.__licence = licence
+        self.__availability = ""
 
         self.__header_format_dict = {"default": self.get_model_header_default_format,
                                      "date": self.get_model_header_date_format,
@@ -60,6 +61,12 @@ class Employee():
         if self.__title == "Pilot":
             return_str += "\nLicence: {}".format(self.__licence)
         return return_str
+    
+    def set_availability(self, new):
+        self.__availability = new
+    
+    def get_availability(self):
+        return self.__availability
     
     def get_creation_process(self):
         return self.__create_order_list, self.__creation_dict
@@ -155,6 +162,7 @@ class Employee():
 
     def set_licence(self, new_licence):
         self.__licence = new_licence
+        return True
 
     def handle_key_value(self, key, value):
         return value(key())
@@ -180,7 +188,7 @@ class Employee():
                                                      self.get_ssn(),
                                                      self.get_mobile_num(),
                                                      self.get_title(),
-                                                     "availability"))
+                                                     self.get_availability()))
         return returnObject
 
     def get_model_list_default_info(self):
