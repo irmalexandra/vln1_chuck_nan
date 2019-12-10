@@ -142,15 +142,13 @@ class LLVoyages:
         voyages_in_date_range_list = self.filter_all_voyages_by_period(start_date, end_date)
 
         all_employee_list = self.__dl_api.pull_all_employees()
-        self.get_all_voyage_list()
-        
 
         filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
 
         available_employee_list = []
 
-        for voyage in voyages_in_date_range_list:   
-            voyage_ssn = voyage.get_voyage_employee_ssn(rank)
+        for other_voyage in voyages_in_date_range_list:   
+            voyage_ssn = other_voyage.get_voyage_employee_ssn(rank)
             for employee in filter_rank_list:
                 if employee not in available_employee_list:
                     employee_ssn = employee.get_ssn()
@@ -163,17 +161,19 @@ class LLVoyages:
                             available_employee_list.append(employee)
 
         final_employee_list = available_employee_list    
-
+        
         if rank == "Captain" or rank == "Copilot":
             final_employee_list = []
-            all_airplane_list = self.__dl_api.pull_all_airplanes()
+            for airplane in self.__dl_api.pull_all_airplanes():
+                if airplane.get_insignia() == voyage.get_airplane_insignia():
+                    selected_airplane = airplane
+                    break
+
+            airplane_type = "NA" + selected_airplane.get_make() + selected_airplane.get_model()
 
             for employee in available_employee_list: 
-                for airplane in all_airplane_list:
-                    if employee not in final_employee_list:
-                        airplane_type = "NA" + airplane.get_make() + airplane.get_model()
-                        if employee.get_licence() == airplane_type:
-                            final_employee_list.append(employee)
+                if employee.get_licence() == airplane_type:
+                    final_employee_list.append(employee)
 
         return final_employee_list
             

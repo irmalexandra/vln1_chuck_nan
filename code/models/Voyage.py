@@ -227,7 +227,7 @@ class Voyage():
         return date_string
 
     def get_model_header_default_format(self):
-        return "{:7}{:14}{:12}{:22}{:18}{:22}{:18}{:11}{:14}".format("Index:",
+        return "{:7}{:14}{:10}{:22}{:16}{:22}{:16}{:14}{:17}".format("Index:",
                                                             "Destination:",
                                                             "Airplane:",
                                                             "Departing date/time:",
@@ -238,7 +238,7 @@ class Voyage():
                                                             "Status:")
 
     def get_model_list_default_info(self):
-        return "  {:14}{:12}{:22}{:18}{:22}{:18}{:14}{:14}|\n".format(self.get_return_flight_departing_from(),
+        return "  {:14}{:10}{:22}{:16}{:22}{:16}{:14}{:17}|\n".format(self.get_return_flight_departing_from(),
                                                                    self.get_airplane_insignia(),  # we should change this to airplane type
                                                                    self.change_date_time_format(self.get_departing_flight_departure_date()),
                                                                    self.get_departing_flight_num(),

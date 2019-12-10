@@ -1,15 +1,11 @@
 from logic_layer.LLAPI import LLAPI
-from logic_layer.LLVoyages import LLVoyages
-from models.Voyage import Voyage
-from models.ModelAPI import ModelAPI
-from data_layer.DLAPI import DLAPI
 
-newDLAPI = DLAPI()
-newMODELAPI = ModelAPI()
+newLLAPI = LLAPI()
+all_licences = newLLAPI.get_all_licences()
+licence_list = []
+    
+for airplane in all_licences:
+    licence_list.append(airplane.get_plane_type_id())
 
-newDate = "20-12-2020"
-newVoyage = Voyage()
-newVoyage.set_destination("Nuuk")
-newLLVoy = LLVoyages(newDLAPI, newMODELAPI)
-
-newLLVoy.duplicate_voyage(newVoyage,newDate)
+for licence in licence_list:
+    print(licence)

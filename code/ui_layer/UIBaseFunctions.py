@@ -40,12 +40,12 @@ class UIBaseFunctions():
                     if selection in collection.keys():
                         return selection
                     else:
-                        print("Invalid key")
+                        print("Invalid selection")
                 elif type(collection).__name__ == "list":
                     if len(collection) >= selection:
                         return selection
                     else:
-                        print("Invalid selection in list")
+                        print("Invalid index")
                 else:
                     print("Invalid {}".format(key_word))
             except ValueError:
@@ -137,3 +137,7 @@ class UIBaseFunctions():
 
     def print_airplane_added_results(self, airplane):
         print("Insignia: {} Added to voyage successfully".format(airplane.get_insignia()))
+
+    def print_airplane_licence_results(self, airplane):
+        print("Licnece changed to {} successfully".format(airplane.get_plane_type_id()))
+        return airplane
