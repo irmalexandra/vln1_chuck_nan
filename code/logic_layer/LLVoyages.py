@@ -58,7 +58,7 @@ class LLVoyages:
 
         return airport_voyage_list
 
-    def create_voyage(self, destination, start_date, start_time):
+    def create_voyage(self, destination, start_date, start_time =  "00:00:00"):
         try:
             fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
             fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()

@@ -129,7 +129,7 @@ class Voyage():
 
     def set_departing_flight_arrival_date(self, new_arrival_date):
         if self.__models_validation.validate_date_time(new_arrival_date):
-            self.__departing_flight_departure_date = new_arrival_date
+            self.__departing_flight_arrival_date = new_arrival_date
             return True
         return False        
 
@@ -138,7 +138,7 @@ class Voyage():
 
     def set_return_flight_departure_date(self, new_departure_date):
         if self.__models_validation.validate_date_time(new_departure_date):
-            self.__departing_flight_departure_date = new_departure_date
+            self.__return_flight_departure_date = new_departure_date
             return True
         return False 
 
@@ -147,7 +147,7 @@ class Voyage():
 
     def set_return_flight_arrival_date(self, new_arrival_date):
         if self.__models_validation.validate_date_time(new_arrival_date):
-            self.__departing_flight_departure_date = new_arrival_date
+            self.__return_flight_arrival_date = new_arrival_date
             return True
         return False 
 
