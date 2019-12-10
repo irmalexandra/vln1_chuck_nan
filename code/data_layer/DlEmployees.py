@@ -70,4 +70,4 @@ class DLEmployees():
         emp_str = employee.raw_info()
         employee_stream.write(emp_str)
         employee_stream.close()
-        return        
+        return True      

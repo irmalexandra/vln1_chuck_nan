@@ -6,13 +6,6 @@ class LLVoyages:
         self.__modelAPI = modelAPI
         self.__all_voyage_list = []
 
-    def validate_voyage(self, voyage):
-        ''' Gets voyage instance and returns a boolean '''
-        return self.__modelAPI.validate_model(voyage)
-
-    def get_voyage(self, voyage_ID):
-        pass
-
     def get_all_voyage_list(self):
         self.__all_voyage_list = self.__dl_api.pull_all_voyages()
         self.check_status(self.__all_voyage_list)
@@ -88,7 +81,7 @@ class LLVoyages:
         new_voyage.set_flight_times(departing_flight_arrival_date_str, \
             return_flight_departure_date_str, return_flight_arrival_date_str)
 
-        if self.__modelAPI.validate_create_model(new_voyage):
+        if self.__modelAPI.validate_model(new_voyage):
             return self.__dl_api.append_voyage(new_voyage)
 
         return False

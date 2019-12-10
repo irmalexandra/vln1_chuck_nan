@@ -56,7 +56,7 @@ class DLDestinations():
         destination_str = new_destination.raw_info()
         destination_stream.write(destination_str)
         destination_stream.close()
-        return
+        return True
 
     def overwrite_all_destinations(self, destination_list):
         # employee_file.write(new_emp_str)
@@ -68,4 +68,4 @@ class DLDestinations():
         filestream.close()
         os.remove("./repo/destination.csv")
         os.rename("./repo/destinations_temp.csv", "./repo/destination.csv")
-        return
+        return True

@@ -51,7 +51,7 @@ class DLAirplanes():
         airplane_str = airplane.raw_info()
         airplane_stream.write(airplane_str)
         airplane_stream.close()
-        return    
+        return True
 
     def pull_airplane_types_info(self):
         # Ath!!
@@ -81,4 +81,4 @@ class DLAirplanes():
         filestream.close()
         os.remove("./repo/Airplane.csv")
         os.rename("./repo/Airplane_temp.csv", "./repo/Airplane.csv")
-        return 
+        return True
