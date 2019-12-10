@@ -1,4 +1,4 @@
-departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,airplaneid,captainssn,copilotssn,fsmssn,flightattendants_ssn
+departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,airplanessn,captainssn,copilotssn,fsmssn,fassns
 NA0000,NA0001,Reykjavik,2019-11-02T06:21:00,2019-11-02T10:21:00,Longyearbyen,2019-11-02T11:21:00,2019-11-02T15:21:00,TF-TYQ,3009907461,2410876598,1600904199,3002688722:0505942924
 NA0002,NA0003,Reykjavik,2019-11-04T05:32:00,2019-11-04T09:32:00,Longyearbyen,2019-11-04T10:32:00,2019-11-04T14:32:00,TF-XZR,2910858778,2211658134,0303758167,3003962187:1110732819
 NA0004,NA0005,Reykjavik,2019-11-06T05:39:00,2019-11-06T09:39:00,Longyearbyen,2019-11-06T10:39:00,2019-11-06T14:39:00,TF-XZR,2910858778,2211658134,0303758167,1311772221:2701886957
@@ -41,7 +41,3 @@ NA0074,NA0075,Reykjavik,2019-12-09T20:00:00,2019-12-09T22:00:00,Tingwall,2019-12
 NA0076,NA0077,Reykjavik,2050-01-01T01:01:01,2050-01-01T05:01:01,Longyearbyen,2050-01-01T06:01:01,2050-01-01T10:01:01,.,.,.,.,.:.
 NA0078,NA0079,Reykjavik,2020-12-21T21:30:00,2020-12-22T01:30:00,Longyearbyen,2020-12-22T02:30:00,2020-12-22T06:30:00,.,.,.,.,.:.
 NA0080,NA0081,Reykjavik,2019-12-10T14:00:00,2019-12-10T17:00:00,Nuuk,2019-12-10T18:00:00,2019-12-10T21:00:00,.,.,.,.,.:.
-NA0082,NA0083,Nuuk,2020-12-24T20:30:00,2020-12-24T23:30:00,Nuuk,2020-12-25T00:30:00,2020-12-25T03:30:00,.,.,.,.,.:.
-NA0084,NA0085,Nuuk,2200-01-21T21:30:00,2200-01-22T00:30:00,Nuuk,2200-01-22T01:30:00,2200-01-22T04:30:00,.,.,.,.,.:.
-NA0086,NA0087,Nuuk,2028-12-21T23:12:10,2028-12-22T02:12:10,Nuuk,2028-12-22T03:12:10,2028-12-22T06:12:10,.,.,.,.,.:.
-NA0088,NA0089,Nuuk,2090-12-21T21:30:00,2090-12-22T00:30:00,Nuuk,2090-12-22T01:30:00,2090-12-22T04:30:00,.,.,.,.,.:.

@@ -223,6 +223,14 @@ class Voyage():
         return self.__fa_ssns
 
     def set_fa_ssns(self, new_ssn):
+        if type(new_ssn).__name__ == "list":
+            for ssn in new_ssn:
+                if ssn != ".":
+                    if not self.__models_validation.validate_employee_ssn(ssn):
+                        return False
+            self.__fa_ssns = new_ssn
+            return True
+        
         if not self.__models_validation.validate_employee_ssn(new_ssn):
             return False
 
