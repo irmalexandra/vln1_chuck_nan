@@ -135,8 +135,9 @@ class LLEmployees:
         all_employee_list = self.get_all_employee_list()
         working = []
         not_working = []
+        date_instance = self.get_iso_format_date_time(date)
         for voyage in all_voyage_list:
-            if self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= self.get_iso_format_date_time(date) <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()):
+            if self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= date_instance <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()):
                 fa_ssns = voyage.get_fa_ssns()
                 captain_ssn = voyage.get_captain_ssn()
                 co_pilot_ssn = voyage.get_copilot_ssn()
