@@ -22,6 +22,14 @@ class Destination():
 
         self.__create_order_list = [
             "country", "airport", "flight time", "distance", "contact name", "contact number"]
+        
+        self.__creation_dict = {"country": self.set_country,
+                                "airport": self.set_airport,
+                                "flight time": self.set_flight_time,
+                                "distance": self.set_distance,
+                                "contact name": self.set_contact_name,
+                                "contact number": self.set_contact_number 
+        }
 
         self.__edit_validation_dict = {self.get_contact_name: self.set_contact_name, 
                                        self.get_contact_number: self.set_contact_number}
@@ -31,6 +39,9 @@ class Destination():
     def __str__(self):
         return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact numberber: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
 
+    def get_creation_process(self):
+        return self.__create_order_list, self.__creation_dict
+    
     def get_model_header_format(self, header_flag):
         return self.__header_format_dict[header_flag]()
 
@@ -81,8 +92,9 @@ class Destination():
     def set_country(self, new_country):
         if self.__models_validation.validate_country(new_country):
             self.__country = new_country
+            return True
         else:
-            pass
+            return False
 
     def get_airport(self):
         return self.__airport
@@ -90,6 +102,8 @@ class Destination():
     def set_airport(self, new_airport):
         if self.__models_validation.validate_airport(new_airport):
             self.__airport = new_airport
+            return True
+        return False
 
     def get_flight_time(self):
         return self.__flight_time
@@ -97,8 +111,9 @@ class Destination():
     def set_flight_time(self, new_flight_time):
         if self.__models_validation.validate_flight_time(new_flight_time):
             self.__flight_time = new_flight_time
+            return True
         else:
-            pass
+            return False
 
     def get_distance(self):
         return self.__distance
@@ -106,8 +121,9 @@ class Destination():
     def set_distance(self, new_distance):
         if self.__models_validation.validate_distance(new_distance):
             self.__distance = new_distance
+            return True
         else:
-            pass
+            return False
 
     def get_contact_name(self):
         return self.__contact_name

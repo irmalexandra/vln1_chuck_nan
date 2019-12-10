@@ -76,7 +76,16 @@ class UIDestinations():
     # Specific functions
     
     def create_destination(self):
-        print("CREATE DESTINATION GOES HERE!")
+        new_destination = self.__modelAPI.get_model("Destination")
+        create_order_list, creation_dict = new_destination.get_creation_process()
+        for attribute in create_order_list:
+            while True:
+                new_attribute = self.__ui_base_functions.get_user_input(attribute)
+            
+                if creation_dict[attribute](new_attribute):
+                    break
+        self.__ui_base_functions.print_model(new_destination)
+        self.__ui_base_functions.print_create_destination_results(new_destination)
     
     def change_contact_name(self, destination):
         print("CHANGE NAME GOES HERE!")
