@@ -201,9 +201,9 @@ class LLVoyages:
         employee_rank_str = employee.get_rank()
         check = rank_dict[employee_rank_str](employee_ssn_str)
         if check:
-            pass
+            return self.__dl_api.overwrite_all_voyages()
+        return check
         
-
     def check_status(self, voyage_list):
         current_date = datetime.today()
         for voyage in voyage_list:
