@@ -84,7 +84,7 @@ class LLAirplanes:
         for airplane in self.__all_airplane_list:
             airplane.set_status("Not in use")
             airplane.set_current_destination("N/A")
-            airplane.set_date_available("Now")
+            airplane.set_date_available("N/A")
             airplane.set_flight_number("N/A")
 
         all_voyage_list = self.__dl_api.pull_all_voyages()

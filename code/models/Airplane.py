@@ -15,7 +15,7 @@ class Airplane():
         self.__status = "Not in use"
         self.__current_destination = "N/A"
         self.__flight_number = "N/A"
-        self.__date_available = "Now"
+        self.__date_available = "N/A"
 
 
     def __str__(self):
@@ -103,7 +103,7 @@ class Airplane():
         return date_string
 
     def get_model_header_format(self, header_flag):
-        return "{:10}{:14}{:12}{:12}{:14}{:21}{:18}{:18}{:19}".format("Index: ",
+        return "{:10}{:14}{:12}{:12}{:14}{:19}{:17}{:17}{:23}".format("Index: ",
                                                                     "Insignia:",
                                                                     "Make:",
                                                                     "Model:",
@@ -111,9 +111,9 @@ class Airplane():
                                                                     "Status:",
                                                                     "Destination:",
                                                                     "Flight number:",
-                                                                    "Date available:")
+                                                                    "Date/time available:")
     def get_model_list_info(self, header_flag):
-        returnObject = ("     {:14}{:12}{:12}{:14}{:21}{:18}{:18}{:19}|\n".format(
+        returnObject = "     {:14}{:12}{:12}{:14}{:19}{:17}{:17}{:23}|\n".format(
                                                                       self.get_insignia(),
                                                                       self.get_make(),
                                                                       self.get_model(),
@@ -121,6 +121,6 @@ class Airplane():
                                                                       self.get_status(),
                                                                       self.get_current_destination(),
                                                                       self.get_flight_number(),
-                                                                      self.change_date_time_format(self.get_date_available())))
+                                                                      self.change_date_time_format(self.get_date_available()))
         return returnObject
 
