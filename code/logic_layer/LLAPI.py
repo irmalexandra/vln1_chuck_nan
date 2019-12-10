@@ -90,6 +90,8 @@ class LLAPI:
     def add_crew_member_to_voyage(self):
         return 
 
+    def create_employee(self,employee):
+        return self.__ll_employees.create_employee(employee)
 
     def duplicate_voyage(self, voyage, new_date):
         return self.__ll_voyages.duplicate_voyage(voyage, new_date)

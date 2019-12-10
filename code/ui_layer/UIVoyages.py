@@ -58,7 +58,6 @@ class UIVoyages():
             voyage.set_airplane_insignia(return_value.get_insignia())
             self.__ui_base_functions.print_airplane_added_results(return_value)
             
-            #return_value = self.__ll_api.add_crew_member_to_voyage()
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_selected_voyage_no_airplane_menu(self, voyage):
@@ -108,6 +107,7 @@ class UIVoyages():
             edit_menu, nav_dict, voyage)
         if return_value != None and return_value != 0:
             return_value = self.get_select_from_add_crew_list_menu(return_value)
+        #SAVE VOYAGE
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_add_crew_list_menu(self, crew_list, voyage):
