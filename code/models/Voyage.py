@@ -33,7 +33,7 @@ class Voyage():
 
         self.__list_info_dict = {"default": self.get_model_list_default_info}
 
-        self.__create_validation_dict = {self.get_destination: self.set_destination, 
+        self.__create_validation_dict = {self.get_destination: self.set_departing_flight_departing_from, 
                                          self.get_departing_flight_departure_date: self.set_departing_flight_departure_date}
 
         self.__create_order_list = ["destination", "departure date"]
@@ -114,6 +114,32 @@ class Voyage():
     def get_destination(self):
         return self.__return_flight_departing_from
 
+    def get_departing_flight_departure_date(self):
+        return self.__departing_flight_departure_date
+
+    def set_departing_flight_departure_date(self, new_departure):
+        self.__departing_flight_departure_date = new_departure
+
+    def get_departing_flight_arrival_date(self):
+        return self.__departing_flight_arrival_date
+
+    def set_departing_flight_arrival_date(self, new_destination_arrival):
+        self.__departing_flight_arrival_date = new_destination_arrival
+
+    def get_return_flight_departure_date(self):
+        return self.__return_flight_departure_date
+
+    def set_return_flight_departure_date(self, new_departure_date):
+        if self.__models_validation.validate_date_time(new_departure_date):
+            self.__return_flight_departure_date = new_departure_date
+
+    def get_return_flight_arrival_date(self):
+        return self.__return_flight_arrival_date
+
+    def set_return_flight_arrival_date(self, new_arrival_date):
+        if self.__models_validation.validate_date_time(new_arrival_date):
+            self.__return_flight_arrival_date = new_arrival_date
+
     def get_status(self):
         return self.__status
 
@@ -138,35 +164,6 @@ class Voyage():
         self.set_return_flight_departure_date(return_flight_departure_date)
         self.set_return_flight_arrival_date(return_flight_arrival_date)
         pass
-
-
-
-    def get_departing_flight_departure_date(self):
-        return self.__departing_flight_departure_date
-
-    def set_departing_flight_departure_date(self, new_departure):
-        self.__departing_flight_departure_date = new_departure
-
-    def get_departing_flight_arrival_date(self):
-        return self.__departing_flight_arrival_date
-
-    def set_departing_flight_arrival_date(self, new_destination_arrival):
-        self.__departing_flight_arrival_date = new_destination_arrival
-
-
-    def get_return_flight_departure_date(self):
-        return self.__return_flight_departure_date
-
-    def set_return_flight_departure_date(self, new_departure_date):
-        if self.__models_validation.validate_date_time(new_departure_date):
-            self.__return_flight_departure_date = new_departure_date
-
-    def get_return_flight_arrival_date(self):
-        return self.__return_flight_arrival_date
-
-    def set_return_flight_arrival_date(self, new_arrival_date):
-        if self.__models_validation.validate_date_time(new_arrival_date):
-            self.__return_flight_arrival_date = new_arrival_date
 
     def get_airplane_insignia(self):
         return self.__airplane_insignia
