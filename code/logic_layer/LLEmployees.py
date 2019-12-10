@@ -130,7 +130,7 @@ class LLEmployees:
 
         return upcoming_voyages 
 
-    def get_free_or_not(self, date):
+    def get_working_or_not(self, date, flag):
         all_voyage_list = self.__dl_api.pull_all_voyages()
         all_employee_list = self.get_all_employee_list()
         working = []
@@ -148,7 +148,11 @@ class LLEmployees:
                         working.append(employee)
                     else:
                         not_working.append(employee)
-        return working, not_working
+
+        if flag.lower() == "working":
+            return working
+        else:
+            return not_working
 
 
     
