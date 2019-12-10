@@ -145,7 +145,8 @@ class UIVoyages():
         voyage_list = self.__ll_api.get_all_voyage_list()
         return_value = self.__ui_base_functions.print_model_list(
             voyage_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_voyage_list_menu(voyage_list)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_voyage_list_menu(voyage_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_voyages_by_airport(self):

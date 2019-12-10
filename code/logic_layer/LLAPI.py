@@ -77,13 +77,13 @@ class LLAPI:
         check = self.__modelAPI.validate_edit_model(model)
         if type(check).__name__ != "str":
             if type(model).__name__ == "Employee":
-                return self.__ll_employees.overwrite_all_employees(model)
+                return self.__ll_employees.overwrite_all_employees()
             if type(model).__name__ == "Airplane":
-                return self.__ll_airplanes.overwrite_all_airplanes(model)
+                return self.__ll_airplanes.overwrite_all_airplanes()
             if type(model).__name__ == "Destination":
-                return self.__ll_destinations.overwrite_all_destinations(model)
+                return self.__ll_destinations.overwrite_all_destinations()
             if type(model).__name__ == "Voyage":
-                return self.__ll_voyages.overwrite_all_voyages(model)
+                return self.__ll_voyages.overwrite_all_voyages()
         else:
             return check
 
