@@ -105,11 +105,11 @@ class Voyage():
     def get_return_flight_departing_from(self):
         return self.__return_flight_departing_from
 
-    def set_return_flight_departing_from(self, new_destination):
-        if self.__models_validation.validate_name(new_destination):
-            self.__return_flight_departing_from = new_destination
+    def set_return_flight_departing_from(self, airport):
+        if self.__models_validation.validate_airport(airport):
+            self.__return_flight_departing_from = airport
 
-        return self.__models_validation.validate_name(new_destination)
+        return self.__models_validation.validate_name(airport)
 
     def get_destination(self):
         return self.__return_flight_departing_from
@@ -210,7 +210,6 @@ class Voyage():
 
     def set_fa_ssns(self, new_ssn_list):
 
-        valid_ssn_list = []
         for ssn in new_ssn_list:
             if not self.__models_validation.validate_employee_ssn(ssn):
                 return False
