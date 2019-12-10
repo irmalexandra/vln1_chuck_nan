@@ -8,9 +8,7 @@ class Airplane():
         self.__model = model
         self.__capacity = capacity
         
-        self.__create_validation_dict = {self.get_insignia:self.set_insignia}
-
-        self.__create_order_list = ["airplane insignia"]
+        self.__validation_dict = {self.get_insignia:self.set_insignia}
 
         self.__status = "Not in use"
         self.__current_destination = "N/A"
@@ -23,6 +21,9 @@ class Airplane():
 
     def raw_info(self):
         return "NA" + self.__make + self.__model + "," + self.__insignia + "\n"
+
+    def get_validation_dict(self):
+        return self.__validation_dict
 
     def set_status(self, status):
         self.__status = status
@@ -47,12 +48,6 @@ class Airplane():
     
     def get_date_available(self):
         return self.__date_available
-
-    def get_create_validation_dict(self):
-        return self.__create_validation_dict
-
-    def get_create_order_list(self):
-        return self.__create_order_list
     
     def handle_key_value(self, key, value):
         return value(key())
