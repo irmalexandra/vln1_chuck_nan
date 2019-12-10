@@ -58,7 +58,7 @@ class LLVoyages:
 
         return airport_voyage_list
 
-    def create_voyage(self, destination, start_date, start_time =  "00:00:00"):
+    def create_voyage(self, destination, start_date, start_time = "00:00:00"):
         try:
             fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
             fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
@@ -68,7 +68,7 @@ class LLVoyages:
         fixed_date_time = datetime.combine(fixed_date, fixed_time)
         new_voyage = self.__modelAPI.get_model("Voyage")
 
-        new_voyage.set_return_flight_departing_from(destination.get_airport)
+        new_voyage.set_return_flight_departing_from(destination.get_airport())
         new_voyage.set_departing_flight_departure_date(fixed_date_time.isoformat())
         new_voyage.set_airplane_insignia(".")
         new_voyage.set_captain_ssn(".")
@@ -76,10 +76,17 @@ class LLVoyages:
         new_voyage.set_fsm_ssn(".")
         new_voyage.set_fa_ssns([".", "."])
 
-        new_voyage.set_flight_numbers(self.generate_flight_numbers())
-        departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date = self.calculate_flight_times(date_time,destination)
-        departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str = str(departing_flight_arrival_date), str(return_flight_departure_date), str(return_flight_arrival_date)
-        new_voyage.set_flight_times(departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str)
+        dep_flight_num, ret_flight_num = self.generate_flight_numbers() 
+        new_voyage.set_flight_numbers(dep_flight_num, ret_flight_num)
+
+        departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date \
+            = self.calculate_flight_times(fixed_date_time, destination.get_airport())
+        
+        departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str \
+            = str(departing_flight_arrival_date), str(return_flight_departure_date), str(return_flight_arrival_date)
+        
+        new_voyage.set_flight_times(departing_flight_arrival_date_str, \
+            return_flight_departure_date_str, return_flight_arrival_date_str)
 
         if self.__modelAPI.validate_create_model(new_voyage):
             return self.__dl_api.append_voyage(new_voyage)
