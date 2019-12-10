@@ -58,12 +58,17 @@ class LLVoyages:
 
         return airport_voyage_list
 
-    def create_voyage(self, destination, date_time):
-        date_time = self.get_iso_format_date_time(date_time)
+    def create_voyage(self, destination, start_date, start_time):
+        try:
+            fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
+            fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
+        except ValueError:
+            return False
+        fixed_date_time = datetime.combine(fixed_date, fixed_time)
         new_voyage = self.__modelAPI.get_model("Voyage")
 
-        new_voyage.set_destination(destination)
-        new_voyage.set_departing_flight_departure_date(date_time.isoformat())
+        new_voyage.set_return_flight_departing_from(destination)
+        new_voyage.set_departing_flight_departure_date(fixed_date_time.isoformat())
         new_voyage.set_airplane_insignia(".")
         new_voyage.set_captain_ssn(".")
         new_voyage.set_copilot_ssn(".")
@@ -75,8 +80,10 @@ class LLVoyages:
         departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str = str(departing_flight_arrival_date), str(return_flight_departure_date), str(return_flight_arrival_date)
         new_voyage.set_flight_times(departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str)
 
-        return self.__dl_api.append_voyage(new_voyage)
+        if self.__modelAPI.validate_create_model(new_voyage):
+            return self.__dl_api.append_voyage(new_voyage)
 
+        return False
 
     def duplicate_voyage(self, voyage, start_date, start_time = "00:00:00"):
         '''Copies a voyage to another date'''

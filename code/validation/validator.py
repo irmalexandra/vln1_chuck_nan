@@ -91,7 +91,7 @@ class Validator():
 
         return False
 
-    def validate_date(self, date):
+    def validate_date_time(self, date):
 
         if type(date).__name__ != datetime:
             try:
@@ -103,14 +103,6 @@ class Validator():
             except ValueError:
                 return False
         return True
-
-    def validate_date_time(self, date_time):
-        try:
-            date, time = date_time.split("T")
-        except ValueError:
-            return False
-        return self.validate_date(date) and self.validate_time(time)
-
 
     def validate_airplane_typeid(self, typeid):
         return typeid[:2] == "NA"
@@ -140,10 +132,10 @@ class Validator():
         return False
 
     def validate_country(self, country):
-        return self.validate_name(country)
+        return self.__validate_string(country)
 
     def validate_airport(self, airport):
-        return self.validate_name(airport)
+        return self.__validate_string(airport)
 
     def validate_flight_time(self, time):
         return self.__validate_int(time)
