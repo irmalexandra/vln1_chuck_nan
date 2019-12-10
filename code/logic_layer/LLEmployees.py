@@ -157,6 +157,3 @@ class LLEmployees:
             date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
 
         return date
-
-    def get_all_licences(self):
-        return self.__dl_api.pull_all_airplane_types()

@@ -143,7 +143,7 @@ class UIBaseFunctions():
         return airplane
 
     def print_create_voyage_results(self, destination, date, time):
-        print("Voyage to {} departing on {} at {} created successfully".format(destination, date, time))
+        print("Voyage to {} departing on {} at {} created successfully".format(destination.get_airport(), date, time))
 
     def print_create_employee_results(self, employee):
         print("Employee, Name: {} SSN {} successfully created".format(employee.get_name(), employee.get_ssn()))
