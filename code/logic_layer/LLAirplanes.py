@@ -44,28 +44,48 @@ class LLAirplanes:
 
         all_airplane_list = self.get_all_airplane_list()
         
-        start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
-        end_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+        selected_voyage_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+        selected_voyage_end_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
 
-        self.get_airplane_status(start_date)
+        self.get_airplane_status(selected_voyage_start_date)
 
         available_airplane_list = []
+        unavailable_voyages = []
+        unavailable_airplane_insignias = []
+
         all_voyage_list = self.__dl_api.pull_all_voyages()
 
-        for airplane in all_airplane_list:
-            if airplane not in available_airplane_list:
-                for voyage in all_voyage_list:
-                    if airplane in available_airplane_list:
-                        break
-                    other_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
-                    other_end_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+        for voyage in all_voyage_list:        
+            voyage_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+            voyage_end_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
 
-                    if start_date > other_end_date or end_date < other_start_date:
-                        available_airplane_list.append(airplane)
+            if selected_voyage_start_date <= voyage_start_date <= selected_voyage_end_date \
+                or selected_voyage_start_date <= voyage_end_date <= selected_voyage_end_date:
+                unavailable_voyages.append(voyage)
+
+            elif voyage_start_date <= selected_voyage_start_date <= voyage_end_date \
+                or voyage_start_date <= selected_voyage_end_date <= voyage_end_date:
+                unavailable_voyages.append(voyage)
+
+
+        for voyage in unavailable_voyages:
+            unavailable_airplane_insignias.append(voyage.get_airplane_insignia())
+
+        for airplane in all_airplane_list:
+            if airplane.get_insignia() in unavailable_airplane_insignias:
+                continue
+            else:
+                available_airplane_list.append(airplane)
 
         return available_airplane_list
 
     def get_airplane_status(self, current_date = datetime.now().replace(microsecond=0)):
+
+        for airplane in self.__all_airplane_list:
+            airplane.set_status("Not in use")
+            airplane.set_current_destination("N/A")
+            airplane.set_date_available("Now")
+            airplane.set_flight_number("N/A")
 
         all_voyage_list = self.__dl_api.pull_all_voyages()
         
@@ -91,17 +111,18 @@ class LLAirplanes:
 
                     if dep_flight_start <= current_date <= dep_flight_end:
                         airplane.set_flight_number(voyage.get_departing_flight_num())
-                        airplane.set_availability("In air, departing")
+                        airplane.set_status("In air, departing")
 
                     elif dep_flight_end <= current_date <= ret_flight_start:
                         airplane.set_flight_number("N/A")
-                        airplane.set_availability("At destination")
+                        airplane.set_status("At destination")
 
                     elif ret_flight_start <= current_date <= ret_flight_end:
                         airplane.set_flight_number(voyage.get_return_flight_num())
-                        airplane.set_availability("In air, returning")
+                        airplane.set_status("In air, returning")
 
-        
+            
+
     def get_iso_format_date_time(self, date=''):
 
         if date.find("T") == -1:
