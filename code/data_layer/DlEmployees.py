@@ -10,6 +10,7 @@ class DLEmployees():
     TITLE = 6
     RANK = 7
     LICENSE = 8
+    CSV_ROWS = 9
 
     def __init__(self, modelAPI):
         
@@ -32,19 +33,20 @@ class DLEmployees():
         for line in filestream:
             check_list = []
             line_list = line.strip().split(",")
-            new_emp = self.__modelAPI.get_model('Employee')
-            
-            check_list.append(new_emp.set_ssn(line_list[DLEmployees.SSN]))
-            check_list.append(new_emp.set_name(line_list[DLEmployees.NAME]))
-            check_list.append(new_emp.set_address(line_list[DLEmployees.ADDRESS]))
-            check_list.append(new_emp.set_home_num(line_list[DLEmployees.HOME_NUMBER]))
-            check_list.append(new_emp.set_mobile_num(line_list[DLEmployees.MOBILE_NUBER]))
-            check_list.append(new_emp.set_email(line_list[DLEmployees.EMAIL]))
-            check_list.append(new_emp.set_rank(line_list[DLEmployees.RANK]))
-            check_list.append(new_emp.set_title(line_list[DLEmployees.TITLE]))
-            check_list.append(new_emp.set_licence(line_list[DLEmployees.LICENSE]))
-            if False not in check_list:
-                all_crew_list.append(new_emp)
+            if len(line_list) == self.CSV_ROWS:
+                new_emp = self.__modelAPI.get_model('Employee')
+                
+                check_list.append(new_emp.set_ssn(line_list[DLEmployees.SSN]))
+                check_list.append(new_emp.set_name(line_list[DLEmployees.NAME]))
+                check_list.append(new_emp.set_address(line_list[DLEmployees.ADDRESS]))
+                check_list.append(new_emp.set_home_num(line_list[DLEmployees.HOME_NUMBER]))
+                check_list.append(new_emp.set_mobile_num(line_list[DLEmployees.MOBILE_NUBER]))
+                check_list.append(new_emp.set_email(line_list[DLEmployees.EMAIL]))
+                check_list.append(new_emp.set_rank(line_list[DLEmployees.RANK]))
+                check_list.append(new_emp.set_title(line_list[DLEmployees.TITLE]))
+                check_list.append(new_emp.set_licence(line_list[DLEmployees.LICENSE]))
+                if False not in check_list:
+                    all_crew_list.append(new_emp)
         filestream.close()
 
         return all_crew_list
@@ -52,7 +54,7 @@ class DLEmployees():
     def overwrite_all_employees(self, emp_list):
         
         # employee_file.write(new_emp_str)
-        HEADER = "id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"
+        HEADER = "ssn,name,address,homenumber,mobilenumber,email,role,rank,licence\n"
         filestream2 = open("./repo/employees_temp.csv", "a")
         filestream2.write(HEADER)
         for emp_info in emp_list: 

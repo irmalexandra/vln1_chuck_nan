@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 class Validator():
     TITLE_LIST = ["Pilot", "Cabin Crew"]
     PILOT_RANK_LIST = ["Captain", "Copilot"]
@@ -20,6 +20,7 @@ class Validator():
 
     def validate_name(self, name):
         try:
+            first, last = name.split(" ")
             name = name.replace(" ", "")
             if self.__validate_string(name):
                 return True
@@ -89,22 +90,18 @@ class Validator():
 
         return False
 
-    def validate_date(self, date_str):
-        try:
-            year, month, day = date_str.split("-")
-            datetime.date(int(year),int(month),int(day))
-            return True
-        except ValueError:
-            return False
+    def validate_date(self, date):
 
-
-    def validate_time(self, time_str):
-        try:
-            hour, minute, second = time_str.split(":")
-            datetime.time(int(hour),int(minute),int(second))
-            return True
-        except ValueError:
-            return False
+        if type(date).__name__ != datetime:
+            try:
+                if date.find("T") == -1:
+                    datetime.strptime(date,'%d-%m-%Y')
+                else:
+                    datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+                return True
+            except ValueError:
+                return False
+        return True
 
     def validate_date_time(self, date_time):
         try:

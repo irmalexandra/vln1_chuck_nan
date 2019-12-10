@@ -59,6 +59,7 @@ class LLVoyages:
         return airport_voyage_list
 
     def create_voyage(self, destination, date_time):
+        date_time = self.get_iso_format_date_time(date_time)
         new_voyage = self.__modelAPI.get_model("Voyage")
 
         new_voyage.set_destination(destination)
@@ -77,11 +78,18 @@ class LLVoyages:
         return self.__dl_api.append_voyage(new_voyage)
 
 
-    def duplicate_voyage(self, voyage, date_time):
+    def duplicate_voyage(self, voyage, start_date, start_time = "00:00:00"):
         '''Copies a voyage to another date'''
+        try:
+            fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
+            fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
+        except ValueError:
+            return False
+            
+        fixed_date_time = datetime.combine(fixed_date, fixed_time)
+
         destination = voyage.get_destination()
-        date_time = self.get_iso_format_date_time(date_time)
-        return self.create_voyage(destination, date_time)
+        return self.create_voyage(destination, fixed_date_time)
 
     def repeat_voyage(self, voyage, repeat_interval, end_date):
         date = self.get_iso_format_date_time(voyage.get_departing_flight_departing_date())
@@ -111,8 +119,6 @@ class LLVoyages:
             arriving_number_str = "0" + arriving_number_str
         return "NA" + departing_number_str, "NA" + arriving_number_str
 
-
-
     def calculate_flight_times(self,date,airport):
         self.__all_voyage_list = self.get_all_voyage_list()
         destinations_list = self.__dl_api.pull_all_destinations()
@@ -126,14 +132,6 @@ class LLVoyages:
         return_flight_departure_date = departing_flight_arrival_date + timedelta(hours = 1)
         return_flight_arrival_date = return_flight_departure_date + timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
-
-    def get_iso_format_date_time(self, date=''):
-
-        if date.find("T") == -1:
-            new_date = datetime.strptime(date,'%d-%m-%Y')
-        else:
-            new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
-        return new_date
          
     def filter_available_employees(self, rank, voyage):
 
@@ -198,3 +196,11 @@ class LLVoyages:
                 voyage.set_staffed("Staffed")
             else:
                 voyage.set_staffed("Not staffed")
+
+    def get_iso_format_date_time(self, date=''):
+
+        if date.find("T") == -1:
+            new_date = datetime.strptime(date,'%d-%m-%Y')
+        else:
+            new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+        return new_date

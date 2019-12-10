@@ -116,7 +116,8 @@ class UIEmployees():
         employee_list = self.__ll_api.get_employee_list_by_name()
         return_value = self.__ui_base_functions.print_model_list(
             employee_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_employee_list_menu(employee_list)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_employee_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_employees_by_date(self):
@@ -126,7 +127,8 @@ class UIEmployees():
         employee_list = self.__ll_api.get_all_employee_list()
         return_value = self.__ui_base_functions.print_model_list(
             employee_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_employee_list_menu(employee_list)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_employee_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_employees_by_title(self):
@@ -161,7 +163,8 @@ class UIEmployees():
         header_flag = "aircraft"
         employee_list = self.__ll_api.get_pilot_list_sorted_by_airplane_type()
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_pilots_list_menu(employee_list)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_pilots_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_pilots_filtered_by_airplane_type(self, employee_list = []):
