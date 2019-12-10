@@ -98,3 +98,6 @@ class LLAPI:
     
     def create_voyage(self, airport, start_date, start_time):
         return self.__ll_voyages.create_voyage(airport, start_date, start_time)
+
+    def create_employee(self, employee):
+        return self.__ll_employees.create_employee(employee)

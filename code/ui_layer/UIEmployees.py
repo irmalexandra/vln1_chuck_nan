@@ -192,8 +192,9 @@ class UIEmployees():
             
                 if creation_dict[attribute](new_attribute):
                     break
-        #SAVE EMPLOYEE TO DATABASE
+        self.__ll_api.create_employee(new_emp)
         self.__ui_base_functions.print_model(new_emp)
+        self.__ui_base_functions.print_create_employee_results(new_emp)
     
     def create_cabin_crew(self):
         new_emp = self.__modelAPI.get_model("Employee")
@@ -207,9 +208,10 @@ class UIEmployees():
                     break
                 else:
                     print("Error, {} invalid!".format(attribute))
-        #SAVE EMPLOYEE TO DATABASE
+        self.__ll_api.create_employee(new_emp)
         self.__ui_base_functions.print_model(new_emp)
-        
+        self.__ui_base_functions.print_create_employee_results(new_emp)
+   
     def change_pilot_licence(self, employee):
         header_flag = "default"
         airplane_type_list = self.__ll_api.get_airplane_type_list()

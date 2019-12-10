@@ -30,6 +30,7 @@ class LLEmployees:
 
 
     def create_employee(self, employee):
+        employee.set_email(self.email_generator(employee.get_name()))
         if self.validate_new_employee(employee):
             self.__dl_api.append_employee(employee)
             return True
