@@ -59,6 +59,9 @@ class LLVoyages:
         return airport_voyage_list
 
     def create_voyage(self, destination, start_date, start_time = "00:00:00"):
+
+        self.get_all_voyage_list()
+
         try:
             fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
             fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
@@ -87,8 +90,19 @@ class LLVoyages:
         
         new_voyage.set_flight_times(departing_flight_arrival_date_str, \
             return_flight_departure_date_str, return_flight_arrival_date_str)
+        
+        start_date = fixed_date_time
+        end_date = new_voyage.get_return_flight_arrival_date()
 
-        if self.__modelAPI.validate_create_model(new_voyage):
+        for voyage in self.__all_voyage_list:
+            other_start_date = voyage.get_departing_flight_departure_date()
+            other_end_date = voyage.get_return_flight_arrival_date()
+            
+            if other_start_date == start_date or other_start_date == end_date or\
+                other_end_date == start_date or other_end_date == end_date:
+                return False
+
+        if self.__modelAPI.validate_model(new_voyage):
             return self.__dl_api.append_voyage(new_voyage)
 
         return False

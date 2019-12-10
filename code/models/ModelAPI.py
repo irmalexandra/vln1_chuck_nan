@@ -29,7 +29,7 @@ class ModelAPI():
 
     def validate_model(self, model):
         ''' Gets a object instance from the logic layer and returns a tuple '''
-        validation_dict = model.get_create_validation_dict()
+        validation_dict = model.get_validation_dict()
 
         for key, value in validation_dict.items():
             check = model.handle_key_value(key, value)
