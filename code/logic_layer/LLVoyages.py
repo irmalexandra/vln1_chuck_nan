@@ -180,13 +180,18 @@ class LLVoyages:
     def check_status(self, voyage_list):
         current_date = datetime.today()
         for voyage in voyage_list:
-            if current_date <= self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()):
+            departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+            departing_flight_arrival_date = self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date())
+            return_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
+            return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+
+            if current_date <= departing_flight_departure_date:
                 voyage.set_status("Not started")
-            elif self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date()):
+            elif departing_flight_departure_date <= current_date <= departing_flight_arrival_date:
                 voyage.set_status("Flying to {}".format(voyage.get_return_flight_departing_from()))
-            elif self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_return_flight_departure_date()):
+            elif departing_flight_arrival_date <= current_date <= return_flight_departure_date:
                 voyage.set_status("Currently in {}".format(voyage.get_return_flight_departing_from()))
-            elif self.get_iso_format_date_time(voyage.get_return_flight_departure_date()) <= current_date <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()):
+            elif return_flight_departure_date <= current_date <= return_flight_arrival_date:
                 voyage.set_status("Flying to {}".format(voyage.get_departing_flight_departing_from()))
             else:
                 voyage.set_status("Voyage completed")
@@ -201,7 +206,7 @@ class LLVoyages:
     def get_iso_format_date_time(self, date=''):
 
         if date.find("T") == -1:
-            new_date = datetime.strptime(date,'%d-%m-%Y')
+            new_date = datetime.strptime(date,'%Y-%m-%d')
         else:
             new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
         return new_date
