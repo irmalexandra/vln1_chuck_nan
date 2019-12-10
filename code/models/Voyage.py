@@ -108,9 +108,9 @@ class Voyage():
     def set_return_flight_departing_from(self, airport):
         if self.__models_validation.validate_airport(airport):
             self.__return_flight_departing_from = airport
-            return False
+            return True
 
-        return True
+        return False
 
     def get_destination(self):
         return self.__return_flight_departing_from()
