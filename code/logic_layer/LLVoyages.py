@@ -51,7 +51,7 @@ class LLVoyages:
 
         return airport_voyage_list
 
-    def create_voyage(self, destination, start_date, start_time = "00:00:00"):
+    def create_voyage(self, destination, start_date = "00-00-0000", start_time = "00:00:00"):
 
         self.get_all_voyage_list()
 
@@ -100,13 +100,13 @@ class LLVoyages:
 
         return False
 
-    def duplicate_voyage(self, voyage, start_date, start_time = "00:00:00"):
+    def duplicate_voyage(self, voyage, start_date = "00-00-0000", start_time = "00:00:00"):
         '''Copies a voyage to another date'''
 
         destination = voyage.get_destination()
         return self.create_voyage(destination, start_date, start_time)
 
-    def repeat_voyage(self, voyage, repeat_interval, end_date):
+    def repeat_voyage(self, voyage, repeat_interval, end_date = "00-00-0000"):
         date = self.get_iso_format_date_time(voyage.get_departing_flight_departing_date())
         end_date = self.get_iso_format_date_time(end_date)
         while date <= end_date:
@@ -218,10 +218,16 @@ class LLVoyages:
             else:
                 voyage.set_staffed("Not staffed")
 
-    def get_iso_format_date_time(self, date=''):
+    def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
+        if type(date).__name__ != datetime:
+            try:
+                if date.find("T") == -1:
+                    new_date = datetime.strptime(date,'%d-%m-%Y')
+                    new_time = datetime.strptime(time, '%H:%M:%S').time()
+                    new_date = datetime.combine(new_date, new_time)
+                else:
+                    new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+            except ValueError:
+                return False
 
-        if date.find("T") == -1:
-            new_date = datetime.strptime(date,'%Y-%m-%d')
-        else:
-            new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
         return new_date
