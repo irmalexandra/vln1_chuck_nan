@@ -99,9 +99,9 @@ for thing in real_voyages:
     print(thing.get_status())
 voyaes = stuff.pull_all_voyages()
 
-#2019-11-18T09:25:00
-working= llemployee.get_working_or_not("24-11-2019","working")
-not_working = llemployee.get_working_or_not("24-11-2019","ds")
+date_thing = "2-11-2019"
+working= llemployee.get_working_or_not(date_thing,"working")
+not_working = llemployee.get_working_or_not(date_thing,"ds")
 print("idk".replace(" ","y"))
 destination_list = stuff.pull_all_destinations()
 for destination in destination_list:
