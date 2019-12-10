@@ -207,7 +207,20 @@ class UIVoyages():
 
     def create_voyage(self):
         print("CREATE VOYAGE GOES HERE!")
-        return
+        airport = self.__ui_base_functions.get_user_input("Airport")
+        day = self.__ui_base_functions.get_user_input("day")
+        month = self.__ui_base_functions.get_user_input("month")
+        year = self.__ui_base_functions.get_user_input("year")
+        hour = self.__ui_base_functions.get_user_input("hour")
+        minute = self.__ui_base_functions.get_user_input("minute")
+        seconds = self.__ui_base_functions.get_user_input("seconds")
+        date = year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + seconds
+        return_value = self.__ll_api.create_voyage(airport, date)
+        if return_value == True:
+            print("YAS QUEEN")
+        else:
+            print("NAH QUEEN")
+        return self.__ui_base_functions.check_return_value(return_value)
 
     
     def duplicate_voyage(self, voyage):
