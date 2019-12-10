@@ -84,8 +84,8 @@ class LLAPI:
         else:
             return False
 
-    def add_crew_member_to_voyage(self):
-        return 
+    def add_employee_to_voyage(self, voyage, employee):
+        return self.__ll_voyages.add_employee_to_voyage(voyage, employee)
 
     def duplicate_voyage(self, voyage, new_date, new_time):
         return self.__ll_voyages.duplicate_voyage(voyage, new_date, new_time)

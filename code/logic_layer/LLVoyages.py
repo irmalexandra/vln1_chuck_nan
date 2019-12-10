@@ -191,7 +191,19 @@ class LLVoyages:
 
         return final_employee_list
             
+    def add_employee_to_voyage(self, voyage, employee):
+        rank_dict = {'Captain':voyage.set_captain_ssn, 
+                     'Copilot':voyage.set_copilot_ssn, 
+                     'Flight Service Manager':voyage.set_fsm_ssn, 
+                     'Flight Attendant':voyage.set_fa_ssns}
 
+        employee_ssn_str = employee.get_ssn()
+        employee_rank_str = employee.get_rank()
+        check = rank_dict[employee_rank_str](employee_ssn_str)
+        if check:
+            return self.__dl_api.overwrite_all_voyages()
+        return check
+        
     def check_status(self, voyage_list):
         current_date = datetime.today()
         for voyage in voyage_list:
@@ -219,7 +231,7 @@ class LLVoyages:
                 voyage.set_staffed("Not staffed")
 
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
-        if type(date).__name__ != datetime:
+        if type(date).__name__ != 'datetime':
             try:
                 if date.find("T") == -1:
                     new_date = datetime.strptime(date,'%d-%m-%Y')

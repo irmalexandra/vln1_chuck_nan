@@ -154,7 +154,7 @@ class LLEmployees:
             return not_working
 
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
-        if type(date).__name__ != datetime:
+        if type(date).__name__ != 'datetime':
             try:
                 if date.find("T") == -1:
                     new_date = datetime.strptime(date,'%d-%m-%Y')
