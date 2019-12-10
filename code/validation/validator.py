@@ -21,12 +21,13 @@ class Validator():
     def validate_name(self, name):
         try:
             first, last = name.split(" ")
-            name = name.replace(" ", "")
-            if self.__validate_string(name):
-                return True
-
+        
         except ValueError:
             return False
+        name = name.replace(" ", "")           
+        if self.__validate_string(name):
+            return True
+        return False
 
     def validate_employee_name(self, name):
         return self.validate_name(name)
