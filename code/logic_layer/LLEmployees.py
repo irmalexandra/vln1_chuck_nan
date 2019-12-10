@@ -119,7 +119,7 @@ class LLEmployees:
         return upcoming_voyages 
 
     def set_availability(self, all_employee_list):
-        current_day = datetime.today().isoformat()
+        current_day = datetime.today().replace(microsecond=0).isoformat()
         working_list = self.get_working_or_not(current_day,"working", all_employee_list)
         not_working_list = self.get_working_or_not(current_day,"not working", all_employee_list)
         for employee in working_list:
@@ -153,9 +153,11 @@ class LLEmployees:
                     if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
                         if employee not in working:
                             working.append(employee)
+                            employee.set_availability("Not available")
 
             if employee not in not_working  and employee not in working:
                 not_working.append(employee)
+                employee.set_availability("Available")
 
         if flag.lower() == "working":
 

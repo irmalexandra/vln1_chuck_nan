@@ -201,7 +201,7 @@ class LLVoyages:
         employee_rank_str = employee.get_rank()
         check = rank_dict[employee_rank_str](employee_ssn_str)
         if check:
-            return self.__dl_api.
+            pass
         
 
     def check_status(self, voyage_list):
