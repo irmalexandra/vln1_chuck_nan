@@ -153,17 +153,19 @@ class LLEmployees:
         else:
             return not_working
 
-
-    
-    def get_iso_format_date_time(self, date=''):
-
-        if date.find("T") == -1:
-            date = datetime.strptime(date,'%d-%m-%Y')
-        else:
-            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
-
-        return date
-
+    def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
+        if type(date).__name__ != datetime:
+            try:
+                if date.find("T") == -1:
+                    new_date = datetime.strptime(date,'%d-%m-%Y')
+                    new_time = datetime.strptime(time, '%H:%M:%S').time()
+                    new_date = datetime.combine(new_date, new_time)
+                else:
+                    new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+            except ValueError:
+                return False
+                
+        return new_date
 
     def get_all_licences(self):
         return self.__dl_api.pull_all_airplane_types()
