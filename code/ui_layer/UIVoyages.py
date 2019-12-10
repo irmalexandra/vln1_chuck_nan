@@ -127,8 +127,6 @@ class UIVoyages():
                     0: self.__ui_base_functions.home}
         employee_menu = "1. Select destination"
         return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, employee_list)
-        if return_value != None and return_value != 0:
-            return_value = self.get_selected_employee_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
     # All list functions
