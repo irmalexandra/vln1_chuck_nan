@@ -4,17 +4,19 @@ from models.ModelAPI import ModelAPI
 from ui_layer.UIBaseFunctions import UIBaseFunctions
 from ui_layer.UIEmployees import UIEmployees
 from datetime import datetime
-# new_llapi = LLAPI()
+new_llapi = LLAPI()
 
-# new_uibasefunctions = UIBaseFunctions()
+new_uibasefunctions = UIBaseFunctions()
 
-# employee_list = new_llapi.get_all_employee_list()
+employee_list = new_llapi.get_all_employee_list()
 
-# new_emp = employee_list[1]
+new_emp = employee_list[1]
 
-# voyage_list = new_llapi.get_all_voyage_list()
+voyage_list = new_llapi.get_all_voyage_list()
 
-# voyage = voyage_list[32]
+voyage = voyage_list[32]
+
+new_llapi.add_employee_to_voyage(voyage, new_emp)
 
 # airplanes = new_llapi.get_all_available_airplane_list(voyage)
 
@@ -24,9 +26,3 @@ from datetime import datetime
 
 # print(avail_list)
 
-
-ssn_list = ["1234", "1234"]
-
-ssn_set = set(ssn_list)
-
-print(len(ssn_set))
