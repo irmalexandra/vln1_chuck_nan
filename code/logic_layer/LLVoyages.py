@@ -223,11 +223,11 @@ class LLVoyages:
             try:
                 if date.find("T") == -1:
                     new_date = datetime.strptime(date,'%d-%m-%Y')
-                    new_time = datetime.strptime(time, '%H:%M:%S')
+                    new_time = datetime.strptime(time, '%H:%M:%S').time()
                     new_date = datetime.combine(new_date, new_time)
                 else:
                     new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
             except ValueError:
                 return False
-                
+
         return new_date
