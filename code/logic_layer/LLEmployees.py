@@ -139,9 +139,7 @@ class LLEmployees:
                 captain_ssn = voyage.get_captain_ssn()
                 co_pilot_ssn = voyage.get_copilot_ssn()
                 fsm_ssn = voyage.get_fsm_ssn()
-                print("chekk", voyage.get_return_flight_num())
                 if start_range <= departing_flight_departure_date <= end_range or start_range <= return_flight_arrival_date <= end_range:
-                    print("Yes")
                     if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
                         if employee not in working:
                             working.append(employee)
