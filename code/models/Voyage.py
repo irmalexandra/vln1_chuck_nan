@@ -174,9 +174,11 @@ class Voyage():
         if new_insignia != ".":
             if self.__models_validation.validate_airplane_insignia(new_insignia):
                 self.__airplane_insignia = new_insignia
-                 
+                return True
+            return False   
         else:
             self.__airplane_insignia = new_insignia
+            return True
 
     def get_captain_ssn(self):
         return self.__captain_ssn
@@ -185,8 +187,11 @@ class Voyage():
         if new_ssn != ".":
             if self.__models_validation.validate_employee_ssn(new_ssn):
                 self.__captain_ssn = new_ssn
+                return True
+            return False
         else:
             self.__captain_ssn = new_ssn
+            return True
 
     def get_copilot_ssn(self):
         return self.__copilot_ssn
@@ -195,8 +200,11 @@ class Voyage():
         if new_ssn != ".":
             if self.__models_validation.validate_employee_ssn(new_ssn):
                 self.__copilot_ssn = new_ssn
+                return True
+            return False
         else:
             self.__copilot_ssn = new_ssn
+            return True
 
     def get_fsm_ssn(self):
         return self.__fsm_ssn
@@ -205,24 +213,28 @@ class Voyage():
         if new_ssn != ".":
             if self.__models_validation.validate_employee_ssn(new_ssn):
                 self.__fsm_ssn = new_ssn
+                return True
+            return False
         else:
             self.__fsm_ssn = new_ssn
+            return True
 
     def get_fa_ssns(self):
         return self.__fa_ssns
 
     def set_fa_ssns(self, new_ssn_list):
-
-        for ssn in new_ssn_list:
-            if not self.__models_validation.validate_employee_ssn(ssn):
-                return False
-
+        new_ssn_set = set(new_ssn_list)
+        if len(new_ssn_set) != 1:
+            for ssn in new_ssn_list:
+                if not self.__models_validation.validate_employee_ssn(ssn):
+                    return False
+        
         self.__fa_ssns = new_ssn_list
+        return True
 
     def get_voyage_employee_ssn(self, rank):
         return self.__voyage_employee_ssn_dict[rank]()
 
-    
     def get_model_header_format(self, header_flag):
         return self.__header_format_dict[header_flag]()
 
