@@ -73,26 +73,28 @@ class LLAPI:
     def get_work_schedule_list(self, employee):
         return self.__ll_employees.get_work_schedule_list(employee)
 
-    def overwrite_all_models(self,model):
+    def overwrite_all_models(self, model):
         check = self.__modelAPI.validate_edit_model(model)
         if type(check).__name__ != "str":
             if type(model).__name__ == "Employee":
-                return self.__ll_employees.overwrite_all_employees()
+                return self.__ll_employees.overwrite_all_employees(model)
             if type(model).__name__ == "Airplane":
-                return self.__ll_airplanes.overwrite_all_employees()
+                return self.__ll_airplanes.overwrite_all_airplanes(model)
             if type(model).__name__ == "Destination":
-                return self.__ll_destinations.overwrite_all_destinations()
+                return self.__ll_destinations.overwrite_all_destinations(model)
             if type(model).__name__ == "Voyage":
-                return self.__ll_voyages.overwrite_all_voyages()
+                return self.__ll_voyages.overwrite_all_voyages(model)
         else:
             return check
 
     def add_crew_member_to_voyage(self):
         return 
 
+    def duplicate_voyage(self, voyage, new_date, new_time):
+        return self.__ll_voyages.duplicate_voyage(voyage, new_date, new_time)
 
-    def duplicate_voyage(self, voyage, new_date):
-        return self.__ll_voyages.duplicate_voyage(voyage, new_date)
+    def repeat_voyage(self, voyage, repeat_interval, end_date):
+        return self.__ll_voyages.duplicate_voyage(voyage, repeat_interval, end_date)
     
     def create_voyage(self, airport, date):
         return self.__ll_voyages.create_voyage(airport, date)
