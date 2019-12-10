@@ -111,15 +111,8 @@ class Voyage():
 
         return self.__models_validation.validate_name(new_destination)
 
-
     def get_destination(self):
         return self.__return_flight_departing_from
-    
-    def set_destination(self, airport):
-        if self.__models_validation.validate_airport(airport):
-            self.__return_flight_departing_from = airport
-            return True
-        return False
 
     def get_status(self):
         return self.__status
