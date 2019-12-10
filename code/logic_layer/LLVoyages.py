@@ -83,7 +83,7 @@ class LLVoyages:
         
         new_voyage.set_flight_times(departing_flight_arrival_date_str, \
             return_flight_departure_date_str, return_flight_arrival_date_str)
-        #hmm
+
         start_date = fixed_date_time.isoformat()
         end_date = new_voyage.get_return_flight_arrival_date()
 
@@ -111,7 +111,8 @@ class LLVoyages:
         end_date = self.get_iso_format_date_time(end_date)
         while date <= end_date:
             date =+ repeat_interval
-            self.duplicate_voyage(voyage, date)
+            success = self.duplicate_voyage(voyage, date)
+        return success
 
     def populate_voyage(self):
         pass
