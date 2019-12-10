@@ -30,10 +30,9 @@ class DLDestinations():
 
         all_destinations_list = []
         for line in filestream:
-            
-            check_list = []
             line_list = line.strip().split(",")
             if len(line_list) == self.CSV_ROWS:
+                check_list = []
                 new_destination = self.__modelAPI.get_model('Destination')
 
                 check_list.append(new_destination.set_country(line_list[DLDestinations.COUNTRY]))
