@@ -84,16 +84,20 @@ class UIDestinations():
             
                 if creation_dict[attribute](new_attribute):
                     break
-        self.__ui_base_functions.print_model(new_destination)
-        self.__ui_base_functions.print_create_destination_results(new_destination)
+        if self.__ll_api.create_destination(new_destination):
+            self.__ui_base_functions.print_model(new_destination)
+            self.__ui_base_functions.print_create_destination_results(new_destination)
+        else:
+            self.__ui_base_functions.print_generic_error_message()
     
     def change_contact_name(self, destination):
         new_name = self.__ui_base_functions.get_user_input("contact name")
         if destination.set_contact_name(new_name):
             if self.__ll_api.overwrite_all_models(destination):
                 self.__ui_base_functions.print_edit_destination_contact_results(destination)
+                self.__ui_base_functions.print_model(destination)
         else:
-            pass
+            self.__ui_base_functions.print_generic_error_message()
             
 
     def change_contact_number(self, destination):
@@ -101,8 +105,9 @@ class UIDestinations():
         if destination.set_contact_number(new_number):
             if self.__ll_api.overwrite_all_models(destination):
                 self.__ui_base_functions.print_edit_destination_number_results(destination)
+                self.__ui_base_functions.print_model(destination)
         else:
-            pass
+            self.__ui_base_functions.print_generic_error_message()
     
     
         

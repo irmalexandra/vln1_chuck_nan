@@ -5,6 +5,7 @@ class LLAirplanes:
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
         self.__all_airplane_list = []
+        self.__all_airplane_type_list = []
 
     def get_all_airplane_list(self):
         self.__all_airplane_list = self.__dl_api.pull_all_airplanes()
@@ -14,7 +15,8 @@ class LLAirplanes:
 
     def get_airplane_type_list(self):
         '''Gets a list of instances of airplane types and returns it'''
-        return self.__dl_api.pull_all_airplane_types()
+        self.__all_airplane_list = self.__dl_api.pull_all_airplanes()
+        return self.__all_airplane_list
     
     def create_airplane(self, airplane, airplane_types,insignia):
         '''Gets a list of airplane instances, checks if user created instance exists in list, returns boolean and instance'''

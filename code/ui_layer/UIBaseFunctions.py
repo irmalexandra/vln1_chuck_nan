@@ -124,12 +124,12 @@ class UIBaseFunctions():
                     else:
                         print("Invalid {}".format(edit_order_list[return_value-1])) # for -1 human readability
             else:
-                check = llapi.overwrite_all_models(model)
-                if type(check).__name__ != "str": 
-                    return self.check_return_value(return_value)
+                if llapi.overwrite_all_models(model): 
+                    print(type(model).__name__+" edited successfully")
+                    return
                 else:
-                    print("Error, {} invalid!".format(check))
-                    return 
+                    self.print_generic_error_message()
+                    return
     
 
     def print_add_crew_results(self, employee):
@@ -152,7 +152,10 @@ class UIBaseFunctions():
         print("Destination, Country: {} Airport: {} successfully created".format(destination.get_country(), destination.get_airport()))
 
     def print_edit_destination_number_results(self, destination):
-        print("Destination contact info updated successfully! New number {}".format(destination.get_contact_number))
+        print("Destination contact info updated successfully! New number {}".format(destination.get_contact_number()))
 
     def print_edit_destination_contact_results(self, destination):
         print("Destination contact info updated successfully! New contact {}".format(destination.get_contact_name()))
+
+    def print_generic_error_message(self):
+        print("Something went wrong... ")
