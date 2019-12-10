@@ -24,6 +24,7 @@ class Validator():
         
         except ValueError:
             return False
+
         name = name.replace(" ", "")           
         if self.__validate_string(name):
             return True
@@ -132,10 +133,12 @@ class Validator():
         return False
 
     def validate_country(self, country):
-        return self.__validate_string(country)
+        name = country.replace(" ", "") 
+        return self.__validate_string(name)
 
     def validate_airport(self, airport):
-        return self.__validate_string(airport)
+        name = airport.replace(" ", "") 
+        return self.__validate_string(name)
 
     def validate_flight_time(self, time):
         return self.__validate_int(time)
