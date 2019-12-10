@@ -117,28 +117,38 @@ class Voyage():
     def get_departing_flight_departure_date(self):
         return self.__departing_flight_departure_date
 
-    def set_departing_flight_departure_date(self, new_departure):
-        self.__departing_flight_departure_date = new_departure
+    def set_departing_flight_departure_date(self, new_departure_date):
+        if self.__models_validation.validate_date_time(new_departure_date):
+            self.__departing_flight_departure_date = new_departure_date
+            return True
+        return False
 
     def get_departing_flight_arrival_date(self):
         return self.__departing_flight_arrival_date
 
-    def set_departing_flight_arrival_date(self, new_destination_arrival):
-        self.__departing_flight_arrival_date = new_destination_arrival
+    def set_departing_flight_arrival_date(self, new_arrival_date):
+        if self.__models_validation.validate_date_time(new_arrival_date):
+            self.__departing_flight_departure_date = new_arrival_date
+            return True
+        return False        
 
     def get_return_flight_departure_date(self):
         return self.__return_flight_departure_date
 
     def set_return_flight_departure_date(self, new_departure_date):
         if self.__models_validation.validate_date_time(new_departure_date):
-            self.__return_flight_departure_date = new_departure_date
+            self.__departing_flight_departure_date = new_departure_date
+            return True
+        return False 
 
     def get_return_flight_arrival_date(self):
         return self.__return_flight_arrival_date
 
     def set_return_flight_arrival_date(self, new_arrival_date):
         if self.__models_validation.validate_date_time(new_arrival_date):
-            self.__return_flight_arrival_date = new_arrival_date
+            self.__departing_flight_departure_date = new_arrival_date
+            return True
+        return False 
 
     def get_status(self):
         return self.__status
@@ -155,10 +165,6 @@ class Voyage():
     def handle_key_value(self, key, value):
         return value(key())
 
-
-    def get_flight_times(self):
-        pass
-
     def set_flight_times(self, departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date):
         self.set_departing_flight_arrival_date(departing_flight_arrival_date)
         self.set_return_flight_departure_date(return_flight_departure_date)
@@ -172,6 +178,7 @@ class Voyage():
         if new_insignia != ".":
             if self.__models_validation.validate_airplane_insignia(new_insignia):
                 self.__airplane_insignia = new_insignia
+                
         else:
             self.__airplane_insignia = new_insignia
 
