@@ -87,15 +87,12 @@ class UIEmployees():
             return_value = self.get_selected_employee_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def get_select_from_airplane_type_list_menu(self, employee_list):
+    def get_select_from_airplane_type_list_menu(self, airplane_type_list):
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
         employee_menu = "1. Select Airplane Type"
-        return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, employee_list)
-        if return_value != None and return_value != 0:
-            # CHANGE LICENCE ON PILOT!    
-            return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
+        return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, airplane_type_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_pilots_list_menu(self, employee_list):
@@ -181,6 +178,7 @@ class UIEmployees():
     def create_pilot(self):
         new_emp = self.__modelAPI.get_model("Employee")
         new_emp.set_title("Pilot")
+        self.change_pilot_licence(new_emp)
         create_order_list, creation_dict = new_emp.get_creation_process()
         for attribute in create_order_list:
             while True:
@@ -189,8 +187,7 @@ class UIEmployees():
                 if creation_dict[attribute](new_attribute):
                     break
         #SAVE EMPLOYEE TO DATABASE
-        return_value = self.__ui_base_functions.print_model(new_emp)
-        return self.__ui_base_functions.check_return_value(return_value)
+        self.__ui_base_functions.print_model(new_emp)
     
     def create_cabin_crew(self):
         new_emp = self.__modelAPI.get_model("Employee")
@@ -202,17 +199,21 @@ class UIEmployees():
             
                 if creation_dict[attribute](new_attribute):
                     break
+                else:
+                    print("Error, {} invalid!".format(attribute))
         #SAVE EMPLOYEE TO DATABASE
-        return_value = self.__ui_base_functions.print_model(new_emp)
-        return self.__ui_base_functions.check_return_value(return_value)
-
-
+        self.__ui_base_functions.print_model(new_emp)
+        
     def change_pilot_licence(self, employee):
         header_flag = "default"
         airplane_type_list = self.__ll_api.get_airplane_type_list()
         return_value = self.__ui_base_functions.print_model_list(airplane_type_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_airplane_type_list_menu(return_value)
+        if return_value != None and return_value != 0:
+            return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
+            employee.set_licence(return_value.get_plane_type_id())   
+            #WRITE TO DATABASE!         
         return self.__ui_base_functions.check_return_value(return_value)
     
     def get_work_schedule(self, employee):
