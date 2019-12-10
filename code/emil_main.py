@@ -100,3 +100,5 @@ from logic_layer.LLEmployees import LLEmployees
 llemployee = LLEmployees(stuff,ModelAPI)
 
 print(llemployee.get_free_or_not("2019-11-22T10:23:00"))
+
+print("idk".replace(" ","y"))

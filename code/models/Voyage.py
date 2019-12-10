@@ -97,7 +97,7 @@ class Voyage():
         return self.__departing_flight_departing_from
 
     def set_departing_flight_departing_from(self, airport):
-        if self.__models_validation.validate_name(airport):
+        if self.__models_validation.validate_airport(airport):
             self.__departing_flight_departing_from = airport
             return True
         return False
@@ -108,8 +108,9 @@ class Voyage():
     def set_return_flight_departing_from(self, airport):
         if self.__models_validation.validate_airport(airport):
             self.__return_flight_departing_from = airport
+            return True
 
-        return self.__models_validation.validate_name(airport)
+        return False
 
     def get_destination(self):
         return self.__return_flight_departing_from()
@@ -128,7 +129,7 @@ class Voyage():
 
     def set_departing_flight_arrival_date(self, new_arrival_date):
         if self.__models_validation.validate_date_time(new_arrival_date):
-            self.__departing_flight_departure_date = new_arrival_date
+            self.__departing_flight_arrival_date = new_arrival_date
             return True
         return False        
 
@@ -137,7 +138,7 @@ class Voyage():
 
     def set_return_flight_departure_date(self, new_departure_date):
         if self.__models_validation.validate_date_time(new_departure_date):
-            self.__departing_flight_departure_date = new_departure_date
+            self.__return_flight_departure_date = new_departure_date
             return True
         return False 
 
@@ -146,7 +147,7 @@ class Voyage():
 
     def set_return_flight_arrival_date(self, new_arrival_date):
         if self.__models_validation.validate_date_time(new_arrival_date):
-            self.__departing_flight_departure_date = new_arrival_date
+            self.__return_flight_arrival_date = new_arrival_date
             return True
         return False 
 
@@ -178,7 +179,7 @@ class Voyage():
         if new_insignia != ".":
             if self.__models_validation.validate_airplane_insignia(new_insignia):
                 self.__airplane_insignia = new_insignia
-                
+                 
         else:
             self.__airplane_insignia = new_insignia
 

@@ -58,16 +58,17 @@ class LLVoyages:
 
         return airport_voyage_list
 
-    def create_voyage(self, destination, start_date, start_time):
+    def create_voyage(self, destination, start_date, start_time =  "00:00:00"):
         try:
             fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
             fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
         except ValueError:
             return False
+
         fixed_date_time = datetime.combine(fixed_date, fixed_time)
         new_voyage = self.__modelAPI.get_model("Voyage")
 
-        new_voyage.set_return_flight_departing_from(destination.get_airport())
+        new_voyage.set_return_flight_departing_from(destination.get_airport)
         new_voyage.set_departing_flight_departure_date(fixed_date_time.isoformat())
         new_voyage.set_airplane_insignia(".")
         new_voyage.set_captain_ssn(".")
@@ -87,16 +88,9 @@ class LLVoyages:
 
     def duplicate_voyage(self, voyage, start_date, start_time = "00:00:00"):
         '''Copies a voyage to another date'''
-        try:
-            fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
-            fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
-        except ValueError:
-            return False
-            
-        fixed_date_time = datetime.combine(fixed_date, fixed_time)
 
         destination = voyage.get_destination()
-        return self.create_voyage(destination, fixed_date_time)
+        return self.create_voyage(destination, start_date, start_time)
 
     def repeat_voyage(self, voyage, repeat_interval, end_date):
         date = self.get_iso_format_date_time(voyage.get_departing_flight_departing_date())
