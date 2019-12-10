@@ -82,12 +82,10 @@ class UIAirplanes():
         new_airplane.set_model(model)
         check = new_airplane.set_insignia(insignia)
         if check:
-
-            airplane,duplicate_check = self.__ll_api.create_airplane(new_airplane, existing_airplane_types_list,insignia)
-            if duplicate_check:
-                print("\nAirplane created!\n{}".format(airplane))
+            if self.__ll_api.create_airplane(new_airplane, existing_airplane_types_list,insignia):
+                print("\nAirplane created!\n{}".format(new_airplane))
             else:
-                print("\n{}\nAlready exists!".format(airplane.get_insignia()))
+                print("\n{}\nAlready exists!".format(new_airplane.get_insignia()))
         else:
             print("\nInvalid insignia {}\n".format(insignia))
 

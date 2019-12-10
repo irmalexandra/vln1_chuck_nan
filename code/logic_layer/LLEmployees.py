@@ -7,14 +7,6 @@ class LLEmployees:
         self.__modelAPI = modelAPI
         self.__all_employee_list = []
 
-    def validate_new_employee(self, employee):
-        '''Gets employee instance and returns a boolean'''
-        return self.__modelAPI.validate_create_model(employee)
-
-    def validate_edited_employee(self, employee):
-        '''Gets employee instance and returns a boolean'''
-        return self.__modelAPI.validate_edit_model(employee)
-
     def email_generator(self,name):
         '''Makes a new e-mail address for a new employee'''
         name = (name.replace(" ",".")).lower()
@@ -31,7 +23,7 @@ class LLEmployees:
 
     def create_employee(self, employee):
         employee.set_email(self.email_generator(employee.get_name()))
-        if self.validate_new_employee(employee):
+        if self.__modelAPI.validate_model(employee):
             self.__dl_api.append_employee(employee)
             return True
             
