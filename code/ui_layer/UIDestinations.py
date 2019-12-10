@@ -59,8 +59,7 @@ class UIDestinations():
         destination_list = self.__ll_api.get_all_destination_list()
         return_value = self.__ui_base_functions.print_model_list(
             destination_list, self.__modelAPI, header_flag)
-        if type(return_value).__name__ == "list":
-            return_value = self.get_select_from_destination_list_menu(destination_list)
+        return_value = self.get_select_from_destination_list_menu(destination_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_destinations_by_country(self):
