@@ -33,10 +33,8 @@ class Voyage():
 
         self.__list_info_dict = {"default": self.get_model_list_default_info}
 
-        self.__create_validation_dict = {self.get_destination: self.set_departing_flight_departing_from, 
+        self.__validation_dict = {self.get_destination: self.set_departing_flight_departing_from, 
                                          self.get_departing_flight_departure_date: self.set_departing_flight_departure_date}
-
-        self.__create_order_list = ["destination", "departure date"]
 
         self.__voyage_employee_ssn_dict = {"Captain":self.get_captain_ssn, 
                                            "Copilot":self.get_copilot_ssn, 
@@ -62,11 +60,8 @@ class Voyage():
         true_employees = ":".join(self.__fa_ssns)
         return self.__departing_flight_num + "," + self.__return_flight_num + "," + self.__departing_flight_departing_from + "," + self.__departing_flight_departure_date + "," + self.__departing_flight_arrival_date + "," + self.__return_flight_departing_from + "," + self.__return_flight_departure_date + "," + self.__return_flight_arrival_date + "," + self.__airplane_insignia + "," + self.__captain_ssn + "," + self.__copilot_ssn + "," + self.__fsm_ssn + "," + true_employees + "\n"
 
-    def get_create_validation_dict(self):
-        return self.__create_validation_dict
-
-    def get_create_order_list(self):
-        return self.__create_order_list
+    def get_validation_dict(self):
+        return self.__validation_dict
 
     def get_departing_flight_num(self):
         return self.__departing_flight_num
