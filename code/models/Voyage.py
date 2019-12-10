@@ -113,7 +113,7 @@ class Voyage():
         return False
 
     def get_destination(self):
-        return self.__return_flight_departing_from()
+        return self.__return_flight_departing_from
 
     def get_departing_flight_departure_date(self):
         return self.__departing_flight_departure_date
