@@ -16,19 +16,19 @@ class Destination():
         self.__list_info_dict = {"default": self.get_model_list_default_info}
 
         self.__validation_dict = {self.get_country: self.set_country, 
-                                  self.get_airport: self.set_airport,
-                                  self.get_flight_time: self.set_flight_time,
-                                  self.get_distance: self.set_distance,
-                                  self.get_contact_name: self.set_contact_name,
-                                  self.get_contact_number: self.set_contact_number}
+                                         self.get_airport: self.set_airport,
+                                         self.get_flight_time: self.set_flight_time,
+                                         self.get_distance: self.set_distance,
+                                         self.get_contact_name: self.set_contact_name,
+                                         self.get_contact_number: self.set_contact_number}
 
         self.__create_order_list = [
-            "country", "airport", "flight time", "distance", "contact name", "contact number"]
+            "country", "airport", "flight time (Hours)", "distance (Kilometers)", "contact name", "contact number"]
         
         self.__creation_dict = {"country": self.set_country,
                                 "airport": self.set_airport,
-                                "flight time": self.set_flight_time,
-                                "distance": self.set_distance,
+                                "flight time (Hours)": self.set_flight_time,
+                                "distance (Kilometers)": self.set_distance,
                                 "contact name": self.set_contact_name,
                                 "contact number": self.set_contact_number 
         }
