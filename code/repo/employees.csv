@@ -15,7 +15,7 @@ ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 0303758167,Margarita Fischer,Menntavegur 1,2276813,0314836,margarita.fischer@nanair.is,Cabincrew,Flight Service Manager,N/A
 2200763823,Judith Aleshire,Kringlan 1,9392222,6983157,judith.aleshire@nanair.is,Cabincrew,Flight Service Manager,N/A
 1308941169,Jacob Blecha,Laugarvegur 12,6196546,0456609,jacob.blecha@nanair.is,Cabincrew,Flight Service Manager,N/A
-1405853585,Lula Stefani,Holtavegur 14,2095988,6288964,lula.stefani@nanair.is,Cabincrew,Flight Service Manager,N/A
+1405853585,Lula Stefani,Holtagata 21,2095988,6288964,lula.stefani@nanair.is,Cabincrew,Flight Service Manager,N/A
 0909862878,Richard Sanders,Kringlan 1,2844200,5871242,richard.sanders@nanair.is,Cabincrew,Flight Service Manager,N/A
 1811931544,John Kline,Kringlan 1,2011823,0572152,john.kline@nanair.is,Cabincrew,Flight Service Manager,N/A
 0409858797,Evelyn Pickhardt,Kringlan 1,0109249,7153807,evelyn.pickhardt@nanair.is,Cabincrew,Flight Service Manager,N/A
@@ -43,3 +43,5 @@ ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 1212345623,Margret best,Lalala 5,1212123,3434344,margret.best@nanair.is,Pilot,best,NAFokkerF28
 1212121212,Test best,srg 3,1212121,1212121,test.best@nanair.is,Cabincrew,Flight Attendant,N/A
 2222222222,test test,sdgsrg 4,2323232,2323232,test.test@nanair.is,Cabincrew,Flight Attendant,N/A
+2323232323,sdf dsf,dg 4,2323232,2323232,sdf.dsf@nanair.is,Pilot,asdd,NABAE146
+1234567890,Rikki frikk,Bara 12,1234567,7654321,rikki.frikk@nanair.is,Pilot,Captain,NABAE146
