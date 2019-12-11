@@ -254,8 +254,6 @@ class LLVoyages:
                 flight_number = voyage.get_return_flight_num()
                 if len(flight_number) == NEW_FLIGHT_NUM_LEN:
                     existing_numbers.append(int(flight_number.replace("NA" + destination_id,"")))
-        print(existing_numbers)
-
 
         if LAST_POSSIBLE_FLIGHT in existing_numbers:
             return False
@@ -270,20 +268,7 @@ class LLVoyages:
             
             departing_flight_num = "NA" + destination_id + str(next_departing_number_str)
             return_flight_num = "NA" + destination_id + str(next_return_number_str)
-            print(departing_flight_num, return_flight_num)
-
             return departing_flight_num, return_flight_num
-
-
-
-        #     existing_numbers.append(int(voyage.get_departing_flight_num().replace("NA","")))
-        #     existing_numbers.append(int(voyage.get_return_flight_num().replace("NA","")))
-
-        # departing_number_int = max(existing_numbers)+ 1
-        # arriving_number_int = max(existing_numbers) + 2
-        # arriving_number_str = str(arriving_number_int)
-        # departing_number_str = str(departing_number_int)
-
 
 
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
