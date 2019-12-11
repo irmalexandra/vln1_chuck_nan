@@ -6,10 +6,13 @@ class LLDestinations:
 
     # All list functions
 
-    def get_all_destination_list(self):
+    def get_all_destination_list(self, changed = True):
         ''' Gets a list of destination instances and returns it '''
+        if changed:
+            self.__all_destination_list = self.__dl_api.pull_all_destinations()
         if not self.__all_destination_list:
             self.__all_destination_list = self.__dl_api.pull_all_destinations()
+
         return sorted(self.__all_destination_list, key=lambda destination: destination.get_country())
 
     def get_destination_list_by_country(self, country):
@@ -28,14 +31,17 @@ class LLDestinations:
 
     def create_destination(self, destination):
         if self.validate_destination(destination):
-            self.__dl_api.append_destination(destination)
-            return True
+            if self.__dl_api.append_destination(destination):
+                get_all_destination_list(True)
+                return True
             
         return False
 
     def overwrite_all_destinations(self):
         ''' Takes a list of destination instances and sends it to the DL ''' 
-        return self.__dl_api.overwrite_all_destinations(self.__all_destination_list)
+        if self.__dl_api.overwrite_all_destinations(self.__all_destination_list):
+            get_all_destination_list()
+            return True
 
     # All special functions
 

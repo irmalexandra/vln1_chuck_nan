@@ -8,9 +8,11 @@ class LLVoyages:
 
     # All list functions
 
-    def get_all_voyage_list(self):
+    def get_all_voyage_list(self, changed = False):
 
-        if not self.__all_voyage_list:
+        if changed:
+            self.__all_voyage_list = self.__dl_api.pull_all_voyages()
+        elif not self.__all_voyage_list:
             self.__all_voyage_list = self.__dl_api.pull_all_voyages()
 
         self.check_status()
@@ -51,7 +53,7 @@ class LLVoyages:
             if voyage.get_return_flight_departing_from() == airport:
                 airport_voyage_list.append(voyage)
 
-        return sorted(airport_voyage_list, key=lambda voyage: voyage.get_departing_flight_departure_date())
+        return airport_voyage_list
 
     def filter_available_employees(self, rank, voyage):
 
@@ -59,7 +61,7 @@ class LLVoyages:
         end_date = voyage.get_return_flight_arrival_date()
         voyages_in_date_range_list = self.filter_all_voyages_by_period(start_date, end_date)
 
-        all_employee_list = self.__dl_api.pull_all_employees()
+        all_employee_list = self.__dl_api.pull_all_employees() #note meiga allir LL layers tala á milli sýn? til þess að geta nýtt update status í ll employees
 
         filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
 
@@ -141,12 +143,16 @@ class LLVoyages:
                 return False
 
         if self.__modelAPI.validate_model(new_voyage):
-            return self.__dl_api.append_voyage(new_voyage)
+            if self.__dl_api.append_voyage(new_voyage):
+                self.get_all_voyage_list(True)
+                return True
 
         return False
 
     def overwrite_all_voyages(self):
-        return self.__dl_api.overwrite_all_voyages(self.__all_voyage_list)
+        if self.__dl_api.overwrite_all_voyages(self.__all_voyage_list):
+            self.get_all_voyage_list(True)
+            return True
 
     def duplicate_voyage(self, voyage, start_date = "00-00-0000", start_time = "00:00:00"):
         '''Copies a voyage to another date'''
@@ -177,8 +183,13 @@ class LLVoyages:
         employee_rank_str = employee.get_rank()
         check = rank_dict[employee_rank_str](employee_ssn_str)
         if check:
-            return self.__dl_api.overwrite_all_voyages(self.__all_voyage_list)
+            return self.overwrite_all_voyages()
         return check
+    
+    def add_airplane_to_voyage(self, voyage, airplane):
+        if voyage.set_airplane_insignia(airplane.get_insignia()):
+            return self.overwrite_all_voyages()
+            
         
     def check_status(self):
         current_date = datetime.today()
@@ -260,3 +271,8 @@ class LLVoyages:
                 new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
             return new_date
         return date
+
+    def update_voyage_pointer(self, voyage):
+        for updated_voyage in self.__all_voyage_list:
+            if voyage.get_departing_flight_departure_date() == updated_voyage.get_departing_flight_departure_date():
+                return updated_voyage

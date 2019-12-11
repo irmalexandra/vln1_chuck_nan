@@ -22,18 +22,18 @@ class AirplaneType():
     
     
     def get_model_header_default_format(self):
-        return "{:10}{:20}{:17}{:20}{:71}".format("Index:",
-                                             "Airplane type:",
+        return "{:10}{:20}{:17}{:20}{:15}".format("Index:",
+                                             "Plane Type ID:",
                                              "Make:",
                                              "Model:",
                                              "Capacity:")
                                             
         
     def get_model_list_default_info(self):
-        returnObject = "     {:20}{:17}{:20}{:71}|\n".format(self.get_plane_type_id(),
+        returnObject = ("     {:20}{:17}{:20}{:15}|\n".format(self.get_plane_type_id(),
                                                               self.get_make(),
                                                               self.get_model(),
-                                                              self.get_capacity())
+                                                              self.get_capacity()))
         return returnObject
     
     
@@ -43,7 +43,7 @@ class AirplaneType():
 
     def __str__(self):
 
-        return "Airplane type {:>2} \nMake: {:>2} \nModel: {:>2} \nCapacity: {:>2}".format(self.__plane_type_id, self.__make,self.__model,self.__capacity)
+        return "Plane Type ID {:>2} \nMake: {:>2} \nModel: {:>2} \nCapacity: {:>2}".format(self.__plane_type_id, self.__make,self.__model,self.__capacity)
     
     def get_plane_type_id(self):
         return self.__plane_type_id
