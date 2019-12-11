@@ -35,9 +35,10 @@ class UIBaseFunctions():
         while True:
             try:
                 return_value = int(input("Enter {}: ".format(key_word)))
+                return return_value
             except ValueError:
                 print("Invalid value for {}".format(key_word))
-                
+
     def get_user_input(self, key_word):
         return input("Enter {}: ".format(key_word))
 
