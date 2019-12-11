@@ -234,6 +234,7 @@ class LLVoyages:
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
     def generate_flight_numbers(self, date, airport):
+        NEW_FLIGHT_NUM_LEN = 7
         start_date = self.get_iso_format_date_time(date)
         end_date = start_date + timedelta(hours=23, minutes=59,seconds=59)
         all_destinations_list = self.__dl_api.pull_all_destinations()
@@ -249,7 +250,9 @@ class LLVoyages:
             voyage_airport = voyage.get_return_flight_departing_from()
             departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
             if start_date <= departing_flight_departure_date <= end_date and voyage_airport == airport:
-                existing_numbers.append(voyage.get_return_flight_num())
+                flight_number = voyage.get_return_flight_num()
+                if len(flight_number) == NEW_FLIGHT_NUM_LEN:
+                    existing_numbers.append(voyage.get_return_flight_num())
         print(existing_numbers)
 
         #     existing_numbers.append(int(voyage.get_departing_flight_num().replace("NA","")))
