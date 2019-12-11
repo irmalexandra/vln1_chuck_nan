@@ -275,9 +275,9 @@ class LLVoyages:
             last_number = max(existing_numbers)
             next_departing_number_str  = str(last_number + 1)
             next_return_number_str = str(last_number + 2)
-            while len(next_departing_number_str) < 4:
+            while len(next_departing_number_str) < 3:
                 next_departing_number_str = "0" + next_departing_number_str
-            while len(next_return_number_str) < 4:
+            while len(next_return_number_str) < 3:
                 next_return_number_str = "0" + next_return_number_str
             
             departing_flight_num = "NA" + destination_id + str(next_departing_number_str)
