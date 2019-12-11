@@ -112,9 +112,16 @@ class LLEmployees:
             self.get_all_employee_list(True)
             return True
 
-    def filter_working(self, date, flag):
+
+    def turn_iso_format_friendly(self, date, time):
+        '''Honestly, I don't know what to tell you'''
+        day, month, year = date.split("-")
+        return "{}-{}-{}T{}".format(year,month,day,time)
+
+
+    def filter_working(self, date, hours, flag):
         self.get_all_employee_list()
-        self.get_working_or_not(date)
+        self.get_working_or_not(self.turn_iso_format_friendly(date,hours))
         return_list = []
         if flag.lower() == "working":
             for employee in self.__all_employee_list:
@@ -128,7 +135,6 @@ class LLEmployees:
 
     def check_employee_status(self, datetime_input):
         pass
-
 
 
 
