@@ -28,7 +28,7 @@ class UIVoyages():
                     3: self.get_all_empty_voyages,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        voyage_menu = "1. Airport 2. Period 3. Empty Voyages"
+        voyage_menu = "1. Airport 2. Period 3. Unstaffed voyages"
         return_value = self.__ui_base_functions.print_menu(
             voyage_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
