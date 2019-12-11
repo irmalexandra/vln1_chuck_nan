@@ -85,7 +85,7 @@ class UIBaseFunctions():
             return 9
         return return_value
 
-    def print_menu(self, menu_str, nav_dict, model_list = None ,return_menu_str="9. Return 0. Home"):
+    def print_menu(self, menu_str, nav_dict, model_list = None ,return_menu_str="9. Return"):
         while True:
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -

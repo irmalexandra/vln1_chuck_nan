@@ -80,7 +80,6 @@ class UIEmployees():
     def get_edit_employee_menu(self, employee):
         nav_dict = employee.get_edit_dict()
         nav_dict[9] = self.__ui_base_functions.back
-        nav_dict[0] = self.__ui_base_functions.home
         edit_order_list = employee.get_edit_order_list()
         edit_menu = "1. Address 2. Home number 3. Mobile number 4. Title 5. Rank"
         return_value = self.__ui_base_functions.print_edit_model_menu(
