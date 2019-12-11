@@ -32,15 +32,26 @@ class Employee():
                                   self.get_title: self.set_title,
                                   self.get_rank: self.set_rank}
         
-        self.__create_order_list = [
-            'name', 'ssn', 'home address', 'home number', 'mobile number', 'rank']
+        self.__create_pilot_order_list = [
+            'name', 'ssn', 'home address', 'home phone number', 'mobile phone number', 'rank (Captain or Copilot)']
 
-        self.__creation_dict = {"name": self.set_name,
+        self.__creation_pilot_dict = {"name": self.set_name,
                                 "ssn": self.set_ssn,
                                 "home address": self.set_address,
-                                "home number": self.set_home_num,
-                                "mobile number": self.set_mobile_num,
-                                "rank": self.set_rank
+                                "home phone number": self.set_home_num,
+                                "mobile phone number": self.set_mobile_num,
+                                "rank (Captain or Copilot)": self.set_rank_creation_process
+        }
+
+        self.__create_cabincrew_order_list = [
+            'name', 'ssn', 'home address', 'home phone number', 'mobile phone number', 'rank (Flight Service Manager or Flight Attendant)']
+
+        self.__creation_cabincrew_dict = {"name": self.set_name,
+                                "ssn": self.set_ssn,
+                                "home address": self.set_address,
+                                "home phone number": self.set_home_num,
+                                "mobile phone number": self.set_mobile_num,
+                                "rank (Flight Service Manager or Flight Attendant)": self.set_rank_creation_process
         }
 
         self.__edit_order_list = [
@@ -62,6 +73,17 @@ class Employee():
             return_str += "\nLicence: {}".format(self.__licence)
         return return_str
     
+    def set_rank_creation_process(self, new_rank):
+        title = self.get_title()
+        if title == "Pilot":
+            if self.__models_validation.validate_pilot_rank(new_rank):
+                self.__rank = new_rank
+                return True
+        elif title == "Cabincrew":
+            if self.__models_validation.validate_cabincrew_rank(new_rank):
+                self.__rank = new_rank
+                return True
+        return False
     def set_availability(self, new):
         self.__availability = new
     
@@ -69,7 +91,11 @@ class Employee():
         return self.__availability
     
     def get_creation_process(self):
-        return self.__create_order_list, self.__creation_dict
+        title = self.get_title()
+        if title == "Pilot":
+            return self.__create_pilot_order_list, self.__creation_pilot_dict
+        elif title == "Cabincrew":
+            return self.__create_cabincrew_order_list, self.__creation_cabincrew_dict
     
     def get_edit_dict(self):
         return self.__edit_dict

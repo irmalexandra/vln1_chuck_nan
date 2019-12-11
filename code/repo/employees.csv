@@ -45,3 +45,7 @@ ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 2222222222,test test,sdgsrg 4,2323232,2323232,test.test@nanair.is,Cabincrew,Flight Attendant,N/A
 2323232323,sdf dsf,dg 4,2323232,2323232,sdf.dsf@nanair.is,Pilot,asdd,NABAE146
 1234567890,Rikki frikk,Bara 12,1234567,7654321,rikki.frikk@nanair.is,Pilot,Captain,NABAE146
+2402922469,Rikhardur Fridgeirsson,Haholt 5,8764321,6628460,rikhardur.fridgeirsson@nanair.is,Pilot,Captain,NAFokkerF28
+0102939499,asor or,asr 1,0981234,8997123,asor.or@nanair.is,Pilot,Copilot,NAFokkerF28
+1020301923,apapr pr,asar 12,0202404,2020303,apapr.pr@nanair.is,Cabincrew,Flight Service Manager,N/A
+1020304050,arar ,tre 123,1029303,0101393,arar.@nanair.is,Cabincrew,Flight Attendant,N/A
