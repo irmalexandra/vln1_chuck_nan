@@ -126,28 +126,49 @@ class LLEmployees:
                     return_list.append(employee)
         return return_list
 
+    def check_employee_status(self, datetime_input):
+        pass
+
+
+
+
     def get_working_or_not(self, date = datetime.today().replace(microsecond=0).isoformat()):
         all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         
         working = []
         not_working = []
-        start_range = self.get_iso_format_date_time(date)
-        end_range = self.get_iso_format_date_time(date) + timedelta(hours = 23, minutes=59, seconds=59)
+        current_time = self.get_iso_format_date_time(date)
+        start_range= current_time.replace(hour=0, minute=0,second=0,microsecond=0)
+        end_range = start_range + timedelta(hours = 23, minutes=59, seconds=59)
 
         for employee in self.__all_employee_list:
             employee_ssn = employee.get_ssn()
             for voyage in all_voyage_list:
                 departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+                departing_flight_arrival_date = self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date())
+                return_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
                 return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+
                 fa_ssns = voyage.get_fa_ssns()
                 captain_ssn = voyage.get_captain_ssn()
                 co_pilot_ssn = voyage.get_copilot_ssn()
                 fsm_ssn = voyage.get_fsm_ssn()
-                if start_range <= departing_flight_departure_date <= end_range or start_range <= return_flight_arrival_date <= end_range:
-                    if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
+                if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
+                    if start_range <= departing_flight_departure_date <= end_range or start_range <= return_flight_arrival_date <= end_range:
                         if employee not in working:
                             working.append(employee)
                             employee.set_availability("Not available")
+                            
+                    if current_time <= departing_flight_departure_date:
+                        employee.set_current_destination("Stationed in {}".format(voyage.get_departing_flight_departing_from()))
+                    elif departing_flight_departure_date <= current_time <= departing_flight_arrival_date:
+                        employee.set_current_destination("Flying to {}".format(voyage.get_return_flight_departing_from()))
+                    elif departing_flight_arrival_date <= current_time <= return_flight_departure_date:
+                        employee.set_current_destination("Stationed in {}".format(voyage.get_return_flight_departing_from()))
+                    elif return_flight_departure_date <= current_time <= return_flight_arrival_date:
+                        employee.set_current_destination("Flying to {}".format(voyage.get_departing_flight_departing_from()))
+                    else:
+                        voyage.set_status("Voyage completed")
 
             if employee not in not_working  and employee not in working:
                 not_working.append(employee)

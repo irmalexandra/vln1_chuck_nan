@@ -22,13 +22,15 @@ class DLVoyages():
         self.__modelAPI = modelAPI
 
     def pull_all_voyages(self):
-        '''Opens csv files and returns a list of all voyages
+        '''Opens csv files and returns a list of all voyages as instances of the voyage model
         (departing flight num, return flight num, departing from, departure date, departing flight arrival date,
         return flight departing from, return flight departure date, return flight arrival date, airplane id, captain ssn,
         copilot ssn, fsm ssn, flight attendants ssn)'''
+
+
         if path.exists('./repo/voyages.csv') and path.exists('./repo/voyages_temp.csv'):
-            filestream = open("./repo/voyages.csv", "r")
-            os.remove("./repo/voyages_temp.csv")
+            filestream = open("./repo/voyages.csv", "r") # Makes sure that if something happens in the overwriting process
+            os.remove("./repo/voyages_temp.csv")        # it will be covered
         elif path.exists('./repo/voyages.csv') and path.exists('./repo/voyages_temp.csv') == False:
             filestream = open("./repo/voyages.csv", "r")
         elif path.exists('./repo/voyages.csv') == False and path.exists('./repo/voyages_temp.csv'):
@@ -36,11 +38,11 @@ class DLVoyages():
         else:
             print("Voyage data files not found")
             return
-        all_voyages_list = []
+        all_voyages_list = [] #The list that will be returned once it has been filled with instances
         for line in filestream:
-            line_list = line.strip().split(",")
+            line_list = line.strip().split(",") #Get the columns into a list to work with
             if len(line_list) == self.CSV_ROWS:
-                check_list = []
+                check_list = [] #This list holds the output from the validator and 
                 new_voyage = self.__modelAPI.get_model('Voyage')
                 check_list.append(new_voyage.set_departing_flight_num(
                     line_list[DLVoyages.DEPARTING_FLIGHT_NUM]))

@@ -15,6 +15,7 @@ class Employee():
         self.__rank = rank
         self.__licence = "N/A"
         self.__availability = ""
+        self.__current_destination = "North pole"
 
         self.__header_format_dict = {"default": self.get_model_header_default_format,
                                      "date": self.get_model_header_date_format,
@@ -62,6 +63,14 @@ class Employee():
             return_str += "\nLicence: {}".format(self.__licence)
         return return_str
     
+    def set_current_destination(self, new):
+        self.__current_destination = new
+
+    def get_current_destination(self):
+        return self.__current_destination
+
+
+
     def set_availability(self, new):
         self.__availability = new
     
@@ -174,7 +183,7 @@ class Employee():
         return "{:9}{:22}{:15}{:19}{:15}{:17}{:31}{:10}".format("Index: ", "Name:", "SSN:", "Address:", "Home number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_date_format(self):
-        return "{:10}{:22}{:15}{:18}{:15}{:58}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Availability:")
+        return "{:10}{:22}{:15}{:18}{:15}{:22}{:58}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Current destination:","Availability:")
 
     def get_model_header_aircraft_format(self):
         return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
@@ -183,11 +192,12 @@ class Employee():
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-        returnObject = ("     {:22}{:15}{:18}{:15}{:58}|\n".format(
+        returnObject = ("     {:22}{:15}{:18}{:15}{:22}{:58}|\n".format(
                                                      self.get_name(),
                                                      self.get_ssn(),
                                                      self.get_mobile_num(),
                                                      self.get_title(),
+                                                     self.get_current_destination(),
                                                      self.get_availability()))
         return returnObject
 
