@@ -1,3 +1,5 @@
+from datetime import datetime
+    
 class UIBaseFunctions():
     UI_DIVIDER_INT = 140
     DEVIATION_INT = 2
@@ -51,6 +53,23 @@ class UIBaseFunctions():
             except ValueError:
                 print("Invalid input")
 
+    
+    def get_user_date_input(self, date_or_time_format):
+        while True:
+            
+            new_date_or_time = input("Enter date ({}): ".format(date_or_time_format))
+            try:
+                if date_or_time_format == "DD-MM-YYYY":
+                    datetime.strptime(new_date_or_time,'%d-%m-%Y')
+                    return new_date_or_time
+
+                if date_or_time_format == "HH:MM":
+                    datetime.strptime(new_date_or_time,'%H:%M')
+                    new_date_or_time += ":00"
+                    return new_date_or_time
+            except:
+                print("Invalid date format for ({})!".format(date_or_time_format))
+
     def check_return_value(self, return_value):
         if return_value == 0:
             return 0
@@ -83,7 +102,7 @@ class UIBaseFunctions():
             print("-" * self.UI_DIVIDER_INT)
             print(modelAPI.get_model_header_format(model_list[0], header_flag))
             print(modelAPI.get_model_list_info(model_list, header_flag))
-            # print("-" * self.UI_DIVIDER_INT)
+            print("-" * self.UI_DIVIDER_INT)
             return self.check_return_value(model_list)
         else:
             print("No search results")
@@ -92,7 +111,7 @@ class UIBaseFunctions():
     def print_model(self, model):
         print("-" * self.UI_DIVIDER_INT)
         print(model)
-        # print("-" * self.UI_DIVIDER_INT)
+        print("-" * self.UI_DIVIDER_INT)
         return self.check_return_value(model)
 
     def select_from_model_list(self, model_list):
@@ -103,7 +122,7 @@ class UIBaseFunctions():
     def select_from_crew_list(self, crew_list):
         return_value = self.get_user_selection(crew_list, "index")
         return_value = crew_list[return_value-1] # -1 for human readability
-        return (self.check_return_value(return_value))
+        return self.check_return_value(return_value)
 
     def print_edit_model_menu(self,menu_str, nav_dict, model, edit_order_list, llapi, return_menu_str="9. Return 0. Home"):
         while True:
@@ -111,7 +130,7 @@ class UIBaseFunctions():
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -
                                                    len(return_menu_str) - self.DEVIATION_INT), return_menu_str))
-            # print("-" * self.UI_DIVIDER_INT)
+            print("-" * self.UI_DIVIDER_INT)
             return_value = self.get_user_selection(nav_dict)
             if return_value != 9 and return_value != 0:
                 value_to_edit = edit_order_list[return_value-1] # -1 for human readability

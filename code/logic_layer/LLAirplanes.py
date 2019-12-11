@@ -11,6 +11,9 @@ class LLAirplanes:
 
     def get_all_airplane_list(self):
         '''Gets a list of instances of airplanes and returns it'''
+        if changed:
+            self.__all_airplane_list = self.__dl_api.pull_all_airplanes()
+        
         if not self.__all_airplane_list:
             self.__all_airplane_list = self.__dl_api.pull_all_airplanes()
 
@@ -77,11 +80,15 @@ class LLAirplanes:
                 if info.get_make() == airplane_make and info.get_model() == airplane_model:
                     airplane.set_capacity(info.get_capacity())
                     if self.__modelAPI.validate_model(airplane):
-                        return self.__dl_api.append_airplane(airplane)
+                        if self.__dl_api.append_airplane(airplane):
+                            get_all_airplane_list(True)
+                            return True
         return False
 
     def overwrite_all_airplanes(self, airplane_list):
-        return self.__dl_api.overwrite_all_airplanes(airplane_list)
+        if self.__dl_api.overwrite_all_airplanes(airplane_list):
+            get_all_airplane_list(True)
+            return True
 
     # All special functions
 
