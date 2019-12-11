@@ -19,7 +19,6 @@ class LLVoyages:
     def set_ll_destinations(self, ll_destinations):
         self.__ll_destinations = ll_destinations
 
-
     # All list functions
 
     def get_all_voyage_list(self, changed = False):
@@ -39,7 +38,7 @@ class LLVoyages:
         empty_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if voyage.get_airplane_insignia() == ".":
+            if voyage.get_staffed() == "Not staffed":
                 empty_voyage_list.append(voyage)
 
         return sorted(empty_voyage_list, key=lambda voyage: voyage.get_departing_flight_departure_date())
@@ -203,8 +202,7 @@ class LLVoyages:
     def add_airplane_to_voyage(self, voyage, airplane):
         if voyage.set_airplane_insignia(airplane.get_insignia()):
             return self.overwrite_all_voyages()
-            
-        
+              
     def check_status(self):
         current_date = datetime.today()
         for voyage in self.__all_voyage_list:
