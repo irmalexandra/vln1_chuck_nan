@@ -9,9 +9,10 @@ class LLEmployees:
 
     # All list functions
 
-    def get_all_employee_list(self):
+    def get_all_employee_list(self, changed = False):
         ''' Pulls and returns a list of employee instances '''
-
+        if changed:
+            self.__all_employee_list = self.__dl_api.pull_all_employees()
         if not self.__all_employee_list:
             self.__all_employee_list = self.__dl_api.pull_all_employees()
 
@@ -91,14 +92,17 @@ class LLEmployees:
     def create_employee(self, employee):
         employee.set_email(self.email_generator(employee.get_name()))
         if self.__modelAPI.validate_model(employee):
-            self.__dl_api.append_employee(employee)
-            return True
+            if self.__dl_api.append_employee(employee):
+                get_all_employee_list(True)
+                return True
             
         return False
 
     def overwrite_all_employees(self):
         ''' Takes a list of employee instances and sends it to the DL '''
-        return self.__dl_api.overwrite_all_employees(self.__all_employee_list)
+        if self.__dl_api.overwrite_all_employees(self.__all_employee_list):
+            get_all_employee_list(True)
+            return True
 
     def set_availability(self):
         current_day = datetime.today().replace(microsecond=0).isoformat()
@@ -133,7 +137,6 @@ class LLEmployees:
                 employee.set_availability("Available")
 
         if flag.lower() == "working":
-
             return working
         else:
             return not_working
