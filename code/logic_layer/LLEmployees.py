@@ -24,8 +24,8 @@ class LLEmployees:
             self.__all_employee_list = self.__dl_api.pull_all_employees()
         if not self.__all_employee_list:
             self.__all_employee_list = self.__dl_api.pull_all_employees()
-
-        self.set_availability()
+        work, no_work = self.get_working_or_not(todayplz)
+        self.set_availability(work, no work)
         return self.__all_employee_list
 
     def sort_all_employees_by_name(self):
@@ -113,12 +113,21 @@ class LLEmployees:
             self.get_all_employee_list(True)
             return True
 
-    def set_availability(self):
-        current_day = datetime.today().replace(microsecond=0).isoformat()
-        self.get_working_or_not(current_day,"Default")
+    def filter_working(self, date, flag):
+        self.get_all_employee_list()
+        self.get_working_or_not(date)
+        return_list = []
+        if flag.lower() == "working":
+            for employee in self.__all_employee_list:
+                if employee.get_availability() == "Not available":
+                    return_list.append(employee)
+        else:
+            for employee in self.__all_employee_list:
+                if employee.get_availability() == "Available":
+                    return_list.append(employee)
+        return return_list
 
-    def get_working_or_not(self, date, flag = ""):
-
+    def get_working_or_not(self, date = datetime.today().replace(microsecond=0).isoformat()):
         all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         
         working = []
@@ -145,10 +154,7 @@ class LLEmployees:
                 not_working.append(employee)
                 employee.set_availability("Available")
 
-        if flag.lower() == "working":
-            return working
-        else:
-            return not_working
+
 
     # All special functions
 
