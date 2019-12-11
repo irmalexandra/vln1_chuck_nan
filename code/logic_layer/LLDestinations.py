@@ -30,7 +30,6 @@ class LLDestinations:
         if self.validate_destination(destination):
             self.__dl_api.append_destination(destination)
             return True
-            
         return False
 
     def overwrite_all_destinations(self):
@@ -42,3 +41,11 @@ class LLDestinations:
     def validate_destination(self, destination):
         ''' Gets destination instance and returns a boolean '''
         return self.__modelAPI.validate_model(destination)
+
+    def generate_destination_id(self):
+        self.get_all_destination_list()
+        id_list = []
+        for destination in self.__all_destination_list:
+            id_list.append(destination.get_destination_id())
+        
+        
