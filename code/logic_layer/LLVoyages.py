@@ -6,14 +6,16 @@ class LLVoyages:
         self.__modelAPI = modelAPI
         self.__all_voyage_list = []
 
-    def get_all_voyage_list(self):
-        self.__all_voyage_list = self.__dl_api.pull_all_voyages()
-        self.check_status(self.__all_voyage_list)
-        self.check_staffed(self.__all_voyage_list)
-        return self.__all_voyage_list
+    # All list functions
 
-    def overwrite_all_voyages(self):
-        return self.__dl_api.overwrite_all_voyages(self.__all_voyage_list)
+    def get_all_voyage_list(self):
+
+        if not self.__all_voyage_list:
+            self.__all_voyage_list = self.__dl_api.pull_all_voyages()
+
+        self.check_status()
+        self.check_staffed()
+        return self.__all_voyage_list
 
     def filter_all_empty_voyages(self):
         '''Takes a list of all voyage instances and returns a list of filtered voyage instances'''
@@ -32,7 +34,6 @@ class LLVoyages:
         start = self.get_iso_format_date_time(start_date)
         end = self.get_iso_format_date_time(end_date)
 
-        self.get_all_voyage_list() 
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
@@ -51,104 +52,6 @@ class LLVoyages:
 
         return airport_voyage_list
 
-    def create_voyage(self, destination, start_date = "00-00-0000", start_time = "00:00:00"):
-
-        self.get_all_voyage_list()
-
-        try:
-            fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
-            fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
-        except ValueError:
-            return False
-
-        fixed_date_time = datetime.combine(fixed_date, fixed_time)
-        new_voyage = self.__modelAPI.get_model("Voyage")
-
-        new_voyage.set_return_flight_departing_from(destination.get_airport())
-        new_voyage.set_departing_flight_departure_date(fixed_date_time.isoformat())
-        new_voyage.set_airplane_insignia(".")
-        new_voyage.set_captain_ssn(".")
-        new_voyage.set_copilot_ssn(".")
-        new_voyage.set_fsm_ssn(".")
-        new_voyage.set_fa_ssns([".", "."])
-
-        dep_flight_num, ret_flight_num = self.generate_flight_numbers() 
-        new_voyage.set_flight_numbers(dep_flight_num, ret_flight_num)
-
-        departing_flight_arrival_date, return_flight_departure_date, return_flight_arrival_date \
-            = self.calculate_flight_times(fixed_date_time, destination.get_airport())
-        
-        departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str \
-            = str(departing_flight_arrival_date), str(return_flight_departure_date), str(return_flight_arrival_date)
-        
-        new_voyage.set_flight_times(departing_flight_arrival_date_str, \
-            return_flight_departure_date_str, return_flight_arrival_date_str)
-
-        start_date = fixed_date_time.isoformat()
-        end_date = new_voyage.get_return_flight_arrival_date()
-
-        for voyage in self.__all_voyage_list:
-            other_start_date = voyage.get_departing_flight_departure_date()
-            other_end_date = voyage.get_return_flight_arrival_date()
-            
-            if other_start_date == start_date or other_start_date == end_date or\
-                other_end_date == start_date or other_end_date == end_date:
-                return False
-
-        if self.__modelAPI.validate_model(new_voyage):
-            return self.__dl_api.append_voyage(new_voyage)
-
-        return False
-
-    def duplicate_voyage(self, voyage, start_date = "00-00-0000", start_time = "00:00:00"):
-        '''Copies a voyage to another date'''
-
-        destination = voyage.get_destination()
-        return self.create_voyage(destination, start_date, start_time)
-
-    def repeat_voyage(self, voyage, repeat_interval, end_date = "00-00-0000"):
-        date = self.get_iso_format_date_time(voyage.get_departing_flight_departing_date())
-        end_date = self.get_iso_format_date_time(end_date)
-        while date <= end_date:
-            date =+ repeat_interval
-            success = self.duplicate_voyage(voyage, date)
-        return success
-
-    def populate_voyage(self):
-        pass
-
-    def generate_flight_numbers(self):
-        self.__all_voyage_list = self.get_all_voyage_list()
-        existing_numbers = []
-        for voyage in self.__all_voyage_list:
-            existing_numbers.append(int(voyage.get_departing_flight_num().replace("NA","")))
-            existing_numbers.append(int(voyage.get_return_flight_num().replace("NA","")))
-
-        departing_number_int = max(existing_numbers)+ 1
-        arriving_number_int = max(existing_numbers) + 2
-        arriving_number_str = str(arriving_number_int)
-        departing_number_str = str(departing_number_int)
-
-        while len(departing_number_str) < 4:
-            departing_number_str = "0" + departing_number_str
-        while len(arriving_number_str) < 4:
-            arriving_number_str = "0" + arriving_number_str
-        return "NA" + departing_number_str, "NA" + arriving_number_str
-
-    def calculate_flight_times(self,date,airport):
-        self.__all_voyage_list = self.get_all_voyage_list()
-        destinations_list = self.__dl_api.pull_all_destinations()
-        destinations_dict = dict()
-        
-        for destination in destinations_list:
-            destinations_dict[destination.get_airport()] = int(destination.get_flight_time())
-        
-        flight_time = destinations_dict[airport]
-        departing_flight_arrival_date = date + timedelta(hours =flight_time)
-        return_flight_departure_date = departing_flight_arrival_date + timedelta(hours = 1)
-        return_flight_arrival_date = return_flight_departure_date + timedelta(hours = flight_time)
-        return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
-         
     def filter_available_employees(self, rank, voyage):
 
         start_date = voyage.get_departing_flight_departure_date()
@@ -190,6 +93,78 @@ class LLVoyages:
                     final_employee_list.append(employee)
 
         return final_employee_list
+
+    # All change functions
+
+    def create_voyage(self, airport, start_date = "00-00-0000", start_time = "00:00:00"):
+
+        self.get_all_voyage_list()
+        if type(start_date).__name__ != "datetime":
+            try:
+                fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
+                fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
+            except ValueError:
+                return False
+            fixed_date_time = datetime.combine(fixed_date, fixed_time)
+        else:
+            fixed_date_time = start_date
+        
+        new_voyage = self.__modelAPI.get_model("Voyage")
+
+        new_voyage.set_return_flight_departing_from(airport)
+        new_voyage.set_departing_flight_departure_date(fixed_date_time.isoformat())
+        new_voyage.set_airplane_insignia(".")
+        new_voyage.set_captain_ssn(".")
+        new_voyage.set_copilot_ssn(".")
+        new_voyage.set_fsm_ssn(".")
+        new_voyage.set_fa_ssns([".", "."])
+
+        dep_flight_num, ret_flight_num = self.generate_flight_numbers() 
+        new_voyage.set_flight_numbers(dep_flight_num, ret_flight_num)
+
+        departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str \
+            = self.calculate_flight_times(fixed_date_time, airport)
+        
+        new_voyage.set_flight_times(departing_flight_arrival_date_str, \
+            return_flight_departure_date_str, return_flight_arrival_date_str)
+
+        start_date = fixed_date_time.isoformat()
+        end_date = new_voyage.get_return_flight_arrival_date()
+
+        for voyage in self.__all_voyage_list:
+            other_start_date = voyage.get_departing_flight_departure_date()
+            other_end_date = voyage.get_return_flight_arrival_date()
+            
+            if other_start_date == start_date or other_start_date == end_date or\
+                other_end_date == start_date or other_end_date == end_date:
+                return False
+
+        if self.__modelAPI.validate_model(new_voyage):
+            return self.__dl_api.append_voyage(new_voyage)
+
+        return False
+
+    def overwrite_all_voyages(self):
+        return self.__dl_api.overwrite_all_voyages(self.__all_voyage_list)
+
+    def duplicate_voyage(self, voyage, start_date = "00-00-0000", start_time = "00:00:00"):
+        '''Copies a voyage to another date'''
+
+        destination = voyage.get_destination()
+        return self.create_voyage(destination, start_date, start_time)
+
+    def repeat_voyage(self, voyage, repeat_interval, end_date = "00-00-0000"):
+        success = False
+        try:
+            date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+            end_date = self.get_iso_format_date_time(end_date)
+            repeat_interval = int(repeat_interval)
+        except ValueError:
+            return False
+        while date <= end_date:
+            date += timedelta(days=repeat_interval)
+            success = self.duplicate_voyage(voyage, date)
+        return success
             
     def add_employee_to_voyage(self, voyage, employee):
         rank_dict = {'Captain':voyage.set_captain_ssn, 
@@ -204,9 +179,9 @@ class LLVoyages:
             return self.__dl_api.overwrite_all_voyages(self.__all_voyage_list)
         return check
         
-    def check_status(self, voyage_list):
+    def check_status(self):
         current_date = datetime.today()
-        for voyage in voyage_list:
+        for voyage in self.__all_voyage_list:
             departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
             departing_flight_arrival_date = self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date())
             return_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
@@ -223,23 +198,55 @@ class LLVoyages:
             else:
                 voyage.set_status("Voyage completed")
     
-    def check_staffed(self, voyage_list):
-        for voyage in voyage_list:
+    def check_staffed(self):
+        for voyage in self.__all_voyage_list:
             if voyage.get_airplane_insignia() != "." and voyage.get_captain_ssn() != "." and voyage.get_copilot_ssn() != "." and voyage.get_fsm_ssn() != "." and voyage.get_fa_ssns() != ".:.":
                 voyage.set_staffed("Staffed")
             else:
                 voyage.set_staffed("Not staffed")
 
+    # All special functions
+
+    def calculate_flight_times(self, date, airport):
+        self.__all_voyage_list = self.get_all_voyage_list()
+        destinations_list = self.__dl_api.pull_all_destinations()
+        destinations_dict = dict()
+        
+        for destination in destinations_list:
+            destinations_dict[destination.get_airport()] = int(destination.get_flight_time())
+        
+        flight_time = destinations_dict[airport]
+        departing_flight_arrival_date = date + timedelta(hours =flight_time)
+        return_flight_departure_date = departing_flight_arrival_date + timedelta(hours = 1)
+        return_flight_arrival_date = return_flight_departure_date + timedelta(hours = flight_time)
+        return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
+
+    def generate_flight_numbers(self):
+        self.__all_voyage_list = self.get_all_voyage_list()
+        existing_numbers = []
+        for voyage in self.__all_voyage_list:
+            existing_numbers.append(int(voyage.get_departing_flight_num().replace("NA","")))
+            existing_numbers.append(int(voyage.get_return_flight_num().replace("NA","")))
+
+        departing_number_int = max(existing_numbers)+ 1
+        arriving_number_int = max(existing_numbers) + 2
+        arriving_number_str = str(arriving_number_int)
+        departing_number_str = str(departing_number_int)
+
+        while len(departing_number_str) < 4:
+            departing_number_str = "0" + departing_number_str
+        while len(arriving_number_str) < 4:
+            arriving_number_str = "0" + arriving_number_str
+        return "NA" + departing_number_str, "NA" + arriving_number_str
+
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
         if type(date).__name__ != 'datetime':
-            try:
-                if date.find("T") == -1:
-                    new_date = datetime.strptime(date,'%d-%m-%Y')
-                    new_time = datetime.strptime(time, '%H:%M:%S').time()
-                    new_date = datetime.combine(new_date, new_time)
-                else:
-                    new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
-            except ValueError:
-                return False
 
-        return new_date
+            if date.find("T") == -1:
+                new_date = datetime.strptime(date,'%d-%m-%Y')
+                new_time = datetime.strptime(time, '%H:%M:%S').time()
+                new_date = datetime.combine(new_date, new_time)
+            else:
+                new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+            return new_date
+        return date

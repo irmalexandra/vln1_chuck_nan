@@ -1,6 +1,6 @@
 ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 3009907461,William Carillo,Menntavegur 1,4640161,6507678,william.carillo@nanair.is,Pilot,Captain,NAFokkerF100
-2910858778,Virginia Ho,Laugarvegur 12,6337442,7603419,virginia.ho@nanair.is,Pilot,Captain,NABAE146
+2910858778,Virginia Ho,Laugarvegur 12,3219969,7777777,virginia.ho@nanair.is,Pilot,Captain,NABAE146
 2706838569,Gerard Nelson,Menntavegur 1,7449780,0860066,gerard.nelson@nanair.is,Pilot,Captain,NAFokkerF100
 2209955782,Allen Ley,Goodstreet 16,2546882,3493315,allen.ley@nanair.is,Pilot,Captain,NABAE146
 2907675667,Felecia Moye,Kringlan 1,4799507,3106942,felecia.moye@nanair.is,Pilot,Captain,NABAE146
@@ -35,10 +35,5 @@ ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 2602806942,Teresa Thruman,Menntavegur 1,3341427,6470574,teresa.thruman@nanair.is,Cabincrew,Flight Attendant,N/A
 1107951952,Elizabeth Mcfadden,Menntavegur 1,2957609,6902831,elizabeth.mcfadden@nanair.is,Cabincrew,Flight Attendant,N/A
 1234567890,Rikki Besti,Bgata 12,1234567,7654321,rikki.besti@nanair.is,Pilot,Captain,NAFokkerF28
-1701728949,kalli palli,kakalakkar 5,4444444,4444444,kalli.palli@nanair.is,Pilot,captain,NABAE146
-<<<<<<< HEAD
-1234567890,Rikki Pilot,WOOPLA 12,1234567,7654321,rikki.pilot@nanair.is,Pilot,Captain,NAFokkerF28
-0987654321,Emil WADDUP,wallupa 12,9877897,9876565,emil.waddup@nanair.is,Cabincrew,Flight Service Master,
-=======
+1701728949,kalli palli,kakalakkar 5,4444444,4444444,kalli.palli@nanair.is,Pilot,Captain,NABAE146
 1234567890,derp herpes,penisstreet 69,4208008,6910169,derp.herpes@nanair.is,Cabincrew,Flight Attendant,
->>>>>>> b73b2861e47ef1575c57858652ce73d556390891
