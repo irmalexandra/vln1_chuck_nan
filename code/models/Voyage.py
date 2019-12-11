@@ -33,7 +33,7 @@ class Voyage():
 
         self.__list_info_dict = {"default": self.get_model_list_default_info}
 
-        self.__validation_dict = {self.get_destination: self.set_departing_flight_departing_from, 
+        self.__validation_dict = {self.get_destination: self.set_return_flight_departing_from, 
                                          self.get_departing_flight_departure_date: self.set_departing_flight_departure_date}
 
         self.__voyage_employee_ssn_dict = {"Captain":self.get_captain_ssn, 
