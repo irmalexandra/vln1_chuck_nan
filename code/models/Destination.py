@@ -23,18 +23,18 @@ class Destination():
                                          self.get_contact_number: self.set_contact_number}
 
         self.__create_order_list = [
-            "country", "airport", "flight time (Hours)", "distance (Kilometers)", "contact name", "contact number"]
+            "country", "airport", "flight time (hours)", "distance (kilometers)", "contact name", "contact number"]
         
         self.__creation_dict = {"country": self.set_country,
                                 "airport": self.set_airport,
-                                "flight time (Hours)": self.set_flight_time,
-                                "distance (Kilometers)": self.set_distance,
+                                "flight time (hours)": self.set_flight_time,
+                                "distance (kilometers)": self.set_distance,
                                 "contact name": self.set_contact_name,
                                 "contact number": self.set_contact_number 
         }
 
     def __str__(self):
-        return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact numberber: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
+        return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
 
     def get_creation_process(self):
         return self.__create_order_list, self.__creation_dict
