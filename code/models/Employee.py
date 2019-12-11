@@ -13,7 +13,7 @@ class Employee():
         self.__email = email
         self.__title = title
         self.__rank = rank
-        self.__licence = licence
+        self.__licence = "N/A"
         self.__availability = ""
 
         self.__header_format_dict = {"default": self.get_model_header_default_format,

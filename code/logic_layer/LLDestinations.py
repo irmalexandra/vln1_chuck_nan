@@ -1,4 +1,5 @@
 class LLDestinations:
+    MAX_DESTINATIONS = 99
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
@@ -70,7 +71,7 @@ class LLDestinations:
         else:
             next_id_str = str(next_id_int)
 
-        if next_id_int != 99:
+        if next_id_int <= self.MAX_DESTINATIONS:
             return next_id_str
         return False
         
