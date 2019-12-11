@@ -18,7 +18,7 @@ class LLDestinations:
     def get_destination_list_by_country(self, country):
         ''' Gets input from UI layer and returns an instance '''
 
-        self.__all_destination_list = self.get_all_destination_list()
+        self.get_all_destination_list()
         found_destination_list = []
 
         for destination in self.__all_destination_list:
@@ -32,7 +32,7 @@ class LLDestinations:
     def create_destination(self, destination):
         if self.validate_destination(destination):
             if self.__dl_api.append_destination(destination):
-                get_all_destination_list(True)
+                self.get_all_destination_list(True)
                 return True
             
         return False
@@ -40,7 +40,7 @@ class LLDestinations:
     def overwrite_all_destinations(self):
         ''' Takes a list of destination instances and sends it to the DL ''' 
         if self.__dl_api.overwrite_all_destinations(self.__all_destination_list):
-            get_all_destination_list()
+            self.get_all_destination_list()
             return True
 
     # All special functions
@@ -48,3 +48,11 @@ class LLDestinations:
     def validate_destination(self, destination):
         ''' Gets destination instance and returns a boolean '''
         return self.__modelAPI.validate_model(destination)
+
+    def generate_destination_id(self):
+        self.get_all_destination_list()
+        id_list = []
+        for destination in self.__all_destination_list:
+            id_list.append(destination.get_destination_id())
+        
+
