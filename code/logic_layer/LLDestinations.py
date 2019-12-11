@@ -1,4 +1,5 @@
 class LLDestinations:
+    MAX_DESTINATIONS = 99
     def __init__(self, DLAPI, modelAPI):
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
@@ -18,7 +19,7 @@ class LLDestinations:
     def get_destination_list_by_country(self, country):
         ''' Gets input from UI layer and returns an instance '''
 
-        self.__all_destination_list = self.get_all_destination_list()
+        self.get_all_destination_list()
         found_destination_list = []
 
         for destination in self.__all_destination_list:
@@ -30,9 +31,16 @@ class LLDestinations:
     # All change functions
 
     def create_destination(self, destination):
+        
+        destination_id = self.generate_destination_id()
+        if destination_id:
+            destination.set_destination_id(destination_id)
+        else:
+            return False
+
         if self.validate_destination(destination):
             if self.__dl_api.append_destination(destination):
-                get_all_destination_list(True)
+                self.get_all_destination_list(True)
                 return True
             
         return False
@@ -40,7 +48,7 @@ class LLDestinations:
     def overwrite_all_destinations(self):
         ''' Takes a list of destination instances and sends it to the DL ''' 
         if self.__dl_api.overwrite_all_destinations(self.__all_destination_list):
-            get_all_destination_list()
+            self.get_all_destination_list()
             return True
 
     # All special functions
@@ -48,3 +56,23 @@ class LLDestinations:
     def validate_destination(self, destination):
         ''' Gets destination instance and returns a boolean '''
         return self.__modelAPI.validate_model(destination)
+
+    def generate_destination_id(self):
+        self.get_all_destination_list()
+        id_list = []
+        for destination in self.__all_destination_list:
+            id_list.append(destination.get_destination_id())
+        
+        id_list.sort(reverse=True)
+
+        next_id_int = int(id_list[0]) + 1
+        if next_id_int <= 9:
+            next_id_str = '0'+ str(next_id_int)
+        else:
+            next_id_str = str(next_id_int)
+
+        if next_id_int <= self.MAX_DESTINATIONS:
+            return next_id_str
+        return False
+        
+

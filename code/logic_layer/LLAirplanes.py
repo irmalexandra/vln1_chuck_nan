@@ -7,9 +7,14 @@ class LLAirplanes:
         self.__all_airplane_list = []
         self.__all_airplane_type_list = []
 
+        self.__ll_voyages = None
+
+    def set_ll_voyages(self, ll_voyage):
+        self.__ll_voyages = ll_voyage
+
     # All list functions
 
-    def get_all_airplane_list(self):
+    def get_all_airplane_list(self, changed = False):
         '''Gets a list of instances of airplanes and returns it'''
         if changed:
             self.__all_airplane_list = self.__dl_api.pull_all_airplanes()
@@ -39,7 +44,7 @@ class LLAirplanes:
         unavailable_voyages = []
         unavailable_airplane_insignias = []
 
-        all_voyage_list = self.__dl_api.pull_all_voyages()
+        all_voyage_list = self.__ll_voyages.get_all_voyage_list()
 
         for voyage in all_voyage_list:        
             voyage_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
@@ -69,7 +74,7 @@ class LLAirplanes:
 
     def create_airplane(self, airplane, airplane_types,insignia):
         '''Gets a list of airplane instances, checks if user created instance exists in list, returns boolean and instance'''
-        self.__all_airplane_list = self.get_all_airplane_list()
+        self.get_all_airplane_list()
         existing_airplanes_list = [x.get_insignia() for x in self.__all_airplane_list]
         if airplane.get_insignia() not in existing_airplanes_list:
             existing_airplane_types = airplane_types
@@ -81,13 +86,13 @@ class LLAirplanes:
                     airplane.set_capacity(info.get_capacity())
                     if self.__modelAPI.validate_model(airplane):
                         if self.__dl_api.append_airplane(airplane):
-                            get_all_airplane_list(True)
+                            self.get_all_airplane_list(True)
                             return True
         return False
 
     def overwrite_all_airplanes(self, airplane_list):
         if self.__dl_api.overwrite_all_airplanes(airplane_list):
-            get_all_airplane_list(True)
+            self.get_all_airplane_list(True)
             return True
 
     # All special functions
@@ -100,7 +105,7 @@ class LLAirplanes:
             airplane.set_date_available("N/A")
             airplane.set_flight_number("N/A")
 
-        all_voyage_list = self.__dl_api.pull_all_voyages()
+        all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         
         current_voyages = []
 

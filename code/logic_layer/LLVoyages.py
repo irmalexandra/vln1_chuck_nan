@@ -6,6 +6,19 @@ class LLVoyages:
         self.__modelAPI = modelAPI
         self.__all_voyage_list = []
 
+        self.__ll_employees = None
+        self.__ll_destinations = None
+        self.__ll_airplanes = None
+
+    def set_ll_employees(self, ll_employee):
+        self.__ll_employees = ll_employee
+
+    def set_ll_airplanes(self, ll_airplanes):
+        self.__ll_airplanes = ll_airplanes
+
+    def set_ll_destinations(self, ll_destinations):
+        self.__ll_destinations = ll_destinations
+
     # All list functions
 
     def get_all_voyage_list(self, changed = False):
@@ -25,7 +38,7 @@ class LLVoyages:
         empty_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if voyage.get_airplane_insignia() == ".":
+            if voyage.get_staffed() == "Not staffed":
                 empty_voyage_list.append(voyage)
 
         return sorted(empty_voyage_list, key=lambda voyage: voyage.get_departing_flight_departure_date())
@@ -33,10 +46,10 @@ class LLVoyages:
     def filter_all_voyages_by_period(self, start_date, end_date):
         '''Takes a list of all voyage instances and returns a list of voyages filteres by period'''
         self.get_all_voyage_list()
-
+        
         start = self.get_iso_format_date_time(start_date)
         end = self.get_iso_format_date_time(end_date)
-        
+
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
@@ -61,7 +74,7 @@ class LLVoyages:
         end_date = voyage.get_return_flight_arrival_date()
         voyages_in_date_range_list = self.filter_all_voyages_by_period(start_date, end_date)
 
-        all_employee_list = self.__dl_api.pull_all_employees() #note meiga allir LL layers tala á milli sýn? til þess að geta nýtt update status í ll employees
+        all_employee_list = self.__ll_employees.get_all_employee_list() #note meiga allir LL layers tala á milli sýn? til þess að geta nýtt update status í ll employees
 
         filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
 
@@ -84,7 +97,7 @@ class LLVoyages:
         
         if rank == "Captain" or rank == "Copilot":
             final_employee_list = []
-            for airplane in self.__dl_api.pull_all_airplanes():
+            for airplane in self.__ll_airplanes.get_all_airplane_list():
                 if airplane.get_insignia() == voyage.get_airplane_insignia():
                     selected_airplane = airplane
                     break
@@ -99,7 +112,7 @@ class LLVoyages:
 
     # All change functions
 
-    def create_voyage(self, airport, start_date = "00-00-0000", start_time = "00:00:00"):
+    def create_voyage(self, destination, start_date = "00-00-0000", start_time = "00:00:00"):
 
         self.get_all_voyage_list()
         if type(start_date).__name__ != "datetime":
@@ -114,7 +127,7 @@ class LLVoyages:
         
         new_voyage = self.__modelAPI.get_model("Voyage")
 
-        new_voyage.set_return_flight_departing_from(airport)
+        new_voyage.set_return_flight_departing_from(destination.get_airport())
         new_voyage.set_departing_flight_departure_date(fixed_date_time.isoformat())
         new_voyage.set_airplane_insignia(".")
         new_voyage.set_captain_ssn(".")
@@ -122,11 +135,11 @@ class LLVoyages:
         new_voyage.set_fsm_ssn(".")
         new_voyage.set_fa_ssns([".", "."])
 
-        dep_flight_num, ret_flight_num = self.generate_flight_numbers() 
+        dep_flight_num, ret_flight_num = self.generate_flight_numbers(start_date, destination) 
         new_voyage.set_flight_numbers(dep_flight_num, ret_flight_num)
 
         departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str \
-            = self.calculate_flight_times(fixed_date_time, airport)
+            = self.calculate_flight_times(fixed_date_time, destination.get_airport())
         
         new_voyage.set_flight_times(departing_flight_arrival_date_str, \
             return_flight_departure_date_str, return_flight_arrival_date_str)
@@ -189,8 +202,7 @@ class LLVoyages:
     def add_airplane_to_voyage(self, voyage, airplane):
         if voyage.set_airplane_insignia(airplane.get_insignia()):
             return self.overwrite_all_voyages()
-            
-        
+              
     def check_status(self):
         current_date = datetime.today()
         for voyage in self.__all_voyage_list:
@@ -221,7 +233,7 @@ class LLVoyages:
 
     def calculate_flight_times(self, date, airport):
         self.__all_voyage_list = self.get_all_voyage_list()
-        destinations_list = self.__dl_api.pull_all_destinations()
+        destinations_list = self.__ll_destinations.get_all_destination_list()
         destinations_dict = dict()
         
         for destination in destinations_list:
@@ -233,23 +245,45 @@ class LLVoyages:
         return_flight_arrival_date = return_flight_departure_date + timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
-    def generate_flight_numbers(self):
+    def generate_flight_numbers(self, date, destination):
+        NEW_FLIGHT_NUM_LEN = 7
+        LAST_POSSIBLE_FLIGHT = 999
+        start_date = self.get_iso_format_date_time(date)
+        end_date = start_date + timedelta(hours=23, minutes=59,seconds=59)
+
+        destination_id = destination.get_destination_id()
+
         self.__all_voyage_list = self.get_all_voyage_list()
         existing_numbers = []
+
         for voyage in self.__all_voyage_list:
-            existing_numbers.append(int(voyage.get_departing_flight_num().replace("NA","")))
-            existing_numbers.append(int(voyage.get_return_flight_num().replace("NA","")))
+            voyage_airport = voyage.get_return_flight_departing_from()
+            departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
+            if start_date <= departing_flight_departure_date <= end_date and voyage_airport == destination.get_airport():
+                flight_number = voyage.get_return_flight_num()
+                if len(flight_number) == NEW_FLIGHT_NUM_LEN:
+                    existing_numbers.append(int(flight_number.replace("NA" + destination_id,"")))
 
-        departing_number_int = max(existing_numbers)+ 1
-        arriving_number_int = max(existing_numbers) + 2
-        arriving_number_str = str(arriving_number_int)
-        departing_number_str = str(departing_number_int)
+        if LAST_POSSIBLE_FLIGHT in existing_numbers:
+            return False
+        elif not existing_numbers:
+            departing_flight_num = "NA" + destination_id + "000"
+            return_flight_num = "NA" + destination_id + "001"
+            return departing_flight_num, return_flight_num
 
-        while len(departing_number_str) < 4:
-            departing_number_str = "0" + departing_number_str
-        while len(arriving_number_str) < 4:
-            arriving_number_str = "0" + arriving_number_str
-        return "NA" + departing_number_str, "NA" + arriving_number_str
+        else:
+            last_number = max(existing_numbers)
+            next_departing_number_str  = str(last_number + 1)
+            next_return_number_str = str(last_number + 2)
+            while len(next_departing_number_str) < 3:
+                next_departing_number_str = "0" + next_departing_number_str
+            while len(next_return_number_str) < 3:
+                next_return_number_str = "0" + next_return_number_str
+            
+            departing_flight_num = "NA" + destination_id + str(next_departing_number_str)
+            return_flight_num = "NA" + destination_id + str(next_return_number_str)
+            return departing_flight_num, return_flight_num
+
 
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
         if type(date).__name__ != 'datetime':
@@ -261,6 +295,7 @@ class LLVoyages:
             else:
                 new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
             return new_date
+
         return date
 
     def update_voyage_pointer(self, voyage):

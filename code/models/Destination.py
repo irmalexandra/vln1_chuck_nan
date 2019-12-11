@@ -1,6 +1,7 @@
 from validation.validator import Validator
 class Destination():
-    def __init__(self, country='', airport='', flight_time='', distance='', contact_name='', contact_number=0):
+    def __init__(self, destination_id = 0, country = '', airport = '', flight_time = '', 
+                 distance = '', contact_name = '', contact_number = ''):
         self.__models_validation = Validator()
         self.__country = country
         self.__airport = airport
@@ -8,6 +9,7 @@ class Destination():
         self.__distance = distance
         self.__contact_name = contact_name
         self.__contact_number = contact_number
+        self.__destination_id = destination_id
 
         self.__header_format_dict = {"default": self.get_model_header_default_format}
 
@@ -21,18 +23,18 @@ class Destination():
                                          self.get_contact_number: self.set_contact_number}
 
         self.__create_order_list = [
-            "country", "airport", "flight time", "distance", "contact name", "contact number"]
+            "country", "airport", "flight time (hours)", "distance (kilometers)", "contact name", "contact number"]
         
         self.__creation_dict = {"country": self.set_country,
                                 "airport": self.set_airport,
-                                "flight time": self.set_flight_time,
-                                "distance": self.set_distance,
+                                "flight time (hours)": self.set_flight_time,
+                                "distance (kilometers)": self.set_distance,
                                 "contact name": self.set_contact_name,
                                 "contact number": self.set_contact_number 
         }
 
     def __str__(self):
-        return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact numberber: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
+        return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
 
     def get_creation_process(self):
         return self.__create_order_list, self.__creation_dict
@@ -64,7 +66,8 @@ class Destination():
         return returnObject
 
     def raw_info(self):
-        return self.__country + "," + self.__airport + "," + self.__flight_time + "," + self.__distance + "," + self.__contact_name + "," + self.__contact_number + "\n"
+        return self.__country + "," + self.__airport + "," + self.__flight_time + "," + self.__distance + \
+            "," + self.__contact_name + "," + self.__contact_number + "," + self.__destination_id + "\n"
 
     def get_validation_dict(self):
         return self.__validation_dict
@@ -82,8 +85,7 @@ class Destination():
         if self.__models_validation.validate_country(new_country):
             self.__country = new_country
             return True
-        else:
-            return False
+        return False
 
     def get_airport(self):
         return self.__airport
@@ -133,3 +135,12 @@ class Destination():
             return True
         else:
             return False
+
+    def get_destination_id(self):
+        return self.__destination_id
+
+    def set_destination_id(self, new_id):
+        if self.__models_validation.validate_id(new_id):
+            self.__destination_id = new_id
+            return True
+        return False

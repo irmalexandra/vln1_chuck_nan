@@ -23,7 +23,7 @@ class AirplaneType():
     
     def get_model_header_default_format(self):
         return "{:10}{:20}{:17}{:20}{:15}".format("Index:",
-                                             "Plane Type ID:",
+                                             "Airplane type:",
                                              "Make:",
                                              "Model:",
                                              "Capacity:")
@@ -43,7 +43,7 @@ class AirplaneType():
 
     def __str__(self):
 
-        return "Plane Type ID {:>2} \nMake: {:>2} \nModel: {:>2} \nCapacity: {:>2}".format(self.__plane_type_id, self.__make,self.__model,self.__capacity)
+        return "Airplane type {:>2} \nMake: {:>2} \nModel: {:>2} \nCapacity: {:>2}".format(self.__plane_type_id, self.__make,self.__model,self.__capacity)
     
     def get_plane_type_id(self):
         return self.__plane_type_id
