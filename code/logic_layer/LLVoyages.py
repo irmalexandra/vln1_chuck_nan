@@ -249,7 +249,7 @@ class LLVoyages:
 
     def generate_flight_numbers(self, date, airport):
         NEW_FLIGHT_NUM_LEN = 7
-        LAST_POSSIBLE_FLIGHT = 998
+        LAST_POSSIBLE_FLIGHT = 999
         start_date = self.get_iso_format_date_time(date)
         end_date = start_date + timedelta(hours=23, minutes=59,seconds=59)
         all_destinations_list = self.__dl_api.pull_all_destinations()
