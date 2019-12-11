@@ -104,3 +104,9 @@ class LLAPI:
     
     def get_working_or_not(self, date, flag):
         return self.__ll_employees.get_working_or_not(date, flag)
+
+    def add_airplane_to_voyage(self, voyage, airplane):
+        return self.__ll_voyages.add_airplane_to_voyage(voyage, airplane)
+        
+    def update_voyage_pointer(self, voyage):
+        return self.__ll_voyages.update_voyage_pointer(voyage)
