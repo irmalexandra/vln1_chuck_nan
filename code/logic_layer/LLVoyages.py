@@ -46,10 +46,11 @@ class LLVoyages:
     def filter_all_voyages_by_period(self, start_date, end_date):
         '''Takes a list of all voyage instances and returns a list of voyages filteres by period'''
         self.get_all_voyage_list()
-
+        
         start = self.get_iso_format_date_time(start_date)
         end = self.get_iso_format_date_time(end_date)
-        
+        if not start or not end:
+            return False
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
@@ -287,14 +288,16 @@ class LLVoyages:
 
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
         if type(date).__name__ != 'datetime':
-
-            if date.find("T") == -1:
-                new_date = datetime.strptime(date,'%d-%m-%Y')
-                new_time = datetime.strptime(time, '%H:%M:%S').time()
-                new_date = datetime.combine(new_date, new_time)
-            else:
-                new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
-            return new_date
+            try:
+                if date.find("T") == -1:
+                    new_date = datetime.strptime(date,'%d-%m-%Y')
+                    new_time = datetime.strptime(time, '%H:%M:%S').time()
+                    new_date = datetime.combine(new_date, new_time)
+                else:
+                    new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+                return new_date
+            except ValueError:
+                return False
         return date
 
     def update_voyage_pointer(self, voyage):
