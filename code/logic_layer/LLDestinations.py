@@ -30,6 +30,13 @@ class LLDestinations:
     # All change functions
 
     def create_destination(self, destination):
+        
+        destination_id = self.generate_destination_id()
+        if destination_id:
+            destination.set_destination_id(destination_id)
+        else:
+            return False
+
         if self.validate_destination(destination):
             if self.__dl_api.append_destination(destination):
                 self.get_all_destination_list(True)
@@ -54,5 +61,17 @@ class LLDestinations:
         id_list = []
         for destination in self.__all_destination_list:
             id_list.append(destination.get_destination_id())
+        
+        id_list.sort(reverse=True)
+
+        next_id_int = int(id_list[0]) + 1
+        if next_id_int <= 9:
+            next_id_str = '0'+ str(next_id_int)
+        else:
+            next_id_str = str(next_id_int)
+
+        if next_id_int != 99:
+            return next_id_str
+        return False
         
 
