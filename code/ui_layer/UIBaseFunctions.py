@@ -30,7 +30,14 @@ class UIBaseFunctions():
 
     def exit_program(self):
         exit()
-
+    
+    def get_user_int_input(self, key_word):
+        while True:
+            try:
+                return_value = int(input("Enter {}: ".format(key_word)))
+            except ValueError:
+                print("Invalid value for {}".format(key_word))
+                
     def get_user_input(self, key_word):
         return input("Enter {}: ".format(key_word))
 
@@ -54,10 +61,10 @@ class UIBaseFunctions():
                 print("Invalid input")
 
     
-    def get_user_date_input(self, date_or_time_format):
+    def get_user_date_input(self,date_or_time, date_or_time_format):
         while True:
             
-            new_date_or_time = input("Enter date ({}): ".format(date_or_time_format))
+            new_date_or_time = input("Enter {} ({}): ".format(date_or_time, date_or_time_format))
             try:
                 if date_or_time_format == "DD-MM-YYYY":
                     datetime.strptime(new_date_or_time,'%d-%m-%Y')

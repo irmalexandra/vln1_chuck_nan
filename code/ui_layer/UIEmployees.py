@@ -135,7 +135,7 @@ class UIEmployees():
         # needs input
         header_flag = "date"
         sort_flag = "not working"
-        date = self.__ui_base_functions.get_user_input("date DD-MM-YYYY")
+        date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
         employee_list = self.__ll_api.filter_working(date, sort_flag)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
@@ -147,7 +147,7 @@ class UIEmployees():
         # needs input
         header_flag = "date"
         sort_flag = "working"
-        date = self.__ui_base_functions.get_user_input("date DD-MM-YYYY")
+        date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
         employee_list = self.__ll_api.filter_working(date, sort_flag)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
