@@ -49,8 +49,6 @@ class LLAPI:
     def get_destination_list_by_country(self, country):
         return self.__ll_destinations.get_destination_list_by_country(country)
 
-    def edit_destination(self, destination, input_tpl):
-        return self.__ll_destinations.edit_destination(destination, input_tpl)
 
     def get_airplane_type_list(self):
         return self.__ll_airplanes.get_airplane_type_list()
@@ -73,23 +71,36 @@ class LLAPI:
     def get_work_schedule_list(self, employee):
         return self.__ll_employees.get_work_schedule_list(employee)
 
-    def overwrite_all_models(self,model):
-        check = self.__modelAPI.validate_edit_model(model)
-        if type(check).__name__ != "str":
+    def overwrite_all_models(self, model):
+        if self.__modelAPI.validate_model(model):
             if type(model).__name__ == "Employee":
                 return self.__ll_employees.overwrite_all_employees()
             if type(model).__name__ == "Airplane":
-                return self.__ll_airplanes.overwrite_all_employees()
+                return self.__ll_airplanes.overwrite_all_airplanes()
             if type(model).__name__ == "Destination":
                 return self.__ll_destinations.overwrite_all_destinations()
             if type(model).__name__ == "Voyage":
                 return self.__ll_voyages.overwrite_all_voyages()
         else:
-            return check
+            return False
 
-    def add_crew_member_to_voyage(self):
-        return 
+    def add_employee_to_voyage(self, voyage, employee):
+        return self.__ll_voyages.add_employee_to_voyage(voyage, employee)
 
+    def duplicate_voyage(self, voyage, new_date, new_time):
+        return self.__ll_voyages.duplicate_voyage(voyage, new_date, new_time)
 
-    def duplicate_voyage(self, voyage, new_date):
-        return self.__ll_voyages.duplicate_voyage(voyage, new_date)
+    def repeat_voyage(self, voyage, repeat_interval, end_date):
+        return self.__ll_voyages.repeat_voyage(voyage, repeat_interval, end_date)
+    
+    def create_voyage(self, airport, start_date, start_time):
+        return self.__ll_voyages.create_voyage(airport, start_date, start_time)
+
+    def create_employee(self, employee):
+        return self.__ll_employees.create_employee(employee)
+    
+    def create_destination(self, destination):
+        return self.__ll_destinations.create_destination(destination)
+    
+    def get_working_or_not(self, date, flag):
+        return self.__ll_employees.get_working_or_not(date, flag)

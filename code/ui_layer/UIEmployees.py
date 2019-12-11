@@ -26,11 +26,21 @@ class UIEmployees():
         '''Print the search menu of employee sub menu'''
         nav_dict = {1: self.get_all_employees_by_name,
                     2: self.get_all_employees_by_title,
-                    3: self.get_all_employees_by_date,
+                    3: self.get_employees_by_date_sub_menu,
                     4: self.get_pilots_by_airplane_type_sorted,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
         employee_menu = "1. Name 2. Title 3. Date 4. Airplane"
+        return_value = self.__ui_base_functions.print_menu(
+            employee_menu, nav_dict)
+        return self.__ui_base_functions.check_return_value(return_value)
+
+    def get_employees_by_date_sub_menu(self):
+        nav_dict = {1: self.get_all_available_employees,
+                    2: self.get_all_not_available_employees,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        employee_menu = "1. Available 2. Not Available"
         return_value = self.__ui_base_functions.print_menu(
             employee_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -87,15 +97,12 @@ class UIEmployees():
             return_value = self.get_selected_employee_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def get_select_from_airplane_type_list_menu(self, employee_list):
+    def get_select_from_airplane_type_list_menu(self, airplane_type_list):
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
         employee_menu = "1. Select Airplane Type"
-        return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, employee_list)
-        if return_value != None and return_value != 0:
-            # CHANGE LICENCE ON PILOT!    
-            return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
+        return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, airplane_type_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_pilots_list_menu(self, employee_list):
@@ -119,17 +126,32 @@ class UIEmployees():
         employee_list = self.__ll_api.get_employee_list_by_name()
         return_value = self.__ui_base_functions.print_model_list(
             employee_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_employee_list_menu(employee_list)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_employee_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def get_all_employees_by_date(self):
+    def get_all_available_employees(self):
         '''Gets all employees availability on a specific day'''
         # needs input
         header_flag = "date"
-        employee_list = self.__ll_api.get_all_employee_list()
-        return_value = self.__ui_base_functions.print_model_list(
-            employee_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_employee_list_menu(employee_list)
+        sort_flag = "not working"
+        date = self.__ui_base_functions.get_user_input("date DD-MM-YYYY")
+        employee_list = self.__ll_api.get_working_or_not(date, sort_flag)
+        return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_employee_list_menu(employee_list)
+        return self.__ui_base_functions.check_return_value(return_value)
+
+    def get_all_not_available_employees(self):
+        '''Gets all employees availability on a specific day'''
+        # needs input
+        header_flag = "date"
+        sort_flag = "working"
+        date = self.__ui_base_functions.get_user_input("date DD-MM-YYYY")
+        employee_list = self.__ll_api.get_working_or_not(date, sort_flag)
+        return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_employee_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_employees_by_title(self):
@@ -176,11 +198,18 @@ class UIEmployees():
             return_value = self.get_select_from_pilots_list_menu(employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
+    def get_work_schedule(self, employee):
+        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)
+        header_flag = "default"
+        return_value = self.__ui_base_functions.print_model_list(employee_work_schedule, self.__modelAPI, header_flag)
+        return_value = self.__ui_base_functions.check_return_value(return_value)
+
     # Specific functions
 
     def create_pilot(self):
         new_emp = self.__modelAPI.get_model("Employee")
         new_emp.set_title("Pilot")
+        self.change_pilot_licence(new_emp)
         create_order_list, creation_dict = new_emp.get_creation_process()
         for attribute in create_order_list:
             while True:
@@ -188,9 +217,13 @@ class UIEmployees():
             
                 if creation_dict[attribute](new_attribute):
                     break
-        #SAVE EMPLOYEE TO DATABASE
-        return_value = self.__ui_base_functions.print_model(new_emp)
-        return self.__ui_base_functions.check_return_value(return_value)
+                else:
+                    print("Error, {} invalid!".format(attribute))
+        if self.__ll_api.create_employee(new_emp):
+            self.__ui_base_functions.print_model(new_emp)
+            self.__ui_base_functions.print_create_employee_results(new_emp)
+        else:
+            self.__ui_base_functions.print_generic_error_message()
     
     def create_cabin_crew(self):
         new_emp = self.__modelAPI.get_model("Employee")
@@ -202,21 +235,28 @@ class UIEmployees():
             
                 if creation_dict[attribute](new_attribute):
                     break
-        #SAVE EMPLOYEE TO DATABASE
-        return_value = self.__ui_base_functions.print_model(new_emp)
-        return self.__ui_base_functions.check_return_value(return_value)
-
-
+                else:
+                    print("Error, {} invalid!".format(attribute))
+        if self.__ll_api.create_employee(new_emp):
+            self.__ui_base_functions.print_model(new_emp)
+            self.__ui_base_functions.print_create_employee_results(new_emp)
+        else:
+            self.__ui_base_functions.print_generic_error_message()
+   
     def change_pilot_licence(self, employee):
         header_flag = "default"
         airplane_type_list = self.__ll_api.get_airplane_type_list()
         return_value = self.__ui_base_functions.print_model_list(airplane_type_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_airplane_type_list_menu(return_value)
-        return self.__ui_base_functions.check_return_value(return_value)
+        if return_value != None and return_value != 0:
+            if employee.set_licence(return_value.get_plane_type_id()):   
+                return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
+            if employee.get_name() != "":
+                if self.__ll_api.overwrite_all_models(employee):
+                    pass
+                else:
+                    self.__ui_base_functions.print_generic_error_message()
+
+        
     
-    def get_work_schedule(self, employee):
-        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)
-        header_flag = "default"
-        return_value = self.__ui_base_functions.print_model_list(employee_work_schedule, self.__modelAPI, header_flag)
-        return_value = self.__ui_base_functions.check_return_value(return_value)

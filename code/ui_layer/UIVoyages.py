@@ -107,7 +107,7 @@ class UIVoyages():
         return_value = self.__ui_base_functions.print_menu(
             edit_menu, nav_dict, voyage)
         if return_value != None and return_value != 0:
-            return_value = self.get_select_from_add_crew_list_menu(return_value)
+            return_value = self.get_select_from_add_crew_list_menu(return_value, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_add_crew_list_menu(self, crew_list, voyage):
@@ -117,8 +117,19 @@ class UIVoyages():
         voyage_menu = "1. Select crew member"
         return_value = self.__ui_base_functions.print_menu(voyage_menu, nav_dict, crew_list)
         if return_value != None and return_value != 0:
-            self.__ui_base_functions.print_add_crew_results(return_value)
-            return_value = self.__ll_api.add_crew_member_to_voyage()# MUNA AÐ ADD CREW SEINNA
+            if self.__ll_api.add_employee_to_voyage(voyage, return_value):
+                self.__ui_base_functions.print_add_crew_results(return_value)
+            else:
+                self.__ui_base_functions.print_generic_error_message()
+        return_value = 9
+        return self.__ui_base_functions.check_return_value(return_value)
+
+    def get_select_from_destination_list_menu(self, employee_list):
+        nav_dict = {1: self.__ui_base_functions.select_from_model_list,
+                    9: self.__ui_base_functions.back,
+                    0: self.__ui_base_functions.home}
+        employee_menu = "1. Select destination"
+        return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, employee_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     # All list functions
@@ -137,7 +148,8 @@ class UIVoyages():
         voyage_list = self.__ll_api.get_all_voyage_list()
         return_value = self.__ui_base_functions.print_model_list(
             voyage_list, self.__modelAPI, header_flag)
-        return_value = self.get_select_from_voyage_list_menu(voyage_list)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_voyage_list_menu(voyage_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_voyages_by_airport(self):
@@ -169,7 +181,6 @@ class UIVoyages():
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_voyage_list_menu(voyage_list)
         return self.__ui_base_functions.check_return_value(return_value)
-
 
     def get_all_captains_by_airplane_and_availability(self, voyage):
         '''Print the given dictionary of voyages'''
@@ -210,32 +221,45 @@ class UIVoyages():
             crew_list, self.__modelAPI, header_flag)
         return_value = self.get_select_from_add_crew_list_menu(crew_list, voyage)
         return self.__ui_base_functions.check_return_value(return_value)
+
+        
     
     # All Special functions
 
-    
-
     def create_voyage(self):
-        print("CREATE VOYAGE GOES HERE!")
-        return
+        header_flag = "default"
+        destination_list = self.__ll_api.get_all_destination_list()
+        return_value = self.__ui_base_functions.print_model_list(destination_list, self.__modelAPI, header_flag)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_destination_list_menu(return_value)
+        if return_value != None and return_value != 0:
+            new_date = self.__ui_base_functions.get_user_input("new date ""(dd-mm-yyyy)"" ")
+            new_time = self.__ui_base_functions.get_user_input("new time ""(hh:mm:ss)"" ")
+            if self.__ll_api.create_voyage(return_value, new_date, new_time):
+                self.__ui_base_functions.print_create_voyage_results(return_value, new_date, new_time)
+            else:
+                self.__ui_base_functions.print_generic_error_message()
+                
 
-    
     def duplicate_voyage(self, voyage):
-        new_day = self.__ui_base_functions.get_user_input("new day")
-        new_month = self.__ui_base_functions.get_user_input("new month")
-        new_year = self.__ui_base_functions.get_user_input("new year")
-        new_hour = self.__ui_base_functions.get_user_input("new hour")
-        new_minute = self.__ui_base_functions.get_user_input("new minute")
-        new_seconds = self.__ui_base_functions.get_user_input("new seconds")
-        new_date = new_year + "-" + new_month + "-" + new_day + "T" + new_hour + ":" + new_minute + ":" + new_seconds
-        return_value = self.__ll_api.duplicate_voyage(voyage, new_date)
+
+        new_date = self.__ui_base_functions.get_user_input("new date (dd-mm-yyyy)")
+        new_time = self.__ui_base_functions.get_user_input("new time (hh:mm:ss)")
+        
+        return_value = self.__ll_api.duplicate_voyage(voyage, new_date, new_time)
         if return_value == True:
-            print("YAS QUEEN")
+            print("Voyage duplication successful!")
         else:
-            print("NAH QUEEN")
+            print("Incorrect date/time format")
         return self.__ui_base_functions.check_return_value(return_value)
     
-    
     def repeat_voyage(self, voyage):
-        print("REPEATE VOYAGE GOES HERE")
-        return
+        interval = self.__ui_base_functions.get_user_input("repeat inverval")
+        end_date = self.__ui_base_functions.get_user_input("end date (dd-mm-yyyy)")
+        
+        return_value = self.__ll_api.repeat_voyage(voyage, interval, end_date)
+        if return_value == True:
+            print("Creation of reccuring voyage successful!")
+        else:
+            print("Incorrect date format or interval format")
+        return self.__ui_base_functions.check_return_value(return_value)

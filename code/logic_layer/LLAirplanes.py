@@ -5,41 +5,24 @@ class LLAirplanes:
         self.__dl_api = DLAPI
         self.__modelAPI = modelAPI
         self.__all_airplane_list = []
+        self.__all_airplane_type_list = []
 
-    def validate_airplane(self, airplane):
-        '''Gets airplane instance and returns a boolean'''
-        return self.__modelAPI.validate_model(airplane)
+    # All list functions
 
     def get_all_airplane_list(self):
-        self.__all_airplane_list = self.__dl_api.pull_all_airplanes()
-        self.get_airplane_status()
         '''Gets a list of instances of airplanes and returns it'''
-        return self.__all_airplane_list
+        if not self.__all_airplane_list:
+            self.__all_airplane_list = self.__dl_api.pull_all_airplanes()
+
+        self.get_airplane_status()
+        
+        return sorted(self.__all_airplane_list, key=lambda airplane: airplane.get_status())
 
     def get_airplane_type_list(self):
         '''Gets a list of instances of airplane types and returns it'''
-        return self.__dl_api.pull_all_airplane_types()
+        self.__all_airplane_type_list = self.__dl_api.pull_all_airplane_types()
+        return self.__all_airplane_type_list
     
-    def create_airplane(self, airplane, airplane_types,insignia):
-        '''Gets a list of airplane instances, checks if user created instance exists in list, returns boolean and instance'''
-        self.__all_airplane_list = self.get_all_airplane_list()
-        existing_airplanes_list = [x.get_insignia() for x in self.__all_airplane_list]
-        if airplane.get_insignia() not in existing_airplanes_list:
-            existing_airplane_types = airplane_types
-            airplane_make = airplane.get_make()
-            airplane_model = airplane.get_model()
-            
-            for info in existing_airplane_types:
-                if info.get_make() == airplane_make and info.get_model() == airplane_model:
-                    airplane.set_capacity(info.get_capacity())
-                    self.__dl_api.create_airplane(airplane)
-
-                    return  airplane,True
-        return airplane,False
-
-    def overwrite_all_airplanes(self, airplane_list):
-        return self.__dl_api.overwrite_all_airplanes(airplane_list)
-
     def filter_available_airplanes(self, voyage):
 
         all_airplane_list = self.get_all_airplane_list()
@@ -77,7 +60,30 @@ class LLAirplanes:
             else:
                 available_airplane_list.append(airplane)
 
-        return available_airplane_list
+        return sorted(available_airplane_list, key=lambda airplane: airplane.get_make())
+
+    # All change functions
+
+    def create_airplane(self, airplane, airplane_types,insignia):
+        '''Gets a list of airplane instances, checks if user created instance exists in list, returns boolean and instance'''
+        self.__all_airplane_list = self.get_all_airplane_list()
+        existing_airplanes_list = [x.get_insignia() for x in self.__all_airplane_list]
+        if airplane.get_insignia() not in existing_airplanes_list:
+            existing_airplane_types = airplane_types
+            airplane_make = airplane.get_make()
+            airplane_model = airplane.get_model()
+            
+            for info in existing_airplane_types:
+                if info.get_make() == airplane_make and info.get_model() == airplane_model:
+                    airplane.set_capacity(info.get_capacity())
+                    if self.__modelAPI.validate_model(airplane):
+                        return self.__dl_api.append_airplane(airplane)
+        return False
+
+    def overwrite_all_airplanes(self, airplane_list):
+        return self.__dl_api.overwrite_all_airplanes(airplane_list)
+
+    # All special functions
 
     def get_airplane_status(self, current_date = datetime.now().replace(microsecond=0)):
 
@@ -121,13 +127,14 @@ class LLAirplanes:
                         airplane.set_flight_number(voyage.get_return_flight_num())
                         airplane.set_status("In air, returning")
 
-            
+    def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
+        if type(date).__name__ != 'datetime':
 
-    def get_iso_format_date_time(self, date=''):
-
-        if date.find("T") == -1:
-            date = datetime.strptime(date,'%d-%m-%Y')
-        else:
-            date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
-
+            if date.find("T") == -1:
+                new_date = datetime.strptime(date,'%d-%m-%Y')
+                new_time = datetime.strptime(time, '%H:%M:%S').time()
+                new_date = datetime.combine(new_date, new_time)
+            else:
+                new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
+            return new_date
         return date

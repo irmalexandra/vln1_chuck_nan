@@ -1,19 +1,19 @@
-id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
+ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 3009907461,William Carillo,Menntavegur 1,4640161,6507678,william.carillo@nanair.is,Pilot,Captain,NAFokkerF100
-2910858778,Virginia Ho,Laugarvegur 12,6337442,7603419,virginia.ho@nanair.is,Pilot,Captain,NABAE146
+2910858778,Virginia Ho,Laugarvegur 12,3219969,7777777,virginia.ho@nanair.is,Pilot,Captain,NABAE146
 2706838569,Gerard Nelson,Menntavegur 1,7449780,0860066,gerard.nelson@nanair.is,Pilot,Captain,NAFokkerF100
 2209955782,Allen Ley,Goodstreet 16,2546882,3493315,allen.ley@nanair.is,Pilot,Captain,NABAE146
 2907675667,Felecia Moye,Kringlan 1,4799507,3106942,felecia.moye@nanair.is,Pilot,Captain,NABAE146
 1309797899,Tyler Anderson,Kringlan 1,0678816,1503886,tyler.anderson@nanair.is,Pilot,Captain,NAFokkerF28
-2410876598,Nan Gage,Laugarvegur 12,3100759,5287397,nan.gage@nanair.is,Pilot,Copilot,NAFokkerF100
+2410876598,Nan Gage,Laugarvegur 12,3100759,5287397,nan.gage@nanair.is,Pilot,Copilot,NABAE146
 2211658134,Charla Johnson,Menntavegur 1,4514605,4139814,charla.johnson@nanair.is,Pilot,Copilot,NABAE146
 2504939263,Sam Preciado,Laugarvegur 12,5977187,4427442,sam.preciado@nanair.is,Pilot,Copilot,NABAE146
 1900769521,Jasmine Hagadone,Laugarvegur 12,7771325,3126711,jasmine.hagadone@nanair.is,Pilot,Copilot,NABAE146
-2500812671,Anna Phillips,Newgata 12,8191927,5961160,anna.phillips@nanair.is,Pilot,Copilot,NAFokkerF28
+2500812671,Anna Phillips,Woopla 2,1234567,5961160,anna.phillips@nanair.is,Pilot,Copilot,NAFokkerF28
 1309927223,Patricia Bates,Laugarvegur 12,4702176,2986806,patricia.bates@nanair.is,Pilot,Copilot,NAFokkerF28
 1600904199,Sherry Walker,Holtavegur 14,1068167,4808454,sherry.walker@nanair.is,Cabincrew,Flight Service Manager,N/A
 0303758167,Margarita Fischer,Menntavegur 1,2276813,0314836,margarita.fischer@nanair.is,Cabincrew,Flight Service Manager,N/A
-2200763823,Judith Aleshire,Kringlan 1,9188497,6983157,judith.aleshire@nanair.is,Cabincrew,Flight Service Manager,N/A
+2200763823,Judith Aleshire,Kringlan 1,9392222,6983157,judith.aleshire@nanair.is,Cabincrew,Flight Service Manager,N/A
 1308941169,Jacob Blecha,Laugarvegur 12,6196546,0456609,jacob.blecha@nanair.is,Cabincrew,Flight Service Manager,N/A
 1405853585,Lula Stefani,Holtavegur 14,2095988,6288964,lula.stefani@nanair.is,Cabincrew,Flight Service Manager,N/A
 0909862878,Richard Sanders,Kringlan 1,2844200,5871242,richard.sanders@nanair.is,Cabincrew,Flight Service Manager,N/A
@@ -34,3 +34,14 @@ id,ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 1110732819,Arthur Karr,Menntavegur 1,0200077,3837344,arthur.karr@nanair.is,Cabincrew,Flight Attendant,N/A
 2602806942,Teresa Thruman,Menntavegur 1,3341427,6470574,teresa.thruman@nanair.is,Cabincrew,Flight Attendant,N/A
 1107951952,Elizabeth Mcfadden,Menntavegur 1,2957609,6902831,elizabeth.mcfadden@nanair.is,Cabincrew,Flight Attendant,N/A
+1234567890,Rikki Besti,Bgata 12,1234567,7654321,rikki.besti@nanair.is,Pilot,Captain,NAFokkerF28
+<<<<<<< HEAD
+1701728949,kalli palli,kakalakkar 5,4444444,4444444,kalli.palli@nanair.is,Pilot,captain,NABAE146
+1234567890,Rikki Pilot,WOOPLA 12,1234567,7654321,rikki.pilot@nanair.is,Pilot,Captain,NAFokkerF28
+0987654321,Emil WADDUP,wallupa 12,9877897,9876565,emil.waddup@nanair.is,Cabincrew,Flight Service Master,
+1234567890,derp herpes,penisstreet 69,4208008,6910169,derp.herpes@nanair.is,Cabincrew,Flight Attendant,
+301282-1234,Svana Smith,Thisstreet 14,5552345,6902345,svana.smith@nanair.is,Cabincrew,Flight service manager,
+=======
+1701728949,Kalli palli,kakalakkar 5,4444444,4444444,kalli.palli@nanair.is,Pilot,Captain,NABAE146
+1234567890,Derp herpes,penisstreet 69,4208008,6910169,derp.herpes@nanair.is,Cabincrew,Flight Attendant,
+>>>>>>> 443dd6d7faefcc4d3a6ec42a74f578699330fac7

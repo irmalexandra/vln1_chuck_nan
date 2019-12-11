@@ -47,7 +47,8 @@ class UIAirplanes():
         header_flag = "default"
         airplanes_list = self.__ll_api.get_all_airplane_list()
         return_value = self.__ui_base_functions.print_model_list(airplanes_list,self.__modelAPI,header_flag)
-        return_value = self.get_select_from_airplane_list_menu(airplanes_list)
+        if type(return_value).__name__ == "list":
+            return_value = self.get_select_from_airplane_list_menu(airplanes_list)
         return self.__ui_base_functions.check_return_value(return_value)
     
 
@@ -81,12 +82,10 @@ class UIAirplanes():
         new_airplane.set_model(model)
         check = new_airplane.set_insignia(insignia)
         if check:
-
-            airplane,duplicate_check = self.__ll_api.create_airplane(new_airplane, existing_airplane_types_list,insignia)
-            if duplicate_check:
-                print("\nAirplane created!\n{}".format(airplane))
+            if self.__ll_api.create_airplane(new_airplane, existing_airplane_types_list,insignia):
+                print("\nAirplane created!\n{}".format(new_airplane))
             else:
-                print("\n{}\nAlready exists!".format(airplane.get_insignia()))
+                print("\n{}\nAlready exists!".format(new_airplane.get_insignia()))
         else:
             print("\nInvalid insignia {}\n".format(insignia))
 

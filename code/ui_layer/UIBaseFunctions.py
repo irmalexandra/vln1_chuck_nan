@@ -40,12 +40,12 @@ class UIBaseFunctions():
                     if selection in collection.keys():
                         return selection
                     else:
-                        print("Invalid key")
+                        print("Invalid selection")
                 elif type(collection).__name__ == "list":
                     if len(collection) >= selection:
                         return selection
                     else:
-                        print("Invalid selection in list")
+                        print("Invalid index")
                 else:
                     print("Invalid {}".format(key_word))
             except ValueError:
@@ -124,19 +124,39 @@ class UIBaseFunctions():
                     else:
                         print("Invalid {}".format(edit_order_list[return_value-1])) # for -1 human readability
             else:
-                check = llapi.overwrite_all_models(model)
-                if type(check).__name__ != "str": 
-                    return self.check_return_value(return_value)
+                if llapi.overwrite_all_models(model): 
+                    print(type(model).__name__+" edited successfully")
+                    return
                 else:
-                    print("Error, {} invalid!".format(check))
-                    return 
+                    self.print_generic_error_message()
+                    return
     
 
     def print_add_crew_results(self, employee):
-        print("Name: {}\nRank: {} \nAdded successfully to voyage".format(employee.get_name(), employee.get_rank()))
+        print("-" * self.UI_DIVIDER_INT)
+        print("Name: {}\nRank: {} \nAdded to voyage successfully".format(employee.get_name(), employee.get_rank()))
 
     def print_airplane_added_results(self, airplane):
-        print("Insignia: {} Added to voyage successfully".format(airplane.get_insignia()))
+        print("Insignia: {} added to voyage successfully".format(airplane.get_insignia()))
 
     def print_airplane_licence_results(self, airplane):
-        print("Licnece changed to {} successfully".format(airplane.get_plane_type_id()))
+        print("Licence changed to {} successfully".format(airplane.get_plane_type_id()))
+        return airplane
+
+    def print_create_voyage_results(self, destination, date, time):
+        print("Voyage to {} departing on {} at {} created successfully".format(destination.get_airport(), date, time))
+
+    def print_create_employee_results(self, employee):
+        print("Employee, Name: {} SSN {} successfully created".format(employee.get_name(), employee.get_ssn()))
+
+    def print_create_destination_results(self, destination):
+        print("Destination, Country: {} Airport: {} successfully created".format(destination.get_country(), destination.get_airport()))
+
+    def print_edit_destination_number_results(self, destination):
+        print("Destination contact info updated successfully! New number {}".format(destination.get_contact_number()))
+
+    def print_edit_destination_contact_results(self, destination):
+        print("Destination contact info updated successfully! New contact {}".format(destination.get_contact_name()))
+
+    def print_generic_error_message(self):
+        print("Something went wrong... ")
