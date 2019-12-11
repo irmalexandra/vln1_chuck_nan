@@ -165,8 +165,9 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_voyages_by_date(self):
-        start_date = self.__ui_base_functions.get_user_input("start date DD-MM-YYYY")
-        end_date = self.__ui_base_functions.get_user_input("end date DD-MM-YYYY")
+        ("date","DD-MM-YYYY")
+        start_date = self.__ui_base_functions.get_user_date_input("start date", "DD-MM-YYYY")
+        end_date = self.__ui_base_functions.get_user_date_input("end date", "DD-MM-YYYY")
         header_flag = "default"
         voyage_list = self.__ll_api.get_all_voyage_list_by_period_list(start_date, end_date)
         return_value = self.__ui_base_functions.print_model_list(
@@ -235,8 +236,8 @@ class UIVoyages():
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_destination_list_menu(return_value)
         if return_value != None and return_value != 0:
-            new_date = self.__ui_base_functions.get_user_input("new date ""(dd-mm-yyyy)"" ")
-            new_time = self.__ui_base_functions.get_user_input("new time ""(hh:mm:ss)"" ")
+            new_date = self.__ui_base_functions.get_user_date_input("new date", "DD-MM-YYYY")
+            new_time = self.__ui_base_functions.get_user_date_input("new time", "HH-MM")
             if self.__ll_api.create_voyage(return_value, new_date, new_time):
                 self.__ui_base_functions.print_create_voyage_results(return_value, new_date, new_time)
             else:
@@ -245,8 +246,8 @@ class UIVoyages():
 
     def duplicate_voyage(self, voyage):
 
-        new_date = self.__ui_base_functions.get_user_input("new date (dd-mm-yyyy)")
-        new_time = self.__ui_base_functions.get_user_input("new time (hh:mm:ss)")
+        new_date = self.__ui_base_functions.get_user_date_input("new date", "DD-MM-YYYY")
+        new_time = self.__ui_base_functions.get_user_date_input("new time", "HH-MM")
         
         return_value = self.__ll_api.duplicate_voyage(voyage, new_date, new_time)
         if return_value == True:
@@ -256,8 +257,8 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
     
     def repeat_voyage(self, voyage):
-        interval = self.__ui_base_functions.get_user_input("repeat inverval")
-        end_date = self.__ui_base_functions.get_user_input("end date (dd-mm-yyyy)")
+        interval = self.__ui_base_functions.get_user_int_input("repeat inverval")
+        end_date = self.__ui_base_functions.get_user_date_input("new date", "DD-MM-YYYY")
         
         return_value = self.__ll_api.repeat_voyage(voyage, interval, end_date)
         if return_value == True:
