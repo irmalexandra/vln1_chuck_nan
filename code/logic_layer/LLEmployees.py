@@ -93,7 +93,7 @@ class LLEmployees:
         employee.set_email(self.email_generator(employee.get_name()))
         if self.__modelAPI.validate_model(employee):
             if self.__dl_api.append_employee(employee):
-                get_all_employee_list(True)
+                self.get_all_employee_list(True)
                 return True
             
         return False
@@ -101,7 +101,7 @@ class LLEmployees:
     def overwrite_all_employees(self):
         ''' Takes a list of employee instances and sends it to the DL '''
         if self.__dl_api.overwrite_all_employees(self.__all_employee_list):
-            get_all_employee_list(True)
+            self.get_all_employee_list(True)
             return True
 
     def set_availability(self):
