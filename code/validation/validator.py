@@ -140,6 +140,9 @@ class Validator():
         name = airport.replace(" ", "") 
         return self.__validate_string(name)
 
+    def validate_id(self, id_num):
+        return self.__validate_int(id_num)
+
     def validate_flight_time(self, time):
         return self.__validate_int(time)
 
