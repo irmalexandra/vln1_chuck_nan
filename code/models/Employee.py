@@ -183,31 +183,31 @@ class Employee():
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-        returnObject = ("     {:22}{:15}{:18}{:15}{:58}|\n".format(
+        returnObject = "     {:22}{:15}{:18}{:15}{:58}|\n".format(
                                                      self.get_name(),
                                                      self.get_ssn(),
                                                      self.get_mobile_num(),
                                                      self.get_title(),
-                                                     self.get_availability()))
+                                                     self.get_availability())
         return returnObject
 
     def get_model_list_default_info(self):
-        returnObject = ("    {:22}{:15}{:19}{:15}{:17}{:31}{:10}|\n".format(
+        returnObject = "    {:22}{:15}{:19}{:15}{:17}{:31}{:10}|\n".format(
                                                             self.get_name(),
                                                             self.get_ssn(),
                                                             self.get_address(),
                                                             self.get_mobile_num(),
                                                             self.get_home_num(),
                                                             self.get_email(),
-                                                            self.get_title()))
+                                                            self.get_title())
         return returnObject
 
     def get_model_list_aircraft_info(self):
-        returnObject = ("     {:22}{:17}{:19}{:20}{:14}{:36}|\n".format(
+        returnObject = "     {:22}{:17}{:19}{:20}{:14}{:36}|\n".format(
                                                        self.get_name(),
                                                        self.get_ssn(),
                                                        self.get_address(),
                                                        self.get_mobile_num(),
                                                        self.get_title(),
-                                                       self.get_licence()))
+                                                       self.get_licence())
         return returnObject

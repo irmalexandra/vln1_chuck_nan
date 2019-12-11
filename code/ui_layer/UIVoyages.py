@@ -205,7 +205,7 @@ class UIVoyages():
     def get_all_fsm_by_availability(self, voyage):
         '''Print the given dictionary of voyages'''
         header_flag = "default"
-        rank = "Flight Service Manager"
+        rank = "Flight service manager"
         crew_list = self.__ll_api.get_filtered_employee_list_for_voyage(rank,voyage)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
@@ -215,7 +215,7 @@ class UIVoyages():
     def get_all_flight_attendants_by_availability(self, voyage):
         '''Print the given dictionary of voyages'''
         header_flag = "default"
-        rank = "Flight Attendant"
+        rank = "Flight attendant"
         crew_list = self.__ll_api.get_filtered_employee_list_for_voyage(rank,voyage)
         return_value = self.__ui_base_functions.print_model_list(
             crew_list, self.__modelAPI, header_flag)
