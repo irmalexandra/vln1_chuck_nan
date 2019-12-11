@@ -117,8 +117,11 @@ class UIVoyages():
         voyage_menu = "1. Select crew member"
         return_value = self.__ui_base_functions.print_menu(voyage_menu, nav_dict, crew_list)
         if return_value != None and return_value != 0:
-            self.__ui_base_functions.print_add_crew_results(return_value)
-            return_value = self.__ll_api.add_crew_member_to_voyage()# MUNA AÐ ADD CREW SEINNA
+            if self.__ll_api.add_employee_to_voyage(voyage, return_value):
+                self.__ui_base_functions.print_add_crew_results(return_value)
+            else:
+                self.__ui_base_functions.print_generic_error_message()
+        return_value = 9
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_destination_list_menu(self, employee_list):
@@ -240,8 +243,8 @@ class UIVoyages():
 
     def duplicate_voyage(self, voyage):
 
-        new_date = self.__ui_base_functions.get_user_input("new date ""(dd-mm-yyyy)"": ")
-        new_time = self.__ui_base_functions.get_user_input("new time ""(hh:mm:ss)"": ")
+        new_date = self.__ui_base_functions.get_user_input("new date (dd-mm-yyyy)")
+        new_time = self.__ui_base_functions.get_user_input("new time (hh:mm:ss)")
         
         return_value = self.__ll_api.duplicate_voyage(voyage, new_date, new_time)
         if return_value == True:
@@ -251,8 +254,8 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
     
     def repeat_voyage(self, voyage):
-        interval = self.__ui_base_functions.get_user_input("repeat inverval: ")
-        end_date = self.__ui_base_functions.get_user_input("end date ""(dd-mm-yyyy)"": ")
+        interval = self.__ui_base_functions.get_user_input("repeat inverval")
+        end_date = self.__ui_base_functions.get_user_input("end date (dd-mm-yyyy)")
         
         return_value = self.__ll_api.repeat_voyage(voyage, interval, end_date)
         if return_value == True:

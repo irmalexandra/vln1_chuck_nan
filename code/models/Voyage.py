@@ -222,15 +222,27 @@ class Voyage():
     def get_fa_ssns(self):
         return self.__fa_ssns
 
-    def set_fa_ssns(self, new_ssn_list):
-        new_ssn_set = set(new_ssn_list)
-        if len(new_ssn_set) != 1:
-            for ssn in new_ssn_list:
-                if not self.__models_validation.validate_employee_ssn(ssn):
-                    return False
+    def set_fa_ssns(self, new_ssn):
+        if type(new_ssn).__name__ == "list":
+            for ssn in new_ssn:
+                if ssn != ".":
+                    if not self.__models_validation.validate_employee_ssn(ssn):
+                        return False
+            self.__fa_ssns = new_ssn
+            return True
         
-        self.__fa_ssns = new_ssn_list
+        if not self.__models_validation.validate_employee_ssn(new_ssn):
+            return False
+
+        if self.__fa_ssns[0] == '.':
+            self.__fa_ssns[0] = new_ssn
+        elif self.__fa_ssns[1] == '.':
+            self.__fa_ssns[1] = new_ssn
+        else:
+            self.__fa_ssns.append(new_ssn)
+            
         return True
+        
 
     def get_voyage_employee_ssn(self, rank):
         return self.__voyage_employee_ssn_dict[rank]()
