@@ -247,7 +247,7 @@ class UIVoyages():
     def duplicate_voyage(self, voyage):
 
         new_date = self.__ui_base_functions.get_user_date_input("new date", "DD-MM-YYYY")
-        new_time = self.__ui_base_functions.get_user_date_input("new time", "HH-MM")
+        new_time = self.__ui_base_functions.get_user_date_input("new time", "HH:MM")
         
         return_value = self.__ll_api.duplicate_voyage(voyage, new_date, new_time)
         if return_value == True:
