@@ -115,4 +115,4 @@ for number, work in enumerate(not_working):
     print(number+1)
 
 
-voyage.generate_flight_numbers("20-11-2019","Nuuk")
+print(voyage.generate_flight_numbers("20-11-2019","Nuuk"))
