@@ -38,11 +38,11 @@ class Voyage():
 
         self.__voyage_employee_ssn_dict = {"Captain":self.get_captain_ssn, 
                                            "Copilot":self.get_copilot_ssn, 
-                                           "Flight Service Manager":self.get_fsm_ssn, 
-                                           "Flight Attendant":self.get_fa_ssns}
+                                           "Flight service manager":self.get_fsm_ssn, 
+                                           "Flight attendant":self.get_fa_ssns}
 
     def __str__(self):
-        return "Departing flight no: {}\nReturning flight no: {}\nDeparting from: {}\nDeparting date/time: {}\nReturning date/time: {}\nDestination: {}\nDeparting date/time: {}\nReturning date/time: {}\nAirplane insignia: {}\nCaptain SSN: {}\nCo-Pilot SSN: {}\nFlight service manager SSN: {}\nCabin crew SSN: {}".format(self.__departing_flight_num,
+        return "Departing flight no: {}\nReturning flight no: {}\nDeparting from: {}\nDeparting date/time: {}\nReturning date/time: {}\nDestination: {}\nDeparting date/time: {}\nReturning date/time: {}\nAirplane insignia: {}\nCaptain SSN: {}\nCopilot SSN: {}\nFlight service manager SSN: {}\nCabin crew SSN: {}".format(self.__departing_flight_num,
         self.__return_flight_num,
         self.__departing_flight_departing_from, 
         self.change_date_time_format(self.__departing_flight_departure_date), 
