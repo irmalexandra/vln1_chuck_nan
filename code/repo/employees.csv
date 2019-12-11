@@ -35,13 +35,6 @@ ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 2602806942,Teresa Thruman,Menntavegur 1,3341427,6470574,teresa.thruman@nanair.is,Cabincrew,Flight Attendant,N/A
 1107951952,Elizabeth Mcfadden,Menntavegur 1,2957609,6902831,elizabeth.mcfadden@nanair.is,Cabincrew,Flight Attendant,N/A
 1234567890,Rikki Besti,Bgata 12,1234567,7654321,rikki.besti@nanair.is,Pilot,Captain,NAFokkerF28
-<<<<<<< HEAD
-1701728949,kalli palli,kakalakkar 5,4444444,4444444,kalli.palli@nanair.is,Pilot,captain,NABAE146
-1234567890,Rikki Pilot,WOOPLA 12,1234567,7654321,rikki.pilot@nanair.is,Pilot,Captain,NAFokkerF28
-0987654321,Emil WADDUP,wallupa 12,9877897,9876565,emil.waddup@nanair.is,Cabincrew,Flight Service Master,
-1234567890,derp herpes,penisstreet 69,4208008,6910169,derp.herpes@nanair.is,Cabincrew,Flight Attendant,
-301282-1234,Svana Smith,Thisstreet 14,5552345,6902345,svana.smith@nanair.is,Cabincrew,Flight service manager,
-=======
 1701728949,Kalli palli,kakalakkar 5,4444444,4444444,kalli.palli@nanair.is,Pilot,Captain,NABAE146
 1234567890,Derp herpes,penisstreet 69,4208008,6910169,derp.herpes@nanair.is,Cabincrew,Flight Attendant,
->>>>>>> 443dd6d7faefcc4d3a6ec42a74f578699330fac7
+1111111111,asd asd,sdgsd 4,1111111,1111111,asd.asd@nanair.is,Pilot,Captain,NABAE146
