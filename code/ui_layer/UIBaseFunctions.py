@@ -85,7 +85,7 @@ class UIBaseFunctions():
             return 9
         return return_value
 
-    def print_menu(self, menu_str, nav_dict, model_list = None ,return_menu_str="9. Return"):
+    def print_menu(self, menu_str, nav_dict, model_list = None ,return_menu_str="9. Return 0. Home"):
         while True:
             print("-" * self.UI_DIVIDER_INT)
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -
@@ -132,7 +132,7 @@ class UIBaseFunctions():
         return_value = crew_list[return_value-1] # -1 for human readability
         return self.check_return_value(return_value)
 
-    def print_edit_model_menu(self,menu_str, nav_dict, model, edit_order_list, llapi, return_menu_str="9. Return 0. Home"):
+    def print_edit_model_menu(self,menu_str, nav_dict, model, edit_order_list, llapi, return_menu_str="9. Return"):
         while True:
             self.print_model(model)
             print("-" * self.UI_DIVIDER_INT)
