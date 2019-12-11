@@ -24,8 +24,7 @@ class LLEmployees:
             self.__all_employee_list = self.__dl_api.pull_all_employees()
         if not self.__all_employee_list:
             self.__all_employee_list = self.__dl_api.pull_all_employees()
-
-        self.set_availability()
+        self.get_working_or_not()
         return self.__all_employee_list
 
     def sort_all_employees_by_name(self):
@@ -42,7 +41,7 @@ class LLEmployees:
             if search_string in name:
                 found_ssn_list.append(ssn)
 
-        for employee in self.get_all_employee_list():
+        for employee in self.__all_employee_list:
             if employee.get_ssn() in found_ssn_list:
                 found_employee_list.append(employee)
 
@@ -113,12 +112,21 @@ class LLEmployees:
             self.get_all_employee_list(True)
             return True
 
-    def set_availability(self):
-        current_day = datetime.today().replace(microsecond=0).isoformat()
-        self.get_working_or_not(current_day,"Default")
+    def filter_working(self, date, flag):
+        self.get_all_employee_list()
+        self.get_working_or_not(date)
+        return_list = []
+        if flag.lower() == "working":
+            for employee in self.__all_employee_list:
+                if employee.get_availability() == "Not available":
+                    return_list.append(employee)
+        else:
+            for employee in self.__all_employee_list:
+                if employee.get_availability() == "Available":
+                    return_list.append(employee)
+        return return_list
 
-    def get_working_or_not(self, date, flag = ""):
-
+    def get_working_or_not(self, date = datetime.today().replace(microsecond=0).isoformat()):
         all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         
         working = []
@@ -145,10 +153,7 @@ class LLEmployees:
                 not_working.append(employee)
                 employee.set_availability("Available")
 
-        if flag.lower() == "working":
-            return working
-        else:
-            return not_working
+
 
     # All special functions
 
@@ -160,7 +165,7 @@ class LLEmployees:
 
     def get_name_dict(self):
         ''' Gets a list of employee instances and returns a dict where key is name and value is ssn '''
-
+        self.get_all_employee_list()
         name_dict = {}
         for employee in self.__all_employee_list:
             name_dict[employee.get_name()] = employee.get_ssn()

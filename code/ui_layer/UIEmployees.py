@@ -40,7 +40,7 @@ class UIEmployees():
                     2: self.get_all_not_available_employees,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        employee_menu = "1. Available 2. Not Available"
+        employee_menu = "1. Available 2. Not available"
         return_value = self.__ui_base_functions.print_menu(
             employee_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -51,7 +51,7 @@ class UIEmployees():
                     3: self.get_employee_search_menu,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        employee_menu = "1. Pilot 2. Cabin Crew"
+        employee_menu = "1. Pilot 2. Cabin crew"
         return_value = self.__ui_base_functions.print_menu(
             employee_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -63,7 +63,7 @@ class UIEmployees():
                         3: self.change_pilot_licence,
                         9: self.__ui_base_functions.back,
                         0: self.__ui_base_functions.home}
-            employee_menu = "1. Edit Employee 2. Work Schedule 3. Change Licence"
+            employee_menu = "1. Edit employee 2. Work schedule 3. Change licence"
             return_value = self.__ui_base_functions.print_menu(
                 employee_menu, nav_dict, employee)
             return self.__ui_base_functions.check_return_value(return_value)
@@ -72,7 +72,7 @@ class UIEmployees():
                         2: self.get_work_schedule,
                         9: self.__ui_base_functions.back,
                         0: self.__ui_base_functions.home}
-            employee_menu = "1. Edit Employee 2. Work Schedule"
+            employee_menu = "1. Edit employee 2. Work schedule"
             return_value = self.__ui_base_functions.print_menu(
                 employee_menu, nav_dict,  employee)
             return self.__ui_base_functions.check_return_value(return_value)
@@ -82,7 +82,7 @@ class UIEmployees():
         nav_dict[9] = self.__ui_base_functions.back
         nav_dict[0] = self.__ui_base_functions.home
         edit_order_list = employee.get_edit_order_list()
-        edit_menu = "Change: 1. Address 2. Home Number 3. Mobile Number 4. Title 5. Rank"
+        edit_menu = "1. Address 2. Home number 3. Mobile number 4. Title 5. Rank"
         return_value = self.__ui_base_functions.print_edit_model_menu(
             edit_menu, nav_dict, employee, edit_order_list, self.__ll_api)
         return self.__ui_base_functions.check_return_value(return_value)
@@ -101,7 +101,7 @@ class UIEmployees():
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        employee_menu = "1. Select Airplane Type"
+        employee_menu = "1. Select airplane type"
         return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, airplane_type_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
