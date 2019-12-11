@@ -41,7 +41,7 @@ class LLEmployees:
             if search_string in name:
                 found_ssn_list.append(ssn)
 
-        for employee in self.get_all_employee_list():
+        for employee in self.__all_employee_list:
             if employee.get_ssn() in found_ssn_list:
                 found_employee_list.append(employee)
 
@@ -165,7 +165,7 @@ class LLEmployees:
 
     def get_name_dict(self):
         ''' Gets a list of employee instances and returns a dict where key is name and value is ssn '''
-
+        self.get_all_employee_list()
         name_dict = {}
         for employee in self.__all_employee_list:
             name_dict[employee.get_name()] = employee.get_ssn()
