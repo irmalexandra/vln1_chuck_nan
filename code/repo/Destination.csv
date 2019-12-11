@@ -1,14 +1,11 @@
 country,airport,flight time,distance,contact name,contact number
-Svalbard,Longyearbyen,4,3380,Robert Redford,3215555
-Greenland,Nuuk,3,2685,Loki Hopkins,1234567
-Greenland,Kulusuk,2,1690,Jason Momoa,6969696
+England,Heathrow,2,4000,Me me,5556841
 Faroe Islands,Thorshavn,1,845,Mary Jane,9296723
-Shetland,Tingwall,2,1690,Jessi Coggins,1513748
-<<<<<<< HEAD
+Greenland,Nuuk,3,2685,Loki Hopkins,1234567
+Greenland,Kulusuk,2,1690,John Momoa,3434344
 Iceland,Reykjavik,0,0,Bruce Wayne,5556789
 Iceland,Keflavik,30,150,Loki Hopkins,8445446
-England,Heathrow,2,4000,Me me,5556841
-=======
 Iceland,Reykjavik,0,0,Loki bestur,1234567
 Iceland,Keflavik,30,150,Loki Hopkins,3121222
->>>>>>> 443dd6d7faefcc4d3a6ec42a74f578699330fac7
+Shetland,Tingwall,2,1690,Jessi Coggins,1513748
+Svalbard,Longyearbyen,4,3380,Robert Redford,3215555
