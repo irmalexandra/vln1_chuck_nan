@@ -7,6 +7,15 @@ class LLEmployees:
         self.__modelAPI = modelAPI
         self.__all_employee_list = []
 
+        self.__ll_voyages = None
+        self.__ll_airplanes = None
+
+    def set_ll_voyages(self, ll_voyage):
+        self.__ll_voyages = ll_voyage
+
+    def set_ll_airplanes(self, ll_airplanes):
+        self.__ll_airplanes = ll_airplanes
+
     # All list functions
 
     def get_all_employee_list(self, changed = False):
@@ -67,7 +76,7 @@ class LLEmployees:
 
     def get_work_schedule_list(self, employee):
         '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''
-        all_voyage_list = self.__dl_api.pull_all_voyages()
+        all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         upcoming_voyages = []
         current_date = datetime.now().replace(microsecond=0)
 
@@ -85,7 +94,7 @@ class LLEmployees:
         return sorted(upcoming_voyages, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
     def get_all_licences(self):
-        return self.__dl_api.pull_all_airplane_types()
+        return self.__ll_airplanes.get_airplane_type_list()
 
     # All change functions
 
@@ -110,7 +119,7 @@ class LLEmployees:
 
     def get_working_or_not(self, date, flag = ""):
 
-        all_voyage_list = self.__dl_api.pull_all_voyages()
+        all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         
         working = []
         not_working = []

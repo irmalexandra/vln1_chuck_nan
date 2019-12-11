@@ -7,6 +7,11 @@ class LLAirplanes:
         self.__all_airplane_list = []
         self.__all_airplane_type_list = []
 
+        self.__ll_voyages = None
+
+    def set_ll_voyages(self, ll_voyage):
+        self.__ll_voyages = ll_voyage
+
     # All list functions
 
     def get_all_airplane_list(self, changed = False):
@@ -39,7 +44,7 @@ class LLAirplanes:
         unavailable_voyages = []
         unavailable_airplane_insignias = []
 
-        all_voyage_list = self.__dl_api.pull_all_voyages()
+        all_voyage_list = self.__ll_voyages.get_all_voyage_list()
 
         for voyage in all_voyage_list:        
             voyage_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
@@ -100,7 +105,7 @@ class LLAirplanes:
             airplane.set_date_available("N/A")
             airplane.set_flight_number("N/A")
 
-        all_voyage_list = self.__dl_api.pull_all_voyages()
+        all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         
         current_voyages = []
 
