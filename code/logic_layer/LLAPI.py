@@ -16,6 +16,17 @@ class LLAPI:
         self.__ll_destinations = LLDestinations(self.__DLAPI, self.__modelAPI)
         self.__ll_airplanes = LLAirplanes(self.__DLAPI, self.__modelAPI)
 
+        self.__ll_employees.set_ll_voyages(self.__ll_voyages)
+        self.__ll_employees.set_ll_airplanes(self.__ll_airplanes)
+
+        self.__ll_voyages.set_ll_destinations(self.__ll_destinations)
+        self.__ll_voyages.set_ll_employees(self.__ll_employees)
+        self.__ll_voyages.set_ll_airplanes(self.__ll_airplanes)
+
+        self.__ll_airplanes.set_ll_voyages(self.__ll_voyages)
+        
+
+
     def get_all_employee_list(self):
         return self.__ll_employees.get_all_employee_list()
 
