@@ -169,11 +169,16 @@ class LLVoyages:
 
     def duplicate_voyage(self, voyage, start_date = "00-00-0000", start_time = "00:00:00"):
         '''Copies a voyage to another date'''
+        all_destination_list = self.__ll_destinations.get_all_destination_list()
 
-        destination = voyage.get_destination()
-        return self.create_voyage(destination, start_date, start_time)
+        for destination in all_destination_list:
+            if destination.get_airport() == voyage.get_destination():
+                selected_destination = destination
+
+        return self.create_voyage(selected_destination, start_date, start_time)
 
     def repeat_voyage(self, voyage, repeat_interval, end_date = "00-00-0000"):
+
         success = False
         try:
             date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
