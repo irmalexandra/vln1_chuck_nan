@@ -24,8 +24,7 @@ class LLEmployees:
             self.__all_employee_list = self.__dl_api.pull_all_employees()
         if not self.__all_employee_list:
             self.__all_employee_list = self.__dl_api.pull_all_employees()
-        work, no_work = self.get_working_or_not(todayplz)
-        self.set_availability(work, no work)
+        self.get_working_or_not()
         return self.__all_employee_list
 
     def sort_all_employees_by_name(self):
