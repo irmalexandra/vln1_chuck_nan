@@ -33,7 +33,7 @@ class Employee():
                                   self.get_rank: self.set_rank}
         
         self.__create_order_list = [
-            'name', 'ssn', 'home address', 'home number', 'mobile number', "rank"]
+            'name', 'ssn', 'home address', 'home number', 'mobile number', 'rank']
 
         self.__creation_dict = {"name": self.set_name,
                                 "ssn": self.set_ssn,
