@@ -136,7 +136,8 @@ class UIEmployees():
         sort_flag = "not working"
         date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
         new_time = self.__ui_base_functions.get_user_date_input("time", "HH:MM")
-        employee_list = self.__ll_api.filter_working(date, sort_flag)
+        date_time = date + "T" + new_time
+        employee_list = self.__ll_api.filter_working(date_time, sort_flag)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_employee_list_menu(employee_list)
@@ -149,7 +150,8 @@ class UIEmployees():
         sort_flag = "working"
         date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
         new_time = self.__ui_base_functions.get_user_date_input("time", "HH:MM")
-        employee_list = self.__ll_api.filter_working(date, sort_flag)
+        date_time = date + "T" + new_time
+        employee_list = self.__ll_api.filter_working(date_time, sort_flag)
         return_value = self.__ui_base_functions.print_model_list(employee_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_employee_list_menu(employee_list)
