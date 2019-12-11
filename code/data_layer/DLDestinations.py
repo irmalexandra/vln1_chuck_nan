@@ -9,7 +9,9 @@ class DLDestinations():
     DISTANCE = 3
     CONTACT_NAME = 4
     CONTACT_NUMBER = 5
-    CSV_ROWS = 6
+    ID = 6
+    CSV_ROWS = 7
+
 
     def __init__(self, modelAPI):
         self.__modelAPI = modelAPI
@@ -34,7 +36,8 @@ class DLDestinations():
             if len(line_list) == self.CSV_ROWS:
                 check_list = []
                 new_destination = self.__modelAPI.get_model('Destination')
-
+                
+                
                 check_list.append(new_destination.set_country(line_list[DLDestinations.COUNTRY]))
                 check_list.append(new_destination.set_airport(line_list[DLDestinations.AIRPORT]))
                 check_list.append(new_destination.set_flight_time(
@@ -44,6 +47,7 @@ class DLDestinations():
                     line_list[DLDestinations.CONTACT_NAME]))
                 check_list.append(new_destination.set_contact_number(
                     line_list[DLDestinations.CONTACT_NUMBER]))
+                check_list.append(new_destination.set_destination_id(line_list[DLDestinations.ID]))
                 if False not in check_list:
                     all_destinations_list.append(new_destination)
         filestream.closed
@@ -59,7 +63,7 @@ class DLDestinations():
 
     def overwrite_all_destinations(self, destination_list):
         # employee_file.write(new_emp_str)
-        HEADER = "country,airport,flight time,distance,contact name,contact number\n"
+        HEADER = "country,airport,flight time,distance,contact name,contact number,id\n"
         filestream = open("./repo/destinations_temp.csv", "a")
         filestream.write(HEADER)
         for destination_info in destination_list:
