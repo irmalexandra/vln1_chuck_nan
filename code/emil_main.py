@@ -1,7 +1,5 @@
 from data_layer.DLAPI import DLAPI
 from logic_layer.LLEmployees import LLEmployees
-
-
 from logic_layer.LLVoyages import LLVoyages
 from models.ModelAPI import ModelAPI
 stuff = DLAPI()
@@ -115,3 +113,6 @@ print("------------------------------not working -------------------------------
 for number, work in enumerate(not_working):
     print(work.get_name())
     print(number+1)
+
+
+voyage.generate_flight_numbers("20-11-2019","Nuuk")

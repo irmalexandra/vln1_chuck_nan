@@ -136,7 +136,7 @@ class LLVoyages:
         new_voyage.set_fsm_ssn(".")
         new_voyage.set_fa_ssns([".", "."])
 
-        dep_flight_num, ret_flight_num = self.generate_flight_numbers() 
+        dep_flight_num, ret_flight_num = self.generate_flight_numbers(start_date, airport) 
         new_voyage.set_flight_numbers(dep_flight_num, ret_flight_num)
 
         departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str \
@@ -247,23 +247,43 @@ class LLVoyages:
         return_flight_arrival_date = return_flight_departure_date + timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
-    def generate_flight_numbers(self):
+    def generate_flight_numbers(self, date, airport):
+        NEW_FLIGHT_NUM_LEN = 7
+        LAST_POSSIBLE_FLIGHT = 998
+        start_date = self.get_iso_format_date_time(date)
+        end_date = start_date + timedelta(hours=23, minutes=59,seconds=59)
+        all_destinations_list = self.__dl_api.pull_all_destinations()
+
+        for destination in all_destinations_list:
+            if airport == destination.get_airport():
+                destination_id = destination.get_destination_id()
+
         self.__all_voyage_list = self.get_all_voyage_list()
         existing_numbers = []
+
         for voyage in self.__all_voyage_list:
-            existing_numbers.append(int(voyage.get_departing_flight_num().replace("NA","")))
-            existing_numbers.append(int(voyage.get_return_flight_num().replace("NA","")))
+            voyage_airport = voyage.get_return_flight_departing_from()
+            departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
+            if start_date <= departing_flight_departure_date <= end_date and voyage_airport == airport:
+                flight_number = voyage.get_return_flight_num()
+                if len(flight_number) == NEW_FLIGHT_NUM_LEN:
+                    existing_numbers.append(int(flight_number.replace("NA" + destination_id,"")))
 
-        departing_number_int = max(existing_numbers)+ 1
-        arriving_number_int = max(existing_numbers) + 2
-        arriving_number_str = str(arriving_number_int)
-        departing_number_str = str(departing_number_int)
+        if LAST_POSSIBLE_FLIGHT in existing_numbers:
+            return False
+        else:
+            last_number = max(existing_numbers)
+            next_departing_number_str  = str(last_number + 1)
+            next_return_number_str = str(last_number + 2)
+            while len(next_departing_number_str) < 4:
+                next_departing_number_str = "0" + next_departing_number_str
+            while len(next_return_number_str) < 4:
+                next_return_number_str = "0" + next_return_number_str
+            
+            departing_flight_num = "NA" + destination_id + str(next_departing_number_str)
+            return_flight_num = "NA" + destination_id + str(next_return_number_str)
+            return departing_flight_num, return_flight_num
 
-        while len(departing_number_str) < 4:
-            departing_number_str = "0" + departing_number_str
-        while len(arriving_number_str) < 4:
-            arriving_number_str = "0" + arriving_number_str
-        return "NA" + departing_number_str, "NA" + arriving_number_str
 
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
         if type(date).__name__ != 'datetime':
