@@ -103,7 +103,7 @@ Verkefni dagsins:
 
 Captains Log, Stardate 02.12.2019
 
-Yfiferð föstudag:
+Yfiferð föstudags:
 	Verkefni kláruð:
 		Wireframes/Happy Path
 		Use Cases
@@ -145,7 +145,7 @@ Verkefni dagsisns:
 
 Captains Log, Stardate 05.12.2019
 
-Yfirferð Miðvikudags:
+Yfirferð miðvikudags:
 	DataLayer kláraður (þar til annað kemur í ljós)
 	UI structure kominn með svip, en þó tekur ekki við input
 
@@ -157,7 +157,7 @@ Verkefni dagsins:
 
 Captains Log, Stardate 06.12.2019
 
-Yfirferð Fimmtudags:
+Yfirferð fimmtudags:
 	Unnið frekar í UI og logic layernum
 
 Verkefni dagsins:
@@ -167,9 +167,28 @@ Verkefni dagsins:
 
 Captains Log, Stardate 09.12.2019
 
-Yfirferð Föstudags:
+Yfirferð föstudags:
 	Unnið frekar í UI, logic layernum og validator
 
 Verkefni dagsins:
 	Áframhaldandi vinna í UI og logic layernum
 	Búa til beinagrind af lokaskýrslu 
+
+
+Captains Log, Stardate 10.12.2019
+
+Yfirferð mánudags:
+	Áframhaldandi vinna í UI og logic layernum
+	Beinagrind búin til af lokaskýrslu 
+
+Verkefni dagsins:
+	Áframhaldandi vinna í UI og logic layernum
+
+
+Captains Log, Stardate 11.12.2019
+
+Yfirferð þriðjudags:
+	Unnið frekar í UI og logic layernum
+
+Verkefni dagsins:
+	Fínpúss og samræming á UI og logic layernum
