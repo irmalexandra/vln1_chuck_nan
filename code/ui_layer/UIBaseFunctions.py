@@ -132,7 +132,7 @@ class UIBaseFunctions():
         return_value = crew_list[return_value-1] # -1 for human readability
         return self.check_return_value(return_value)
 
-    def print_edit_model_menu(self,menu_str, nav_dict, model, edit_order_list, llapi, return_menu_str="9. Return"):
+    def print_edit_model_menu(self,menu_str, nav_dict, model, edit_order_list, llapi, return_menu_str="9. Save"):
         while True:
             self.print_model(model)
             print("-" * self.UI_DIVIDER_INT)
