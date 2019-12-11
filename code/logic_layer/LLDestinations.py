@@ -10,7 +10,7 @@ class LLDestinations:
         ''' Gets a list of destination instances and returns it '''
         if not self.__all_destination_list:
             self.__all_destination_list = self.__dl_api.pull_all_destinations()
-        return self.__all_destination_list
+        return sorted(self.__all_destination_list, key=lambda destination: destination.get_country())
 
     def get_destination_list_by_country(self, country):
         ''' Gets input from UI layer and returns an instance '''
@@ -22,7 +22,7 @@ class LLDestinations:
             if destination.get_country() == country:
                 found_destination_list.append(destination)
         
-        return found_destination_list
+        return sorted(found_destination_list, key=lambda airplane: airplane.get_airport())
 
     # All change functions
 

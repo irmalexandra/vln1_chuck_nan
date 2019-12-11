@@ -16,7 +16,7 @@ class LLAirplanes:
 
         self.get_airplane_status()
         
-        return self.__all_airplane_list
+        return sorted(self.__all_airplane_list, key=lambda airplane: airplane.get_status())
 
     def get_airplane_type_list(self):
         '''Gets a list of instances of airplane types and returns it'''
@@ -60,7 +60,7 @@ class LLAirplanes:
             else:
                 available_airplane_list.append(airplane)
 
-        return available_airplane_list
+        return sorted(available_airplane_list, key=lambda airplane: airplane.get_make())
 
     # All change functions
 

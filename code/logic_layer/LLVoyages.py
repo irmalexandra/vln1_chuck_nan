@@ -15,7 +15,7 @@ class LLVoyages:
 
         self.check_status()
         self.check_staffed()
-        return self.__all_voyage_list
+        return sorted(self.__all_voyage_list, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
     def filter_all_empty_voyages(self):
         '''Takes a list of all voyage instances and returns a list of filtered voyage instances'''
@@ -26,14 +26,15 @@ class LLVoyages:
             if voyage.get_airplane_insignia() == ".":
                 empty_voyage_list.append(voyage)
 
-        return empty_voyage_list
+        return sorted(empty_voyage_list, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
     def filter_all_voyages_by_period(self, start_date, end_date):
         '''Takes a list of all voyage instances and returns a list of voyages filteres by period'''
+        self.get_all_voyage_list()
 
         start = self.get_iso_format_date_time(start_date)
         end = self.get_iso_format_date_time(end_date)
-
+        
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
@@ -43,14 +44,14 @@ class LLVoyages:
         
     def filter_all_voyages_by_airport(self, airport):
 
-        self.__all_voyage_list = self.get_all_voyage_list()
+        self.get_all_voyage_list()
         airport_voyage_list = []
 
         for voyage in self.__all_voyage_list:
             if voyage.get_return_flight_departing_from() == airport:
                 airport_voyage_list.append(voyage)
 
-        return airport_voyage_list
+        return sorted(airport_voyage_list, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
     def filter_available_employees(self, rank, voyage):
 
@@ -92,7 +93,7 @@ class LLVoyages:
                 if employee.get_licence() == airplane_type:
                     final_employee_list.append(employee)
 
-        return final_employee_list
+        return sorted(final_employee_list, key=lambda employee: employee.get_name())
 
     # All change functions
 

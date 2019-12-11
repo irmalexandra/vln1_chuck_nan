@@ -35,7 +35,8 @@ class LLEmployees:
         for employee in self.get_all_employee_list():
             if employee.get_ssn() in found_ssn_list:
                 found_employee_list.append(employee)
-        return found_employee_list
+
+        return sorted(found_employee_list, key=lambda employee: employee.get_name())
 
     def filter_all_employees_by_title(self, title):
         '''Gets a list of all employees and returns a list of employees filtered by title from input'''
@@ -44,7 +45,13 @@ class LLEmployees:
         for employee in self.get_all_employee_list():
             if employee.get_title() == title:
                 filter_list.append(employee)
-        return filter_list
+        return sorted(filter_list, key=lambda employee: employee.get_name())
+
+    def sort_pilots_by_airplane_type(self):
+        '''Gets a list of pilots and returns it sorted'''
+        title = "Pilot"
+        pilot_list = self.filter_all_employees_by_title(title)
+        return sorted(pilot_list, key=lambda employee: employee.get_licence())
 
     def filter_pilots_by_airplane_type(self, airplane_type):
         '''Gets a list of all pilots and returns a list of pilots filtered by airplane type'''
@@ -54,13 +61,8 @@ class LLEmployees:
         for pilot in pilot_list:
             if pilot.get_licence() == airplane_type:
                 filter_list.append(pilot)
-        return filter_list
-
-    def sort_pilots_by_airplane_type(self):
-        '''Gets a list of pilots and returns it sorted'''
-        title = "Pilot"
-        pilot_list = self.filter_all_employees_by_title(title)
-        return sorted(pilot_list, key=lambda employee: employee.get_licence())
+        
+        return sorted(filter_list, key=lambda employee: employee.get_name())
 
     def get_work_schedule_list(self, employee):
         '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''
@@ -79,7 +81,7 @@ class LLEmployees:
             elif employee.get_ssn() == voyage_ssn and start_date >= current_date:
                 upcoming_voyages.append(voyage)
 
-        return upcoming_voyages 
+        return sorted(upcoming_voyages, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
     def get_all_licences(self):
         return self.__dl_api.pull_all_airplane_types()
