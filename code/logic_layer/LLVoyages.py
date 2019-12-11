@@ -6,6 +6,20 @@ class LLVoyages:
         self.__modelAPI = modelAPI
         self.__all_voyage_list = []
 
+        self.__ll_employees = None
+        self.__ll_destinations = None
+        self.__ll_airplanes = None
+
+    def set_ll_employees(self, ll_employee):
+        self.__ll_employees = ll_employee
+
+    def set_ll_airplanes(self, ll_airplanes):
+        self.__ll_airplanes = ll_airplanes
+
+    def set_ll_destinations(self, ll_destinations):
+        self.__ll_destinations = ll_destinations
+
+
     # All list functions
 
     def get_all_voyage_list(self, changed = False):
@@ -61,7 +75,7 @@ class LLVoyages:
         end_date = voyage.get_return_flight_arrival_date()
         voyages_in_date_range_list = self.filter_all_voyages_by_period(start_date, end_date)
 
-        all_employee_list = self.__dl_api.pull_all_employees() #note meiga allir LL layers tala á milli sýn? til þess að geta nýtt update status í ll employees
+        all_employee_list = self.__ll_employees.get_all_employee_list() #note meiga allir LL layers tala á milli sýn? til þess að geta nýtt update status í ll employees
 
         filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
 
@@ -84,7 +98,7 @@ class LLVoyages:
         
         if rank == "Captain" or rank == "Copilot":
             final_employee_list = []
-            for airplane in self.__dl_api.pull_all_airplanes():
+            for airplane in self.__ll_airplanes.get_all_airplane_list():
                 if airplane.get_insignia() == voyage.get_airplane_insignia():
                     selected_airplane = airplane
                     break
@@ -221,7 +235,7 @@ class LLVoyages:
 
     def calculate_flight_times(self, date, airport):
         self.__all_voyage_list = self.get_all_voyage_list()
-        destinations_list = self.__dl_api.pull_all_destinations()
+        destinations_list = self.__ll_destinations.get_all_destination_list()
         destinations_dict = dict()
         
         for destination in destinations_list:
@@ -235,7 +249,7 @@ class LLVoyages:
 
     def generate_flight_numbers(self, date, airport):
         NEW_FLIGHT_NUM_LEN = 7
-        LAST_POSSIBLE_FLIGHT = 998
+        LAST_POSSIBLE_FLIGHT = 999
         start_date = self.get_iso_format_date_time(date)
         end_date = start_date + timedelta(hours=23, minutes=59,seconds=59)
         all_destinations_list = self.__dl_api.pull_all_destinations()
