@@ -237,14 +237,20 @@ class LLVoyages:
         start_date = self.get_iso_format_date_time(date)
         end_date = start_date + timedelta(hours=23, minutes=59,seconds=59)
         all_destinations_list = self.__dl_api.pull_all_destinations()
+
         for destination in all_destinations_list:
             if airport == destination.get_airport():
+                destination_id = destination.get_id()
 
         self.__all_voyage_list = self.get_all_voyage_list()
         existing_numbers = []
+
         for voyage in self.__all_voyage_list:
-
-
+            voyage_airport = voyage.get_return_flight_departing_from()
+            departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
+            if start_date <= departing_flight_departure_date <= end_date and voyage_airport == airport:
+                existing_numbers.append(voyage.get_return_flight_num())
+        print(existing_numbers)
 
         #     existing_numbers.append(int(voyage.get_departing_flight_num().replace("NA","")))
         #     existing_numbers.append(int(voyage.get_return_flight_num().replace("NA","")))
