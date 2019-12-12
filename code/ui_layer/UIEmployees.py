@@ -131,7 +131,6 @@ class UIEmployees():
 
     def get_all_available_employees(self):
         '''Gets all employees availability on a specific day'''
-        # needs input
         header_flag = "date"
         sort_flag = "not working"
         date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
@@ -144,7 +143,6 @@ class UIEmployees():
 
     def get_all_not_available_employees(self):
         '''Gets all employees availability on a specific day'''
-        # needs input
         header_flag = "date"
         sort_flag = "working"
         date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
