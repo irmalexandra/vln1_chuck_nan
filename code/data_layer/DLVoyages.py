@@ -1,7 +1,6 @@
 import os
 from os import path
 
-
 class DLVoyages():
     DEPARTING_FLIGHT_NUM = 0
     RETURNING_FLIGHT_NUM = 1
@@ -11,7 +10,7 @@ class DLVoyages():
     RETURNING_FLIGHT_DEPARTING_FROM = 5
     RETURNING_FLIGHT_DEPARTURE_DATE = 6
     RETURNING_FLIGHT_ARRIVAL_DATE = 7
-    airplane_insignia = 8
+    AIRPLANE_INSIGNIA = 8
     CAPTAIN_SSN = 9
     COPILOT_SSN = 10
     FSM_SSN = 11
@@ -42,13 +41,13 @@ class DLVoyages():
         for line in filestream:
             line_list = line.strip().split(",") #Get the columns into a list to work with
             if len(line_list) == self.CSV_ROWS:
-                check_list = [] #This list holds the output from the validator and 
+                check_list = [] #This list holds the output from the validator
                 new_voyage = self.__modelAPI.get_model('Voyage')
                 check_list.append(new_voyage.set_departing_flight_num(
                     line_list[DLVoyages.DEPARTING_FLIGHT_NUM]))
                 check_list.append(new_voyage.set_return_flight_num(
                     line_list[DLVoyages.RETURNING_FLIGHT_NUM]))
-                check_list.append(new_voyage.set_departing_flight_departing_from(
+                check_list.append(new_voyage.set_departing_flight_departing_from( #setting all the nessecariy info into the model instance
                     line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_FROM]))
                 check_list.append(new_voyage.set_departing_flight_departure_date(
                     line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_DATE]))
@@ -60,7 +59,7 @@ class DLVoyages():
                     line_list[DLVoyages.RETURNING_FLIGHT_DEPARTURE_DATE]))
                 check_list.append(new_voyage.set_return_flight_arrival_date(
                     line_list[DLVoyages.RETURNING_FLIGHT_ARRIVAL_DATE]))
-                check_list.append(new_voyage.set_airplane_insignia(line_list[DLVoyages.airplane_insignia]))
+                check_list.append(new_voyage.set_AIRPLANE_INSIGNIA(line_list[DLVoyages.AIRPLANE_INSIGNIA]))
                 check_list.append(new_voyage.set_captain_ssn(line_list[DLVoyages.CAPTAIN_SSN]))
                 check_list.append(new_voyage.set_copilot_ssn(line_list[DLVoyages.COPILOT_SSN]))
                 check_list.append(new_voyage.set_fsm_ssn(line_list[DLVoyages.FSM_SSN]))
@@ -68,15 +67,15 @@ class DLVoyages():
                 flight_attendant_ssns_list = line_list[DLVoyages.FAS_SSN].split(":")
 
                 check_list.append(new_voyage.set_fa_ssns(flight_attendant_ssns_list))
-                if False not in check_list:
-                    all_voyages_list.append(new_voyage)
+                if False not in check_list: #if the validator returned a false bool anywhere, the instance is not appended and thus not 
+                    all_voyages_list.append(new_voyage)# sent down to the other layers, this excludes the header and "corrupt" lines
         filestream.closed
         return all_voyages_list
 
     def append_voyage(self, new_voyage):
         '''Adds a new voyage to the voyage string'''
         voyage_stream = open('./repo/voyages.csv', 'a')
-        voyage_str = new_voyage.raw_info()
+        voyage_str = new_voyage.raw_info() #Gets the "raw info" from the instance, which is a csv friendly string
         voyage_stream.write(voyage_str)
         voyage_stream.close()
         return True
@@ -85,9 +84,9 @@ class DLVoyages():
         # employee_file.write(new_emp_str)
         HEADER = "departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,airplanessn,captainssn,copilotssn,fsmssn,fassns\n"
         filestream = open("./repo/voyages_temp.csv", "a")
-        filestream.write(HEADER)
+        filestream.write(HEADER) #Writes the first line of the temp as the header
         for voyage_info in voyage_list:
-            filestream.write(voyage_info.raw_info())
+            filestream.write(voyage_info.raw_info()) #"appends" the raw info lines into the temp, raw info being csv friendly strings
         filestream.close()
         os.remove("./repo/voyages.csv")
         os.rename("./repo/voyages_temp.csv", "./repo/voyages.csv")

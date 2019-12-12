@@ -99,10 +99,6 @@ class LLAirplanes:
                             return True
         return False
 
-    def overwrite_all_airplanes(self, airplane_list):
-        if self.__dl_api.overwrite_all_airplanes(airplane_list):
-            self.get_all_airplane_list(True)
-            return True
 
     # All special functions
 
