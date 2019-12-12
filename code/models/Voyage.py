@@ -1,6 +1,4 @@
-from validation.validator import Validator
-
-
+from logic_layer.LLValidator import Validator
 class Voyage():
     def __init__(self , departing_flight_num = "", return_flight_num = "", departing_flight_departing_from = "Reykjavik", 
                 departing_flight_departure_date = "", departing_flight_arrival_date = "", return_flight_departing_from = "", 

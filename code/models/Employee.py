@@ -1,4 +1,4 @@
-from validation.validator import Validator
+from logic_layer.LLValidator import Validator
 
 
 class Employee():
