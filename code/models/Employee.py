@@ -15,6 +15,7 @@ class Employee():
         self.__rank = rank
         self.__licence = "N/A"
         self.__availability = ""
+        self.__current_voyage = "North Pole" # North Pole for testing purposes
 
         self.__header_format_dict = {"default": self.get_model_header_default_format,
                                      "date": self.get_model_header_date_format,
@@ -72,6 +73,12 @@ class Employee():
         if self.__title == "Pilot":
             return_str += "\nLicence: {}".format(self.__licence)
         return return_str
+    
+    def get_current_voyage(self):
+        return self.__current_voyage
+    
+    def set_current_voyage(self, new_voyage):
+        self.__current_voyage = new_voyage
     
     def set_rank_creation_process(self, new_rank):
         title = self.get_title()
