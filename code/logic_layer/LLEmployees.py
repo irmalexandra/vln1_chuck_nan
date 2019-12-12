@@ -143,43 +143,55 @@ class LLEmployees:
 
     def get_working_or_not(self, date = datetime.today().replace(microsecond=0).isoformat()):
         all_voyages_in_range = self.__ll_voyages.filter_voyage_by_date(date)
-
-        current_time = self.get_iso_format_date_time(date)
-        working = []
-
-
-        for voyage in all_voyages_in_range:
-            departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
-            departing_flight_arrival_date = self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date())
-            return_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
-            return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
-
-            fa_ssns = voyage.get_fa_ssns()
-            captain_ssn = voyage.get_captain_ssn()
-            co_pilot_ssn = voyage.get_copilot_ssn()
-            fsm_ssn = voyage.get_fsm_ssn()
-
+        if not all_voyages_in_range:
             for employee in self.__all_employee_list:
-                employee_ssn = employee.get_ssn()
-                if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
-                    employee.set_availability("Not available")
-                    if employee not in working:
-                        working.append(employee)
-                    if current_time <= departing_flight_departure_date:
-                        employee.set_current_destination("Stationed in {}".format(voyage.get_departing_flight_departing_from()))
-                    elif departing_flight_departure_date <= current_time <= departing_flight_arrival_date:
-                        employee.set_current_destination("Flying to {}".format(voyage.get_return_flight_departing_from()))
-                    elif departing_flight_arrival_date <= current_time <= return_flight_departure_date:
-                        employee.set_current_destination("Stationed in {}".format(voyage.get_return_flight_departing_from()))
-                    elif return_flight_departure_date <= current_time <= return_flight_arrival_date:
-                        employee.set_current_destination("Flying to {}".format(voyage.get_departing_flight_departing_from()))
+                employee.set_availability("Available")
+                employee.set_current_destination("Stationed at home")
+                employee.set_current_voyage("No voyage today")
+        else:
+            current_time = self.get_iso_format_date_time(date)
+            working = []
 
-                    else:
-                        employee.set_current_destination("Stationed in {}".format(voyage.get_departing_flight_departing_from()))
 
-                elif employee not in working:
-                    employee.set_availability("Available")
-                    employee.set_current_destination("Stationed at home")
+            for voyage in all_voyages_in_range:
+                departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+                departing_flight_arrival_date = self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date())
+                return_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
+                return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+
+                flying_from = voyage.get_departing_flight_departing_from()
+                flying_to = voyage.get_return_flight_departing_from()
+                fa_ssns = voyage.get_fa_ssns()
+                captain_ssn = voyage.get_captain_ssn()
+                co_pilot_ssn = voyage.get_copilot_ssn()
+                fsm_ssn = voyage.get_fsm_ssn()
+
+                for employee in self.__all_employee_list:
+                    employee_ssn = employee.get_ssn()
+                    if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
+                        employee.set_availability("Not available")
+                        if employee not in working:
+                            working.append(employee)
+                        if current_time <= departing_flight_departure_date:
+                            employee.set_current_destination("Stationed in {}".format(flying_from))
+                            employee.set_current_voyage("{} -> {}".format(flying_from,flying_to ))
+                        elif departing_flight_departure_date <= current_time <= departing_flight_arrival_date:
+                            employee.set_current_destination("Flying to {}".format(flying_to))
+                            employee.set_current_voyage("{} -> {}".format(flying_from,flying_to ))
+                        elif departing_flight_arrival_date <= current_time <= return_flight_departure_date:
+                            employee.set_current_destination("Stationed in {}".format(flying_to))
+                            employee.set_current_voyage("{} <- {}".format(flying_from,flying_to ))
+                        elif return_flight_departure_date <= current_time <= return_flight_arrival_date:
+                            employee.set_current_destination("Flying to {}".format(flying_to))
+                            employee.set_current_voyage("{} <- {}".format(flying_from,flying_to ))
+
+                        else:
+                            employee.set_current_destination("Stationed in {}".format(flying_to))
+                            employee.set_current_voyage("{} <- {}".format(flying_from,flying_to ))
+
+                    elif employee not in working:
+                        employee.set_availability("Available")
+                        employee.set_current_destination("Stationed at home")
 
 
 
