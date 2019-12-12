@@ -1,6 +1,6 @@
 from datetime import datetime
 class Validator():
-    TITLE_LIST = ["Pilot", "Cabin Crew"]
+    TITLE_LIST = ["Pilot", "Cabincrew"]
     PILOT_RANK_LIST = ["Captain", "Copilot"]
     CABINCREW_RANK_LIST = ["Flight Service Manager", "Flight Attendant"]
     DOMAIN = "nanair.is"
