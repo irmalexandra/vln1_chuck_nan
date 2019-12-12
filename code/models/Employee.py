@@ -17,6 +17,7 @@ class Employee():
         self.__availability = ""
         self.__current_voyage = "South Pole" # South Pole for testing purposes
         self.__current_destination = "North pole" # North Pole for testing purposes
+        self.__current_flight_number = "West pole"
 
         self.__header_format_dict = {"default": self.get_model_header_default_format,
                                      "date": self.get_model_header_date_format,
@@ -75,6 +76,14 @@ class Employee():
             return_str += "\nLicence: {}".format(self.__licence)
         return return_str
     
+    def get_current_flight_number(self):
+        return self.__current_flight_number
+
+    
+    def set_current_flight_number(self,new):
+        self.__current_flight_number = new
+
+
     def get_current_voyage(self):
         return self.__current_voyage
     
@@ -216,7 +225,7 @@ class Employee():
         return "{:8}{:24}{:14}{:18}{:15}{:15}{:34}{:10}".format("Index: ", "Name:", "SSN:", "Address:", "Phone number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_date_format(self):
-        return "{:8}{:24}{:15}{:18}{:15}{:25}{:33}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Current status:","Voyage info:")
+        return "{:8}{:24}{:18}{:15}{:25}{:33}{:15}".format("Index:", "Name:",  "Mobile number:", "Title:", "Current status:","Voyage info:", "Flight number:")
 
     def get_model_header_aircraft_format(self):
         return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
@@ -225,13 +234,13 @@ class Employee():
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-        returnObject = ("   {:24}{:15}{:18}{:15}{:25}{:33}|\n".format(
+        returnObject = ("   {:24}{:18}{:15}{:25}{:33}{:15}|\n".format(
                                                      self.get_name(),
-                                                     self.get_ssn(),
                                                      self.get_mobile_num(),
                                                      self.get_title(),
                                                      self.get_current_destination(),
-                                                     self.get_current_voyage()))
+                                                     self.get_current_voyage(),
+                                                     self.get_current_flight_number()))
         return returnObject
 
     def get_model_list_default_info(self):
