@@ -24,7 +24,7 @@ class ModelAPI():
     def get_model_list_info(self, model_list, header_flag):
         returnObject = ""
         for index, model in enumerate(model_list):
-            returnObject += "| {:02d}. {}".format(index+1, model.get_model_list_info(header_flag))
+            returnObject += "| {:>2d}. {}".format(index+1, model.get_model_list_info(header_flag))
         return returnObject
 
     def validate_model(self, model):
