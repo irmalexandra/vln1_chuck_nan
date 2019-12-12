@@ -1,0 +1,132 @@
+@startuml UI_states
+hide empty description
+MainMenu: 1. Employees \n2. Voyages \n3. Destinations \n4. Airplanes
+
+state Employee_state #fcb603{
+
+    MainMenu #fa939a -Left-> Employees: 1
+    Employees: 1. Create\n2. Get all\n3. Search by
+    Employees -up-> CreateEmployee: 1
+    CreateEmployee: 1. Pilot\n2. Cabin crew\nKrafa 1
+    CreateEmployee -up-> Pilot: 1
+    CreateEmployee -up-> CabinCrew: 2
+    Pilot: 1. Select airplane type
+    EmployeeSearch: 1. Name\n2. Title\n3. Availability\n4. Airplane
+    Employees -down-> EmployeeSearch :3
+    Employees -down-> ShowEmployees: 2
+    EmployeeSearch --> ByTitle: 2
+    ByTitle: Krafa 3
+    ByTitle --> ShowEmployees: Enter title (Pilot or Cabincrew)
+    EmployeeSearch --> ByName: 1
+    ByName --> ShowEmployees: Enter name:
+    
+    EmployeeSearch --> ByAvailability: 3
+    ByAvailability: 1. Available\n 2. Not Available\nKrafa 4
+    Available --> ShowEmployees
+    NotAvailable --> ShowEmployees
+    ByAvailability --> Available
+    ByAvailability --> NotAvailable
+    EmployeeSearch --> ByAirplane: 4
+    ByAirplane --> ShowPilots
+    ByAirplane: Krafa 20
+    ShowPilots: <Sorted by Airplane type>\n 1. Select Employee\n 2. Filter by Airplane type 
+    ShowPilots --> ShowEmployee: 1
+    ShowPilots --> FilterByAirplaneType: 2 \n Enter airplane type
+    FilterByAirplaneType: Krafa 19
+    ShowEmployees: 1. Select Employee\nKrafa 2
+    ShowEmployees --> ShowEmployee: 1
+    ShowEmployee: 1. Edit employee \n2. Work schedule\n3. Change licence (if pilot)
+    ShowEmployee --> EditEmployee: 1
+    EditEmployee: 1. Address\n2. Phone number\n 3. Mobile number\n 4. Title\n 5. Rank\nKrafa 5
+    ShowEmployee --> WorkSchedule: 2
+    WorkSchedule: Krafa 15
+    ShowEmployee --> ChangeLicence: 3 \n Input AirplaneType
+    ChangeLicence: 1. Select airplane type \nKrafa 18
+    WorkSchedule --> ShowWorkSchedule: Input Period
+
+}
+
+
+state Voyages_state #f58ef0{
+    MainMenu -Down-> Voyages: 2
+    Voyages: 1. Create Voyage \n2. AllVoyages \n3. VoyageSearch
+    
+    Voyages --> CreateVoyage: 1
+    CreateVoyage: Krafa 8
+    
+    Voyages --> AllVoyages: 2
+    AllVoyages: Krafa 11
+    AllVoyages --> ShowVoyages
+    
+    Voyages --> VoyageSearch: 3
+    
+    VoyageSearch: 1. ByDestination \n2. ByPeriod \n3. EmptyVoyages
+    
+    VoyageSearch --> ByDestination: 1 \nInput Destination
+    ByDestination --> ShowVoyages
+
+    VoyageSearch --> EmptyVoyages: 3
+    EmptyVoyages: Krafa 9
+    EmptyVoyages --> ShowVoyages
+
+    VoyageSearch --> ByPeriod: 2 \nInput Period
+    ByPeriod: Krafa 12
+    ByPeriod --> ShowVoyages
+    
+    ShowVoyages: 1. Select Voyage
+    ShowVoyages --> ShowVoyage: 1
+    
+    ShowVoyage: 1. AddCrew\n 2. Duplicate\n 3. Repeat
+    
+    ShowVoyage --> AddCrew: 1
+    AddCrew: Krafa 10
+    
+    ShowVoyage --> DuplicateVoyage: 2 \nInput Date
+    DuplicateVoyage: Krafa 16
+    
+    ShowVoyage --> RepeatVoyage: 3 \nInput Period \nInput Interval
+    RepeatVoyage: Krafa 16
+
+}
+
+state Destination_state #70e697{
+    MainMenu -Right-> Destinations: 3
+    
+    Destinations:1. Create \n2. Get all \n3. Search by
+    Destinations -up-> CreateDestination: 1
+    CreateDestination: Enter country:\nEnter airport:\nEnter flight time (hours):\nEnter distance (kilometers)\nKrafa 6
+    
+    Destinations -down-> AllDestinations: 2
+    AllDestinations: Krafa 7
+    
+    Destinations -right-> DestinationSearch
+    DestinationSearch --> ShowDestination: Enter country:
+    DestinationSearch: 1. Country name
+
+    AllDestinations --> ShowDestinations
+    ShowDestinations: 1. Select Destination
+    ShowDestinations --> ShowDestination: 1
+    
+    ShowDestination: 1. Change contact name \n2. Change phone number
+    ShowDestination --> ChangeContactName: 1 \n Enter new contact name\n(first and last):
+    ChangeContactName: Krafa 21
+    ShowDestination --> ChangePhoneNumber: 2 \n Enter new phone number:
+    ChangePhoneNumber: Krafa 22
+}
+
+state Airplanes_state #99c0ff{
+    MainMenu -up-> Airplanes:4 
+    Airplanes: 1. Create \n2. Get all
+    Airplanes -left-> CreateAirplane: 1
+    CreateAirplane: Pick an airplane type\nInsignia\nKrafa 17
+
+    Airplanes -right-> AllAirplanes: 2
+    AllAirplanes: Krafa 23
+    AllAirplanes -up-> ShowPlanes
+
+    
+    
+
+}
+
+@enduml
