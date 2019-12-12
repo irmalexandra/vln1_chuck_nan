@@ -200,7 +200,8 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_work_schedule(self, employee):
-        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)
+        date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
+        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee, date)
         header_flag = "default"
         return_value = self.__ui_base_functions.print_model_list(employee_work_schedule, self.__modelAPI, header_flag)
         return_value = self.__ui_base_functions.check_return_value(return_value)

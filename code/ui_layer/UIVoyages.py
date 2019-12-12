@@ -165,7 +165,6 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_voyages_by_date(self):
-        ("date","DD-MM-YYYY")
         start_date = self.__ui_base_functions.get_user_date_input("start date", "DD-MM-YYYY")
         end_date = self.__ui_base_functions.get_user_date_input("end date", "DD-MM-YYYY")
         header_flag = "default"
