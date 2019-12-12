@@ -26,6 +26,15 @@ class LLAirplanes:
         
         return sorted(self.__all_airplane_list, key=lambda airplane: airplane.get_status())
 
+    def get_all_airplane_list_by_period(self, date, time):
+        self.get_all_airplane_list()
+
+        date_time = self.get_iso_format_date_time(date, time)
+
+        self.get_airplane_status(date_time)
+
+        return self.__all_airplane_list
+
     def get_airplane_type_list(self):
         '''Gets a list of instances of airplane types and returns it'''
         self.__all_airplane_type_list = self.__dl_api.pull_all_airplane_types()
