@@ -194,8 +194,6 @@ class LLEmployees:
                         employee.set_availability("Available")
                         employee.set_current_destination("Stationed at home")
 
-
-
     # All special functions
 
     def get_one_employee(self, ssn):
