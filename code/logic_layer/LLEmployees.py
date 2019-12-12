@@ -73,22 +73,29 @@ class LLEmployees:
         
         return sorted(filter_list, key=lambda employee: employee.get_name())
 
-    def get_work_schedule_list(self, employee):
+    def get_work_schedule_list(self, employee, date):
         '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''
+
+        start_date = self.get_iso_format_date_time(date)
+        end_date = start_date + timedelta(day=7)
         all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         upcoming_voyages = []
-        current_date = datetime.now().replace(microsecond=0)
 
         for voyage in all_voyage_list:
             voyage_ssn = voyage.get_voyage_employee_ssn(employee.get_rank())
-            start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+            flight_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+            flight_end_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date)
 
-            if type(voyage_ssn).__name__ == "list":
-                if employee.get_ssn() in voyage_ssn and start_date >= current_date:
+            if flight_start_date <= start_date <= flight_end_date\
+                or flight_start_date <= end_date <= flight_end_date\
+                or (flight_start_date <= start_date and end_date <= flight_end_date)\
+                or (flight_start_date >= start_date and end_date >= flight_end_date):
+
+                if type(voyage_ssn).__name__ == "list" and (employee.get_ssn() in voyage_ssn):
                     upcoming_voyages.append(voyage)
 
-            elif employee.get_ssn() == voyage_ssn and start_date >= current_date:
-                upcoming_voyages.append(voyage)
+                elif employee.get_ssn() == voyage_ssn:
+                    upcoming_voyages.append(voyage)
 
         return sorted(upcoming_voyages, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
@@ -136,10 +143,6 @@ class LLEmployees:
 
     def check_employee_status(self, datetime_input):
         pass
-
-    
-
-
 
     def get_working_or_not(self, date = datetime.today().replace(microsecond=0).isoformat()):
         all_voyages_in_range = self.__ll_voyages.filter_voyage_by_date(date)
