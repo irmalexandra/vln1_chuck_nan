@@ -193,6 +193,7 @@ class LLEmployees:
                     elif employee not in working:
                         employee.set_availability("Available")
                         employee.set_current_destination("Stationed at home")
+                        employee.set_current_voyage("No voyage this day")
 
     # All special functions
 
