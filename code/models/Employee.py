@@ -15,6 +15,8 @@ class Employee():
         self.__rank = rank
         self.__licence = "N/A"
         self.__availability = ""
+        self.__current_voyage = "South Pole" # South Pole for testing purposes
+        self.__current_destination = "North pole" # North Pole for testing purposes
 
         self.__header_format_dict = {"default": self.get_model_header_default_format,
                                      "date": self.get_model_header_date_format,
@@ -32,15 +34,26 @@ class Employee():
                                   self.get_title: self.set_title,
                                   self.get_rank: self.set_rank}
         
-        self.__create_order_list = [
-            'name', 'ssn', 'home address', 'home number', 'mobile number', "rank"]
+        self.__create_pilot_order_list = [
+            'name', 'ssn', 'home address', 'home phone number', 'mobile phone number', 'rank (Captain or Copilot)']
 
-        self.__creation_dict = {"name": self.set_name,
+        self.__creation_pilot_dict = {"name": self.set_name,
                                 "ssn": self.set_ssn,
                                 "home address": self.set_address,
-                                "home number": self.set_home_num,
-                                "mobile number": self.set_mobile_num,
-                                "rank": self.set_rank
+                                "home phone number": self.set_home_num,
+                                "mobile phone number": self.set_mobile_num,
+                                "rank (Captain or Copilot)": self.set_rank_creation_process
+        }
+
+        self.__create_cabincrew_order_list = [
+            'name', 'ssn', 'home address', 'home phone number', 'mobile phone number', 'rank (Flight Service Manager or Flight Attendant)']
+
+        self.__creation_cabincrew_dict = {"name": self.set_name,
+                                "ssn": self.set_ssn,
+                                "home address": self.set_address,
+                                "home phone number": self.set_home_num,
+                                "mobile phone number": self.set_mobile_num,
+                                "rank (Flight Service Manager or Flight Attendant)": self.set_rank_creation_process
         }
 
         self.__edit_order_list = [
@@ -62,6 +75,31 @@ class Employee():
             return_str += "\nLicence: {}".format(self.__licence)
         return return_str
     
+    def get_current_voyage(self):
+        return self.__current_voyage
+    
+    def set_current_voyage(self, new_voyage):
+        self.__current_voyage = new_voyage
+    
+    def set_current_destination(self, new):
+        self.__current_destination = new
+
+    def get_current_destination(self):
+        return self.__current_destination
+
+
+
+    def set_rank_creation_process(self, new_rank):
+        title = self.get_title()
+        if title == "Pilot":
+            if self.__models_validation.validate_pilot_rank(new_rank):
+                self.__rank = new_rank
+                return True
+        elif title == "Cabincrew":
+            if self.__models_validation.validate_cabincrew_rank(new_rank):
+                self.__rank = new_rank
+                return True
+        return False
     def set_availability(self, new):
         self.__availability = new
     
@@ -69,7 +107,11 @@ class Employee():
         return self.__availability
     
     def get_creation_process(self):
-        return self.__create_order_list, self.__creation_dict
+        title = self.get_title()
+        if title == "Pilot":
+            return self.__create_pilot_order_list, self.__creation_pilot_dict
+        elif title == "Cabincrew":
+            return self.__create_cabincrew_order_list, self.__creation_cabincrew_dict
     
     def get_edit_dict(self):
         return self.__edit_dict
@@ -174,7 +216,7 @@ class Employee():
         return "{:9}{:22}{:15}{:19}{:15}{:17}{:31}{:10}".format("Index: ", "Name:", "SSN:", "Address:", "Home number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_date_format(self):
-        return "{:10}{:22}{:15}{:18}{:15}{:58}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Availability:")
+        return "{:10}{:22}{:15}{:18}{:15}{:22}{:58}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Current status:","Voyage info:")
 
     def get_model_header_aircraft_format(self):
         return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
@@ -183,12 +225,13 @@ class Employee():
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-        returnObject = ("     {:22}{:15}{:18}{:15}{:58}|\n".format(
+        returnObject = ("     {:22}{:15}{:18}{:15}{:22}{:58}|\n".format(
                                                      self.get_name(),
                                                      self.get_ssn(),
                                                      self.get_mobile_num(),
                                                      self.get_title(),
-                                                     self.get_availability()))
+                                                     self.get_current_destination(),
+                                                     self.get_current_voyage()))
         return returnObject
 
     def get_model_list_default_info(self):

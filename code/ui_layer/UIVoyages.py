@@ -258,7 +258,7 @@ class UIVoyages():
     
     def repeat_voyage(self, voyage):
         interval = self.__ui_base_functions.get_user_int_input("repeat inverval")
-        end_date = self.__ui_base_functions.get_user_date_input("new date", "DD-MM-YYYY")
+        end_date = self.__ui_base_functions.get_user_date_input("end date", "DD-MM-YYYY")
         
         return_value = self.__ll_api.repeat_voyage(voyage, interval, end_date)
         if return_value == True:
