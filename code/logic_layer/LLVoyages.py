@@ -216,8 +216,7 @@ class LLVoyages:
             return_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
             return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
 
-            if current_date >
-            elif current_date <= departing_flight_departure_date:
+            if current_date <= departing_flight_departure_date:
                 voyage.set_status("Not started")
             elif departing_flight_departure_date <= current_date <= departing_flight_arrival_date:
                 voyage.set_status("Flying to {}".format(voyage.get_return_flight_departing_from()))
