@@ -186,8 +186,12 @@ class LLVoyages:
             repeat_interval = int(repeat_interval)
         except ValueError:
             return False
+
         while date < end_date:
-            date += timedelta(days=repeat_interval)
+            try:
+                date += timedelta(days=repeat_interval)
+            except OverflowError:
+                return False
             success = self.duplicate_voyage(voyage, date)
         return success
             
@@ -216,7 +220,10 @@ class LLVoyages:
             return_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
             return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
 
-            if current_date <= departing_flight_departure_date:
+            if current_date >= departing_flight_departure_date and \
+                ('.' in voyage.get_all_crew_ssn() or voyage.get_airplane_insignia() == '.'):
+                voyage.set_status("Cancelled")
+            elif current_date <= departing_flight_departure_date:
                 voyage.set_status("Not started")
             elif departing_flight_departure_date <= current_date <= departing_flight_arrival_date:
                 voyage.set_status("Flying to {}".format(voyage.get_return_flight_departing_from()))
