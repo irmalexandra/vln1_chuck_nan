@@ -3,7 +3,6 @@ ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 2910858778,Virginia Ho,Laugarvegur 12,3219969,7777777,virginia.ho@nanair.is,Pilot,Captain,NAFokkerF28
 2706838569,Gerard Nelson,Menntavegur 1,7449780,0860066,gerard.nelson@nanair.is,Pilot,Captain,NAFokkerF100
 2209955782,Allen Ley,Goodstreet 16,2546882,3493315,allen.ley@nanair.is,Pilot,Captain,NAFokkerF28
-2209955782,Allen Ley,Goodstreet 32,2546882,3493315,allen.ley@nanair.is,Pilot,Captain,NABAE146
 2907675667,Felecia Moye,Kringlan 1,4799507,3106942,felecia.moye@nanair.is,Pilot,Captain,NABAE146
 1309797899,Tyler Anderson,Kringlan 1,0678816,1503886,tyler.anderson@nanair.is,Pilot,Captain,NAFokkerF28
 2410876598,Nan Gage,Laugarvegur 12,3100759,5287397,nan.gage@nanair.is,Pilot,Copilot,NAFokkerF100
@@ -35,28 +34,8 @@ ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 1110732819,Arthur Karr,Menntavegur 1,0200077,3837344,arthur.karr@nanair.is,Cabincrew,Flight Attendant,N/A
 2602806942,Teresa Thruman,Menntavegur 1,3341427,6470574,teresa.thruman@nanair.is,Cabincrew,Flight Attendant,N/A
 1107951952,Elizabeth Mcfadden,Menntavegur 1,2957609,6902831,elizabeth.mcfadden@nanair.is,Cabincrew,Flight Attendant,N/A
-1234567890,Rikki Besti,Bgata 12,1234567,7654321,rikki.besti@nanair.is,Pilot,Captain,NAFokkerF28
-1701728949,kalli palli,kakalakkar 5,5554444,4444444,kalli.palli@nanair.is,Pilot,captain,NABAE146
-1234567890,Rikki Pilot,WOOPLA 12,1234567,7654321,rikki.pilot@nanair.is,Pilot,Captain,NAFokkerF28
-0987654321,Emil WADDUP,wallupa 12,9877897,9876565,emil.waddup@nanair.is,Cabincrew,Flight Service Master,
-1234567890,derp herpes,penisstreet 69,4208008,6910169,derp.herpes@nanair.is,Cabincrew,Flight Attendant,
-1701728949,Kalli palli,kakalakkar 5,4444444,4444444,kalli.palli@nanair.is,Pilot,Captain,NABAE146
-1234567890,Derp herpes,penisstreet 69,4208008,6910169,derp.herpes@nanair.is,Cabincrew,Flight Attendant,
 1234875694,Lina Smith,Barkstreet 6,1236855,4785236,lina.smith@nanair.is,Cabincrew,Flight attendant,
-1701728949,Kalli palli,kakalakkar 5,4444444,4444444,kalli.palli@nanair.is,Pilot,Captain,NABAE146
-1234567890,Derp herpes,penisstreet 69,4208008,6910169,derp.herpes@nanair.is,Cabincrew,Flight Attendant,N/A
-1234567890,mAGGA sOMETHING,bESTSTREEST 12,1234567,7654321,magga.something@nanair.is,Cabincrew,Captain,N/A
 1234567890,Steve Pilot,Anothastreet 12,1234567,7654321,steve.pilot@nanair.is,Pilot,Captain,NAFokkerF28
 0510920000,Margret Gudmundsdottir,Bestagatan 10,5555555,7777777,margret.gudmundsdottir@nanair.is,Pilot,pilot,NABAE146
-1212345623,Margret best,Lalala 5,1212123,3434344,margret.best@nanair.is,Pilot,best,NAFokkerF28
-1212121212,Test best,srg 3,1212121,1212121,test.best@nanair.is,Cabincrew,Flight Attendant,N/A
-2222222222,test test,sdgsrg 4,2323232,2323232,test.test@nanair.is,Cabincrew,Flight Attendant,N/A
-2323232323,sdf dsf,dg 4,2323232,2323232,sdf.dsf@nanair.is,Pilot,asdd,NABAE146
-1234567890,Rikki frikk,Bara 12,1234567,7654321,rikki.frikk@nanair.is,Pilot,Captain,NABAE146
 2402922469,Rikhardur Fridgeirsson,Haholt 5,8764321,6628460,rikhardur.fridgeirsson@nanair.is,Pilot,Captain,NAFokkerF28
-0102939499,asor or,asr 1,0981234,8997123,asor.or@nanair.is,Pilot,Copilot,NAFokkerF28
-1020301923,apapr pr,asar 12,0202404,2020303,apapr.pr@nanair.is,Cabincrew,Flight Service Manager,N/A
-1020304050,arar ,tre 123,1029303,0101393,arar.@nanair.is,Cabincrew,Flight Attendant,N/A
-2222222222,erfwe wef,ergerg 9,345-3445,334-6434,erfwe.wef@nanair.is,Cabincrew,Flight Attendant,N/A
-4343434343,sag sarg,tht 3,2342344,2344234,sag.sarg@nanair.is,Cabincrew,Flight Attendant,N/A
 4567894123,Tumi Smith,Cuterstreet 8,5552369,898-5632,tumi.smith@nanair.is,Pilot,Captain,NAFokkerF28
