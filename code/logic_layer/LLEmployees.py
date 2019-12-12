@@ -125,11 +125,10 @@ class LLEmployees:
         day, month, year = date.split("-")
         return "{}-{}-{}T{}".format(year,month,day,time)
 
-
     def filter_working(self, date, hours, flag):
         self.get_all_employee_list()
-        thing = self.turn_iso_format_friendly(date,hours)
-        self.get_working_or_not(thing)
+        date_time = self.turn_iso_format_friendly(date,hours)
+        self.get_working_or_not(date_time)
         return_list = []
         if flag.lower() == "working":
             for employee in self.__all_employee_list:
@@ -139,10 +138,7 @@ class LLEmployees:
             for employee in self.__all_employee_list:
                 if employee.get_availability() == "Available":
                     return_list.append(employee)
-        return return_list
-
-    def check_employee_status(self, datetime_input):
-        pass
+        return sorted(return_list, key=lambda employee: employee.get_current_flight_number())
 
     def get_working_or_not(self, date = datetime.today().replace(microsecond=0).isoformat()):
         all_voyages_in_range = self.__ll_voyages.filter_voyage_by_date(date)
