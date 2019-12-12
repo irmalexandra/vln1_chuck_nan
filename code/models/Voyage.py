@@ -243,6 +243,9 @@ class Voyage():
             
         return True
         
+    def get_all_crew_ssn(self):
+        #self.get_captain_ssn()
+        pass
 
     def get_voyage_employee_ssn(self, rank):
         return self.__voyage_employee_ssn_dict[rank]()
