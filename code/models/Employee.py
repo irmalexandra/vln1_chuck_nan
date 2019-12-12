@@ -216,7 +216,7 @@ class Employee():
         return "{:9}{:22}{:15}{:19}{:15}{:17}{:31}{:10}".format("Index: ", "Name:", "SSN:", "Address:", "Home number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_date_format(self):
-        return "{:10}{:22}{:15}{:18}{:15}{:22}{:58}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Current destination:","Voyage status:")
+        return "{:10}{:22}{:15}{:18}{:15}{:22}{:58}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Current status:","Voyage info:")
 
     def get_model_header_aircraft_format(self):
         return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")

@@ -170,24 +170,22 @@ class LLEmployees:
                     employee_ssn = employee.get_ssn()
                     if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
                         employee.set_availability("Not available")
+                        employee.set_current_voyage("From: {} to: {}".format(flying_from,flying_to))
                         if employee not in working:
                             working.append(employee)
                         if current_time <= departing_flight_departure_date:
-                            employee.set_current_destination("Stationed in {}".format(flying_from))
-                            employee.set_current_voyage("{} -> {}".format(flying_from,flying_to ))
+                            employee.set_current_destination("Currently in {}".format(flying_from))
                         elif departing_flight_departure_date <= current_time <= departing_flight_arrival_date:
                             employee.set_current_destination("Flying to {}".format(flying_to))
-                            employee.set_current_voyage("{} -> {}".format(flying_from,flying_to ))
                         elif departing_flight_arrival_date <= current_time <= return_flight_departure_date:
-                            employee.set_current_destination("Stationed in {}".format(flying_to))
-                            employee.set_current_voyage("{} <- {}".format(flying_from,flying_to ))
+                            employee.set_current_destination("Currently in {}".format(flying_to))
                         elif return_flight_departure_date <= current_time <= return_flight_arrival_date:
                             employee.set_current_destination("Flying to {}".format(flying_to))
-                            employee.set_current_voyage("{} <- {}".format(flying_from,flying_to ))
+                            
 
                         else:
-                            employee.set_current_destination("Stationed in {}".format(flying_to))
-                            employee.set_current_voyage("{} <- {}".format(flying_from,flying_to ))
+                            employee.set_current_destination("Landed in {}".format(flying_from))
+                            employee.set_current_voyage("Voyage completed")
 
                     elif employee not in working:
                         employee.set_availability("Available")
