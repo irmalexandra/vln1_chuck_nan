@@ -35,9 +35,9 @@ class Employee():
                                   self.get_rank: self.set_rank}
         
         self.__create_pilot_order_list = [
-            'name', 'ssn', 'home address', 'home phone number', 'mobile phone number', 'rank (Captain or Copilot)']
+            'name (first and last)', 'ssn', 'home address', 'home phone number', 'mobile phone number', 'rank (Captain or Copilot)']
 
-        self.__creation_pilot_dict = {"name": self.set_name,
+        self.__creation_pilot_dict = {"name (first and last)": self.set_name,
                                 "ssn": self.set_ssn,
                                 "home address": self.set_address,
                                 "home phone number": self.set_home_num,
@@ -46,9 +46,9 @@ class Employee():
         }
 
         self.__create_cabincrew_order_list = [
-            'name', 'ssn', 'home address', 'home phone number', 'mobile phone number', 'rank (Flight Service Manager or Flight Attendant)']
+            'name (first and last)', 'ssn', 'home address', 'home phone number', 'mobile phone number', 'rank (Flight Service Manager or Flight Attendant)']
 
-        self.__creation_cabincrew_dict = {"name": self.set_name,
+        self.__creation_cabincrew_dict = {"name (first and last)": self.set_name,
                                 "ssn": self.set_ssn,
                                 "home address": self.set_address,
                                 "home phone number": self.set_home_num,
@@ -213,10 +213,10 @@ class Employee():
         return self.__header_format_dict[header_flag]()
 
     def get_model_header_default_format(self):
-        return "{:9}{:22}{:15}{:19}{:15}{:17}{:31}{:10}".format("Index: ", "Name:", "SSN:", "Address:", "Home number:", "Mobile number:", "Email:", "Title:")
+        return "{:8}{:24}{:14}{:18}{:14}{:16}{:34}{:10}".format("Index: ", "Name:", "SSN:", "Address:", "Home number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_date_format(self):
-        return "{:10}{:22}{:15}{:18}{:15}{:22}{:58}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Current destination:","Voyage status:")
+        return "{:8}{:24}{:15}{:18}{:15}{:22}{:36}".format("Index:", "Name:", "SSN:", "Mobile number:", "Title:", "Current status:","Voyage info:")
 
     def get_model_header_aircraft_format(self):
         return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
@@ -225,7 +225,7 @@ class Employee():
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-        returnObject = ("     {:22}{:15}{:18}{:15}{:22}{:58}|\n".format(
+        returnObject = ("   {:24}{:15}{:18}{:15}{:22}{:36}|\n".format(
                                                      self.get_name(),
                                                      self.get_ssn(),
                                                      self.get_mobile_num(),
@@ -235,7 +235,7 @@ class Employee():
         return returnObject
 
     def get_model_list_default_info(self):
-        returnObject = ("    {:22}{:15}{:19}{:15}{:17}{:31}{:10}|\n".format(
+        returnObject = ("   {:24}{:14}{:18}{:14}{:16}{:34}{:10}|\n".format(
                                                             self.get_name(),
                                                             self.get_ssn(),
                                                             self.get_address(),

@@ -157,7 +157,7 @@ class UIEmployees():
 
     def get_all_employees_by_title(self):
         '''Print a filtered list of all employees by title'''
-        title = self.__ui_base_functions.get_user_input("title")
+        title = self.__ui_base_functions.get_user_input("title (Pilot or Cabincrew)")
         if title == "Pilot":
             header_flag = "aircraft"
         else:

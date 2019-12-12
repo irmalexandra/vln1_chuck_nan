@@ -54,8 +54,13 @@ class Validator():
             return False
 
     def validate_phone_number(self, number):
-        if (self.__validate_int(number)) and (len(number) == self.PHONE_NUMBER):
-            return True
+        try:
+            if number[3] == '-':
+                number = number.replace("-", "")
+            if (self.__validate_int(number)) and (len(number) == self.PHONE_NUMBER):
+                return True
+        except IndexError:
+            return False
 
         return False
 

@@ -88,8 +88,7 @@ class UIBaseFunctions():
     def print_menu(self, menu_str, nav_dict, model_list = None ,return_menu_str="9. Return 0. Home"):
         while True:
             print("-" * self.UI_DIVIDER_INT)
-            print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -
-                                                   len(return_menu_str) - self.DEVIATION_INT), return_menu_str))
+            print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) - len(return_menu_str) - self.DEVIATION_INT), return_menu_str))
             print("-" * self.UI_DIVIDER_INT)
             return_value = self.get_user_selection(nav_dict)
             if model_list == None:
@@ -110,7 +109,6 @@ class UIBaseFunctions():
             print("-" * self.UI_DIVIDER_INT)
             print(modelAPI.get_model_header_format(model_list[0], header_flag))
             print(modelAPI.get_model_list_info(model_list, header_flag))
-            print("-" * self.UI_DIVIDER_INT)
             return self.check_return_value(model_list)
         else:
             print("No search results")
@@ -164,28 +162,26 @@ class UIBaseFunctions():
         print("Name: {}\nRank: {} \nAdded to voyage successfully!".format(employee.get_name(), employee.get_rank()))
 
     def print_airplane_added_results(self, airplane):
-        print("Insignia: {} added to voyage successfully!".format(airplane.get_insignia()))
+        print("Insignia {} added to voyage successfully!".format(airplane.get_insignia()))
 
     def print_airplane_licence_results(self, airplane):
-        print("Licence changed to {} successfully!".format(airplane.get_plane_type_id()))
+        print("Airplane type {} selected successfully!".format(airplane.get_plane_type_id()))
         return airplane
 
     def print_create_voyage_results(self, destination, date, time):
         print("Voyage to {} departing on {} at {} created successfully!".format(destination.get_airport(), date, time))
 
     def print_create_employee_results(self, employee):
-        print("Employee, Name: {} SSN {} created successfully!".format(
-            employee.get_name(), employee.get_ssn()))
+        print("Employee {} created successfully!".format(employee.get_name()))
 
     def print_create_destination_results(self, destination):
-        print("Destination, Country: {} Airport: {} created successfully!".format(
-            destination.get_country(), destination.get_airport()))
+        print("Destination {}, {} created successfully!".format(destination.get_airport(), destination.get_country()))
 
     def print_edit_destination_number_results(self, destination):
-        print("Destination contact info updated successfully! New number {}".format(destination.get_contact_number()))
+        print("Destination contact info updated successfully! New contact number {}".format(destination.get_contact_number()))
 
     def print_edit_destination_contact_results(self, destination):
-        print("Destination contact info updated successfully! New contact {}".format(destination.get_contact_name()))
+        print("Destination contact info updated successfully! New contact name {}".format(destination.get_contact_name()))
 
     def print_generic_error_message(self):
         print("Something went wrong... ")
