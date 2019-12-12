@@ -70,7 +70,7 @@ class Employee():
         return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "," + self.__licence + "\n"
 
     def __str__(self):
-        return_str = "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \Phone number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title,self.__rank)
+        return_str = "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nPhone number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title,self.__rank)
         if self.__title == "Pilot":
             return_str += "\nLicence: {}".format(self.__licence)
         return return_str
