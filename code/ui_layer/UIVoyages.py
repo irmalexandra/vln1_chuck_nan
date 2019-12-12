@@ -253,16 +253,16 @@ class UIVoyages():
         if return_value == True:
             print("Voyage duplication successful!")
         else:
-            print("Incorrect date/time format")
+            print("Flight times not available")
         return self.__ui_base_functions.check_return_value(return_value)
     
     def repeat_voyage(self, voyage):
-        interval = self.__ui_base_functions.get_user_int_input("repeat inverval")
+        interval = self.__ui_base_functions.get_user_int_input("repeat inverval (in days)")
         end_date = self.__ui_base_functions.get_user_date_input("end date", "DD-MM-YYYY")
         
         return_value = self.__ll_api.repeat_voyage(voyage, interval, end_date)
         if return_value == True:
             print("Creation of reccuring voyage successful!")
         else:
-            print("Incorrect date format or interval format")
+            print("Flight times not available")
         return self.__ui_base_functions.check_return_value(return_value)
