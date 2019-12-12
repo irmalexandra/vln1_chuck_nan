@@ -315,7 +315,6 @@ class LLVoyages:
             else:
                 new_date = datetime.strptime(date,'%Y-%m-%dT%H:%M:%S')
             return new_date
-
         return date
 
     def update_voyage_pointer(self, voyage):
