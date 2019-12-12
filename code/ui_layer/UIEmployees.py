@@ -211,6 +211,7 @@ class UIEmployees():
     def create_pilot(self):
         new_emp = self.__modelAPI.get_model("Employee")
         new_emp.set_title("Pilot")
+        self.change_pilot_licence(new_emp)
         create_order_list, creation_dict = new_emp.get_creation_process()
         for attribute in create_order_list:
             while True:
@@ -220,14 +221,11 @@ class UIEmployees():
                     break
                 else:
                     print("Error, {} invalid!".format(attribute))
-        return_value = self.change_pilot_licence(new_emp)
-        if type(return_value).__name__ == "AirplaneType":
-            if self.__ll_api.create_employee(new_emp):
-                self.__ui_base_functions.print_model(new_emp)
-                self.__ui_base_functions.print_create_employee_results(new_emp)
-            else:
-                self.__ui_base_functions.print_generic_error_message()
-        return self.__ui_base_functions.check_return_value(return_value)
+        if self.__ll_api.create_employee(new_emp):
+            self.__ui_base_functions.print_model(new_emp)
+            self.__ui_base_functions.print_create_employee_results(new_emp)
+        else:
+            self.__ui_base_functions.print_generic_error_message()
     
     def create_cabin_crew(self):
         new_emp = self.__modelAPI.get_model("Employee")

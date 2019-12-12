@@ -40,7 +40,7 @@ class Employee():
         self.__creation_pilot_dict = {"name (first and last)": self.set_name,
                                 "ssn": self.set_ssn,
                                 "home address": self.set_address,
-                                "home phone number": self.set_home_num,
+                                "phone number": self.set_home_num,
                                 "mobile number": self.set_mobile_num,
                                 "rank (Captain or Copilot)": self.set_rank_creation_process
         }

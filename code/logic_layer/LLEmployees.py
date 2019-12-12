@@ -114,6 +114,8 @@ class LLEmployees:
 
     def create_employee(self, employee):
         employee.set_email(self.email_generator(employee.get_name()))
+        if not self.__all_employee_list:
+            self.get_all_employee_list()
         if self.__modelAPI.validate_model(employee):
             if self.__dl_api.append_employee(employee):
                 self.get_all_employee_list(True)
