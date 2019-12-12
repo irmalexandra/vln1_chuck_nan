@@ -47,8 +47,8 @@ class LLVoyages:
         '''Takes a list of all voyage instances and returns a list of voyages filteres by period'''
         self.get_all_voyage_list()
         
-        start = self.get_iso_format_date_time(start_date)
-        end = self.get_iso_format_date_time(end_date)
+        start = self.get_iso_format_date_time(start_date).replace(hour=0, minute= 0, second = 0)
+        end = self.get_iso_format_date_time(end_date).replace(hour = 23, minute = 59, second = 59)
 
         period_voyage_list = []
 
@@ -198,6 +198,8 @@ class LLVoyages:
             except OverflowError:
                 return False
             success = self.duplicate_voyage(voyage, date)
+            date += timedelta(days=repeat_interval)
+            
         return success
             
     def add_employee_to_voyage(self, voyage, employee):

@@ -77,14 +77,14 @@ class LLEmployees:
         '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''
 
         start_date = self.get_iso_format_date_time(date)
-        end_date = start_date + timedelta(day=7)
+        end_date = start_date + timedelta(days=7)
         all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         upcoming_voyages = []
 
         for voyage in all_voyage_list:
             voyage_ssn = voyage.get_voyage_employee_ssn(employee.get_rank())
             flight_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
-            flight_end_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date)
+            flight_end_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
 
             if flight_start_date <= start_date <= flight_end_date\
                 or flight_start_date <= end_date <= flight_end_date\
@@ -99,13 +99,23 @@ class LLEmployees:
 
         return sorted(upcoming_voyages, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
-    def get_all_licences(self):
-        return self.__ll_airplanes.get_airplane_type_list()
+    def get_all_licences(self, employee):
+        current_licence = employee.get_licence()
+        airplane_types = self.__ll_airplanes.get_airplane_type_list()
+        licence_list = []
+        for airplane_type in airplane_types:
+            if current_licence != airplane_type.get_plane_type_id():
+                licence_list.append(airplane_type)
+
+        return licence_list
+            
 
     # All change functions
 
     def create_employee(self, employee):
         employee.set_email(self.email_generator(employee.get_name()))
+        if not self.__all_employee_list:
+            self.get_all_employee_list()
         if self.__modelAPI.validate_model(employee):
             if self.__dl_api.append_employee(employee):
                 self.get_all_employee_list(True)
