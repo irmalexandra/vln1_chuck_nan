@@ -114,6 +114,8 @@ class LLVoyages:
 
     def create_voyage(self, destination, start_date = "00-00-0000", start_time = "00:00:00"):
 
+        current_date = datetime.today()
+
         self.get_all_voyage_list()
         if type(start_date).__name__ != "datetime":
             try:
@@ -125,6 +127,9 @@ class LLVoyages:
         else:
             fixed_date_time = start_date
         
+        if current_date > fixed_date_time: 
+            return False
+
         new_voyage = self.__modelAPI.get_model("Voyage")
 
         new_voyage.set_return_flight_departing_from(destination.get_airport())
@@ -216,6 +221,7 @@ class LLVoyages:
               
     def check_status(self):
         current_date = datetime.today()
+
         for voyage in self.__all_voyage_list:
             departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
             departing_flight_arrival_date = self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date())

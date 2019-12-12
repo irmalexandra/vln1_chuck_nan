@@ -39,6 +39,9 @@ class LLAPI:
     def get_all_airplane_list(self):
         return self.__ll_airplanes.get_all_airplane_list()
 
+    def get_all_airplane_list_by_period(self, date, time = '00:00:00')
+        return self.__ll_airplanes(get_all_airplane_list_by_period(date, time))
+
     def get_all_voyage_list(self):
         return self.__ll_voyages.get_all_voyage_list()
 
@@ -60,9 +63,12 @@ class LLAPI:
     def get_destination_list_by_country(self, country):
         return self.__ll_destinations.get_destination_list_by_country(country)
 
+<<<<<<< HEAD
     def get_all_licences(self, employee):
         return self.__ll_employees.get_all_licences(employee)
 
+=======
+>>>>>>> 586206823a0517d88629a90fb21ae70b17dc31c0
     def get_airplane_type_list(self):
         return self.__ll_airplanes.get_airplane_type_list()
         
