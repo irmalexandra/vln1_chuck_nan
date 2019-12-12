@@ -1,5 +1,5 @@
 country,airport,flight time,distance,contact name,contact number,id
-Iceland,Reykjavik,0,0,Rikki Emilsson,9890123,00
+Iceland,Reykjavik,0,0,Rikhardur Fridgeirsson,1234567,00
 Svalbard,Longyearbyen,4,3380,Robert Redford,3215555,01
 Greenland,Nuuk,3,2685,Loki Hopkins,1234567,02
 Greenland,Kulusuk,2,1690,Jason Momoa,7869898,03
@@ -9,3 +9,10 @@ Testland,Testport,8,2333,Test Man,1234567,06
 Spain,Madrid,3,2000,Laliba loba,3434343,07
 Denmark,Copenhagen,3,4000,Jan Petersen,9874563,08
 Lala land,Whoopy,5,8000,Alaska Thunderfuck,4567895,09
+<<<<<<< HEAD
+Sweden,Stockholm,3,2143,Margret Gudmundsdottir,1234567,10
+Yggdrasill,Askur,12,5403,Ratatoskur Midgardormur,6669999,10
+=======
+Spain,Madrid,4,2900,Maria Gonzales,3948576,10
+Greenland,Kulusuk,3,2000,Hallo lalo,1231233,11
+>>>>>>> 93f17c3175f1f8189cc031a896df3861d1601be4
