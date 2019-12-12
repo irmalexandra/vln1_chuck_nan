@@ -77,14 +77,14 @@ class LLEmployees:
         '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''
 
         start_date = self.get_iso_format_date_time(date)
-        end_date = start_date + timedelta(day=7)
+        end_date = start_date + timedelta(days=7)
         all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         upcoming_voyages = []
 
         for voyage in all_voyage_list:
             voyage_ssn = voyage.get_voyage_employee_ssn(employee.get_rank())
             flight_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
-            flight_end_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date)
+            flight_end_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
 
             if flight_start_date <= start_date <= flight_end_date\
                 or flight_start_date <= end_date <= flight_end_date\

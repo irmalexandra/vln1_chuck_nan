@@ -85,9 +85,10 @@ class UIAirplanes():
 
 
     def get_all_airplanes_by_date(self):
-        date = self.__ui_base_functions.get_user_date_input("date", "DD-MM-YYYY")
+        new_date = self.__ui_base_functions.get_user_date_input("date", "DD-MM-YYYY")
+        new_time = self.__ui_base_functions.get_user_date_input("time", "HH:MM")
         header_flag = "default"
-        airplane_list = self.__ll_api.get_all_airplane_list()
+        airplane_list = self.__ll_api.get_all_airplane_list_by_period(new_date, new_time)
         return_value = self.__ui_base_functions.print_model_list(
             airplane_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
