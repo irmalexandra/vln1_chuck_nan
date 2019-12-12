@@ -187,8 +187,9 @@ class LLVoyages:
         except ValueError:
             return False
         while date < end_date:
-            date += timedelta(days=repeat_interval)
             success = self.duplicate_voyage(voyage, date)
+            date += timedelta(days=repeat_interval)
+            
         return success
             
     def add_employee_to_voyage(self, voyage, employee):
