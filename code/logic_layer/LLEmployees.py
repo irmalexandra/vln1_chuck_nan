@@ -77,14 +77,14 @@ class LLEmployees:
         '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''
 
         start_date = self.get_iso_format_date_time(date)
-        end_date = start_date + timedelta(day=7)
+        end_date = start_date + timedelta(days=7)
         all_voyage_list = self.__ll_voyages.get_all_voyage_list()
         upcoming_voyages = []
 
         for voyage in all_voyage_list:
             voyage_ssn = voyage.get_voyage_employee_ssn(employee.get_rank())
             flight_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
-            flight_end_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date)
+            flight_end_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
 
             if flight_start_date <= start_date <= flight_end_date\
                 or flight_start_date <= end_date <= flight_end_date\
@@ -99,13 +99,23 @@ class LLEmployees:
 
         return sorted(upcoming_voyages, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
-    def get_all_licences(self):
-        return self.__ll_airplanes.get_airplane_type_list()
+    def get_all_licences(self, employee):
+        current_licence = employee.get_licence()
+        airplane_types = self.__ll_airplanes.get_airplane_type_list()
+        licence_list = []
+        for airplane_type in airplane_types:
+            if current_licence != airplane_type.get_plane_type_id():
+                licence_list.append(airplane_type)
+
+        return licence_list
+            
 
     # All change functions
 
     def create_employee(self, employee):
         employee.set_email(self.email_generator(employee.get_name()))
+        if not self.__all_employee_list:
+            self.get_all_employee_list()
         if self.__modelAPI.validate_model(employee):
             if self.__dl_api.append_employee(employee):
                 self.get_all_employee_list(True)
@@ -151,6 +161,7 @@ class LLEmployees:
                 employee.set_availability("Available")
                 employee.set_current_destination("Stationed at home")
                 employee.set_current_voyage("No voyage today")
+                employee.set_current_flight_number("None")
         else:
             current_time = self.get_iso_format_date_time(date)
             working = []
@@ -168,6 +179,8 @@ class LLEmployees:
                 captain_ssn = voyage.get_captain_ssn()
                 co_pilot_ssn = voyage.get_copilot_ssn()
                 fsm_ssn = voyage.get_fsm_ssn()
+                flight_out_number = voyage.get_departing_flight_num()
+                flight_in_number = voyage.get_return_flight_num()
 
                 for employee in self.__all_employee_list:
                     employee_ssn = employee.get_ssn()
@@ -178,21 +191,28 @@ class LLEmployees:
                             working.append(employee)
                         if current_time <= departing_flight_departure_date:
                             employee.set_current_destination("Currently in {}".format(flying_from))
+                            employee.set_current_flight_number(flight_out_number)
                         elif departing_flight_departure_date <= current_time <= departing_flight_arrival_date:
                             employee.set_current_destination("Flying to {}".format(flying_to))
+                            employee.set_current_flight_number(flight_out_number)
                         elif departing_flight_arrival_date <= current_time <= return_flight_departure_date:
                             employee.set_current_destination("Currently in {}".format(flying_to))
+                            employee.set_current_flight_number(flight_in_number)
                         elif return_flight_departure_date <= current_time <= return_flight_arrival_date:
                             employee.set_current_destination("Flying to {}".format(flying_to))
+                            employee.set_current_flight_number(flight_in_number)
                             
 
                         else:
                             employee.set_current_destination("Landed in {}".format(flying_from))
                             employee.set_current_voyage("Voyage completed")
+                            employee.set_current_flight_number(flight_in_number)
 
                     elif employee not in working:
                         employee.set_availability("Available")
                         employee.set_current_destination("Stationed at home")
+                        employee.set_current_voyage("No voyage this day")
+                        employee.set_current_flight_number("None")
 
     # All special functions
 

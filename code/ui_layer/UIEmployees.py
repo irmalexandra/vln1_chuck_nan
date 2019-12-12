@@ -131,7 +131,6 @@ class UIEmployees():
 
     def get_all_available_employees(self):
         '''Gets all employees availability on a specific day'''
-        # needs input
         header_flag = "date"
         sort_flag = "not working"
         date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
@@ -144,7 +143,6 @@ class UIEmployees():
 
     def get_all_not_available_employees(self):
         '''Gets all employees availability on a specific day'''
-        # needs input
         header_flag = "date"
         sort_flag = "working"
         date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
@@ -200,7 +198,8 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_work_schedule(self, employee):
-        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee)
+        date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
+        employee_work_schedule = self.__ll_api.get_work_schedule_list(employee, date)
         header_flag = "default"
         return_value = self.__ui_base_functions.print_model_list(employee_work_schedule, self.__modelAPI, header_flag)
         return_value = self.__ui_base_functions.check_return_value(return_value)
@@ -246,7 +245,7 @@ class UIEmployees():
    
     def change_pilot_licence(self, employee):
         header_flag = "default"
-        airplane_type_list = self.__ll_api.get_airplane_type_list()
+        airplane_type_list = self.__ll_api.get_all_licences(employee)
         return_value = self.__ui_base_functions.print_model_list(airplane_type_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_airplane_type_list_menu(return_value)
@@ -255,9 +254,13 @@ class UIEmployees():
                 return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
             if employee.get_name() != "":
                 if self.__ll_api.overwrite_all_models(employee):
-                    pass
+                    return
                 else:
                     self.__ui_base_functions.print_generic_error_message()
+                    return
+        if return_value == 9:
+            return 
+        return self.__ui_base_functions.check_return_value(return_value)
 
         
     

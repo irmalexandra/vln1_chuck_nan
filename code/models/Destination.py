@@ -34,7 +34,7 @@ class Destination():
         }
 
     def __str__(self):
-        return "Country: {:>2}\nAirport: {:>2}\nFlight time: {:>2}\nDistance: {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
+        return "Country: {:>2}\nAirport: {:>2}\nFlight time (hours): {:>2}\nDistance (kilometers): {:>2}\nContact name: {:>2}\nContact number: {:>2}".format(self.__country, self.__airport, self.__flight_time, self.__distance, self.__contact_name, self.__contact_number)
 
     def get_creation_process(self):
         return self.__create_order_list, self.__creation_dict
