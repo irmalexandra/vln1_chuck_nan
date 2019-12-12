@@ -1,3 +1,28 @@
+<<<<<<< HEAD
+country,airport,flight time,distance,contact name,contact number
+England,Heathrow,2,4000,Me me,5556841
+<<<<<<< HEAD
+Faroe Islands,Thorshavn,1,845,Mary Jane,9296723
+Greenland,Nuuk,3,2685,Loki Hopkins,1234567
+Greenland,Kulusuk,2,1690,Jason Momoa,6969696
+<<<<<<< HEAD
+Iceland,Reykjavik,0,0,Bruce Wayne,5556789
+Iceland,Keflavik,30,150,Loki Hopkins,8445446
+Iceland,Reykjavik,0,0,Loki bestur,1234567
+Iceland,Keflavik,30,150,Loki Hopkins,3121222
+Shetland,Tingwall,2,1690,John Coggins,1513748
+Svalbard,Longyearbyen,4,3380,Robert Redford,3215555
+=======
+=======
+>>>>>>> eab6f4d29f3820b02b1a4120656872d2213940c6
+Faroe Islands,Thorshavn,1,845,Mary Jane,9296723
+Shetland,Tingwall,2,1690,Jessi Coggins,1513748
+Iceland,Reykjavik,0,0,Loki bestur,1234567
+Iceland,Keflavik,30,150,Loki Hopkins,3121222
+USA,NewYork,8,2000,Rikki Frikk,1234567
+USA,JFK,12,8000,Margret Gudmunds,1234567
+>>>>>>> c77b541208e5694b69c8e8f86d76f28e23f2def0
+=======
 country,airport,flight time,distance,contact name,contact number,id
 Iceland,Reykjavik,0,0,Rikki Emilsson,9890123,00
 Svalbard,Longyearbyen,4,3380,Robert Redford,3215555,01
@@ -7,4 +32,10 @@ Faroe Islands,Thorshavn,1,845,Margret Gud,9296723,04
 Shetland,Tingwall,2,1690,Jessi Coggins,1513748,05
 Testland,Testport,8,2333,Test Man,1234567,06
 Spain,Madrid,3,2000,Laliba loba,3434343,07
+<<<<<<< HEAD
+>>>>>>> 3463b917e6c6c88a918fbe67ea289666017efe7d
+Denmark,Copenhagen,3,4000,Jan Petersen,9874563,08
+=======
 Lalaland,lalla,3,2000,Lala ladottir,3434343,08
+>>>>>>> e2d8eadccf6c0a0236e926da6e8fe51ec5a50a3c
+Lala land,Whoopy,5,8000,Alaska Thunderfuck,4567895,09
