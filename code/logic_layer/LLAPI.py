@@ -60,6 +60,8 @@ class LLAPI:
     def get_destination_list_by_country(self, country):
         return self.__ll_destinations.get_destination_list_by_country(country)
 
+    def get_all_licences(self, employee):
+        return self.__ll_employees.get_all_licences(employee)
 
     def get_airplane_type_list(self):
         return self.__ll_airplanes.get_airplane_type_list()

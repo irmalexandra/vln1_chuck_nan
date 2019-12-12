@@ -210,7 +210,6 @@ class UIEmployees():
     def create_pilot(self):
         new_emp = self.__modelAPI.get_model("Employee")
         new_emp.set_title("Pilot")
-        self.change_pilot_licence(new_emp)
         create_order_list, creation_dict = new_emp.get_creation_process()
         for attribute in create_order_list:
             while True:
@@ -220,11 +219,14 @@ class UIEmployees():
                     break
                 else:
                     print("Error, {} invalid!".format(attribute))
-        if self.__ll_api.create_employee(new_emp):
-            self.__ui_base_functions.print_model(new_emp)
-            self.__ui_base_functions.print_create_employee_results(new_emp)
-        else:
-            self.__ui_base_functions.print_generic_error_message()
+        return_value = self.change_pilot_licence(new_emp)
+        if type(return_value).__name__ == "AirplaneType":
+            if self.__ll_api.create_employee(new_emp):
+                self.__ui_base_functions.print_model(new_emp)
+                self.__ui_base_functions.print_create_employee_results(new_emp)
+            else:
+                self.__ui_base_functions.print_generic_error_message()
+        return self.__ui_base_functions.check_return_value(return_value)
     
     def create_cabin_crew(self):
         new_emp = self.__modelAPI.get_model("Employee")
@@ -246,7 +248,7 @@ class UIEmployees():
    
     def change_pilot_licence(self, employee):
         header_flag = "default"
-        airplane_type_list = self.__ll_api.get_airplane_type_list()
+        airplane_type_list = self.__ll_api.get_all_licences(employee)
         return_value = self.__ui_base_functions.print_model_list(airplane_type_list, self.__modelAPI, header_flag)
         if type(return_value).__name__ == "list":
             return_value = self.get_select_from_airplane_type_list_menu(return_value)
@@ -255,9 +257,13 @@ class UIEmployees():
                 return_value = self.__ui_base_functions.print_airplane_licence_results(return_value)
             if employee.get_name() != "":
                 if self.__ll_api.overwrite_all_models(employee):
-                    pass
+                    return
                 else:
                     self.__ui_base_functions.print_generic_error_message()
+                    return
+        if return_value == 9:
+            return 
+        return self.__ui_base_functions.check_return_value(return_value)
 
         
     

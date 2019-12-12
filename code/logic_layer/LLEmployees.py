@@ -92,8 +92,16 @@ class LLEmployees:
 
         return sorted(upcoming_voyages, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
-    def get_all_licences(self):
-        return self.__ll_airplanes.get_airplane_type_list()
+    def get_all_licences(self, employee):
+        current_licence = employee.get_licence()
+        airplane_types = self.__ll_airplanes.get_airplane_type_list()
+        licence_list = []
+        for airplane_type in airplane_types:
+            if current_licence != airplane_type.get_plane_type_id():
+                licence_list.append(airplane_type)
+
+        return licence_list
+            
 
     # All change functions
 
