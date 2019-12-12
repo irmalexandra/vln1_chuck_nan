@@ -39,7 +39,7 @@ class LLAPI:
     def get_all_airplane_list(self):
         return self.__ll_airplanes.get_all_airplane_list()
 
-    def get_all_airplane_list_by_period(self, date, time = '00:00:00')
+    def get_all_airplane_list_by_period(self, date, time = '00:00:00'):
         return self.__ll_airplanes(get_all_airplane_list_by_period(date, time))
 
     def get_all_voyage_list(self):
