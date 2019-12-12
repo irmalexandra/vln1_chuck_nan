@@ -254,7 +254,7 @@ class UIVoyages():
             print("Voyage duplication successful!")
         else:
             print("Incorrect date/time format")
-        return self.__ui_base_functions.check_return_value(return_value)
+
     
     def repeat_voyage(self, voyage):
         interval = self.__ui_base_functions.get_user_int_input("repeat inverval")
@@ -265,4 +265,4 @@ class UIVoyages():
             print("Creation of reccuring voyage successful!")
         else:
             print("Incorrect date format or interval format")
-        return self.__ui_base_functions.check_return_value(return_value)
+
