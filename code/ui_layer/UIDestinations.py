@@ -93,7 +93,7 @@ class UIDestinations():
             self.__ui_base_functions.print_generic_error_message()
     
     def change_contact_name(self, destination):
-        new_name = self.__ui_base_functions.get_user_input("contact name")
+        new_name = self.__ui_base_functions.get_user_input("new contact name (first and last)")
         if destination.set_contact_name(new_name):
             if self.__ll_api.overwrite_all_models(destination):
                 self.__ui_base_functions.print_edit_destination_contact_results(destination)
@@ -105,7 +105,7 @@ class UIDestinations():
             print("Error, {} invalid!".format(new_name))
 
     def change_contact_number(self, destination):
-        new_number = self.__ui_base_functions.get_user_input("number")
+        new_number = self.__ui_base_functions.get_user_input("new phone number")
         if destination.set_contact_number(new_number):
             if self.__ll_api.overwrite_all_models(destination):
                 self.__ui_base_functions.print_edit_destination_number_results(destination)
