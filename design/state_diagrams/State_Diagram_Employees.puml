@@ -1,14 +1,14 @@
 @startuml employees
 hide empty description
 
-[*] --> Not_Working
-Not_Working -> Working
-Not_Working : Reykjavik
-Working -> Not_Working
-Working --> In_the_air
-In_the_air -> Working
-In_the_air -> On_the_ground
-On_the_ground -> In_the_air
-On_the_ground : Destination
+[*] --> Available
+Available -> Not_available
+Available : Reykjavik
+Not_available -> Available
+Not_available --> In_air
+In_air -> Not_available
+In_air -> At_destination
+At_destination -> In_air
+
 @enduml
 

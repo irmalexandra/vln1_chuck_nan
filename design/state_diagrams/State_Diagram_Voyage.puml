@@ -1,13 +1,13 @@
 @startuml voyage
 hide empty description
-[*] --> Created
-Created : Airplane
-Created -> Staffed
-Created -> Cancelled
+[*] --> Unstaffed
+Unstaffed -> Cancelled
+Unstaffed -> Staffed
 Staffed -> Cancelled
 Staffed --> Started
-Started --> Ended
+Started --> Completed
 Cancelled --> [*]
-Ended --> [*]
+Completed --> [*]
 
 @enduml
+

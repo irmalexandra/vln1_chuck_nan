@@ -1,7 +1,6 @@
 import os
 from os import path
 
-
 class DLVoyages():
     DEPARTING_FLIGHT_NUM = 0
     RETURNING_FLIGHT_NUM = 1
@@ -18,8 +17,10 @@ class DLVoyages():
     FAS_SSN = 12
     CSV_ROWS = 13
 
+
     def __init__(self, modelAPI):
         self.__modelAPI = modelAPI
+
 
     def pull_all_voyages(self):
         '''Opens csv files and returns a list of all voyages as instances of the voyage model
@@ -49,7 +50,7 @@ class DLVoyages():
                     line_list[DLVoyages.DEPARTING_FLIGHT_NUM]))
                 check_list.append(new_voyage.set_return_flight_num(
                     line_list[DLVoyages.RETURNING_FLIGHT_NUM]))
-                check_list.append(new_voyage.set_departing_flight_departing_from(  # setting all the nessecariy info into the model instance
+                check_list.append(new_voyage.set_departing_flight_departing_from(  # Setting all the nessecariy info into the model instance
                     line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_FROM]))
                 check_list.append(new_voyage.set_departing_flight_departure_date(
                     line_list[DLVoyages.DEPARTING_FLIGHT_DEPARTING_DATE]))
@@ -75,11 +76,12 @@ class DLVoyages():
 
                 check_list.append(new_voyage.set_fa_ssns(
                     flight_attendant_ssns_list))
-                if False not in check_list:  # if the validator returned a false bool anywhere, the instance is not appended and thus not
-                    # sent down to the other layers, this excludes the header and "corrupt" lines
+                if False not in check_list:  # If the validator returned a false bool anywhere, the instance is not appended and thus not
+                    # Sent down to the other layers, this excludes the header and "corrupt" lines
                     all_voyages_list.append(new_voyage)
         filestream.closed
         return all_voyages_list
+
 
     def append_voyage(self, new_voyage):
         '''Adds a new voyage to the voyage string'''
@@ -90,6 +92,7 @@ class DLVoyages():
         voyage_stream.close()
         return True
 
+
     def overwrite_all_voyages(self, voyage_list):
         # employee_file.write(new_emp_str)
         HEADER = "departingflightnum,returnflightnum,departingflightdepartingfrom,departingflightdeparturedate,departingflightarrivaldate,returnflightdepartingfrom,returnflightdeparturedate,returnflightarrivaldate,airplanessn,captainssn,copilotssn,fsmssn,fassns\n"
@@ -97,7 +100,7 @@ class DLVoyages():
         # Writes the first line of the temp as the header
         filestream.write(HEADER)
         for voyage_info in voyage_list:
-            # "appends" the raw info lines into the temp, raw info being csv friendly strings
+            # "Appends" the raw info lines into the temp, raw info being csv friendly strings
             filestream.write(voyage_info.raw_info())
         filestream.close()
         os.remove("./repo/voyages.csv")
