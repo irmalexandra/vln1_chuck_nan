@@ -252,6 +252,8 @@ class LLVoyages:
     # All special functions
 
     def calculate_flight_times(self, date, airport):
+        '''takes a date and an airport, then uses math to calculate the date of the arrival at the airport, the date of which
+            they'll depart from the airport and the date of which they'll land back home. Returns all three'''
         self.__all_voyage_list = self.get_all_voyage_list()
         destinations_list = self.__ll_destinations.get_all_destination_list()
         destinations_dict = dict()
@@ -266,36 +268,40 @@ class LLVoyages:
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
     def generate_flight_numbers(self, date, destination):
+        '''Takes date and destination and returns two flight numbers, one for departing flight the other 
+            returning flight '''
         NEW_FLIGHT_NUM_LEN = 7
-        LAST_POSSIBLE_FLIGHT = 999
+        LAST_POSSIBLE_FLIGHT = 999 #The last possible flight number in a three number format
         start_date = self.get_iso_format_date_time(date)
         end_date = start_date + timedelta(hours=23, minutes=59,seconds=59)
 
         destination_id = destination.get_destination_id()
 
         self.__all_voyage_list = self.get_all_voyage_list()
-        existing_numbers = []
+        existing_numbers = []#A list to hold all the flight numbers that have already been made
 
         for voyage in self.__all_voyage_list:
-            voyage_airport = voyage.get_return_flight_departing_from()
+            voyage_airport = voyage.get_return_flight_departing_from() #Gets the voyage airport
             departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
+            #Gets the departing flight departure date in a date instance
             if start_date <= departing_flight_departure_date <= end_date and voyage_airport == destination.get_airport():
+                #If the departing flight departure date is in the days range and the airport fits the destinations airport
                 flight_number = voyage.get_return_flight_num()
-                if len(flight_number) == NEW_FLIGHT_NUM_LEN:
-                    existing_numbers.append(int(flight_number.replace("NA" + destination_id,"")))
-
+                if len(flight_number) == NEW_FLIGHT_NUM_LEN:#filters out the current flight format from older ones
+                    existing_numbers.append(int(flight_number.replace("NA" + destination_id,"")))#gets an integer format of the number
+                                                                                                                                                #section of the flight number
         if LAST_POSSIBLE_FLIGHT in existing_numbers:
-            return False
-        elif not existing_numbers:
+            return False #If the maximum amounts of flight numbers reached, returns a false
+        elif not existing_numbers: #makes the first of its kind 
             departing_flight_num = "NA" + destination_id + "000"
             return_flight_num = "NA" + destination_id + "001"
             return departing_flight_num, return_flight_num
 
         else:
-            last_number = max(existing_numbers)
-            next_departing_number_str  = str(last_number + 1)
+            last_number = max(existing_numbers) #gets the last voyages number 
+            next_departing_number_str  = str(last_number + 1) # +1 to last voyage number, throws into string format
             next_return_number_str = str(last_number + 2)
-            while len(next_departing_number_str) < 3:
+            while len(next_departing_number_str) < 3: #fills empty space with 0 to ensure 3 seat numbers format
                 next_departing_number_str = "0" + next_departing_number_str
             while len(next_return_number_str) < 3:
                 next_return_number_str = "0" + next_return_number_str
