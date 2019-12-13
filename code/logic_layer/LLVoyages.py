@@ -229,7 +229,7 @@ class LLVoyages:
             return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
 
             if current_date >= departing_flight_departure_date and \
-                ('.' in voyage.get_all_crew_ssn() or voyage.get_airplane_insignia() == '.'):
+                ('.' in voyage.get_all_required_crew_ssn() or voyage.get_airplane_insignia() == '.'):
                 voyage.set_status("Cancelled")
             elif current_date <= departing_flight_departure_date:
                 voyage.set_status("Not started")
@@ -243,8 +243,14 @@ class LLVoyages:
                 voyage.set_status("Voyage completed")
     
     def check_staffed(self):
+        '''Gets a list of all voyage instances and checks if varioust '''
+
         for voyage in self.__all_voyage_list:
-            if voyage.get_airplane_insignia() != "." and voyage.get_captain_ssn() != "." and voyage.get_copilot_ssn() != "." and voyage.get_fsm_ssn() != "." and voyage.get_fa_ssns() != ".:.":
+            all_crew_ssn = voyage.get_all_required_crew_ssn()
+            for ssn in voyage.get_fa_ssns():
+                all_crew_ssn.append(ssn)
+
+            if voyage.get_airplane_insignia() != "." and '.' not in all_crew_ssn:
                 voyage.set_staffed("Staffed")
             else:
                 voyage.set_staffed("Not staffed")
@@ -252,24 +258,26 @@ class LLVoyages:
     # All special functions
 
     def calculate_flight_times(self, date, airport):
-        '''takes a date and an airport, then uses math to calculate the date of the arrival at the airport, the date of which
-            they'll depart from the airport and the date of which they'll land back home. Returns all three'''
+        '''takes a date and an airport string, then alculates the date of the arrival at the airport, the date of which
+            they'll depart from the airport and the date of which they'll land back home. Returns all three in iso format'''
         self.__all_voyage_list = self.get_all_voyage_list()
         destinations_list = self.__ll_destinations.get_all_destination_list()
         destinations_dict = dict()
         
         for destination in destinations_list:
             destinations_dict[destination.get_airport()] = int(destination.get_flight_time())
-        
+            # Creates a dictionary of airport:flight time
+
         flight_time = destinations_dict[airport]
-        departing_flight_arrival_date = date + timedelta(hours =flight_time)
+        departing_flight_arrival_date = date + timedelta(hours=flight_time)
         return_flight_departure_date = departing_flight_arrival_date + timedelta(hours = 1)
         return_flight_arrival_date = return_flight_departure_date + timedelta(hours = flight_time)
         return departing_flight_arrival_date.isoformat(), return_flight_departure_date.isoformat(), return_flight_arrival_date.isoformat()
 
+
     def generate_flight_numbers(self, date, destination):
         '''Takes date and destination and returns two flight numbers, one for departing flight the other 
-            returning flight '''
+            returning flight'''
         NEW_FLIGHT_NUM_LEN = 7
         LAST_POSSIBLE_FLIGHT = 999 #The last possible flight number in a three number format
         start_date = self.get_iso_format_date_time(date)
@@ -331,15 +339,17 @@ class LLVoyages:
                 return updated_voyage
 
 
-    
     def filter_voyage_by_date(self, date):
+        '''Takes a date and returns a list of voyage instances within that date'''
         returned_list = []
         start_range= self.get_iso_format_date_time(date).replace(hour=0, minute=0,second=0,microsecond=0)
-        end_range = start_range + timedelta(hours = 23, minutes=59, seconds=59)
+        end_range = start_range + timedelta(hours = 23, minutes=59, seconds=59) # to make sure all 24 hours of the day are included
         for voyage in self.get_all_voyage_list():
 
-            departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
-            return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
-            if start_range <= departing_flight_departure_date <= end_range or start_range <= return_flight_arrival_date <= end_range:
+            departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+            return_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+
+            if start_range <= departure_date <= end_range or start_range <= return_date <= end_range:
                 returned_list.append(voyage)
+
         return returned_list

@@ -194,7 +194,9 @@ class LLEmployees:
                 return_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
                 return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
 
-                all_crew_ssn = voyage.get_all_crew_ssn()
+                all_crew_ssn = voyage.get_all_required_crew_ssn()
+                for ssn in voyage.get_fa_ssns():
+                    all_crew_ssn.append(ssn)
 
                 flying_from = voyage.get_departing_flight_departing_from()
                 flying_to = voyage.get_return_flight_departing_from()
