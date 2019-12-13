@@ -49,7 +49,7 @@ class Employee():
         self.__create_cabincrew_order_list = [
             'employee name (first and last)', 'ssn', 'home address', 'phone number', 'mobile number', 'rank (Flight Service Manager or Flight Attendant)']
 
-        self.__creation_cabincrew_dict = {"name (first and last)": self.set_name,
+        self.__creation_cabincrew_dict = {"employee name (first and last)": self.set_name,
                                 "ssn": self.set_ssn,
                                 "home address": self.set_address,
                                 "phone number": self.set_home_num,
