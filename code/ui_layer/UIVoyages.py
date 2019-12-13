@@ -332,7 +332,7 @@ class UIVoyages():
             print("Voyage duplication successful!")
         else:
             print("Flight times not available")
-        return self.__ui_base_functions.check_return_value(return_value)
+        
     
     def repeat_voyage(self, voyage):
         '''Handles the repeat voyage process of a selected voyage and calls to write to DB'''
@@ -347,4 +347,4 @@ class UIVoyages():
         else:
             print("Flight times not available")
             return self.__ui_base_functions.check_return_value(9)
-        return self.__ui_base_functions.check_return_value(return_value)
+        
