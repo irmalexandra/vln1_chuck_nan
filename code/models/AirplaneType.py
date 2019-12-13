@@ -1,7 +1,8 @@
 from logic_layer.LLValidator import Validator
 
+
 class AirplaneType():
-    def __init__(self, plane_type_id = "", make = "", model = "", capacity = ""):
+    def __init__(self, plane_type_id="", make="", model="", capacity=""):
         self.__model_validation = Validator()
 
         self.__plane_type_id = plane_type_id
@@ -9,43 +10,38 @@ class AirplaneType():
         self.__model = model
         self.__capacity = capacity
 
-        self.__header_format_dict = {"default": self.get_model_header_default_format}
+        self.__header_format_dict = {
+            "default": self.get_model_header_default_format}
 
         self.__list_info_dict = {"default": self.get_model_list_default_info}
-
-
 
     def get_model_header_format(self, header_flag):
         return self.__header_format_dict[header_flag]()
 
     def get_model_list_info(self, header_flag):
         return self.__list_info_dict[header_flag]()
-    
-    
+
     def get_model_header_default_format(self):
         return "{:10}{:20}{:17}{:20}{:71}".format("Index:",
-                                             "Airplane type:",
-                                             "Make:",
-                                             "Model:",
-                                             "Capacity:")
-                                            
-        
+                                                  "Airplane type:",
+                                                  "Make:",
+                                                  "Model:",
+                                                  "Capacity:")
+
     def get_model_list_default_info(self):
         returnObject = ("     {:20}{:17}{:20}{:71}|\n".format(self.get_plane_type_id(),
                                                               self.get_make(),
                                                               self.get_model(),
                                                               self.get_capacity()))
         return returnObject
-    
-    
-    
+
     def raw_info(self):
         return str(self.__plane_type_id) + "," + str(self.__make) + "," + str(self.__model) + "," + str(self.__capacity)
 
     def __str__(self):
 
-        return "Airplane type {:>2} \nMake: {:>2} \nModel: {:>2} \nCapacity: {:>2}".format(self.__plane_type_id, self.__make,self.__model,self.__capacity)
-    
+        return "Airplane type {:>2} \nMake: {:>2} \nModel: {:>2} \nCapacity: {:>2}".format(self.__plane_type_id, self.__make, self.__model, self.__capacity)
+
     def get_plane_type_id(self):
         return self.__plane_type_id
 
@@ -85,4 +81,3 @@ class AirplaneType():
             return True
         else:
             return False
-
