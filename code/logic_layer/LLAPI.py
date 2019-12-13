@@ -125,6 +125,5 @@ class LLAPI:
     def update_voyage_pointer(self, voyage):
         return self.__ll_voyages.update_voyage_pointer(voyage)
 
-
     def filter_working(self,date, time,flag):
         return self.__ll_employees.filter_working(date,time,flag)
