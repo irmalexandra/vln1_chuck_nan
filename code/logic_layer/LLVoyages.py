@@ -10,11 +10,14 @@ class LLVoyages:
         self.__ll_destinations = None
         self.__ll_airplanes = None
 
+
     def set_ll_employees(self, ll_employee):
         self.__ll_employees = ll_employee
 
+
     def set_ll_airplanes(self, ll_airplanes):
         self.__ll_airplanes = ll_airplanes
+
 
     def set_ll_destinations(self, ll_destinations):
         self.__ll_destinations = ll_destinations
@@ -31,6 +34,7 @@ class LLVoyages:
         self.check_status()
         self.check_staffed()
         return sorted(self.__all_voyage_list, key=lambda voyage: voyage.get_departing_flight_departure_date())
+
 
     def filter_all_empty_voyages(self):
         '''Takes a list of all voyage instances and returns a list of filtered voyages by staffed status'''
@@ -85,7 +89,7 @@ class LLVoyages:
         all_employee_list = self.__ll_employees.get_all_employee_list() 
 
         filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
-        # creates a list of all employees that with the requested rank
+        # Creates a list of all employees that with the requested rank
         available_employee_list = []
 
         for other_voyage in voyages_in_date_range_list:   
@@ -100,7 +104,7 @@ class LLVoyages:
                     else:
                         if employee_ssn != voyage_ssn:
                             available_employee_list.append(employee)
-        # creates a list of employees that aren't in other voyages around the same time as the voyage in question
+        # Creates a list of employees that aren't in other voyages around the same time as the voyage in question
 
         final_employee_list = available_employee_list    
         
@@ -206,7 +210,7 @@ class LLVoyages:
                 return False
             success = self.duplicate_voyage(voyage, date)
             date += timedelta(days=repeat_interval)
-            # this loop runs until the end date has been met, calling the duplicate function and incrementing the date each time
+            # This loop runs until the end date has been met, calling the duplicate function and incrementing the date each time
         return success
             
 
@@ -295,37 +299,37 @@ class LLVoyages:
         '''Takes date and destination and returns two flight numbers, one for departing flight the other 
             returning flight'''
         NEW_FLIGHT_NUM_LEN = 7
-        LAST_POSSIBLE_FLIGHT = 999 #The last possible flight number in a three number format
+        LAST_POSSIBLE_FLIGHT = 999 # The last possible flight number in a three number format
         start_date = self.get_iso_format_date_time(date)
         end_date = start_date + timedelta(hours=23, minutes=59,seconds=59)
 
         destination_id = destination.get_destination_id()
 
         self.__all_voyage_list = self.get_all_voyage_list()
-        existing_numbers = []#A list to hold all the flight numbers that have already been made
+        existing_numbers = [] # A list to hold all the flight numbers that have already been made
 
         for voyage in self.__all_voyage_list:
-            voyage_airport = voyage.get_return_flight_departing_from() #Gets the voyage airport
+            voyage_airport = voyage.get_return_flight_departing_from() # Gets the voyage airport
             departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
-            #Gets the departing flight departure date in a date instance
+            # Gets the departing flight departure date in a date instance
             if start_date <= departing_flight_departure_date <= end_date and voyage_airport == destination.get_airport():
-                #If the departing flight departure date is in the days range and the airport fits the destinations airport
+                # If the departing flight departure date is in the days range and the airport fits the destinations airport
                 flight_number = voyage.get_return_flight_num()
-                if len(flight_number) == NEW_FLIGHT_NUM_LEN:#filters out the current flight format from older ones
-                    existing_numbers.append(int(flight_number.replace("NA" + destination_id,"")))#gets an integer format of the number
+                if len(flight_number) == NEW_FLIGHT_NUM_LEN: # Filters out the current flight format from older ones
+                    existing_numbers.append(int(flight_number.replace("NA" + destination_id,""))) # Gets an integer format of the number
                                                                                                                                                 #section of the flight number
         if LAST_POSSIBLE_FLIGHT in existing_numbers:
-            return False #If the maximum amounts of flight numbers reached, returns a false
-        elif not existing_numbers: #makes the first of its kind 
+            return False # If the maximum amounts of flight numbers reached, returns a false
+        elif not existing_numbers: # Makes the first of its kind 
             departing_flight_num = "NA" + destination_id + "000"
             return_flight_num = "NA" + destination_id + "001"
             return departing_flight_num, return_flight_num
 
         else:
-            last_number = max(existing_numbers) #gets the last voyages number 
+            last_number = max(existing_numbers) # Gets the last voyages number 
             next_departing_number_str  = str(last_number + 1) # +1 to last voyage number, throws into string format
             next_return_number_str = str(last_number + 2)
-            while len(next_departing_number_str) < 3: #fills empty space with 0 to ensure 3 seat numbers format
+            while len(next_departing_number_str) < 3: # Fills empty space with 0 to ensure 3 seat numbers format
                 next_departing_number_str = "0" + next_departing_number_str
             while len(next_return_number_str) < 3:
                 next_return_number_str = "0" + next_return_number_str
@@ -359,7 +363,7 @@ class LLVoyages:
         '''Takes a date and returns a list of voyage instances within that date'''
         returned_list = []
         start_range= self.get_iso_format_date_time(date).replace(hour=0, minute=0,second=0,microsecond=0)
-        end_range = start_range + timedelta(hours = 23, minutes=59, seconds=59) # to make sure all 24 hours of the day are included
+        end_range = start_range + timedelta(hours = 23, minutes=59, seconds=59) # To make sure all 24 hours of the day are included
         for voyage in self.get_all_voyage_list():
 
             departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())

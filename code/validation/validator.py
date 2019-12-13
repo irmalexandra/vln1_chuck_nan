@@ -11,6 +11,7 @@ class Validator():
         attribute = str(attribute)
         return attribute.isalpha()
 
+
     def __validate_int(self, attribute):
         try:
             int(attribute)
@@ -18,10 +19,10 @@ class Validator():
         except ValueError:
             return False
 
+
     def validate_name(self, name):
         try:
             first, last = name.split(" ")
-        
         except ValueError:
             return False
 
@@ -30,8 +31,10 @@ class Validator():
             return True
         return False
 
+
     def validate_employee_name(self, name):
         return self.validate_name(name)
+
 
     def validate_employee_ssn(self, ssn):
         try:
@@ -41,17 +44,17 @@ class Validator():
                 return True
         except IndexError:
             return False
-
         return False
+
 
     def validate_employee_address(self, address):
         try:
             name, number = address.split()
             if self.__validate_string(name) and self.__validate_int(number):
                 return True
-
         except ValueError:
             return False
+
 
     def validate_phone_number(self, number):
         try:
@@ -61,15 +64,16 @@ class Validator():
                 return True
         except IndexError:
             return False
-
         return False
 
     # gera rad fyrir landnumeri (+354)?
     def validate_mobile_number(self, number):
         return self.validate_phone_number(number)
 
+
     def validate_home_number(self, number):
         return self.validate_phone_number(number)
+
 
     def validate_email(self, email): # <---- Useless?
         try:
@@ -79,23 +83,24 @@ class Validator():
         except ValueError:
             return False
 
+
     def validate_title(self, title):
         if title in self.TITLE_LIST:
             return True
-
         return False
+
 
     def validate_pilot_rank(self, rank):
         if rank in self.PILOT_RANK_LIST:
             return True
-
         return False
+
 
     def validate_cabincrew_rank(self, rank):
         if rank in self.CABINCREW_RANK_LIST:
             return True
-
         return False
+
 
     def validate_date_time(self, date):
 
@@ -110,52 +115,63 @@ class Validator():
                 return False
         return True
 
+
     def validate_airplane_typeid(self, typeid):
         return typeid[:2] == "NA"
+
 
     def validate_airplane_insignia(self, insignia):
         if insignia[2] == "-":
             if len(insignia) == 6:
                 return self.__validate_string(insignia.replace("-", ""))
-
         return False
+
 
     def validate_airplane_make(self, make):
         return self.__validate_string(make)
+
 
     def validate_airplane_model(self, model):
         if model.strip() == model:
             return True
         return False
 
+
     def validate_airplane_capacity(self, capacity):
         return self.__validate_int(capacity)
+
 
     def validate_flight_number(self, flight_num):
         if (flight_num[:2] == "NA") and (self.__validate_int(flight_num[2:])):
             return True
-
         return False
+
 
     def validate_country(self, country):
         name = country.replace(" ", "") 
         return self.__validate_string(name)
 
+
     def validate_airport(self, airport):
         name = airport.replace(" ", "") 
         return self.__validate_string(name)
 
+
     def validate_id(self, id_num):
         return self.__validate_int(id_num)
+
 
     def validate_flight_time(self, time):
         return self.__validate_int(time)
 
+
     def validate_distance(self, distance):
         return self.__validate_int(distance)
 
+
     def validate_contact_name(self, name):
         return self.validate_name(name)
+
 
     def validate_contact_number(self, number):
         return self.validate_phone_number(number)

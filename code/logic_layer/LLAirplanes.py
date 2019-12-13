@@ -9,14 +9,16 @@ class LLAirplanes:
 
         self.__ll_voyages = None
 
+
     def set_ll_voyages(self, ll_voyage):
         self.__ll_voyages = ll_voyage
 
     # All list functions
 
+
     def get_all_airplane_list(self, changed = False):
         '''Initializes a list of instances after checking if it exists and returns it sorted'''
-        if changed: # various functions can send a flag to this function to force an update
+        if changed: # Various functions can send a flag to this function to force an update
             self.__all_airplane_list = self.__dl_api.pull_all_airplanes()
         
         if not self.__all_airplane_list:
@@ -70,7 +72,8 @@ class LLAirplanes:
             elif voyage_start_date <= selected_voyage_start_date <= voyage_end_date \
                 or voyage_start_date <= selected_voyage_end_date <= voyage_end_date:
                 unavailable_voyages.append(voyage)
-        # creates a list of voyages that occurr in the same time frame as selected voyage
+       
+        # Creates a list of voyages that occurr in the same time frame as selected voyage
 
         for voyage in unavailable_voyages:
             unavailable_airplane_insignias.append(voyage.get_airplane_insignia())
@@ -90,7 +93,8 @@ class LLAirplanes:
         self.get_all_airplane_list()
         insignia = insignia.upper()
         existing_airplanes_list = [airplane.get_insignia() for airplane in self.__all_airplane_list]
-        # list comprehension that returns a list of all taken airplane insignias
+        
+        # List comprehension that returns a list of all taken airplane insignias
 
         if airplane.get_insignia() not in existing_airplanes_list:
             existing_airplane_types = airplane_types
@@ -153,7 +157,7 @@ class LLAirplanes:
 
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
         '''Takes two variables in various date/time formats and returns a datetime instance'''
-        if type(date).__name__ != 'datetime': #skips everything if what is being sent in is already in datetime
+        if type(date).__name__ != 'datetime': # Skips everything if what is being sent in is already in datetime
 
             if date.find("T") == -1:
                 new_date = datetime.strptime(date,'%d-%m-%Y')

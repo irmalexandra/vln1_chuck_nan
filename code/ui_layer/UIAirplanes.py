@@ -1,6 +1,7 @@
 # UIAirplanes handles all airplanes related ui functions. It utilizes UIBaseFunctions
 # For menu travelling. All sub menus are handled with dictionaries where the key would match
 # the user input. And the value would be a function call to a different sub menu or function
+
 class UIAirplanes():
     RETURN_MENU_STR = "9. Return 0. Home"
 
@@ -13,7 +14,7 @@ class UIAirplanes():
     # All menu functions
     
     def get_airplanes_sub_menu(self):
-        '''Handles all the configurations of airplanes sub menu '''
+        '''Handles all the configurations of airplanes sub menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1:self.create_airplane,
                     2:self.get_all_airplanes,
@@ -39,7 +40,7 @@ class UIAirplanes():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_airplane_type_list_menu(self, airplane_type_list):
-        ''' Handles all the configuration to select a airplane type from a list '''
+        '''Handles all the configuration to select a airplane type from a list'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
@@ -51,7 +52,7 @@ class UIAirplanes():
         return self.__ui_base_functions.check_return_value(return_value)
         
     def get_select_from_airplane_list_menu(self,airplanes_list):
-        ''' Handles all the configuration to select a airplane from a list '''
+        '''Handles all the configuration to select a airplane from a list'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
@@ -90,7 +91,7 @@ class UIAirplanes():
     
     
     def create_airplane(self):
-        ''' Handles the create destination process and calls to write to DB'''
+        '''Handles the create destination process and calls to write to DB'''
         new_airplane = self.__modelAPI.get_model("Airplane")
         airplane_type_list = self.__ll_api.get_airplane_type_list()
         existing_airplane_types_list = self.__ll_api.get_airplane_type_list()
@@ -111,7 +112,7 @@ class UIAirplanes():
                     # This check makes sure the insigna is valid
                     check = new_airplane.set_insignia("TF-" +insignia)
                     if check:
-                        # this check makes sure the airplane is created successfully and store in DB
+                        # This check makes sure the airplane is created successfully and store in DB
                         # Either prints out that the airplane already exits, is created successfully or a 
                         # Generic error message if something else goes wrong
                         if self.__ll_api.create_airplane(new_airplane, existing_airplane_types_list,insignia):

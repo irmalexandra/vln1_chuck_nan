@@ -10,21 +10,25 @@ class AirplaneType():
         self.__model = model
         self.__capacity = capacity
 
-        self.__header_format_dict = {
-            "default": self.get_model_header_default_format}
+        # Dictionary keeping all the different header formats for the destination model
+        self.__header_format_dict = {"default": self.get_model_header_default_format}
 
+        # Dictionary keeping all the different list formats for the destination model
         self.__list_info_dict = {"default": self.get_model_list_default_info}
 
 
     def get_model_header_format(self, header_flag):
+        '''Takes a header flag as an argument and uses the dictionary to return the correct format back'''
         return self.__header_format_dict[header_flag]()
 
 
     def get_model_list_info(self, header_flag):
+        '''Takes a header flag as an argument and uses the dictionary to return the correct format back'''
         return self.__list_info_dict[header_flag]()
 
 
     def get_model_header_default_format(self):
+        '''Default format for displaying the destination model header'''
         return "{:10}{:20}{:17}{:20}{:71}".format("Index:",
                                                   "Airplane type:",
                                                   "Make:",
@@ -33,6 +37,7 @@ class AirplaneType():
 
 
     def get_model_list_default_info(self):
+        '''Default format for displaying the destination model in a list'''
         returnObject = ("     {:20}{:17}{:20}{:71}|\n".format(self.get_plane_type_id(),
                                                               self.get_make(),
                                                               self.get_model(),

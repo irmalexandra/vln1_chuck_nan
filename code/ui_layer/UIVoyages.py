@@ -1,6 +1,7 @@
 # UIVoyages handles all voyage related ui functions. It utilizes UIBaseFunctions
 # For menu travelling. All sub menus are handled with dictionaries where the key would match
 # the user input. And the value would be a function call to a different sub menu or function
+
 class UIVoyages():
     RETURN_MENU_STR = "9. Return 0. Home"
 
@@ -12,7 +13,7 @@ class UIVoyages():
     # All menu functions
     
     def get_voyage_sub_menu(self):
-        ''' Handles all the configurations of Voyage sub menu '''
+        '''Handles all the configurations of Voyage sub menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.create_voyage,
                     2: self.get_all_voyages,
@@ -27,7 +28,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_voyage_search_menu(self):
-        ''' Handles all the configurations of voyage search menu '''
+        '''Handles all the configurations of voyage search menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.get_all_voyages_by_airport,
                     2: self.get_all_voyages_by_date,
@@ -42,7 +43,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_voyage_list_menu(self, voyage_list):
-        '''  Handles all the menu configurations to select a voyage from a list menu'''
+        '''Handles all the menu configurations to select a voyage from a list menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
@@ -63,7 +64,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_airplane_list_menu(self, airplane_list, voyage):
-        ''' Handles all the menu configuration to select a airplane from a list menu'''
+        '''Handles all the menu configuration to select a airplane from a list menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
@@ -81,7 +82,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_selected_voyage_no_airplane_menu(self, voyage):
-        ''' Handles all the configuration for a selected voyage menu without a airplane menu'''
+        '''Handles all the configuration for a selected voyage menu without a airplane menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.duplicate_voyage,
                     2: self.repeat_voyage,
@@ -103,7 +104,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
     
     def get_selected_voyage_menu(self, voyage):
-        ''' Handles all the configuration for a selected voyage with a airplane and staffed menu'''
+        '''Handles all the configuration for a selected voyage with a airplane and staffed menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.duplicate_voyage,
                     2: self.repeat_voyage,
@@ -117,7 +118,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_selected_voyage_empty_menu(self, voyage):
-        ''' Handles all the configuration for a selected voyage that is unstaffed '''
+        '''Handles all the configuration for a selected voyage that is unstaffed'''
         nav_dict = {1: self.duplicate_voyage,
                     2: self.repeat_voyage,
                     3: self.get_add_crew_voyage_menu,
@@ -129,7 +130,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_add_crew_voyage_menu(self, voyage):
-        ''' Handles all the configuration to add crew members to a selected voyage menu'''
+        '''Handles all the configuration to add crew members to a selected voyage menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.get_all_captains_by_airplane_and_availability,
                     2: self.get_all_copilots_by_airplane_and_availability,
@@ -148,7 +149,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_add_crew_list_menu(self, crew_list, voyage):
-        ''' Handles all the configuration to select a crew member from a list '''
+        '''Handles all the configuration to select a crew member from a list'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.__ui_base_functions.select_from_crew_list,
                     9: self.__ui_base_functions.back,
@@ -168,7 +169,7 @@ class UIVoyages():
                 self.__ui_base_functions.print_generic_error_message()
         
     def get_select_from_destination_list_menu(self, destination_list):
-        ''' Handles all the configuration to select a destination from a list '''
+        '''Handles all the configuration to select a destination from a list'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
@@ -182,7 +183,7 @@ class UIVoyages():
     # All list functions
 
     def get_all_airplanes(self, voyage):
-        ''' Gets a list of all airplanes and calls UIBaseFunctions '''
+        '''Gets a list of all airplanes and calls UIBaseFunctions'''
         # Header is used by ModelAPI to fetch the correct header for the table
         header_flag = "default"
         airplane_list = self.__ll_api.get_all_available_airplane_list(voyage)
@@ -194,7 +195,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
     
     def get_all_voyages(self):
-        ''' Gets a list of all voyages and calls UIBaseFunctions'''
+        '''Gets a list of all voyages and calls UIBaseFunctions'''
         # Header is used by ModelAPI to fetch the correct header for the table
         header_flag = "default"
         voyage_list = self.__ll_api.get_all_voyage_list()
@@ -206,7 +207,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_voyages_by_airport(self):
-        ''' Gets a list of voyages by airport name and calls UIBaseFunctions '''
+        '''Gets a list of voyages by airport name and calls UIBaseFunctions'''
         airport = self.__ui_base_functions.get_user_input("airport")
         # Header is used by ModelAPI to fetch the correct header for the table
         header_flag = "default"
@@ -219,7 +220,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_voyages_by_date(self):
-        ''' Gets a list of voyages by date and calls UIBaseFunctions '''
+        '''Gets a list of voyages by date and calls UIBaseFunctions'''
         start_date = self.__ui_base_functions.get_user_date_input("start date", "DD-MM-YYYY")
         end_date = self.__ui_base_functions.get_user_date_input("end date", "DD-MM-YYYY")
         # Header is used by ModelAPI to fetch the correct header for the table
@@ -233,7 +234,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_empty_voyages(self):
-        ''' Gets a list of all empty voyages and calls UIBaseFunctions '''
+        '''Gets a list of all empty voyages and calls UIBaseFunctions'''
         # Header is used by ModelAPI to fetch the correct header for the table
         header_flag = "default"
         voyage_list = self.__ll_api.get_all_empty_voyage_list()
@@ -245,7 +246,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_all_captains_by_airplane_and_availability(self, voyage):
-        ''' Gets a list of all captains available for the airplane in the voyage and calls UIBaseFunctions '''
+        '''Gets a list of all captains available for the airplane in the voyage and calls UIBaseFunctions'''
         # Header is used by ModelAPI to fetch the correct header for the table
         header_flag = "aircraft"
         rank = "Captain"
@@ -258,7 +259,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
     
     def get_all_copilots_by_airplane_and_availability(self, voyage):
-        ''' Gets a list of all copilots available for the airplane in the voyage and calls UIBaseFunctions'''
+        '''Gets a list of all copilots available for the airplane in the voyage and calls UIBaseFunctions'''
         # Header is used by ModelAPI to fetch the correct header for the table
         header_flag = "aircraft"
         rank = "Copilot"
@@ -301,7 +302,7 @@ class UIVoyages():
     # All Special functions
 
     def create_voyage(self):
-        ''' Handles the creation process for voyages and calls to write to DB'''
+        '''Handles the creation process for voyages and calls to write to DB'''
         # Header is used by ModelAPI to fetch the correct header for the table
         header_flag = "default"
         destination_list = self.__ll_api.get_all_destination_list()
@@ -321,7 +322,7 @@ class UIVoyages():
                 self.__ui_base_functions.print_generic_error_message()         
 
     def duplicate_voyage(self, voyage):
-        ''' Handles the duplication process of a selected voyage and calls to write to DB'''
+        '''Handles the duplication process of a selected voyage and calls to write to DB'''
         new_date = self.__ui_base_functions.get_user_date_input("new date", "DD-MM-YYYY")
         new_time = self.__ui_base_functions.get_user_date_input("new time", "HH:MM")
         
@@ -334,7 +335,7 @@ class UIVoyages():
         return self.__ui_base_functions.check_return_value(return_value)
     
     def repeat_voyage(self, voyage):
-        ''' Handles the repeat voyage process of a selected voyage and calls to write to DB'''
+        '''Handles the repeat voyage process of a selected voyage and calls to write to DB'''
         interval = self.__ui_base_functions.get_user_int_input("repeat inverval (in days)")
         end_date = self.__ui_base_functions.get_user_date_input("end date", "DD-MM-YYYY")
         

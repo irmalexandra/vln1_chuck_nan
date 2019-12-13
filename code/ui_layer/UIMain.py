@@ -9,8 +9,8 @@ from ui_layer.UIDestinations import UIDestinations
 from ui_layer.UIAirplanes import UIAirplanes
 import string
 
-#UIMain is primarly used to initiate all the other classes in the system. 
-#He also has the configuration for the main menu display
+# UIMain is primarly used to initiate all the other classes in the system. 
+# He also has the configuration for the main menu display
 class UIMain():
     RETURN_MENU_STR = "0. Exit"
 

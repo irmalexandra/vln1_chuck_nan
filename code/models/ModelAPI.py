@@ -18,8 +18,10 @@ class ModelAPI():
         model_obj = self.model_dict[model_name]
         return model_obj()
 
+
     def get_model_header_format(self, model, header_flag):
         return "|{}|".format(model.get_model_header_format(header_flag))
+
 
     def get_model_list_info(self, model_list, header_flag):
         returnObject = ""
@@ -27,8 +29,9 @@ class ModelAPI():
             returnObject += "| {:>2d}. {}".format(index+1, model.get_model_list_info(header_flag))
         return returnObject
 
+
     def validate_model(self, model):
-        ''' Gets a object instance from the logic layer and returns a tuple '''
+        '''Gets a object instance from the logic layer and returns a tuple'''
         validation_dict = model.get_validation_dict()
 
         for key, value in validation_dict.items():

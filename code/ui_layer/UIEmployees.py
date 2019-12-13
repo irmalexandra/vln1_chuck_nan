@@ -1,6 +1,7 @@
 # UIEmployees handles all employee related ui functions. It utilizes UIBaseFunctions
 # For menu travelling. All sub menus are handled with dictionaries where the key would match
 # the user input. And the value would be a function call to a different sub menu or function
+
 class UIEmployees():
     RETURN_MENU_STR = "9. Return 0. Home"
 
@@ -12,7 +13,7 @@ class UIEmployees():
     #All menu functions
     
     def get_employee_sub_menu(self):
-        ''' Handles all the configurations of employee sub menu '''
+        '''Handles all the configurations of employee sub menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.get_create_employee_sub_menu,
                     2: self.get_all_employees,
@@ -27,7 +28,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_employee_search_menu(self):
-        ''' Handles all the configurations of employee search menu '''
+        '''Handles all the configurations of employee search menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.get_all_employees_by_name,
                     2: self.get_all_employees_by_title,
@@ -41,7 +42,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_employees_by_date_sub_menu(self):
-        ''' Handles all the configurations of employee by date menu '''
+        '''Handles all the configurations of employee by date menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.get_all_available_employees,
                     2: self.get_all_not_available_employees,
@@ -55,7 +56,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_create_employee_sub_menu(self):
-        ''' Handles all the configurations of create employee sub menu '''
+        '''Handles all the configurations of create employee sub menu'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.create_pilot,
                     2: self.create_cabin_crew,
@@ -70,8 +71,8 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_selected_employee_menu(self, employee):
-        ''' Handles all the configurations of selected employee sub menu, Depending on if the
-        employee is a Pilot or a Cabincrew a different menu is displayed '''
+        '''Handles all the configurations of selected employee sub menu, Depending on if the
+        employee is a Pilot or a Cabincrew a different menu is displayed'''
         # Dictionary to handle navigation in this sub menu
         if employee.get_title() == "Pilot":
             nav_dict = {1: self.get_edit_employee_menu,
@@ -99,7 +100,7 @@ class UIEmployees():
             return self.__ui_base_functions.check_return_value(return_value)
 
     def get_edit_employee_menu(self, employee):
-        ''' Handles all the menu configuration for edit employee '''
+        '''Handles all the menu configuration for edit employee'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = employee.get_edit_dict()
         nav_dict[9] = self.__ui_base_functions.back
@@ -112,7 +113,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_employee_list_menu(self, employee_list):
-        ''' Handles all the menu configurations to select a employee from a list '''
+        '''Handles all the menu configurations to select a employee from a list'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
@@ -128,7 +129,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_airplane_type_list_menu(self, airplane_type_list):
-        ''' Handles all the menu configuration to select a airplane from a list '''
+        '''Handles all the menu configuration to select a airplane from a list'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
@@ -140,7 +141,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_pilots_list_menu(self, employee_list):
-        ''' Handles all the menu configuration to select a pilot from a list '''
+        '''Handles all the menu configuration to select a pilot from a list'''
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     2: self.get_pilots_filtered_by_airplane_type,
                     9: self.__ui_base_functions.back, 0: self.__ui_base_functions.home}
@@ -245,7 +246,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_pilots_filtered_by_airplane_type(self, employee_list = []):
-        ''' Gets all pilots filtered by airplane type, prompts user to input Airplane name '''
+        '''Gets all pilots filtered by airplane type, prompts user to input Airplane name'''
         # Header flag is used by ModelAPI to fetch the correct header for the table
         header_flag = "aircraft"
         airplane = self.__ui_base_functions.get_user_input("airplane name")
@@ -257,7 +258,7 @@ class UIEmployees():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_work_schedule(self, employee):
-        ''' Gets all upcomming voyages for a selected employee by date '''
+        '''Gets all upcomming voyages for a selected employee by date'''
         date = self.__ui_base_functions.get_user_date_input("date","DD-MM-YYYY")
         employee_work_schedule = self.__ll_api.get_work_schedule_list(employee, date)
         # Header flag is used by ModelAPI to fetch the correct header for the table
@@ -268,7 +269,7 @@ class UIEmployees():
     # Specific functions
 
     def create_pilot(self):
-        ''' Handles the create pilot process to write to DB'''
+        '''Handles the create pilot process to write to DB'''
         new_emp = self.__modelAPI.get_model("Employee")
         new_emp.set_title("Pilot")
         self.change_pilot_licence(new_emp)
@@ -302,7 +303,7 @@ class UIEmployees():
             self.__ui_base_functions.print_generic_error_message()
     
     def create_cabin_crew(self):
-        ''' Handles the create cabin crew process and calls to write to DB'''
+        '''Handles the create cabin crew process and calls to write to DB'''
         new_emp = self.__modelAPI.get_model("Employee")
         new_emp.set_title("Cabincrew")
         # This line gets the creation process stored in the model
@@ -334,7 +335,7 @@ class UIEmployees():
             self.__ui_base_functions.print_generic_error_message()
    
     def change_pilot_licence(self, employee):
-        ''' Handles the change licence process for pilots and calls to write to DB'''
+        '''Handles the change licence process for pilots and calls to write to DB'''
         # Header flag is used by ModelAPI to fetch the correct header for the table
         header_flag = "default"
         airplane_type_list = self.__ll_api.get_all_licences(employee)

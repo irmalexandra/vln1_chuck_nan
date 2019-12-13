@@ -10,8 +10,10 @@ class LLEmployees:
         self.__ll_voyages = None
         self.__ll_airplanes = None
 
+
     def set_ll_voyages(self, ll_voyage):
         self.__ll_voyages = ll_voyage
+
 
     def set_ll_airplanes(self, ll_airplanes):
         self.__ll_airplanes = ll_airplanes
@@ -41,7 +43,7 @@ class LLEmployees:
         found_ssn_list = []
         found_employee_list = []
 
-        for name, ssn in name_dict.items(): # uses the name:ssn dict to create a list of ssn that match the search string
+        for name, ssn in name_dict.items(): # Uses the name:ssn dict to create a list of ssn that match the search string
             if search_string in name:
                 found_ssn_list.append(ssn)
 
@@ -100,10 +102,10 @@ class LLEmployees:
                 or flight_start_date <= end_date <= flight_end_date\
                 or (flight_start_date <= start_date and end_date <= flight_end_date)\
                 or (flight_start_date >= start_date and end_date >= flight_end_date): 
-                # checks all possible combinations of flight arrival and departure times
+                # Checks all possible combinations of flight arrival and departure times
 
                 if type(voyage_ssn).__name__ == "list" and (employee.get_ssn() in voyage_ssn):
-                    upcoming_voyages.append(voyage) # handles the cases where there are multiple flight attendants working
+                    upcoming_voyages.append(voyage) # Handles the cases where there are multiple flight attendants working
 
                 elif employee.get_ssn() == voyage_ssn:
                     upcoming_voyages.append(voyage)
@@ -151,7 +153,7 @@ class LLEmployees:
     def overwrite_all_employees(self):
         '''Takes a list of employee instances and sends it to the data layer, returns a boolean'''
         if self.__dl_api.overwrite_all_employees(self.__all_employee_list):
-            self.get_all_employee_list(True) # updates the list of employees after new employe has been added to the repo
+            self.get_all_employee_list(True) # Updates the list of employees after new employe has been added to the repo
             return True
 
 
@@ -254,11 +256,11 @@ class LLEmployees:
         name = (name.replace(" ",".")).lower()
         all_employees = self.__dl_api.pull_all_employees()
         all_existing_emails = [employee.get_email() for employee in all_employees] 
-        # creates a list of all existing emails
+        # Creates a list of all existing emails
         number = 0
         temp_name  = name
         while temp_name + self.DOMAIN in all_existing_emails:
             number += 1
-            temp_name = name + str(number) # in case of email conflicts, the new email has a number attached
+            temp_name = name + str(number) # In case of email conflicts, the new email has a number attached
             
         return name + self.DOMAIN

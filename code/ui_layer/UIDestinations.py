@@ -1,6 +1,7 @@
 # UIDestinations handles all destination related ui functions. It utilizes UIBaseFunctions
 # For menu travelling. All sub menus are handled with dictionaries where the key would match
 # the user input. And the value would be a function call to a different sub menu or function
+
 class UIDestinations():
     RETURN_MENU_STR = "9. Return 0. Home"
 
@@ -9,7 +10,7 @@ class UIDestinations():
         self.__modelAPI = modelAPI
         self.__ui_base_functions = UIBaseFunctions
 
-    #All menu functions
+    # All menu functions
 
     def get_destination_sub_menu(self):
         '''Handles all the configurations of destination sub menu '''
@@ -40,7 +41,7 @@ class UIDestinations():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_selected_destination_menu(self, destination):
-        ''' Handles all the configuration for a selected destination '''
+        '''Handles all the configuration for a selected destination'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.change_contact_name,
                     2: self.change_contact_number,
@@ -54,7 +55,7 @@ class UIDestinations():
         return self.__ui_base_functions.check_return_value(return_value)
 
     def get_select_from_destination_list_menu(self, destination_list):
-        ''' Handles all the configuration to select a destination from a list '''
+        '''Handles all the configuration to select a destination from a list'''
         # Dictionary to handle navigation in this sub menu
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
@@ -97,7 +98,7 @@ class UIDestinations():
     # Specific functions
     
     def create_destination(self):
-        ''' Handles the create destination process and calls to write to DB'''
+        '''Handles the create destination process and calls to write to DB'''
         new_destination = self.__modelAPI.get_model("Destination")
         # This line gets the creation process stored in the model
         # The order of how the model is populated
@@ -130,7 +131,7 @@ class UIDestinations():
             self.__ui_base_functions.print_generic_error_message()
     
     def change_contact_name(self, destination):
-        ''' Handles the process of changing the contact name for a selected destination and calls to write to DB '''
+        '''Handles the process of changing the contact name for a selected destination and calls to write to DB'''
         new_name = self.__ui_base_functions.get_user_input("new contact name (first and last)")
         # Check to see if the new name is valid
         if destination.set_contact_name(new_name):
@@ -146,7 +147,7 @@ class UIDestinations():
             print("Error, {} invalid!".format(new_name))
 
     def change_contact_number(self, destination):
-        ''' Handles the process of changing the contact number for the selected destinaiton and calls to write to DB'''
+        '''Handles the process of changing the contact number for the selected destinaiton and calls to write to DB'''
         new_number = self.__ui_base_functions.get_user_input("new phone number")
         # Check to see if the new number is valid
         if destination.set_contact_number(new_number):

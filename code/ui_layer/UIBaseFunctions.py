@@ -3,7 +3,7 @@ from datetime import datetime
 # Other UI classes call UIBasefunctions to print out lists, menus, edit menus
 # And hnadle user input
 # It also has all the primary navigation functions for going back, and home and exiting the program
-#     
+  
 class UIBaseFunctions():
     UI_DIVIDER_INT = 140
     DEVIATION_INT = 2
@@ -12,6 +12,7 @@ class UIBaseFunctions():
     T_LEN = 26
     TRUE_LEN = LINE_LEN + 2 * T_LEN
     DISTINGUISHER = "{}\n{}\n\n".format("_"*TRUE_LEN, "_"*TRUE_LEN)
+
 
     def print_nan_airlines(self):
         print(self.DISTINGUISHER)
@@ -23,6 +24,7 @@ class UIBaseFunctions():
         print(self.T_LEN*" " + "╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝    ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝")
         print(self.DISTINGUISHER, end="")
 
+
     def __init__(self):
         pass
 
@@ -32,14 +34,17 @@ class UIBaseFunctions():
         ''' Handles the back function in the program '''
         return 9
 
+
     def home(self, optional = None):
         ''' Handles the home function in the program '''
         return 0
+
 
     def exit_program(self):
         ''' Exits the program '''
         exit()
     
+
     def check_return_value(self, return_value):
         ''' Handles most the logic for returning correctly through all the sub menus if back or home is pressed '''
         if return_value == 0:
@@ -47,7 +52,6 @@ class UIBaseFunctions():
         if return_value == 9:
             return 9
         return return_value
-
     
     # User input functions
 
@@ -60,9 +64,11 @@ class UIBaseFunctions():
             except ValueError:
                 print("Invalid value for {}".format(key_word))
 
+
     def get_user_input(self, key_word):
         ''' Prompts user for input returns the input '''
         return input("Enter {}: ".format(key_word))
+
 
     def get_user_selection(self, collection, key_word = "selection"):
         ''' Prompts user to select a menu option (dictionary) or to select a object in a list(index)
@@ -84,6 +90,7 @@ class UIBaseFunctions():
                     print("Invalid {}".format(key_word))
             except ValueError:
                 print("Invalid input")
+
 
     def get_user_date_input(self,date_or_time, date_or_time_format):
         ''' Prompts user for a date input on a specific format, and returns the date if its in a correct format '''
@@ -116,7 +123,7 @@ class UIBaseFunctions():
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) - len(return_menu_str) - self.DEVIATION_INT), return_menu_str))
             print("-" * self.UI_DIVIDER_INT)
             return_value = self.get_user_selection(nav_dict)
-            # checks to see if the model list is none, to make sure 
+            # Checks to see if the model list is none, to make sure 
             # a arguement is not needed for the function call ahead
             if model_list == None:
                 return_value = nav_dict[return_value]()
@@ -138,12 +145,13 @@ class UIBaseFunctions():
             if return_value != None:
                 return return_value
 
+
     def print_edit_model_menu(self,menu_str, nav_dict, model, edit_order_list, llapi, return_menu_str="9. Save"):
         ''' Handles the edit process for different model classes in the system, takes in a 
         menu_str, nav_dict, model, edit_order_list, llapi and a optional return menu str 
         '''
 
-        # THis function mainly handles all the user interaction in regard to the edit process
+        # This function mainly handles all the user interaction in regard to the edit process
         # of the model that it takes in. At the end of the function it calls the LLAPI in order to
         # store the changes in the DB
         while True:
@@ -174,7 +182,7 @@ class UIBaseFunctions():
                             print("Invalid {}".format(edit_order_list[return_value-1]))# for -1 human readability
                         
                 else:
-                    # check to see if the DL was able to write the changes successfully
+                    # Check to see if the DL was able to write the changes successfully
                     if llapi.overwrite_all_models(model): 
                         print(type(model).__name__+" edited successfully")
                         return
@@ -188,7 +196,7 @@ class UIBaseFunctions():
     
     def print_model_list(self, model_list, modelAPI, header_flag):
         ''' Prints a string return from the ModelAPI depending on the header flag for the model '''
-        # check to see if the list is empty
+        # Check to see if the list is empty
         if len(model_list) > 0:
             print("-" * self.UI_DIVIDER_INT)
             print(modelAPI.get_model_header_format(model_list[0], header_flag))
@@ -197,6 +205,7 @@ class UIBaseFunctions():
         else:
             print("No search results")
             return 
+
 
     def print_model(self, model):
         ''' Prints the __str__ function for the model '''
@@ -210,8 +219,9 @@ class UIBaseFunctions():
     def select_from_model_list(self, model_list):
         ''' Handles the user input for selecting a item from a list '''
         return_value = self.get_user_selection(model_list, "index")
-        return_value = self.print_model(model_list[return_value-1])#-1 for human readability
+        return_value = self.print_model(model_list[return_value-1]) # -1 for human readability
         return self.check_return_value(return_value)
+
 
     def select_from_crew_list(self, crew_list):
         ''' Handles the user input for selecting a item from the crew list '''
@@ -225,27 +235,35 @@ class UIBaseFunctions():
         print("-" * self.UI_DIVIDER_INT)
         print("Name: {}\nRank: {} \nAdded to voyage successfully!".format(employee.get_name(), employee.get_rank()))
 
+
     def print_airplane_added_results(self, airplane):
         print("Insignia {} added to voyage successfully!".format(airplane.get_insignia()))
+
 
     def print_airplane_licence_results(self, airplane):
         print("Airplane type {} selected successfully!".format(airplane.get_plane_type_id()))
         return airplane
 
+
     def print_create_voyage_results(self, destination, date, time):
         print("Voyage to {} departing on {} at {} created successfully!".format(destination.get_airport(), date, time))
+
 
     def print_create_employee_results(self, employee):
         print("Employee {} created successfully!".format(employee.get_name()))
 
+
     def print_create_destination_results(self, destination):
         print("Destination {}, {} created successfully!".format(destination.get_airport(), destination.get_country()))
+
 
     def print_edit_destination_number_results(self, destination):
         print("Destination contact info updated successfully! New contact number {}".format(destination.get_contact_number()))
 
+
     def print_edit_destination_contact_results(self, destination):
         print("Destination contact info updated successfully! New contact name {}".format(destination.get_contact_name()))
+
 
     def print_generic_error_message(self):
         print("Something went wrong... ")
