@@ -69,7 +69,7 @@ class LLDestinations:
         
         id_list.sort(reverse=True)
 
-        next_id_int = int(id_list[0]) + 1 # creates a variable that is highest id + 1
+        next_id_int = int(id_list[0]) + 1 # creates a variable that is highest destination id + 1
         if next_id_int <= 9:
             next_id_str = '0'+ str(next_id_int)
         else:
