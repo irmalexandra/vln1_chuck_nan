@@ -77,7 +77,7 @@ class Validator():
         return False
 
 
-    def validate_mobile_number(self, number):+
+    def validate_mobile_number(self, number):
         '''Takes a variable, returns a boolean'''
         return self.validate_phone_number(number)
 
