@@ -2,9 +2,8 @@ Captains Log, Stardate 25.11.2019
 
 Verkefni dagsins:
 	Hópa okkur saman og fara yfir verkefnið
-	Reyna skipuleggja greiningar vikuna
-	
-	
+	Reyna að skipuleggja greiningar vikuna
+		
 	Vikuskipulag:
 	
 	Mánudagur:
@@ -29,11 +28,11 @@ Verkefni dagsins:
 
 Captains Log, Stardate 26.11.2019
 
-Yfirferð gærdags.
+Yfirferð gærdags:
 	Kláruð verkefni:
 		Notendahópar
 
-	Verkefni kominn langt:
+	Verkefni komin langt:
 		Kröfulistinn
 		Notkunartilvik
 	
@@ -42,7 +41,7 @@ Yfirferð gærdags.
 		Klasarit
 	
 	Verkefni sem eru ekki byrjuð:
-		State diagram
+		Stöðurit
 
 Verkefni dagsins:
 	Fínpússa kröfulista
@@ -52,7 +51,7 @@ Verkefni dagsins:
 
 Captains Log, Stardate 27.11.2019
 
-Yfirferð gærdags. 
+Yfirferð gærdags: 
 	Kláruð verkefni:
 		Kröfulistinn
 
@@ -61,40 +60,38 @@ Yfirferð gærdags.
 		Use Cases
 
 	Verkefni sem eru byrjuð:
-		Class Diagram
-		State Diagram
+		Klasarit
+		Stöðurit
 
 Verkefni dagsins:
 	Tengja Use Cases við Wireframe/Happy Path
-	Class Diagram
-	State Diagram
+	Klasarit
+	Stöðurit
 
 
 Captains Log, Stardate 28.11.2019
 
-Yfirferð gærdags. 
-
+Yfirferð gærdags:
 	Verkefni komin langt:
 		Wireframes/Happy Path
 		Use Cases
-		Class Diagram
-		State Diagram
+		Klasarit
+		Stöðurit
 
-	Verkefni dagsins:
-		Tengja Use Cases við Wireframe/Happy Path
-		Class Diagram
-		State Diagram
+Verkefni dagsins:
+	Tengja Use Cases við Wireframe/Happy Path
+	Klasarit
+	Stöðurit
 
 
 Captains Log, Stardate 29.11.2019
 
 Yfirferð gærdags:
-
 	Verkefni komin langt:
 		Wireframes/Happy Path
 		Use Cases
-		Class Diagram
-		State Diagram
+		Klasarit
+		Stöðurit
 
 Verkefni dagsins:
 	Fínpússun á öllu
@@ -103,12 +100,12 @@ Verkefni dagsins:
 
 Captains Log, Stardate 02.12.2019
 
-Yfiferð föstudags:
+Yfirferð gærdags:
 	Verkefni kláruð:
 		Wireframes/Happy Path
 		Use Cases
-		Class Diagram
-		State Diagram
+		Klasarit
+		Stöðurit
 
 Verkefni dagsins:
 	Gera beinagrind forritsins
@@ -117,7 +114,7 @@ Verkefni dagsins:
 
 Captains Log, Stardate 03.12.2019
 
-Yfiferð mánudags:
+Yfiferð gærdags:
 	Skipulagning á næstu dögum
 	Gera beinagrind forritsins
 	Byrja að vinna í gagnagrunni
@@ -130,14 +127,14 @@ Verkefni dagsins:
 
 Captains Log, Stardate 04.12.2019
 
-Yfirferð þriðjudags:
+Yfirferð gærdags:
 	Beinagrind forritsins kláruð
 	Tenging milli layera orðin fullvirk
 	Model controller búinn til
 	Lesa í og úr repository í data layer klárað
 
-Verkefni dagsisns:
-	Klára UI stŕucture
+Verkefni dagsins:
+	Klára UI structure
 	Implementa ID fyrir employees
 	Byrja á logic layer virkni
 	Finna útur Back og Home
@@ -145,19 +142,19 @@ Verkefni dagsisns:
 
 Captains Log, Stardate 05.12.2019
 
-Yfirferð miðvikudags:
+Yfirferð gærdags:
 	DataLayer kláraður (þar til annað kemur í ljós)
-	UI structure kominn með svip, en þó tekur ekki við input
+	UI structure kominn með svip, en tekur þó ekki við input
 
 Verkefni dagsins:
 	Koma UI layernum í lag 
 	Vinna að Logic layer í leið
-	kroppa aðeins í validatorinn 
+	Kroppa aðeins í validatorinn 
 
 
 Captains Log, Stardate 06.12.2019
 
-Yfirferð fimmtudags:
+Yfirferð gærdags:
 	Unnið frekar í UI og logic layernum
 
 Verkefni dagsins:
@@ -167,7 +164,7 @@ Verkefni dagsins:
 
 Captains Log, Stardate 09.12.2019
 
-Yfirferð föstudags:
+Yfirferð gærdags:
 	Unnið frekar í UI, logic layernum og validator
 
 Verkefni dagsins:
@@ -177,7 +174,7 @@ Verkefni dagsins:
 
 Captains Log, Stardate 10.12.2019
 
-Yfirferð mánudags:
+Yfirferð gærdags:
 	Áframhaldandi vinna í UI og logic layernum
 	Beinagrind búin til af lokaskýrslu 
 
@@ -187,8 +184,30 @@ Verkefni dagsins:
 
 Captains Log, Stardate 11.12.2019
 
-Yfirferð þriðjudags:
+Yfirferð gærdags:
 	Unnið frekar í UI og logic layernum
 
 Verkefni dagsins:
 	Fínpúss og samræming á UI og logic layernum
+
+
+Captains Log, Stardate 12.12.2019
+
+Yfirferð gærdags:
+	Klárað að fínpússa og samræma UI og logic layerinn
+	
+Verkefni dagsins:
+	Fara yfir allt kerfið og athuga hvort allt virki
+	Samræma skýrsluna við kerfið
+
+
+Captains Log, Stardate 13.12.2019
+
+Verkefni gærdags:
+	Farið yfir allt kerfið og lögð lokahönd á forritunina
+	Skýrslan samræmd við kerfið
+
+Verkefni dagsins:
+	Gera myndband
+	Klára endanlega skýrslu
+	Skila öllu inn
