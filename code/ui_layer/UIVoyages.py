@@ -238,8 +238,7 @@ class UIVoyages():
             if self.__ll_api.create_voyage(return_value, new_date, new_time):
                 self.__ui_base_functions.print_create_voyage_results(return_value, new_date, new_time)
             else:
-                self.__ui_base_functions.print_generic_error_message()
-                
+                self.__ui_base_functions.print_generic_error_message()         
 
     def duplicate_voyage(self, voyage):
 
