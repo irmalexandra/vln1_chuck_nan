@@ -18,9 +18,12 @@ class DLAPI():
         return self.__dl_employees.pull_all_employees()
 
     def overwrite_all_employees(self, employee_list):
+        '''Gets a list of employee instances from the Logic layer and sends it to the Data layer
+            to overwrite the employee csv file with the given list '''
         return self.__dl_employees.overwrite_all_employees(employee_list)
 
     def append_employee(self, employee):
+        '''gets an employee instance, sends it to the data layer to append it into the employee csv file'''
         return self.__dl_employees.append_employee(employee)
 
     def pull_all_voyages(self):
@@ -28,9 +31,12 @@ class DLAPI():
         return self.__dl_voyages.pull_all_voyages()
 
     def overwrite_all_voyages(self, voyage_list):
+        '''gets a list of voyage instances, sends it to the data layer to have the voyage csv file 
+            overwritten by the given list   '''
         return self.__dl_voyages.overwrite_all_voyages(voyage_list)
 
     def append_voyage(self, voyage):
+        '''gets a voyage instance, sends it to the data layer to append it to the voyage csv file  '''
         return self.__dl_voyages.append_voyage(voyage)
 
     def pull_all_destinations(self):
@@ -38,6 +44,8 @@ class DLAPI():
         return self.__dl_destinations.pull_all_destinations()
 
     def overwrite_all_destinations(self, all_destination_list):
+        '''gets a list of destination instances, sends it to the data layer to overwrite 
+            the destinations csv file with the given list   '''
         return self.__dl_destinations.overwrite_all_destinations(all_destination_list)
     
     def append_destination(self, destination):
@@ -48,12 +56,12 @@ class DLAPI():
         '''Gets a list of all airplanes from the data layer and returns it'''
         return self.__dl_airplanes.pull_all_airplanes()
 
-    def overwrite_all_airplanes(self, airplane_list):
-        return self.__dl_airplanes.overwrite_all_airplanes(airplane_list)
 
     def pull_all_airplane_types(self):
         '''Gets a list of all airplane types from the data layer and returns it'''
         return self.__dl_airplanes.pull_airplane_types_info()
 
     def append_airplane(self, airplane):
+        '''gets an instance of the airplane model, sends it to the data layer to 
+            append it to the airplanes csv file  '''
         return self.__dl_airplanes.append_airplane(airplane)

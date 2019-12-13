@@ -1,4 +1,5 @@
-from validation.validator import Validator
+from logic_layer.LLValidator import Validator
+
 class AirplaneType():
     def __init__(self, plane_type_id = "", make = "", model = "", capacity = ""):
         self.__model_validation = Validator()

@@ -15,8 +15,8 @@ class LLAirplanes:
     # All list functions
 
     def get_all_airplane_list(self, changed = False):
-        '''Gets a list of instances of airplanes and returns it'''
-        if changed:
+        '''Initializes a list of instances after checking if it exists and returns it sorted'''
+        if changed: # various functions can send a flag to this function to force an update
             self.__all_airplane_list = self.__dl_api.pull_all_airplanes()
         
         if not self.__all_airplane_list:
@@ -24,22 +24,26 @@ class LLAirplanes:
 
         self.get_airplane_status()
         
-        return sorted(self.__all_airplane_list, key=lambda airplane: airplane.get_status())
+        return sorted(self.__all_airplane_list, key=lambda airplane: airplane.get_model())
+
 
     def get_all_airplane_list_by_period(self, date, time):
+        '''Takes variables and returns a list'''
         self.get_all_airplane_list()
 
         date_time = self.get_iso_format_date_time(date, time)
 
         self.get_airplane_status(date_time)
 
-        return self.__all_airplane_list
+        return sorted(self.__all_airplane_list, key=lambda airplane: airplane.get_status())
+
 
     def get_airplane_type_list(self):
         '''Gets a list of instances of airplane types and returns it'''
         self.__all_airplane_type_list = self.__dl_api.pull_all_airplane_types()
         return self.__all_airplane_type_list
     
+
     def filter_available_airplanes(self, voyage):
 
         all_airplane_list = self.get_all_airplane_list()
@@ -99,10 +103,6 @@ class LLAirplanes:
                             return True
         return False
 
-    def overwrite_all_airplanes(self, airplane_list):
-        if self.__dl_api.overwrite_all_airplanes(airplane_list):
-            self.get_all_airplane_list(True)
-            return True
 
     # All special functions
 

@@ -91,8 +91,6 @@ class LLAPI:
         if self.__modelAPI.validate_model(model):
             if type(model).__name__ == "Employee":
                 return self.__ll_employees.overwrite_all_employees()
-            if type(model).__name__ == "Airplane":
-                return self.__ll_airplanes.overwrite_all_airplanes()
             if type(model).__name__ == "Destination":
                 return self.__ll_destinations.overwrite_all_destinations()
             if type(model).__name__ == "Voyage":
