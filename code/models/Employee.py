@@ -27,78 +27,75 @@ class Employee():
                                  "date": self.get_model_list_date_info,
                                  "aircraft": self.get_model_list_aircraft_info}
 
-        self.__validation_dict = {self.get_name: self.set_name, 
+        self.__validation_dict = {self.get_name: self.set_name,
                                   self.get_ssn: self.set_ssn,
-                                  self.get_address: self.set_address, 
+                                  self.get_address: self.set_address,
                                   self.get_home_num: self.set_home_num,
                                   self.get_mobile_num: self.set_mobile_num,
                                   self.get_title: self.set_title,
                                   self.get_rank: self.set_rank}
-        
+
         self.__create_pilot_order_list = [
             'employee name (first and last)', 'ssn', 'home address', 'phone number', 'mobile number', 'rank (Captain or Copilot)']
 
-        self.__creation_pilot_dict = {"name (first and last)": self.set_name,
-                                "ssn": self.set_ssn,
-                                "home address": self.set_address,
-                                "phone number": self.set_home_num,
-                                "mobile number": self.set_mobile_num,
-                                "rank (Captain or Copilot)": self.set_rank_creation_process
-        }
+        self.__creation_pilot_dict = {"employee name (first and last)": self.set_name,
+                                      "ssn": self.set_ssn,
+                                      "home address": self.set_address,
+                                      "phone number": self.set_home_num,
+                                      "mobile number": self.set_mobile_num,
+                                      "rank (Captain or Copilot)": self.set_rank_creation_process
+                                      }
 
         self.__create_cabincrew_order_list = [
             'employee name (first and last)', 'ssn', 'home address', 'phone number', 'mobile number', 'rank (Flight Service Manager or Flight Attendant)']
 
-        self.__creation_cabincrew_dict = {"name (first and last)": self.set_name,
-                                "ssn": self.set_ssn,
-                                "home address": self.set_address,
-                                "phone number": self.set_home_num,
-                                "mobile number": self.set_mobile_num,
-                                "rank (Flight Service Manager or Flight Attendant)": self.set_rank_creation_process
-        }
+        self.__creation_cabincrew_dict = {"employee name (first and last)": self.set_name,
+                                          "ssn": self.set_ssn,
+                                          "home address": self.set_address,
+                                          "phone number": self.set_home_num,
+                                          "mobile number": self.set_mobile_num,
+                                          "rank (Flight Service Manager or Flight Attendant)": self.set_rank_creation_process
+                                          }
 
         self.__edit_order_list = [
             'home address', 'phone number', 'mobile number', "title", "rank"]
 
         self.__edit_dict = {1: self.set_address,
                             2: self.set_home_num,
-                            3: self.set_mobile_num, 
-                            4: self.set_title, 
-                            5: self.set_rank, 
+                            3: self.set_mobile_num,
+                            4: self.set_title,
+                            5: self.set_rank,
                             6: self.set_licence}
 
     def raw_info(self):
         return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + \
-            str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "," + self.__licence + "\n"
+            str(self.__mobile_num) + "," + self.__email + "," + \
+            self.__title + "," + self.__rank + "," + self.__licence + "\n"
 
     def __str__(self):
         return_str = "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nPhone number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}"\
-            .format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title,self.__rank)
+            .format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title, self.__rank)
         if self.__title == "Pilot":
             return_str += "\nLicence: {}".format(self.__licence)
         return return_str
-    
+
     def get_current_flight_number(self):
         return self.__current_flight_number
 
-    
-    def set_current_flight_number(self,new):
+    def set_current_flight_number(self, new):
         self.__current_flight_number = new
-
 
     def get_current_voyage(self):
         return self.__current_voyage
-    
+
     def set_current_voyage(self, new_voyage):
         self.__current_voyage = new_voyage
-    
+
     def set_current_destination(self, new):
         self.__current_destination = new
 
     def get_current_destination(self):
         return self.__current_destination
-
-
 
     def set_rank_creation_process(self, new_rank):
         title = self.get_title()
@@ -111,19 +108,20 @@ class Employee():
                 self.__rank = new_rank
                 return True
         return False
+
     def set_availability(self, new):
         self.__availability = new
-    
+
     def get_availability(self):
         return self.__availability
-    
+
     def get_creation_process(self):
         title = self.get_title()
         if title == "Pilot":
             return self.__create_pilot_order_list, self.__creation_pilot_dict
         elif title == "Cabincrew":
             return self.__create_cabincrew_order_list, self.__creation_cabincrew_dict
-    
+
     def get_edit_dict(self):
         return self.__edit_dict
 
@@ -132,7 +130,7 @@ class Employee():
 
     def get_edit_order_list(self):
         return self.__edit_order_list
-    
+
     def get_name(self):
         return self.__name
 
@@ -145,7 +143,7 @@ class Employee():
 
     def get_ssn(self):
         return self.__ssn
-        
+
     def set_ssn(self, new_ssn):
         if self.__models_validation.validate_employee_ssn(new_ssn):
             self.__ssn = new_ssn
@@ -221,47 +219,46 @@ class Employee():
         return self.__header_format_dict[header_flag]()
 
     def get_model_header_default_format(self):
-        return "{:8}{:24}{:14}{:18}{:15}{:15}{:34}{:10}".format\
-            ("Index: ", "Name:", "SSN:", "Address:", "Phone number:", "Mobile number:", "Email:", "Title:")
+        return "{:8}{:24}{:14}{:18}{:15}{:15}{:34}{:10}".format("Index: ", "Name:", "SSN:", "Address:",
+                                                                "Phone number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_date_format(self):
-        return "{:8}{:24}{:18}{:15}{:25}{:33}{:15}".format\
-            ("Index:", "Name:",  "Mobile number:", "Title:", "Current status:","Voyage info:", "Flight number:")
+        return "{:8}{:22}{:18}{:15}{:25}{:35}{:15}".format("Index:", "Name:",  "Mobile number:", "Title:", "Current status:", "Voyage info:", "Flight number:")
 
     def get_model_header_aircraft_format(self):
-        return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format\
-            ("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
+        return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format("Index:", "Name:", "SSN:", "Address:",
+                                                            "Mobile number:", "Title:", "Licence:")
 
     def get_model_list_info(self, header_flag):
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
-        returnObject = ("   {:24}{:18}{:15}{:25}{:33}{:15}|\n".format(
-                                                     self.get_name(),
-                                                     self.get_mobile_num(),
-                                                     self.get_title(),
-                                                     self.get_current_destination(),
-                                                     self.get_current_voyage(),
-                                                     self.get_current_flight_number()))
+        returnObject = ("   {:22}{:18}{:15}{:25}{:35}{:15}|\n".format(
+            self.get_name(),
+            self.get_mobile_num(),
+            self.get_title(),
+            self.get_current_destination(),
+            self.get_current_voyage(),
+            self.get_current_flight_number()))
         return returnObject
 
     def get_model_list_default_info(self):
         returnObject = ("   {:24}{:14}{:18}{:15}{:15}{:34}{:10}|\n".format(
-                                                            self.get_name(),
-                                                            self.get_ssn(),
-                                                            self.get_address(),
-                                                            self.get_home_num(),
-                                                            self.get_mobile_num(),
-                                                            self.get_email(),
-                                                            self.get_title()))
+            self.get_name(),
+            self.get_ssn(),
+            self.get_address(),
+            self.get_home_num(),
+            self.get_mobile_num(),
+            self.get_email(),
+            self.get_title()))
         return returnObject
 
     def get_model_list_aircraft_info(self):
         returnObject = ("     {:22}{:17}{:19}{:20}{:14}{:36}|\n".format(
-                                                       self.get_name(),
-                                                       self.get_ssn(),
-                                                       self.get_address(),
-                                                       self.get_mobile_num(),
-                                                       self.get_title(),
-                                                       self.get_licence()))
+            self.get_name(),
+            self.get_ssn(),
+            self.get_address(),
+            self.get_mobile_num(),
+            self.get_title(),
+            self.get_licence()))
         return returnObject

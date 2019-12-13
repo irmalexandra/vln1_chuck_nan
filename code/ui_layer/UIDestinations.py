@@ -1,6 +1,5 @@
 class UIDestinations():
     RETURN_MENU_STR = "9. Return 0. Home"
-    EDIT_FEEDBACK_TPL = ("name", "number")
 
     def __init__(self, LLAPI, modelAPI, UIBaseFunctions):
         self.__ll_api = LLAPI
@@ -30,7 +29,7 @@ class UIDestinations():
             destination_menu, nav_dict)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def get_selected_destination_menu(self, employee):
+    def get_selected_destination_menu(self, destination):
 
         nav_dict = {1: self.change_contact_name,
                     2: self.change_contact_number,
@@ -38,15 +37,15 @@ class UIDestinations():
                     0: self.__ui_base_functions.home}
         destination_menu = "1. Change contact name 2. Change phone number"
         return_value = self.__ui_base_functions.print_menu(
-            destination_menu, nav_dict, employee)
+            destination_menu, nav_dict, destination)
         return self.__ui_base_functions.check_return_value(return_value)
 
-    def get_select_from_destination_list_menu(self, employee_list):
+    def get_select_from_destination_list_menu(self, destination_list):
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
         destination_menu = "1. Select destination"
-        return_value = self.__ui_base_functions.print_menu(destination_menu, nav_dict, employee_list)
+        return_value = self.__ui_base_functions.print_menu(destination_menu, nav_dict, destination_list)
         if return_value != None and return_value != 0:
             return_value = self.get_selected_destination_menu(return_value)
         return self.__ui_base_functions.check_return_value(return_value)

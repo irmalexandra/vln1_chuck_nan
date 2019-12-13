@@ -39,18 +39,18 @@ class LLAirplanes:
 
 
     def get_airplane_type_list(self):
-        '''Gets a list of instances of airplane types and returns it'''
+        '''Gets a list of instances and returns it'''
         self.__all_airplane_type_list = self.__dl_api.pull_all_airplane_types()
         return self.__all_airplane_type_list
     
 
     def filter_available_airplanes(self, voyage):
-
+        '''Takes a voyage instance and returns a list of airplane instances'''
         all_airplane_list = self.get_all_airplane_list()
         
         selected_voyage_start_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
         selected_voyage_end_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
-
+        
         self.get_airplane_status(selected_voyage_start_date)
 
         available_airplane_list = []
@@ -70,7 +70,7 @@ class LLAirplanes:
             elif voyage_start_date <= selected_voyage_start_date <= voyage_end_date \
                 or voyage_start_date <= selected_voyage_end_date <= voyage_end_date:
                 unavailable_voyages.append(voyage)
-
+        # creates a list of voyages that occurr in the same time frame as selected voyage
 
         for voyage in unavailable_voyages:
             unavailable_airplane_insignias.append(voyage.get_airplane_insignia())
@@ -85,10 +85,13 @@ class LLAirplanes:
 
     # All change functions
 
-    def create_airplane(self, airplane, airplane_types,insignia):
+    def create_airplane(self, airplane, airplane_types, insignia):
         '''Gets a list of airplane instances, checks if user created instance exists in list, returns boolean and instance'''
         self.get_all_airplane_list()
-        existing_airplanes_list = [x.get_insignia() for x in self.__all_airplane_list]
+        insignia = insignia.upper()
+        existing_airplanes_list = [airplane.get_insignia() for airplane in self.__all_airplane_list]
+        # list comprehension that returns a list of all taken airplane insignias
+
         if airplane.get_insignia() not in existing_airplanes_list:
             existing_airplane_types = airplane_types
             airplane_make = airplane.get_make()
@@ -103,11 +106,10 @@ class LLAirplanes:
                             return True
         return False
 
-
     # All special functions
 
     def get_airplane_status(self, current_date = datetime.now().replace(microsecond=0)):
-
+        '''Takes a date and gets a list of airplane instances, updates their status'''
         for airplane in self.__all_airplane_list:
             airplane.set_status("Not in use")
             airplane.set_current_destination("N/A")
@@ -148,8 +150,10 @@ class LLAirplanes:
                         airplane.set_flight_number(voyage.get_return_flight_num())
                         airplane.set_status("In air, returning")
 
+
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
-        if type(date).__name__ != 'datetime':
+        '''Takes two variables in various date/time formats and returns a datetime instance'''
+        if type(date).__name__ != 'datetime': #skips everything if what is being sent in is already in datetime
 
             if date.find("T") == -1:
                 new_date = datetime.strptime(date,'%d-%m-%Y')

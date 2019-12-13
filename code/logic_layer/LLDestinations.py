@@ -16,8 +16,9 @@ class LLDestinations:
 
         return sorted(self.__all_destination_list, key=lambda destination: destination.get_country())
 
+
     def get_destination_list_by_country(self, country):
-        ''' Gets input from UI layer and returns an instance '''
+        '''Gets input from UI layer and returns a list of instances'''
 
         self.get_all_destination_list()
         found_destination_list = []
@@ -31,7 +32,7 @@ class LLDestinations:
     # All change functions
 
     def create_destination(self, destination):
-        
+        '''Gets instance and sends it down to the data layer, returns a boolean'''
         destination_id = self.generate_destination_id()
         if destination_id:
             destination.set_destination_id(destination_id)
@@ -45,8 +46,9 @@ class LLDestinations:
             
         return False
 
+
     def overwrite_all_destinations(self):
-        ''' Takes a list of destination instances and sends it to the DL ''' 
+        '''Takes a list of destination instances and sends it to the DL''' 
         if self.__dl_api.overwrite_all_destinations(self.__all_destination_list):
             self.get_all_destination_list()
             return True
@@ -54,10 +56,12 @@ class LLDestinations:
     # All special functions
 
     def validate_destination(self, destination):
-        ''' Gets destination instance and returns a boolean '''
+        '''Gets destination instance and sends it to get validated, returns a boolean'''
         return self.__modelAPI.validate_model(destination)
 
+
     def generate_destination_id(self):
+        '''Gets a list of instances and returns a generated number based on the newest instance''' 
         self.get_all_destination_list()
         id_list = []
         for destination in self.__all_destination_list:
@@ -65,7 +69,7 @@ class LLDestinations:
         
         id_list.sort(reverse=True)
 
-        next_id_int = int(id_list[0]) + 1
+        next_id_int = int(id_list[0]) + 1 # creates a variable that is highest destination id + 1
         if next_id_int <= 9:
             next_id_str = '0'+ str(next_id_int)
         else:

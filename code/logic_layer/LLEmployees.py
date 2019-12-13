@@ -19,7 +19,7 @@ class LLEmployees:
     # All list functions
 
     def get_all_employee_list(self, changed = False):
-        ''' Pulls and returns a list of employee instances '''
+        '''Gets and returns a list of employee instances'''
         if changed:
             self.__all_employee_list = self.__dl_api.pull_all_employees()
         if not self.__all_employee_list:
@@ -27,17 +27,21 @@ class LLEmployees:
         self.get_working_or_not()
         return self.__all_employee_list
 
+
     def sort_all_employees_by_name(self):
+        '''Gets a list of instances and returns it sorted alphabetically'''
         return sorted(self.get_all_employee_list(), key=lambda employee: employee.get_name())
 
+
     def filter_employees_by_name(self, search_string):
-        ''' Pulls a list of employee instances and returns a list of instances based on search_string '''
+        '''Takes a input string and gets a list of employee instances \
+            and returns a sorted list of instances based on the string variable'''
 
         name_dict = self.get_name_dict()
         found_ssn_list = []
         found_employee_list = []
 
-        for name, ssn in name_dict.items():
+        for name, ssn in name_dict.items(): # uses the name:ssn dict to create a list of ssn that match the search string
             if search_string in name:
                 found_ssn_list.append(ssn)
 
@@ -47,8 +51,10 @@ class LLEmployees:
 
         return sorted(found_employee_list, key=lambda employee: employee.get_name())
 
+
     def filter_all_employees_by_title(self, title):
-        '''Gets a list of all employees and returns a list of employees filtered by title from input'''
+        '''Takes a input variable and gets a list of all employees, \
+            returns a list of employees filtered by title from input'''
 
         filter_list = []
         for employee in self.get_all_employee_list():
@@ -56,14 +62,16 @@ class LLEmployees:
                 filter_list.append(employee)
         return sorted(filter_list, key=lambda employee: employee.get_name())
 
+
     def sort_pilots_by_airplane_type(self):
-        '''Gets a list of pilots and returns it sorted'''
+        '''Gets a list of pilots and returns it sorted by licence'''
         title = "Pilot"
         pilot_list = self.filter_all_employees_by_title(title)
         return sorted(pilot_list, key=lambda employee: employee.get_licence())
 
+
     def filter_pilots_by_airplane_type(self, airplane_type):
-        '''Gets a list of all pilots and returns a list of pilots filtered by airplane type'''
+        '''Takes a input string and gets a list of all pilots, returns a list of pilots filtered by airplane type'''
         pilot_list = self.sort_pilots_by_airplane_type()
         
         filter_list = []
@@ -73,8 +81,10 @@ class LLEmployees:
         
         return sorted(filter_list, key=lambda employee: employee.get_name())
 
+
     def get_work_schedule_list(self, employee, date):
-        '''Gets list of all voyages and instance of employee, returns voyages employee is working in the future'''
+        '''Takes an instance and input string and gets list of all voyages, \
+            returns a list of voyage instances employee is working in the future'''
 
         start_date = self.get_iso_format_date_time(date)
         end_date = start_date + timedelta(days=7)
@@ -89,17 +99,20 @@ class LLEmployees:
             if flight_start_date <= start_date <= flight_end_date\
                 or flight_start_date <= end_date <= flight_end_date\
                 or (flight_start_date <= start_date and end_date <= flight_end_date)\
-                or (flight_start_date >= start_date and end_date >= flight_end_date):
+                or (flight_start_date >= start_date and end_date >= flight_end_date): 
+                # checks all possible combinations of flight arrival and departure times
 
                 if type(voyage_ssn).__name__ == "list" and (employee.get_ssn() in voyage_ssn):
-                    upcoming_voyages.append(voyage)
+                    upcoming_voyages.append(voyage) # handles the cases where there are multiple flight attendants working
 
                 elif employee.get_ssn() == voyage_ssn:
                     upcoming_voyages.append(voyage)
 
         return sorted(upcoming_voyages, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
+
     def get_all_licences(self, employee):
+        '''Takes an instance and returns a list of licences minus the licence attached to instance'''
         current_licence = employee.get_licence()
         airplane_types = self.__ll_airplanes.get_airplane_type_list()
         licence_list = []
@@ -110,12 +123,23 @@ class LLEmployees:
         return licence_list
             
 
+    def get_name_dict(self):
+        '''Gets a list of employee instances and returns a dict where key is name and value is ssn'''
+        self.get_all_employee_list()
+        name_dict = {}
+        for employee in self.__all_employee_list:
+            name_dict[employee.get_name()] = employee.get_ssn()
+        return name_dict
+
     # All change functions
 
     def create_employee(self, employee):
+        '''Takes a newly created instance and sends it down to the data layer, returns a boolean'''
+
         employee.set_email(self.email_generator(employee.get_name()))
         if not self.__all_employee_list:
             self.get_all_employee_list()
+
         if self.__modelAPI.validate_model(employee):
             if self.__dl_api.append_employee(employee):
                 self.get_all_employee_list(True)
@@ -124,20 +148,16 @@ class LLEmployees:
         return False
 
     def overwrite_all_employees(self):
-        ''' Takes a list of employee instances and sends it to the DL '''
+        '''Takes a list of employee instances and sends it to the data layer, returns a boolean'''
         if self.__dl_api.overwrite_all_employees(self.__all_employee_list):
-            self.get_all_employee_list(True)
+            self.get_all_employee_list(True) # updates the list of employees after new employe has been added to the repo
             return True
 
 
-    def turn_iso_format_friendly(self, date, time):
-        '''Honestly, I don't know what to tell you'''
-        day, month, year = date.split("-")
-        return "{}-{}-{}T{}".format(year,month,day,time)
-
     def filter_working(self, date, hours, flag):
+        '''Takes a date and time, gets a list of instances and returns a filtered list depending on status''' 
         self.get_all_employee_list()
-        date_time = self.turn_iso_format_friendly(date,hours)
+        date_time = self.get_iso_format_date_time(date, hours)
         self.get_working_or_not(date_time)
         return_list = []
         if flag.lower() == "working":
@@ -151,7 +171,9 @@ class LLEmployees:
         return sorted(return_list, key=lambda employee: employee.get_current_flight_number())
 
     def get_working_or_not(self, date = datetime.today().replace(microsecond=0).isoformat()):
+        '''Takes a date and gets various instance lists, returns employee instances við numerious updates attributes'''
         all_voyages_in_range = self.__ll_voyages.filter_voyage_by_date(date)
+
         if not all_voyages_in_range:
             for employee in self.__all_employee_list:
                 employee.set_availability("Available")
@@ -162,7 +184,6 @@ class LLEmployees:
             current_time = self.get_iso_format_date_time(date)
             working = []
 
-
             for voyage in all_voyages_in_range:
                 departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
                 departing_flight_arrival_date = self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date())
@@ -171,16 +192,13 @@ class LLEmployees:
 
                 flying_from = voyage.get_departing_flight_departing_from()
                 flying_to = voyage.get_return_flight_departing_from()
-                fa_ssns = voyage.get_fa_ssns()
-                captain_ssn = voyage.get_captain_ssn()
-                co_pilot_ssn = voyage.get_copilot_ssn()
-                fsm_ssn = voyage.get_fsm_ssn()
+                all_crew_ssn = voyage.get_all_crew_ssn()
                 flight_out_number = voyage.get_departing_flight_num()
                 flight_in_number = voyage.get_return_flight_num()
 
                 for employee in self.__all_employee_list:
                     employee_ssn = employee.get_ssn()
-                    if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
+                    if employee_ssn in all_crew_ssn: 
                         employee.set_availability("Not available")
                         employee.set_current_voyage("From: {} to: {}".format(flying_from,flying_to))
                         if employee not in working:
@@ -197,8 +215,6 @@ class LLEmployees:
                         elif return_flight_departure_date <= current_time <= return_flight_arrival_date:
                             employee.set_current_destination("Flying to {}".format(flying_to))
                             employee.set_current_flight_number(flight_in_number)
-                            
-
                         else:
                             employee.set_current_destination("Landed in {}".format(flying_from))
                             employee.set_current_voyage("Voyage completed")
@@ -218,13 +234,6 @@ class LLEmployees:
             if employee.get_ssn() == ssn:
                 return employee
 
-    def get_name_dict(self):
-        ''' Gets a list of employee instances and returns a dict where key is name and value is ssn '''
-        self.get_all_employee_list()
-        name_dict = {}
-        for employee in self.__all_employee_list:
-            name_dict[employee.get_name()] = employee.get_ssn()
-        return name_dict
 
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
         if type(date).__name__ != 'datetime':
