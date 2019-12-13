@@ -22,7 +22,7 @@ class LLVoyages:
     # All list functions
 
     def get_all_voyage_list(self, changed = False):
-
+        '''Gets and returns a list of voyage instances'''
         if changed:
             self.__all_voyage_list = self.__dl_api.pull_all_voyages()
         elif not self.__all_voyage_list:
@@ -33,7 +33,7 @@ class LLVoyages:
         return sorted(self.__all_voyage_list, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
     def filter_all_empty_voyages(self):
-        '''Takes a list of all voyage instances and returns a list of filtered voyage instances'''
+        '''Takes a list of all voyage instances and returns a list of filtered voyages by staffed status'''
         self.get_all_voyage_list() 
         empty_voyage_list = []
 
@@ -43,22 +43,29 @@ class LLVoyages:
 
         return sorted(empty_voyage_list, key=lambda voyage: voyage.get_departing_flight_departure_date())
 
+
     def filter_all_voyages_by_period(self, start_date, end_date):
-        '''Takes a list of all voyage instances and returns a list of voyages filteres by period'''
+        '''Takes a list of all voyage instances and returns a list of voyages filtered by period'''
         self.get_all_voyage_list()
         
         start = self.get_iso_format_date_time(start_date).replace(hour=0, minute= 0, second = 0)
         end = self.get_iso_format_date_time(end_date).replace(hour = 23, minute = 59, second = 59)
-
+        # Time is replaced to ensure both the start day and end day are completely covered
         period_voyage_list = []
 
         for voyage in self.__all_voyage_list:
-            if start <= self.get_iso_format_date_time(voyage.get_return_flight_arrival_date()) and self.get_iso_format_date_time(voyage.get_departing_flight_departure_date()) <= end:
+            
+            departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
+            return_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
+            
+            if start <= return_date and departure_date <= end:
                 period_voyage_list.append(voyage)
+
         return period_voyage_list
+
         
     def filter_all_voyages_by_airport(self, airport):
-
+        '''Takes a string input and uses it to filter all voyages, returns a list of voyages'''
         self.get_all_voyage_list()
         airport_voyage_list = []
 
@@ -68,8 +75,9 @@ class LLVoyages:
 
         return airport_voyage_list
 
-    def filter_available_employees(self, rank, voyage):
 
+    def filter_available_employees(self, rank, voyage):
+        '''Takes a rank string and voyage instance, returns a list of employee instances'''
         start_date = voyage.get_departing_flight_departure_date()
         end_date = voyage.get_return_flight_arrival_date()
         voyages_in_date_range_list = self.filter_all_voyages_by_period(start_date, end_date)
@@ -77,7 +85,7 @@ class LLVoyages:
         all_employee_list = self.__ll_employees.get_all_employee_list() 
 
         filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
-
+        # creates a list of all employees that with the requested rank
         available_employee_list = []
 
         for other_voyage in voyages_in_date_range_list:   
@@ -92,6 +100,7 @@ class LLVoyages:
                     else:
                         if employee_ssn != voyage_ssn:
                             available_employee_list.append(employee)
+        # creates a list of employees that aren't in other voyages around the same time as the voyage in question
 
         final_employee_list = available_employee_list    
         
@@ -100,35 +109,28 @@ class LLVoyages:
             for airplane in self.__ll_airplanes.get_all_airplane_list():
                 if airplane.get_insignia() == voyage.get_airplane_insignia():
                     selected_airplane = airplane
-                    break
+                    break # Gets the instance of the airplane assigned to the voyage
 
             airplane_type = "NA" + selected_airplane.get_make() + selected_airplane.get_model()
-
+            # Creates the airplane type that will match with employee licence
             for employee in available_employee_list: 
                 if employee.get_licence() == airplane_type:
                     final_employee_list.append(employee)
-
+            # Final filter
         return sorted(final_employee_list, key=lambda employee: employee.get_name())
 
     # All change functions
 
     def create_voyage(self, destination, start_date = "00-00-0000", start_time = "00:00:00"):
-
+        '''Takes a destination instance, date and time strings and returns a boolean'''
         current_date = datetime.today()
 
         self.get_all_voyage_list()
-        if type(start_date).__name__ != "datetime":
-            try:
-                fixed_date = datetime.strptime(start_date, '%d-%m-%Y')
-                fixed_time = datetime.strptime(start_time, '%H:%M:%S').time()
-            except ValueError:
-                return False
-            fixed_date_time = datetime.combine(fixed_date, fixed_time)
-        else:
-            fixed_date_time = start_date
-        
+
+        fixed_date_time = self.get_iso_format_date_time(start_date, start_time)
+
         if current_date > fixed_date_time: 
-            return False
+            return False # Ensures that no new voyages can be created back in time
 
         new_voyage = self.__modelAPI.get_model("Voyage")
 
@@ -140,8 +142,8 @@ class LLVoyages:
         new_voyage.set_fsm_ssn(".")
         new_voyage.set_fa_ssns([".", "."])
 
-        dep_flight_num, ret_flight_num = self.generate_flight_numbers(start_date, destination) 
-        new_voyage.set_flight_numbers(dep_flight_num, ret_flight_num)
+        dep_flight_num_str, ret_flight_num_str = self.generate_flight_numbers(start_date, destination) 
+        new_voyage.set_flight_numbers(dep_flight_num_str, ret_flight_num_str)
 
         departing_flight_arrival_date_str, return_flight_departure_date_str, return_flight_arrival_date_str \
             = self.calculate_flight_times(fixed_date_time, destination.get_airport())
@@ -158,7 +160,7 @@ class LLVoyages:
             
             if other_start_date == start_date or other_start_date == end_date or\
                 other_end_date == start_date or other_end_date == end_date:
-                return False
+                return False # Ensures that no flight can depart or arrive at reykjavik airport at the same time
 
         if self.__modelAPI.validate_model(new_voyage):
             if self.__dl_api.append_voyage(new_voyage):
@@ -167,13 +169,16 @@ class LLVoyages:
 
         return False
 
+
     def overwrite_all_voyages(self):
+        '''Sends a overwrite request to the data layer'''
         if self.__dl_api.overwrite_all_voyages(self.__all_voyage_list):
             self.get_all_voyage_list(True)
             return True
 
+
     def duplicate_voyage(self, voyage, start_date = "00-00-0000", start_time = "00:00:00"):
-        '''Copies a voyage to another date'''
+        '''Takes a voyage instance, a date and time, returns a boolean sent from create voyage function'''
         all_destination_list = self.__ll_destinations.get_all_destination_list()
 
         for destination in all_destination_list:
@@ -182,8 +187,9 @@ class LLVoyages:
 
         return self.create_voyage(selected_destination, start_date, start_time)
 
-    def repeat_voyage(self, voyage, repeat_interval, end_date = "00-00-0000"):
 
+    def repeat_voyage(self, voyage, repeat_interval, end_date = "00-00-0000"):
+        '''Takes a voyage instance, an integer and a date string, returns a boolean after running through duplicate'''
         success = False
         try:
             date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
@@ -195,31 +201,40 @@ class LLVoyages:
         while date < end_date:
             try:
                 date += timedelta(days=repeat_interval)
+                # Try except in case SOMEONE decides that the repeat interval should be a very high number
             except OverflowError:
                 return False
             success = self.duplicate_voyage(voyage, date)
             date += timedelta(days=repeat_interval)
-            
+            # this loop runs until the end date has been met, calling the duplicate function and incrementing the date each time
         return success
             
+
     def add_employee_to_voyage(self, voyage, employee):
+        '''Takes voyage and employee instances and adds employee ssn to voyage, then if successful sends a overwrite request to data layer'''
         rank_dict = {'Captain':voyage.set_captain_ssn, 
                      'Copilot':voyage.set_copilot_ssn, 
                      'Flight Service Manager':voyage.set_fsm_ssn, 
                      'Flight Attendant':voyage.set_fa_ssns}
-
+        # This dictionary matches the return from get_rank() with a function call in the voyage model
         employee_ssn_str = employee.get_ssn()
         employee_rank_str = employee.get_rank()
         check = rank_dict[employee_rank_str](employee_ssn_str)
+        # Tries to send the employee ssn to the appropriate rank of the voyage, returns a boolean
         if check:
             return self.overwrite_all_voyages()
         return check
     
+
     def add_airplane_to_voyage(self, voyage, airplane):
+        '''Takes voyage and airplane instances and adds the airplane name to the voyage,\
+            sends a overwrite request to data layer'''
         if voyage.set_airplane_insignia(airplane.get_insignia()):
             return self.overwrite_all_voyages()
               
+              
     def check_status(self):
+        '''Gets the current date and a list of voyage instances, updates the status variable of each instance'''
         current_date = datetime.today()
 
         for voyage in self.__all_voyage_list:
@@ -242,8 +257,9 @@ class LLVoyages:
             else:
                 voyage.set_status("Voyage completed")
     
+
     def check_staffed(self):
-        '''Gets a list of all voyage instances and checks if varioust '''
+        '''Gets a list of all voyage instances and checks if voyage is fully staffed, sets voyage status'''
 
         for voyage in self.__all_voyage_list:
             all_crew_ssn = voyage.get_all_required_crew_ssn()
