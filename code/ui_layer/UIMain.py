@@ -20,13 +20,21 @@ class UIMain():
         self.__ui_base_functions = UIBaseFunctions()
         self.__modelAPI = ModelAPI()
         self.__ui_employees = UIEmployees(
-            self.__LLAPI, self.__modelAPI, self.__ui_base_functions)
+                                        self.__LLAPI,
+                                        self.__modelAPI, 
+                                        self.__ui_base_functions)
         self.__ui_voyages = UIVoyages(
-            self.__LLAPI, self.__modelAPI, self.__ui_base_functions)
+                                        self.__LLAPI, 
+                                        self.__modelAPI, 
+                                        self.__ui_base_functions)
         self.__ui_destinations = UIDestinations(
-            self.__LLAPI, self.__modelAPI, self.__ui_base_functions)
+                                        self.__LLAPI, 
+                                        self.__modelAPI, 
+                                        self.__ui_base_functions)
         self.__ui_airplanes = UIAirplanes(
-            self.__LLAPI, self.__modelAPI, self.__ui_base_functions)
+                                        self.__LLAPI, 
+                                        self.__modelAPI, 
+                                        self.__ui_base_functions)
 
     def display_main_menu(self):
         while True:
