@@ -241,8 +241,8 @@ class Voyage():
             
         return True
         
-    def get_all_crew_ssn(self):
-        return [self.get_captain_ssn(), self.get_copilot_ssn(), self.get_fsm_ssn(), self.get_fa_ssns()]
+    def get_all_required_crew_ssn(self):
+        return [self.get_captain_ssn(), self.get_copilot_ssn(), self.get_fsm_ssn()]
         
     def get_voyage_employee_ssn(self, rank):
         return self.__voyage_employee_ssn_dict[rank]()

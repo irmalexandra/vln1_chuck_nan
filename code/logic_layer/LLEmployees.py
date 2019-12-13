@@ -147,6 +147,7 @@ class LLEmployees:
             
         return False
 
+
     def overwrite_all_employees(self):
         '''Takes a list of employee instances and sends it to the data layer, returns a boolean'''
         if self.__dl_api.overwrite_all_employees(self.__all_employee_list):
@@ -157,9 +158,11 @@ class LLEmployees:
     def filter_working(self, date, hours, flag):
         '''Takes a date and time, gets a list of instances and returns a filtered list depending on status''' 
         self.get_all_employee_list()
+
         date_time = self.get_iso_format_date_time(date, hours)
         self.get_working_or_not(date_time)
         return_list = []
+
         if flag.lower() == "working":
             for employee in self.__all_employee_list:
                 if employee.get_availability() == "Not available":
@@ -169,6 +172,7 @@ class LLEmployees:
                 if employee.get_availability() == "Available":
                     return_list.append(employee)
         return sorted(return_list, key=lambda employee: employee.get_current_flight_number())
+
 
     def get_working_or_not(self, date = datetime.today().replace(microsecond=0).isoformat()):
         '''Takes a date and gets various instance lists, returns employee instances við numerious updates attributes'''
@@ -190,9 +194,12 @@ class LLEmployees:
                 return_flight_departure_date = self.get_iso_format_date_time(voyage.get_return_flight_departure_date())
                 return_flight_arrival_date = self.get_iso_format_date_time(voyage.get_return_flight_arrival_date())
 
+                all_crew_ssn = voyage.get_all_required_crew_ssn()
+                for ssn in voyage.get_fa_ssns():
+                    all_crew_ssn.append(ssn)
+
                 flying_from = voyage.get_departing_flight_departing_from()
                 flying_to = voyage.get_return_flight_departing_from()
-                all_crew_ssn = voyage.get_all_crew_ssn()
                 flight_out_number = voyage.get_departing_flight_num()
                 flight_in_number = voyage.get_return_flight_num()
 
@@ -228,14 +235,8 @@ class LLEmployees:
 
     # All special functions
 
-    def get_one_employee(self, ssn):
-        '''Shows information about one employee'''
-        for employee in self.get_all_employee_list():
-            if employee.get_ssn() == ssn:
-                return employee
-
-
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
+        '''Takes two variables in various date/time formats and returns a datetime instance'''
         if type(date).__name__ != 'datetime':
 
             if date.find("T") == -1:
@@ -247,15 +248,17 @@ class LLEmployees:
             return new_date
         return date
 
+
     def email_generator(self,name):
         '''Makes a new e-mail address for a new employee'''
         name = (name.replace(" ",".")).lower()
         all_employees = self.__dl_api.pull_all_employees()
-        all_existing_emails = [x.get_email() for x in all_employees]
+        all_existing_emails = [employee.get_email() for employee in all_employees] 
+        # creates a list of all existing emails
         number = 0
         temp_name  = name
         while temp_name + self.DOMAIN in all_existing_emails:
             number += 1
-            temp_name = name + str(number)
+            temp_name = name + str(number) # in case of email conflicts, the new email has a number attached
             
         return name + self.DOMAIN
