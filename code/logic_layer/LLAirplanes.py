@@ -88,7 +88,7 @@ class LLAirplanes:
     def create_airplane(self, airplane, airplane_types, insignia):
         '''Gets a list of airplane instances, checks if user created instance exists in list, returns boolean and instance'''
         self.get_all_airplane_list()
-
+        insignia = insignia.upper()
         existing_airplanes_list = [airplane.get_insignia() for airplane in self.__all_airplane_list]
         # list comprehension that returns a list of all taken airplane insignias
 
@@ -109,7 +109,7 @@ class LLAirplanes:
     # All special functions
 
     def get_airplane_status(self, current_date = datetime.now().replace(microsecond=0)):
-
+        '''Takes a date and gets a list of airplane instances, updates their status'''
         for airplane in self.__all_airplane_list:
             airplane.set_status("Not in use")
             airplane.set_current_destination("N/A")
