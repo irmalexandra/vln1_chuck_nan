@@ -155,9 +155,9 @@ class LLEmployees:
 
 
     def filter_working(self, date, hours, flag):
+        '''Takes a date and time, gets a list of instances and returns a filtered list depending on status''' 
         self.get_all_employee_list()
         date_time = self.get_iso_format_date_time(date, hours)
-        #date_time = self.turn_iso_format_friendly(date,hours)
         self.get_working_or_not(date_time)
         return_list = []
         if flag.lower() == "working":
@@ -171,6 +171,7 @@ class LLEmployees:
         return sorted(return_list, key=lambda employee: employee.get_current_flight_number())
 
     def get_working_or_not(self, date = datetime.today().replace(microsecond=0).isoformat()):
+        '''Takes a date and gets various instance lists, returns employee instances við numerious updates attributes'''
         all_voyages_in_range = self.__ll_voyages.filter_voyage_by_date(date)
 
         if not all_voyages_in_range:
@@ -183,7 +184,6 @@ class LLEmployees:
             current_time = self.get_iso_format_date_time(date)
             working = []
 
-
             for voyage in all_voyages_in_range:
                 departing_flight_departure_date = self.get_iso_format_date_time(voyage.get_departing_flight_departure_date())
                 departing_flight_arrival_date = self.get_iso_format_date_time(voyage.get_departing_flight_arrival_date())
@@ -192,16 +192,13 @@ class LLEmployees:
 
                 flying_from = voyage.get_departing_flight_departing_from()
                 flying_to = voyage.get_return_flight_departing_from()
-                fa_ssns = voyage.get_fa_ssns()
-                captain_ssn = voyage.get_captain_ssn()
-                co_pilot_ssn = voyage.get_copilot_ssn()
-                fsm_ssn = voyage.get_fsm_ssn()
+                all_crew_ssn = voyage.get_all_crew_ssn()
                 flight_out_number = voyage.get_departing_flight_num()
                 flight_in_number = voyage.get_return_flight_num()
 
                 for employee in self.__all_employee_list:
                     employee_ssn = employee.get_ssn()
-                    if employee_ssn in fa_ssns or employee_ssn == captain_ssn or employee_ssn == co_pilot_ssn or employee_ssn == fsm_ssn:
+                    if employee_ssn in all_crew_ssn: 
                         employee.set_availability("Not available")
                         employee.set_current_voyage("From: {} to: {}".format(flying_from,flying_to))
                         if employee not in working:
@@ -218,8 +215,6 @@ class LLEmployees:
                         elif return_flight_departure_date <= current_time <= return_flight_arrival_date:
                             employee.set_current_destination("Flying to {}".format(flying_to))
                             employee.set_current_flight_number(flight_in_number)
-                            
-
                         else:
                             employee.set_current_destination("Landed in {}".format(flying_from))
                             employee.set_current_voyage("Voyage completed")
