@@ -9,6 +9,7 @@ class Airplane():
         self.__model = model
         self.__capacity = capacity
         
+        # A dictionary that is used in the validate model process
         self.__validation_dict = {self.get_insignia:self.set_insignia}
 
         self.__status = "Not in use"
@@ -21,6 +22,7 @@ class Airplane():
         return "Insignia: {:>2}\nMake: {:>2}\nModel: {:>2}\nMaximum seats: {:>2}".format(self.__insignia, self.__make, self.__model, self.__capacity)
 
     def raw_info(self):
+        ''' A function that returns a string in the format that the CSV document needs before writing '''
         return "NA" + self.__make + self.__model + "," + self.__insignia + "\n"
 
     def get_validation_dict(self):
@@ -51,6 +53,8 @@ class Airplane():
         return self.__date_available
     
     def handle_key_value(self, key, value):
+        ''' A special function to handle the validate model 
+        function in the ModelAPI for validating the model '''
         return value(key())
 
     def get_insignia(self):
@@ -99,6 +103,7 @@ class Airplane():
         return date_string
 
     def get_model_header_format(self, header_flag):
+        ''' The default header format for displaying airplanes in a list '''
         return "{:10}{:14}{:12}{:12}{:14}{:19}{:17}{:17}{:23}".format("Index: ",
                                                                     "Insignia:",
                                                                     "Make:",
@@ -109,6 +114,7 @@ class Airplane():
                                                                     "Flight number:",
                                                                     "Date/time available:")
     def get_model_list_info(self, header_flag):
+        ''' The default format for displaying a list of airplanes '''
         returnObject = "     {:14}{:12}{:12}{:14}{:19}{:17}{:17}{:23}|\n".format(
                                                                       self.get_insignia(),
                                                                       self.get_make(),
