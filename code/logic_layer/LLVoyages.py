@@ -74,7 +74,7 @@ class LLVoyages:
         end_date = voyage.get_return_flight_arrival_date()
         voyages_in_date_range_list = self.filter_all_voyages_by_period(start_date, end_date)
 
-        all_employee_list = self.__ll_employees.get_all_employee_list() #note meiga allir LL layers tala á milli sýn? til þess að geta nýtt update status í ll employees
+        all_employee_list = self.__ll_employees.get_all_employee_list() 
 
         filter_rank_list = [(employee) for employee in all_employee_list if employee.get_rank() == rank]
 

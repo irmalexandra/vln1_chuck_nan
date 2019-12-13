@@ -38,7 +38,7 @@ class Employee():
         self.__create_pilot_order_list = [
             'employee name (first and last)', 'ssn', 'home address', 'phone number', 'mobile number', 'rank (Captain or Copilot)']
 
-        self.__creation_pilot_dict = {"name (first and last)": self.set_name,
+        self.__creation_pilot_dict = {"employee name (first and last)": self.set_name,
                                 "ssn": self.set_ssn,
                                 "home address": self.set_address,
                                 "phone number": self.set_home_num,
