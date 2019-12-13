@@ -39,7 +39,7 @@ class LLAirplanes:
 
 
     def get_airplane_type_list(self):
-        '''Gets a list of instances of airplane types and returns it'''
+        '''Gets a list of instances and returns it'''
         self.__all_airplane_type_list = self.__dl_api.pull_all_airplane_types()
         return self.__all_airplane_type_list
     
@@ -85,7 +85,7 @@ class LLAirplanes:
 
     # All change functions
 
-    def create_airplane(self, airplane, airplane_types,insignia):
+    def create_airplane(self, airplane, airplane_types, insignia):
         '''Gets a list of airplane instances, checks if user created instance exists in list, returns boolean and instance'''
         self.get_all_airplane_list()
         existing_airplanes_list = [x.get_insignia() for x in self.__all_airplane_list]
