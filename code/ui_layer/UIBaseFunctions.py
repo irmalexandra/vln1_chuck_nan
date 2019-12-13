@@ -137,24 +137,28 @@ class UIBaseFunctions():
             print("|{}{}{}|".format(menu_str, " "*(self.UI_DIVIDER_INT - len(menu_str) -
                                                    len(return_menu_str) - self.DEVIATION_INT), return_menu_str))
             print("-" * self.UI_DIVIDER_INT)
-            return_value = self.get_user_selection(nav_dict)
-            if return_value != 9 and return_value != 0:
-                value_to_edit = edit_order_list[return_value-1] # -1 for human readability
-                while True:
-                    new_value = self.get_user_input(value_to_edit)
-                    check = nav_dict[return_value](new_value)
-                    if check == True:
-                        return_value = check
-                        break
-                    else:
-                        print("Invalid {}".format(edit_order_list[return_value-1])) # for -1 human readability
-            else:
-                if llapi.overwrite_all_models(model): 
-                    print(type(model).__name__+" edited successfully")
-                    return
+            try:
+                return_value = self.get_user_selection(nav_dict)
+                if return_value != 9 and return_value != 0:
+                    value_to_edit = edit_order_list[return_value-1] # -1 for human readability
+                    while True:
+                        new_value = self.get_user_input(value_to_edit)
+                        check = nav_dict[return_value](new_value)
+                        if check == True:
+                            return_value = check
+                            break
+                        else:
+                            print("Invalid {}".format(edit_order_list[return_value-1]))# for -1 human readability
+                        
                 else:
-                    self.print_generic_error_message()
-                    return
+                    if llapi.overwrite_all_models(model): 
+                        print(type(model).__name__+" edited successfully")
+                        return
+                    else:
+                        self.print_generic_error_message()
+                        return
+            except IndexError:
+                print("Invalid index")
     
 
     def print_add_crew_results(self, employee):
