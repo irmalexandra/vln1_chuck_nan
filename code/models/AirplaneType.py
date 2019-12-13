@@ -41,6 +41,7 @@ class AirplaneType():
 
 
     def raw_info(self):
+        '''A function that returns a string in the format that the CSV document needs before writing'''
         return str(self.__plane_type_id) + "," + str(self.__make) + "," + str(self.__model) + "," + str(self.__capacity)
 
 

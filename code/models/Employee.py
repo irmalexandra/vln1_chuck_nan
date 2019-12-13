@@ -238,7 +238,7 @@ class Employee():
 
     def get_model_header_date_format(self):
         ''' Date format for displaying the employee model header'''
-        return "{:8}{:24}{:18}{:15}{:25}{:33}{:15}".format\
+        return "{:8}{:22}{:18}{:15}{:25}{:35}{:15}".format\
             ("Index:", "Name:",  "Mobile number:", "Title:", "Current status:","Voyage info:", "Flight number:")
 
     def get_model_header_aircraft_format(self):
@@ -252,7 +252,7 @@ class Employee():
 
     def get_model_list_date_info(self):
         ''' Date format for displaying the employee model in a list '''
-        returnObject = ("   {:24}{:18}{:15}{:25}{:33}{:15}|\n".format(
+        returnObject = ("   {:22}{:18}{:15}{:25}{:35}{:15}|\n".format(
                                                      self.get_name(),
                                                      self.get_mobile_num(),
                                                      self.get_title(),
