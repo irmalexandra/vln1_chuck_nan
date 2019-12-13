@@ -141,7 +141,7 @@ class Voyage<< (M,#FF7700) Model >>{
     change_date_time_format()
 }
 
-class ModelAPI<< (M,#FF7700) Model >>{
+class ModelAPI<< (M,#FF7700) Model >>#LightPink{
     -model_dict
 
     get_model(name_of_model_str)
@@ -151,13 +151,7 @@ class ModelAPI<< (M,#FF7700) Model >>{
 
 }
 
-ModelAPI *-down- Destination
-ModelAPI *-down- Airplane
-ModelAPI *-down- Voyage
-ModelAPI *-down- Employee
-ModelAPI *-down- AirplaneType
-
-class UIMain<< (U,#fcf003) UI >>{
+class UIMain<< (U,#fcf003) UI >>#Yellow{
     -RETURN_MENU_STR
     -LLAPI
     -ui_base_functions
@@ -309,29 +303,14 @@ class UIVoyages<< (U,#fcf003) UI >>{
 }
 
 
-UIMain *-down- UIEmployees
-UIMain *-down- UIVoyages
-UIMain *-down- UIDestinations
-UIMain *-down- UIAirplanes
-UIMain *-down- UIBaseFunctions
-UIEmployees -down- UIBaseFunctions
-UIVoyages -down- UIBaseFunctions
-UIDestinations -down- UIBaseFunctions
-UIAirplanes -down- UIBaseFunctions
-
-UIMain *-----left----- ModelAPI
 
 
 
 
-UIMain *---down--- LLAPI
-UIEmployees ---down--- LLAPI
-UIVoyages ---down--- LLAPI
-UIDestinations ---down--- LLAPI
-UIAirplanes ---down--- LLAPI
 
 
-class LLAPI<< (L,#3480eb) Logic >>{
+
+class LLAPI<< (L,#3480eb) Logic >>#LightBlue{
     -DLAPI = DLAPI()
     -modelAPI = ModelAPI()
     -ll_employees = LLEmployees(-DLAPI, -modelAPI)
@@ -388,6 +367,219 @@ class LLDestinations<< (L,#3480eb) Logic >>{
 }
 
 
+class LLEmployees<< (L,#3480eb) Logic >>{
+        -dl_api = DLAPI
+        -modelAPI = modelAPI
+        -all_employee_list = []
+
+        -ll_voyages = None
+        -ll_airplanes = None
+
+        set_ll_voyages(ll_voyage)
+        set_ll_airplanes(ll_airplanes)
+
+        get_all_employee_list(changed)
+        get_all_employees_by_name()
+        filter_employees_by_name(search_string)
+        filter_all_employees_by_title(title)
+        sort_pilots_by_airplane_type()
+        filter_pilots_by_airplane_type(airplane_type)
+        get_work_schedule_list(employee,date)
+        get_all_licences(employee)
+        get_name_dict()
+        create_employee(employee)
+        filter_working(date,hours,flag)
+        get_working_or_not(date)
+        ?get_one_employee()
+        get_iso_format_date_time(date)
+        email_generator(name)
+
+}
+
+
+class LLValidator<< (L,#3480eb) Logic >>{
+        TITLE_LIST = ["Pilot", "Cabincrew"]
+        PILOT_RANK_LIST = ["Captain", "Copilot"]
+        CABINCREW_RANK_LIST = ["Flight Service Manager", "Flight Attendant"]
+        DOMAIN = "nanair.is"
+        PHONE_NUMBER = 7
+        SSN = 10
+
+        -validate_string(attribute)
+        -validate_int(attribute)
+        validate_name(name)
+        validate_employee_name(name)
+        validate_employe_ssn(ssn)
+        validate_employee_address(address)
+        validate_phone_number(number)
+        validate_mobile_number(number)
+        validate_home_number(number)
+        validate_email(email)
+        validate_title(title)
+        validate_rank(rank)
+        validate_pilot_rank(rank)
+        validate_cabincrew_rank(rank)
+        validate_date_time(date)
+        validate_airplane_typeid(typeid)
+        validate_airplane_insignia(insignia)
+        validate_airplane_make(make)
+        validate_airplane_model(model)
+        validate_airplane_capacity(capacity)
+        validate_flight_number(flight_num)
+        validate_country(country)
+        validate_airport(airport)
+        validate_id(id_num)
+        validate_flight_time(time)
+        validate_distance(distance)
+        validate_contact_name(name)
+        validate_contact_number(number)
+
+}
+
+class LLVoyages<< (L,#3480eb) Logic >>{
+        -dl_api = DLAPI
+        -modelAPI = modelAPI
+        -all_voyage_list = []
+
+        -ll_employees = None
+        -ll_destinations = None
+        -ll_airplanes = None
+
+        set_ll_employees(ll_employee)
+        set_ll_airplanes(ll_airplanes)
+        set_ll_destinations(ll_destinations)
+
+        get_all_voyage_lisT(changed)
+        filter_all_empty_voyages()
+        filter_all_voyages_by_period(star_date, end_date)
+        filter_all_voyages_by_airport(airport)
+        filter_available_employees(rank, voyage)
+
+        create_voyage(destination, start_date, start_time)
+        overwrite_all_voyages()
+        duplicate_voyage(voyage, start_date, start_time)
+        repeat_voyage(voyage)
+}
+
+
+class DLAPI<< (D,#077a2c) Data >>#LightGreen{
+        self.__modelAPI = ModelAPI()
+        self.__dl_employees = DLEmployees(self.__modelAPI)
+        self.__dl_voyages = DLVoyages(self.__modelAPI)
+        self.__dl_destinations = DLDestinations(self.__modelAPI)
+        self.__dl_airplanes = DLAirplanes(self.__modelAPI)
+
+}
+
+class DLEmployees<< (D,#077a2c) Data >>{
+        SSN = 0
+        NAME = 1
+        ADDRESS = 2
+        HOME_NUMBER = 3
+        MOBILE_NUBER = 4
+        EMAIL = 5
+        TITLE = 6
+        RANK = 7
+        LICENSE = 8
+        CSV_ROWS = 9
+
+        -modelAPI = modelAPI
+
+        pull_all_employees()
+        overwrite_all_employees(employee_list)
+        append_employees(employee)
+}
+
+class DLVoyages<< (D,#077a2c) Data >>{
+        DEPARTING_FLIGHT_NUM = 0
+        RETURNING_FLIGHT_NUM = 1
+        DEPARTING_FLIGHT_DEPARTING_FROM = 2
+        DEPARTING_FLIGHT_DEPARTING_DATE = 3
+        DEPARTING_FLIGHT_ARRIVAL_DATE = 4
+        RETURNING_FLIGHT_DEPARTING_FROM = 5
+        RETURNING_FLIGHT_DEPARTURE_DATE = 6
+        RETURNING_FLIGHT_ARRIVAL_DATE = 7
+        AIRPLANE_INSIGNIA = 8
+        CAPTAIN_SSN = 9
+        COPILOT_SSN = 10
+        FSM_SSN = 11
+        FAS_SSN = 12
+        CSV_ROWS = 13
+
+        pull_all_voyages()
+        overwrite_all_voyages(voyage_list)
+        append_voyage(voyage)
+
+}
+
+class DLAirplanes<< (D,#077a2c) Data >>{
+        PLANE_TYPE_ID = 0
+        PLANE_INSIGNIA = 1
+        AIRPLANE_DICT_PLANE_TYPE = 0
+        AIRPLANE_DICT_MODEL = 1
+        AIRPLANE_DICT_CAPACITY = 2
+        PLANE_TYPE_ID = 0
+        PLANE_TYPE_MAKE = 1
+        PLANE_TYPE_MODEL = 2
+        PLANE_TYPE_CAPACITY = 3
+        CSV_ROWS = 2
+        
+
+        pull_all_airplanes()
+        pull_all_airplane_types()
+        append_airplane(airplane)
+}
+
+class DLDestinations<< (D,#077a2c) Data >>{
+        COUNTRY = 0
+        AIRPORT = 1
+        FLIGHT_TIME = 2
+        DISTANCE = 3
+        CONTACT_NAME = 4
+        CONTACT_NUMBER = 5
+        ID = 6
+        CSV_ROWS = 7
+
+        pull_all_destinations()
+        overwrite_all_destinations(destination_list)
+        append_destination(destination)
+
+}
+
+UIMain --left--* ModelAPI 
+UIMain --up--* LLAPI
+LLAPI --up--* DLAPI
+
+ModelAPI *-down- Airplane
+ModelAPI *-down- AirplaneType
+ModelAPI *-down- Destination
+ModelAPI *-down- Employee
+ModelAPI *-down- Voyage
+
+UIMain -down- UIAirplanes
+UIMain -down- UIDestinations
+UIMain -down- UIEmployees
+UIMain -down- UIVoyages
+UIMain --up-- UIBaseFunctions
+
+
+LLAPI *-down- LLAirplanes
+LLAPI *-down- LLDestinations
+LLAPI *-down- LLEmployees
+LLAPI *-down- LLVoyages
+LLAPI *--right-- LLValidator
+
+Employee -down- LLValidator
+Airplane -down- LLValidator
+Voyage -down- LLValidator
+Destination -down- LLValidator
+AirplaneType -down- LLValidator
+
+
+DLAPI *-down- DLAirplanes
+DLAPI *-down- DLDestinations
+DLAPI *-down- DLEmployees
+DLAPI *-down- DLVoyages
 
 
 
