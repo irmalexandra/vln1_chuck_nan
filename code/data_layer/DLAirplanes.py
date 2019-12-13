@@ -58,7 +58,7 @@ class DLAirplanes():
 
 
     def pull_airplane_types_info(self):
-        # Ath!!
+        '''Opens csv files and returns a list of all the airplane types (type ID, make, model, capacity)'''
         filestream = open("./repo/AirplaneType.csv", "r")
         new_airplane_type_list = [] # Holds all the airplane types, later to be returned
         
