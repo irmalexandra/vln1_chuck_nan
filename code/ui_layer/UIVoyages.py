@@ -1,7 +1,5 @@
 class UIVoyages():
-    UI_DIVIDER_INT = 124
     RETURN_MENU_STR = "9. Return 0. Home"
-    DEVIATION_INT = 2
 
     def __init__(self, LLAPI, modelAPI, UIBaseFunctions):
         self.__ll_api = LLAPI
@@ -126,12 +124,12 @@ class UIVoyages():
             else:
                 self.__ui_base_functions.print_generic_error_message()
         
-    def get_select_from_destination_list_menu(self, employee_list):
+    def get_select_from_destination_list_menu(self, destination_list):
         nav_dict = {1: self.__ui_base_functions.select_from_model_list,
                     9: self.__ui_base_functions.back,
                     0: self.__ui_base_functions.home}
-        employee_menu = "1. Select destination"
-        return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, employee_list)
+        destination_menu = "1. Select destination"
+        return_value = self.__ui_base_functions.print_menu(destination_menu, nav_dict, destination_list)
         return self.__ui_base_functions.check_return_value(return_value)
 
     # All list functions

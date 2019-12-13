@@ -1,9 +1,6 @@
 class UIAirplanes():
-    UI_DIVIDER_INT = 124
     RETURN_MENU_STR = "9. Return 0. Home"
-    DEVIATION_INT = 2
-    MAKE = 1
-    MODEL = 2
+
 
     def __init__(self, LLAPI, modelAPI, UIBaseFunctions):
         self.__ll_api = LLAPI
