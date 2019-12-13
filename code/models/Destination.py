@@ -1,4 +1,5 @@
-from validation.validator import Validator
+from logic_layer.LLValidator import Validator
+
 class Destination():
     def __init__(self, destination_id = 0, country = '', airport = '', flight_time = '', 
                  distance = '', contact_name = '', contact_number = ''):
