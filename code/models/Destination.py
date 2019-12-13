@@ -24,13 +24,13 @@ class Destination():
                                          self.get_contact_number: self.set_contact_number}
 
         self.__create_order_list = [
-            "country", "airport", "flight time (hours)", "distance (kilometers)", "contact name", "contact number"]
+            "country", "airport", "flight time (hours)", "distance (kilometers)", "contact name (first and last)", "contact number"]
         
         self.__creation_dict = {"country": self.set_country,
                                 "airport": self.set_airport,
                                 "flight time (hours)": self.set_flight_time,
                                 "distance (kilometers)": self.set_distance,
-                                "contact name": self.set_contact_name,
+                                "contact name (first and last)": self.set_contact_name,
                                 "contact number": self.set_contact_number 
         }
 
