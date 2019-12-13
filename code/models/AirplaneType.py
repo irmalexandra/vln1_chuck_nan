@@ -2,7 +2,7 @@ from logic_layer.LLValidator import Validator
 
 class AirplaneType():
     def __init__(self, plane_type_id = "", make = "", model = "", capacity = ""):
-        self.__model_validator = Validator()
+        self.__model_validation = Validator()
 
         self.__plane_type_id = plane_type_id
         self.__make = make
@@ -50,7 +50,7 @@ class AirplaneType():
         return self.__plane_type_id
 
     def set_plane_type_id(self, plane_type_id):
-        if self.__model_validator.validate_airplane_typeid(plane_type_id):
+        if self.__model_validation.validate_airplane_typeid(plane_type_id):
             self.__plane_type_id = plane_type_id
             return True
         else:
@@ -60,7 +60,7 @@ class AirplaneType():
         return self.__make
 
     def set_make(self, make):
-        if self.__model_validator.validate_airplane_make(make):
+        if self.__model_validation.validate_airplane_make(make):
             self.__make = make
             return True
         else:
@@ -70,7 +70,7 @@ class AirplaneType():
         return self.__model
 
     def set_model(self, model):
-        if self.__model_validator.validate_airplane_model(model):
+        if self.__model_validation.validate_airplane_model(model):
             self.__model = model
             return True
         else:
@@ -80,7 +80,7 @@ class AirplaneType():
         return self.__capacity
 
     def set_capacity(self, capacity):
-        if self.__model_validator.validate_airplane_capacity(str(capacity)):
+        if self.__model_validation.validate_airplane_capacity(str(capacity)):
             self.__capacity = capacity
             return True
         else:

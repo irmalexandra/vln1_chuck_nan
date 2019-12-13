@@ -4,6 +4,7 @@ class Airplane():
     def __init__(self, insignia='', make='', model='', capacity=0):
         self.__models_validation = Validator()
         self.__insignia = insignia
+        
         self.__make = make
         self.__model = model
         self.__capacity = capacity
