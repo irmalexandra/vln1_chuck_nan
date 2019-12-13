@@ -1,4 +1,4 @@
-from validation.validator import Validator
+from logic_layer.LLValidator import Validator
 
 
 class Employee():
@@ -15,9 +15,9 @@ class Employee():
         self.__rank = rank
         self.__licence = "N/A"
         self.__availability = ""
-        self.__current_voyage = "South Pole" # South Pole for testing purposes
-        self.__current_destination = "North pole" # North Pole for testing purposes
-        self.__current_flight_number = "West pole"
+        self.__current_voyage = ""
+        self.__current_destination = ""
+        self.__current_flight_number = ""
 
         self.__header_format_dict = {"default": self.get_model_header_default_format,
                                      "date": self.get_model_header_date_format,
@@ -36,7 +36,7 @@ class Employee():
                                   self.get_rank: self.set_rank}
         
         self.__create_pilot_order_list = [
-            'name (first and last)', 'ssn', 'home address', 'phone number', 'mobile number', 'rank (Captain or Copilot)']
+            'employee name (first and last)', 'ssn', 'home address', 'phone number', 'mobile number', 'rank (Captain or Copilot)']
 
         self.__creation_pilot_dict = {"name (first and last)": self.set_name,
                                 "ssn": self.set_ssn,
@@ -47,7 +47,7 @@ class Employee():
         }
 
         self.__create_cabincrew_order_list = [
-            'name (first and last)', 'ssn', 'home address', 'phone number', 'mobile number', 'rank (Flight Service Manager or Flight Attendant)']
+            'employee name (first and last)', 'ssn', 'home address', 'phone number', 'mobile number', 'rank (Flight Service Manager or Flight Attendant)']
 
         self.__creation_cabincrew_dict = {"name (first and last)": self.set_name,
                                 "ssn": self.set_ssn,
@@ -68,10 +68,12 @@ class Employee():
                             6: self.set_licence}
 
     def raw_info(self):
-        return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "," + self.__licence + "\n"
+        return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + \
+            str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "," + self.__licence + "\n"
 
     def __str__(self):
-        return_str = "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nPhone number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}".format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title,self.__rank)
+        return_str = "Name: {:>2} \nSSN: {:>2} \nAddress: {:>2} \nPhone number: {:>2} \nMobile number: {:>2} \nEmail: {:>2} \nTitle: {:>2} \nRank: {:>2}"\
+            .format(self.__name, self.__ssn, self.__address, self.__home_num, self.__mobile_num, self.__email, self.__title,self.__rank)
         if self.__title == "Pilot":
             return_str += "\nLicence: {}".format(self.__licence)
         return return_str
@@ -127,9 +129,6 @@ class Employee():
 
     def get_validation_dict(self):
         return self.__validation_dict
-
-    def get_create_order_list(self):
-        return self.__create_order_list
 
     def get_edit_order_list(self):
         return self.__edit_order_list
@@ -222,13 +221,16 @@ class Employee():
         return self.__header_format_dict[header_flag]()
 
     def get_model_header_default_format(self):
-        return "{:8}{:24}{:14}{:18}{:15}{:15}{:34}{:10}".format("Index: ", "Name:", "SSN:", "Address:", "Phone number:", "Mobile number:", "Email:", "Title:")
+        return "{:8}{:24}{:14}{:18}{:15}{:15}{:34}{:10}".format\
+            ("Index: ", "Name:", "SSN:", "Address:", "Phone number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_date_format(self):
-        return "{:8}{:24}{:18}{:15}{:25}{:33}{:15}".format("Index:", "Name:",  "Mobile number:", "Title:", "Current status:","Voyage info:", "Flight number:")
+        return "{:8}{:24}{:18}{:15}{:25}{:33}{:15}".format\
+            ("Index:", "Name:",  "Mobile number:", "Title:", "Current status:","Voyage info:", "Flight number:")
 
     def get_model_header_aircraft_format(self):
-        return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
+        return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format\
+            ("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
 
     def get_model_list_info(self, header_flag):
         return self.__list_info_dict[header_flag]()
