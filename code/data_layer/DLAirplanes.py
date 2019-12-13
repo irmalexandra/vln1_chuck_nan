@@ -36,13 +36,13 @@ class DLAirplanes():
                 check_list = [] # This list holds the output from the validator
                 new_airplane = self.__modelAPI.get_model('Airplane')
                 plane_type = line_list[DLAirplanes.PLANE_TYPE_ID]
-                check_list.append(new_airplane.set_insignia(line_list[DLAirplanes.PLANE_INSIGNIA]))#setting all the nessecariy info into the model instance
-                airplane_info_list = type_dict[plane_type] # Gets which type we're dealing with
+                check_list.append(new_airplane.set_insignia(line_list[DLAirplanes.PLANE_INSIGNIA])) # Setting all the nessecariy info into the model instance
+                airplane_info_list = type_dict[plane_type] # Gets which type we are dealing with
                 check_list.append(new_airplane.set_make(airplane_info_list[self.AIRPLANE_DICT_PLANE_TYPE])) # PlaneType
                 check_list.append(new_airplane.set_model(airplane_info_list[self.AIRPLANE_DICT_MODEL])) # Model
-                check_list.append(new_airplane.set_capacity(airplane_info_list[self.AIRPLANE_DICT_CAPACITY])) #Capacity
+                check_list.append(new_airplane.set_capacity(airplane_info_list[self.AIRPLANE_DICT_CAPACITY])) # Capacity
                 if False not in check_list: # If the validator returned a false bool anywhere, the instance is not appended and thus not 
-                    all_airplanes_list.append(new_airplane) # Sent down to the other layers, this excludes the header and "corrupt" lines
+                    all_airplanes_list.append(new_airplane) # sent down to the other layers, this excludes the header and "corrupt" lines
         airplane_stream.close()
         type_stream.close()
         return all_airplanes_list
