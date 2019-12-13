@@ -70,16 +70,6 @@ class UIAirplanes():
         airplane_menu = "1. Select airplane"
         return_value = self.__ui_base_functions.print_menu(airplane_menu,nav_dict,airplanes_list)
         return self.__ui_base_functions.check_return_value(return_value)
-        
-    
-    def get_select_from_airplane_type_list_menu(self, airplane_type_list):
-        nav_dict = {1: self.__ui_base_functions.select_from_model_list,
-                    9: self.__ui_base_functions.back,
-                    0: self.__ui_base_functions.home}
-        employee_menu = "1. Select airplane type"
-        return_value = self.__ui_base_functions.print_menu(employee_menu, nav_dict, airplane_type_list)
-        return self.__ui_base_functions.check_return_value(return_value)
-    
     
     def get_all_airplanes(self):
         header_flag = "default"
