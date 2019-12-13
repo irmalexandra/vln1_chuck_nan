@@ -12,10 +12,13 @@ class Destination():
         self.__contact_number = contact_number
         self.__destination_id = destination_id
 
+        # dictionary keeping all the different header formats for the destination model
         self.__header_format_dict = {"default": self.get_model_header_default_format}
 
+        # dictionary keeping all the different list formats for the destination model
         self.__list_info_dict = {"default": self.get_model_list_default_info}
-
+        
+        # dictionary that is used in the validate model process 
         self.__validation_dict = {self.get_country: self.set_country, 
                                          self.get_airport: self.set_airport,
                                          self.get_flight_time: self.set_flight_time,
@@ -23,9 +26,11 @@ class Destination():
                                          self.get_contact_name: self.set_contact_name,
                                          self.get_contact_number: self.set_contact_number}
 
+        # list keeping the order for the creation process of the destination model
         self.__create_order_list = [
             "country", "airport", "flight time (hours)", "distance (kilometers)", "contact name (first and last)", "contact number"]
         
+        # a dictionary where the keys match the order list in order to call the correct set function
         self.__creation_dict = {"country": self.set_country,
                                 "airport": self.set_airport,
                                 "flight time (hours)": self.set_flight_time,
@@ -41,13 +46,16 @@ class Destination():
         return self.__create_order_list, self.__creation_dict
     
     def get_model_header_format(self, header_flag):
+        ''' Takes a header flag as an argument and uses the dictionary to return the correct format back '''
         return self.__header_format_dict[header_flag]()
 
     def get_model_list_info(self, header_flag):
+        ''' Takes a header flag as an argument and uses the dictionary to return the correct format back '''
         return self.__list_info_dict[header_flag]()
     
     
     def get_model_header_default_format(self):
+        ''' Default format for displaying the destination model header'''
         return "{:10}{:20}{:17}{:20}{:15}{:22}{:34}".format("Index:",
                                                           "Country:",
                                                           "Airport:",
@@ -57,6 +65,7 @@ class Destination():
                                                           "Contact number:")
         
     def get_model_list_default_info(self):
+        ''' Default format for displaying the destination model in a list '''
         returnObject = ("     {:20}{:17}{:20}{:15}{:22}{:34}|\n".format(
                                                                       self.get_country(),
                                                                       self.get_airport(),
@@ -67,6 +76,7 @@ class Destination():
         return returnObject
 
     def raw_info(self):
+        ''' A function that returns a string in the format that the CSV document needs before writing '''
         return self.__country + "," + self.__airport + "," + self.__flight_time + "," + self.__distance + \
             "," + self.__contact_name + "," + self.__contact_number + "," + self.__destination_id + "\n"
 
@@ -77,6 +87,8 @@ class Destination():
         return self.__create_order_list
 
     def handle_key_value(self, key, value):
+        ''' A special function to handle the validate model 
+        function in the ModelAPI for validating the model '''
         return value(key())    
 
     def get_country(self):

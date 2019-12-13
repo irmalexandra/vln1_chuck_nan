@@ -19,14 +19,17 @@ class Employee():
         self.__current_destination = ""
         self.__current_flight_number = ""
 
+        # dictionary keeping all the different header formats for the employee model
         self.__header_format_dict = {"default": self.get_model_header_default_format,
                                      "date": self.get_model_header_date_format,
                                      "aircraft": self.get_model_header_aircraft_format}
-
+        
+        # dictionary keeping all the different list formats for the employee model
         self.__list_info_dict = {"default": self.get_model_list_default_info,
                                  "date": self.get_model_list_date_info,
                                  "aircraft": self.get_model_list_aircraft_info}
-
+        
+        # dictionary that is used in the validate model process 
         self.__validation_dict = {self.get_name: self.set_name, 
                                   self.get_ssn: self.set_ssn,
                                   self.get_address: self.set_address, 
@@ -35,9 +38,11 @@ class Employee():
                                   self.get_title: self.set_title,
                                   self.get_rank: self.set_rank}
         
+        # list keeping the order for the creation process of the pilot employee model
         self.__create_pilot_order_list = [
             'employee name (first and last)', 'ssn', 'home address', 'phone number', 'mobile number', 'rank (Captain or Copilot)']
 
+        # a dictionary where the keys match the order list in order to call the correct set function
         self.__creation_pilot_dict = {"employee name (first and last)": self.set_name,
                                 "ssn": self.set_ssn,
                                 "home address": self.set_address,
@@ -46,9 +51,11 @@ class Employee():
                                 "rank (Captain or Copilot)": self.set_rank_creation_process
         }
 
+        # list keeping the order for the creation process of the cabincrew employee model
         self.__create_cabincrew_order_list = [
             'employee name (first and last)', 'ssn', 'home address', 'phone number', 'mobile number', 'rank (Flight Service Manager or Flight Attendant)']
 
+        # a dictionary where the keys match the order list in order to call the correct set function
         self.__creation_cabincrew_dict = {"employee name (first and last)": self.set_name,
                                 "ssn": self.set_ssn,
                                 "home address": self.set_address,
@@ -57,9 +64,11 @@ class Employee():
                                 "rank (Flight Service Manager or Flight Attendant)": self.set_rank_creation_process
         }
 
+        # a list keeping the order for editing the model it matches the edit_dict
         self.__edit_order_list = [
             'home address', 'phone number', 'mobile number', "title", "rank"]
 
+        # a dict that the key would be a user input to call the correct set function matching the edit order list
         self.__edit_dict = {1: self.set_address,
                             2: self.set_home_num,
                             3: self.set_mobile_num, 
@@ -68,6 +77,7 @@ class Employee():
                             6: self.set_licence}
 
     def raw_info(self):
+        ''' A function that returns a string in the format that the CSV document needs before writing '''
         return self.__ssn + "," + self.__name + "," + str(self.__address) + "," + str(self.__home_num) + "," + \
             str(self.__mobile_num) + "," + self.__email + "," + self.__title + "," + self.__rank + "," + self.__licence + "\n"
 
@@ -215,27 +225,35 @@ class Employee():
         return True
 
     def handle_key_value(self, key, value):
+        ''' A special function to handle the validate model 
+        function in the ModelAPI for validating the model '''
         return value(key())
 
     def get_model_header_format(self, header_flag):
+        ''' Takes a header flag as an argument and uses the dictionary to return the correct format back '''
         return self.__header_format_dict[header_flag]()
 
     def get_model_header_default_format(self):
+        ''' Default format for displaying the employee model header'''
         return "{:8}{:24}{:14}{:18}{:15}{:15}{:34}{:10}".format\
             ("Index: ", "Name:", "SSN:", "Address:", "Phone number:", "Mobile number:", "Email:", "Title:")
 
     def get_model_header_date_format(self):
+        ''' Date format for displaying the employee model header'''
         return "{:8}{:24}{:18}{:15}{:25}{:33}{:15}".format\
             ("Index:", "Name:",  "Mobile number:", "Title:", "Current status:","Voyage info:", "Flight number:")
 
     def get_model_header_aircraft_format(self):
+        ''' Aircraft format for displaying the employee model header'''
         return "{:10}{:22}{:17}{:19}{:20}{:14}{:36}".format\
             ("Index:", "Name:", "SSN:", "Address:", "Mobile number:", "Title:", "Licence:")
 
     def get_model_list_info(self, header_flag):
+        ''' Takes a header flag as an argument and uses the dictionary to return the correct format back '''
         return self.__list_info_dict[header_flag]()
 
     def get_model_list_date_info(self):
+        ''' Date format for displaying the employee model in a list '''
         returnObject = ("   {:24}{:18}{:15}{:25}{:33}{:15}|\n".format(
                                                      self.get_name(),
                                                      self.get_mobile_num(),
@@ -246,6 +264,7 @@ class Employee():
         return returnObject
 
     def get_model_list_default_info(self):
+        ''' Default format for displaying the employee model in a list '''
         returnObject = ("   {:24}{:14}{:18}{:15}{:15}{:34}{:10}|\n".format(
                                                             self.get_name(),
                                                             self.get_ssn(),
@@ -257,6 +276,7 @@ class Employee():
         return returnObject
 
     def get_model_list_aircraft_info(self):
+        ''' Aircraft format for displaying the employee model in a list '''
         returnObject = ("     {:22}{:17}{:19}{:20}{:14}{:36}|\n".format(
                                                        self.get_name(),
                                                        self.get_ssn(),
