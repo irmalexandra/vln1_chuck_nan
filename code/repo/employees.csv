@@ -2,11 +2,7 @@ ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 3009907461,William Carillo,Menntavegur 1,4640161,6507678,william.carillo@nanair.is,Pilot,Captain,NAFokkerF100
 2910858778,Virginia Ho,Laugarvegur 12,6337442,7603419,virginia.ho@nanair.is,Pilot,Captain,NABAE146
 2706838569,Gerard Nelson,Menntavegur 1,7449780,0860066,gerard.nelson@nanair.is,Pilot,Captain,NAFokkerF100
-<<<<<<< HEAD
-2209955782,Allen Ley,Laugarvegur 12,2546882,1234567,allen.ley@nanair.is,Pilot,Captain,NABAE146
-=======
 2209955782,Allen Ley,Goodstreet 16,2546882,3493315,allen.ley@nanair.is,Pilot,Captain,NAFokkerF28
->>>>>>> 93f17c3175f1f8189cc031a896df3861d1601be4
 2907675667,Felecia Moye,Kringlan 1,4799507,3106942,felecia.moye@nanair.is,Pilot,Captain,NABAE146
 1309797899,Tyler Anderson,Kringlan 1,0678816,1503886,tyler.anderson@nanair.is,Pilot,Captain,NAFokkerF28
 2410876598,Nan Gage,Laugarvegur 12,3100759,5287397,nan.gage@nanair.is,Pilot,Copilot,NAFokkerF100
@@ -38,16 +34,3 @@ ssn,name,address,homenumber,mobilenumber,email,role,rank,licence
 1110732819,Arthur Karr,Menntavegur 1,0200077,3837344,arthur.karr@nanair.is,Cabincrew,Flight Attendant,N/A
 2602806942,Teresa Thruman,Menntavegur 1,3341427,6470574,teresa.thruman@nanair.is,Cabincrew,Flight Attendant,N/A
 1107951952,Elizabeth Mcfadden,Menntavegur 1,2957609,6902831,elizabeth.mcfadden@nanair.is,Cabincrew,Flight Attendant,N/A
-<<<<<<< HEAD
-2402922469,Rikhardur Fridgeirsson,Haholt 5,6628460,6628460,rikhardur.fridgeirsson@nanair.is,Pilot,Captain,NAFokker100
-=======
-1234875694,Lina Smith,Barkstreet 6,1236855,4785236,lina.smith@nanair.is,Cabincrew,Flight attendant,
-1234567890,Steve Pilot,Anothastreet 12,1234567,7654321,steve.pilot@nanair.is,Pilot,Captain,NAFokkerF28
-0510920000,Margret Gudmundsdottir,Bestagatan 10,5555555,7777777,margret.gudmundsdottir@nanair.is,Pilot,pilot,NABAE146
-2402922469,Rikhardur Fridgeirsson,Haholt 5,8764321,6628460,rikhardur.fridgeirsson@nanair.is,Pilot,Captain,NAFokkerF28
-4567894123,Tumi Smith,Cuterstreet 8,5552369,898-5632,tumi.smith@nanair.is,Pilot,Captain,NAFokkerF28
-<<<<<<< HEAD
-1593578965,Viktor Smith,Mystreet 43,1254789,2365478,viktor.smith@nanair.is,Pilot,Captain,NAFokkerF28
-=======
->>>>>>> 93f17c3175f1f8189cc031a896df3861d1601be4
->>>>>>> 209baa9c1680681d1deb7310d1537e8e8994fcd7
