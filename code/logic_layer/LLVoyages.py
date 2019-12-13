@@ -312,6 +312,8 @@ class LLVoyages:
 
 
     def get_iso_format_date_time(self, date = "00-00-0000", time = "00:00:00"):
+        '''Takes two variables in various date/time formats and returns a datetime instance'''
+
         if type(date).__name__ != 'datetime':
 
             if date.find("T") == -1:
