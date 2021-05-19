@@ -100,6 +100,7 @@ class Destination():
 
 
     def get_country(self):
+        '''test '''
         return self.__country
 
 
